@@ -1,0 +1,31 @@
+{
+  "shieldAbilities": {
+    "SHIELD": {
+      "price": {
+        "health": 6,
+        "hunger": 6
+      },
+      "particle": "ENCHANTMENT_TABLE",
+      "particleFrequency": 9,
+      "radius": 1,
+      "duration": 60,
+      "disableAttack": true
+    }
+  },
+  "fireAbilities": {
+    "FIRE": {
+      "price": {
+        "health": 4,
+        "hunger": 4
+      },
+      "particle": "FLAME",
+      "particleFrequency": 9,
+      "circleDistance": 1,
+      "radius": 0.25,
+      "fireRange": 1,
+      "circleCount": 5,
+      "fireDuration": 40,
+      "circlePeriod": 2
+    }
+  }
+}

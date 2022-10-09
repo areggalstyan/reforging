@@ -1,0 +1,25 @@
+{
+  "name": "%DARK_PURPLE%Reforge Anvil",
+  "lore": [
+    "%GRAY%Place this anvil anywhere in the world",
+    "%GRAY%to start reforging stuff!"
+  ],
+  "recipe": {
+    "shape": [
+      "ooo",
+      "dad",
+      "iii"
+    ],
+    "keys": {
+      "o": "OBSIDIAN",
+      "d": "DIAMOND",
+      "a": "ANVIL",
+      "i": "IRON_BLOCK"
+    }
+  },
+  "soundEffect": {
+    "volume": 1,
+    "pitch": 0
+  },
+  "price": 1
+}

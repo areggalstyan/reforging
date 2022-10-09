@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Shielded",
+    "ability": "SHIELD",
+    "maxHealth": 4,
+    "attackDamage": -1,
+    "armor": 4,
+    "knockbackResistance": 2,
+    "weight": 20
+  },
+  {
+    "name": "Sharp",
+    "ability": "DUMMY",
+    "maxHealth": -2,
+    "attackDamage": 4,
+    "attackSpeed": 0.2,
+    "weight": 80
+  },
+  {
+    "name": "Infernal",
+    "ability": "FIRE",
+    "weight": 40
+  }
+]
