@@ -43,6 +43,24 @@ Colorized, placeholders:
 - **ARMOR_TOUGHNESS** - The boost of armor toughness provided by the reforging
 - **ATTACK_KNOCKBACK** - The boost of attack knockback provided by the reforging
 
+```json
+{
+  "name": "%RESET%%REFORGE_NAME% %NAME%",
+  "lore": [
+    "",
+    "%GRAY%When in main hand:",
+    "%DARK_GREEN% %BASE_ATTACK_SPEED% %DARK_BLUE%(%ATTACK_SPEED%)%DARK_GREEN% Attack Speed",
+    "%DARK_GREEN% %BASE_ATTACK_DAMAGE% %DARK_BLUE%(%ATTACK_DAMAGE%)%DARK_GREEN% Attack Damage",
+    "%DARK_BLUE% %MAX_HEALTH% Max Health",
+    "%DARK_BLUE% %KNOCKBACK_RESISTANCE% Knockback Resistance",
+    "%DARK_BLUE% %MOVEMENT_SPEED% Movement Speed",
+    "%DARK_BLUE% %ARMOR% Armor",
+    "%DARK_BLUE% %ARMOR_TOUGHNESS% Armor Toughness",
+    "%DARK_BLUE% %ATTACK_KNOCKBACK% Attack Knockback"
+  ]
+}
+```
+
 ### anvil.json
 
 Configures the visuals and mechanics of the reforging anvil.
@@ -80,6 +98,34 @@ Specifies the volume and pitch of the sound (`BLOCK_ANVIL_USE`) played whenever 
 Specifies the amount of respective material (e.g., diamonds for diamond sword, iron ingots for iron axe) required
 to perform reforging.
 
+```json
+{
+  "name": "%DARK_PURPLE%Reforge Anvil",
+  "lore": [
+    "%GRAY%Place this anvil anywhere in the world",
+    "%GRAY%to start reforging stuff!"
+  ],
+  "recipe": {
+    "shape": [
+      "ooo",
+      "dad",
+      "iii"
+    ],
+    "keys": {
+      "o": "OBSIDIAN",
+      "d": "DIAMOND",
+      "a": "ANVIL",
+      "i": "IRON_BLOCK"
+    }
+  },
+  "soundEffect": {
+    "volume": 1,
+    "pitch": 0
+  },
+  "price": 1
+}
+```
+
 ### reforges.json
 
 This file allows you to create as many unique reforges as you wish.
@@ -111,6 +157,33 @@ These are all the attributes, each corresponding to their respective stat and pl
 
 Represents the chance of this particular reforge being applied to the weapon. This is not a percentage,
 but rather relative weight, which means that there are no restrictions on the upper bound of the number.
+
+```json
+[
+  {
+    "name": "Shielded",
+    "ability": "SHIELD",
+    "maxHealth": 4,
+    "attackDamage": -1,
+    "armor": 4,
+    "knockbackResistance": 2,
+    "weight": 20
+  },
+  {
+    "name": "Sharp",
+    "ability": "DUMMY",
+    "maxHealth": -2,
+    "attackDamage": 4,
+    "attackSpeed": 0.2,
+    "weight": 80
+  },
+  {
+    "name": "Infernal",
+    "ability": "FIRE",
+    "weight": 40
+  }
+]
+```
 
 ### abilities.json
 
@@ -206,3 +279,37 @@ Specifies how long will hit entities be on fire in ticks **(1 second = 20 ticks)
 ##### circlePeriod: integer
 
 Specifies how much time after forming a circle should pass to form the next one in ticks **(1 second = 20 ticks)**.
+
+```json
+{
+  "shieldAbilities": {
+    "SHIELD": {
+      "price": {
+        "health": 6,
+        "hunger": 6
+      },
+      "particle": "ENCHANTMENT_TABLE",
+      "particleFrequency": 9,
+      "radius": 1,
+      "duration": 60,
+      "disableAttack": true
+    }
+  },
+  "fireAbilities": {
+    "FIRE": {
+      "price": {
+        "health": 4,
+        "hunger": 4
+      },
+      "particle": "FLAME",
+      "particleFrequency": 9,
+      "circleDistance": 1,
+      "radius": 0.25,
+      "fireRange": 1,
+      "circleCount": 5,
+      "fireDuration": 40,
+      "circlePeriod": 2
+    }
+  }
+}
+```
