@@ -1,7 +1,5 @@
 # Reforging
 
-**Visit [reforging.github.io](reforging.github.io) for generating configuration files.**
-
 Reforging plugin adds a new mechanic for enhancing weapons with various stat boosts and abilities. It is completely
 customizable with options to add custom reforges, heavily tweak existing abilities, and change the looks of items.
 
@@ -9,3 +7,202 @@ customizable with options to add custom reforges, heavily tweak existing abiliti
 ![Axe on an Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/axe_on_anvil.png)
 ![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png)
 ![Shield Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shield_ability.png)
+
+## Config
+
+**If you are not familiar with JSON, you may use online YAML to JSON converters,
+for example [https://onlineyamltools.com/convert-yaml-to-json](https://onlineyamltools.com/convert-yaml-to-json).**
+
+Specify colors and placeholders with `%COLOR_NAME%` or `%PLACEHOLDER_NAME%` (e.g., `%DARK_BLUE%`, `%REFORGE_NAME%`).
+
+### item.json
+
+Configures the visuals of reforged items.
+
+#### name: string
+
+The name of each reforged item.
+
+Colorized, placeholders:
+- REFORGE_NAME - The name of the reforging (e.g., "Sharp", "Shielded")
+- NAME - THe name of the item (e.g., "Diamond Sword")
+
+#### lore: string array
+
+The lore attached to the end of each reforged item.
+
+Colorized, placeholders:
+- **BASE_ATTACK_SPEED** - The base attack speed of the weapon
+- **ATTACK_SPEED** - The boost of attack speed provided by the reforging
+- **BASE_ATTACK_DAMAGE** - The base attack damage of the weapon
+- **ATTACK_DAMAGE** - The boost of attack damage provided by the reforging
+- **MAX_HEALTH** - The boost of max health provided by the reforging
+- **KNOCKBACK_RESISTANCE** - The boost of knockback resistance provided by the reforging
+- **MOVEMENT_SPEED** - The boost of movement speed provided by the reforging
+- **ARMOR** - The boost of armor provided by the reforging
+- **ARMOR_TOUGHNESS** - The boost of armor toughness provided by the reforging
+- **ATTACK_KNOCKBACK** - The boost of attack knockback provided by the reforging
+
+### anvil.json
+
+Configures the visuals and mechanics of the reforging anvil.
+
+#### name: string
+
+The name of the reforging anvil item.
+
+Colorized, no placeholders.
+
+#### lore: string array
+
+The lore of the reforging anvil item.
+
+Colorized, no placeholders.
+
+#### recipe: object
+
+##### shape: string array
+
+The shape of the crafting recipe for the reforging anvil item. 
+
+3 strings, each consisting of 3 symbols representing items as per `keys`.
+
+##### keys: object
+
+Maps single symbols to their respective item. Item should be specified with all CAPS and without `minecraft:`.
+
+#### soundEffect: object
+
+Specifies the volume and pitch of the sound (`BLOCK_ANVIL_USE`) played whenever a player performs reforging.
+
+#### price: integer
+
+Specifies the amount of respective material (e.g., diamonds for diamond sword, iron ingots for iron axe) required
+to perform reforging.
+
+### reforges.json
+
+This file allows you to create as many unique reforges as you wish.
+
+#### name: string
+
+The name of the reforging, it corresponds to the `REFORGE_NAME` label.
+
+#### ability: string
+
+The name of the ability of the reforging as per `abilities.json`.
+
+#### [attribute]: float
+
+These are all the attributes, each corresponding to their respective stat and placeholder.
+
+- **baseAttackSpeed**
+- **attackSpeed**
+- **baseAttackDamage**
+- **attackDamage**
+- **maxHealth**
+- **knockbackResistance**
+- **movementSpeed**
+- **armor**
+- **armorToughness**
+- **attackKnockback**
+
+#### weight: int
+
+Represents the chance of this particular reforge being applied to the weapon. This is not a percentage,
+but rather relative weight, which means that there are no restrictions on the upper bound of the number.
+
+### abilities.json
+
+There are currently only 2 abilities but more will be added soon. Each ability has many customizable options.
+This file allows creating multiple abilities with their own names and tweaks to the 2 base built-in abilities.
+
+#### shieldAbilities: object
+
+This is the first base ability. It gives player damage resistance for a specified period of time. You can have
+multiple abilities inheriting from this with different options and names.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: integer
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### particle: string
+
+Specifies the type of the particle which is used to form a circle around the player. All CAPS, without `minecraft:`.
+**Visit this page for the types of the particles [https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html)**.
+
+##### particleFrequency: double
+
+Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180 divided
+by the "frequency". The higher the number is, The further apart will the particles be.
+
+##### radius: double
+
+Specifies the radius of the circle formed around the player.
+
+##### duration: integer
+
+Specifies the duration of the shield in ticks **(1 second = 20 ticks)**.
+
+##### disableAttack: boolean (true/false)
+
+Specifies whether the player should be prevented from attacking other entities while the shield is active.
+
+#### fireAbilities: object
+
+This is the second base ability. It forms multiple circles in the direction where the player is facing, each further
+from the player, and with bigger radius. If any entity hits the particle, then that entity will be set on fire.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: integer
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### particle: string
+
+Specifies the type of the particle which is used to form a circles. All CAPS, without `minecraft:`.
+**Visit this page for the types of the particles [https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html)**.
+
+##### particleFrequency: double
+
+Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180 divided
+by the "frequency". The higher the number is, The further apart will the particles be.
+
+##### circleDistance: double
+
+Specifies the distance between each circle.
+
+##### radius: double
+
+Specifies the radius of the smallest circle.
+
+##### fireRange: double
+
+Specifies the maximum distance from a particle which will set the entity on fire.
+
+##### circleCount: integer
+
+Specifies the count of the circles. Each next circle is bigger than the previous one.
+
+##### fireDuration: integer
+
+Specifies how long will hit entities be on fire in ticks **(1 second = 20 ticks)**.
+
+##### circlePeriod: integer
+
+Specifies how much time after forming a circle should pass to form the next one in ticks **(1 second = 20 ticks)**.

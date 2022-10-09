@@ -6,6 +6,7 @@
     "%DARK_GREEN% %BASE_ATTACK_SPEED% %DARK_BLUE%(%ATTACK_SPEED%)%DARK_GREEN% Attack Speed",
     "%DARK_GREEN% %BASE_ATTACK_DAMAGE% %DARK_BLUE%(%ATTACK_DAMAGE%)%DARK_GREEN% Attack Damage",
     "%DARK_BLUE% %MAX_HEALTH% Max Health",
+    "%DARK_BLUE% %KNOCKBACK_RESISTANCE% Knockback Resistance",
     "%DARK_BLUE% %MOVEMENT_SPEED% Movement Speed",
     "%DARK_BLUE% %ARMOR% Armor",
     "%DARK_BLUE% %ARMOR_TOUGHNESS% Armor Toughness",
