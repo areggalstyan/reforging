@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -36,6 +37,7 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
         ABILITIES.put("DUMMY", Ability.DUMMY);
         ABILITIES.putAll(abilities.shieldAbilities);
         ABILITIES.putAll(abilities.fireAbilities);
+        ABILITIES.putAll(abilities.throwAbilities);
     }
     public static final Item ITEM = Config.readFile("item", Item.class);
     public static final Map<String, Reforge> REFORGES = List.of(Config.readFile("reforges", Reforge[].class))
@@ -113,7 +115,8 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
             if (lore != null) {
                 var previousReforge = REFORGES.get(previousName);
                 ITEM.lore.stream().filter(Predicate.not(previousReforge::containsAbsent))
-                        .map(it -> previousReforge.format(it, type)).mapToInt(lore::lastIndexOf).forEach(lore::remove);
+                        .map(it -> previousReforge.format(it, type)).mapToInt(lore::lastIndexOf)
+                        .filter(it -> it > -1).forEach(lore::remove);
                 itemMeta.setLore(lore);
             }
         }
@@ -201,7 +204,15 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
         if (event.getAction() != Action.RIGHT_CLICK_AIR) {
             return;
         }
-        var item = event.getItem();
+        activateAbility(event.getItem(), event.getPlayer());
+    }
+
+    @EventHandler
+    public void onPlayerInteractEntity(PlayerInteractEvent event) {
+        activateAbility(event.getItem(), event.getPlayer());
+    }
+
+    private void activateAbility(ItemStack item, Player player) {
         if (item == null) {
             return;
         }
@@ -213,6 +224,6 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
         if (!dataContainer.has(REFORGE_KEY, PersistentDataType.STRING)) {
             return;
         }
-        REFORGES.get(dataContainer.get(REFORGE_KEY, PersistentDataType.STRING)).ability.activate(event.getPlayer());
+        REFORGES.get(dataContainer.get(REFORGE_KEY, PersistentDataType.STRING)).ability.activate(player);
     }
 }

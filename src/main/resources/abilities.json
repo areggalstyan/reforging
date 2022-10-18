@@ -27,5 +27,17 @@
       "fireDuration": 40,
       "circlePeriod": 2
     }
+  },
+  "throwAbilities": {
+    "THROW": {
+      "price": {
+        "health": 0,
+        "hunger": 1
+      },
+      "maxDistance": 5,
+      "damageAmplifier": 0.75,
+      "speed": 0.5,
+      "range": 1
+    }
   }
 }

@@ -181,6 +181,14 @@ but rather relative weight, which means that there are no restrictions on the up
     "name": "Infernal",
     "ability": "FIRE",
     "weight": 40
+  },
+  {
+    "name": "Murderous",
+    "ability": "THROW",
+    "attackDamage": 2,
+    "attackSpeed": 0.5,
+    "movementSpeed": 0.1,
+    "weight": 40
   }
 ]
 ```
@@ -266,7 +274,7 @@ Specifies the radius of the smallest circle.
 
 ##### fireRange: double
 
-Specifies the maximum distance from a particle which will set the entity on fire.
+Specifies the maximum distance from a particle which will set an entity on fire.
 
 ##### circleCount: integer
 
@@ -279,6 +287,39 @@ Specifies how long will hit entities be on fire in ticks **(1 second = 20 ticks)
 ##### circlePeriod: integer
 
 Specifies how much time after forming a circle should pass to form the next one in ticks **(1 second = 20 ticks)**.
+
+#### throwAbilities: object
+
+This is the third base ability. It allows the player to throw sword which will disappear after hitting a solid block
+or travelling the maximum specified distance and damage all the entities it hits on the way.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: integer
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### maxDistance: double
+
+Specifies the maximum distance that the weapon travels before disappearing.
+
+##### damageAmplifier: double
+
+Specifies how the amplifier applied to the weapons usual damage when thrown.
+
+##### speed: double
+
+Specifies the speed of the weapon when thrown in blocks.
+
+##### range: double
+
+Specifies the maximum distance from the weapon which will damage an entity.
 
 ```json
 {
@@ -309,6 +350,18 @@ Specifies how much time after forming a circle should pass to form the next one 
       "circleCount": 5,
       "fireDuration": 40,
       "circlePeriod": 2
+    }
+  },
+  "throwAbilities": {
+    "THROW": {
+      "price": {
+        "health": 0,
+        "hunger": 1
+      },
+      "maxDistance": 5,
+      "damageAmplifier": 0.75,
+      "speed": 0.5,
+      "range": 1
     }
   }
 }

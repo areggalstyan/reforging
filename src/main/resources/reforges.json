@@ -20,5 +20,13 @@
     "name": "Infernal",
     "ability": "FIRE",
     "weight": 40
+  },
+  {
+    "name": "Murderous",
+    "ability": "THROW",
+    "attackDamage": 2,
+    "attackSpeed": 0.5,
+    "movementSpeed": 0.1,
+    "weight": 40
   }
 ]
