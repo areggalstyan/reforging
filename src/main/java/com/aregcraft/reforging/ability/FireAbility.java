@@ -14,7 +14,8 @@ import java.util.UUID;
 
 public class FireAbility implements Ability {
     private final Set<UUID> players = new HashSet<>();
-    private Price price; Particle particle;
+    private Price price;
+    private Particle particle;
     private double particleFrequency;
     private double circleDistance;
     private double radius;

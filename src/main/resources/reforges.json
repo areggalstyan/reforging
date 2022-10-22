@@ -6,7 +6,7 @@
     "attackDamage": -1,
     "armor": 4,
     "knockbackResistance": 2,
-    "weight": 20
+    "weight": 40
   },
   {
     "name": "Sharp",
@@ -19,7 +19,7 @@
   {
     "name": "Infernal",
     "ability": "FIRE",
-    "weight": 40
+    "weight": 20
   },
   {
     "name": "Murderous",
@@ -27,6 +27,13 @@
     "attackDamage": 2,
     "attackSpeed": 0.5,
     "movementSpeed": 0.1,
-    "weight": 40
+    "weight": 20
+  },
+  {
+    "name": "Enraged",
+    "ability": "STORM",
+    "attackDamage": 3,
+    "attackSpeed": 0.3,
+    "weight": 20
   }
 ]

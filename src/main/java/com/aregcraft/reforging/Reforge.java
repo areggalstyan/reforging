@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
@@ -38,6 +39,7 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
         ABILITIES.putAll(abilities.shieldAbilities);
         ABILITIES.putAll(abilities.fireAbilities);
         ABILITIES.putAll(abilities.throwAbilities);
+        ABILITIES.putAll(abilities.stormAbilities);
     }
     public static final Item ITEM = Config.readFile("item", Item.class);
     public static final Map<String, Reforge> REFORGES = List.of(Config.readFile("reforges", Reforge[].class))
@@ -201,15 +203,14 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction() != Action.RIGHT_CLICK_AIR) {
-            return;
+        if (event.getAction() == Action.RIGHT_CLICK_AIR) {
+            activateAbility(event.getItem(), event.getPlayer());
         }
-        activateAbility(event.getItem(), event.getPlayer());
     }
 
     @EventHandler
-    public void onPlayerInteractEntity(PlayerInteractEvent event) {
-        activateAbility(event.getItem(), event.getPlayer());
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+        activateAbility(event.getPlayer().getInventory().getItemInMainHand(), event.getPlayer());
     }
 
     private void activateAbility(ItemStack item, Player player) {

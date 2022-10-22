@@ -1,10 +1,8 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.reforging.Reforge;
 import com.aregcraft.reforging.Reforging;
 import com.aregcraft.reforging.data.Price;
 import com.google.common.math.DoubleMath;
-import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.ArmorStand;

@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.aregcraft"
-version = "1.1-SNAPSHOT"
+version = "1.2-SNAPSHOT"
 
 dependencies {
     compileOnly(spigot("1.19.2"))

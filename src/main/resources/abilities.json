@@ -39,5 +39,15 @@
       "speed": 0.5,
       "range": 1
     }
+  },
+  "stormAbilities": {
+    "STORM": {
+      "price": {
+        "health": 2,
+        "hunger": 4
+      },
+      "radius": 3,
+      "frequency": 9
+    }
   }
 }
