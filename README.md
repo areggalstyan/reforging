@@ -3,7 +3,8 @@
 Reforging plugin adds a new mechanic for enhancing weapons with various stat boosts and abilities. It is completely
 customizable with options to add custom reforges, heavily tweak existing abilities, and change the looks of items.
 
-![Sword on an Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/throw_ability.png)
+![Storm Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/storm_ability.png)
+![Throw Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/throw_ability.png)
 ![Sword on an Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/sword_on_anvil.png)
 ![Axe on an Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/axe_on_anvil.png)
 ![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png)
@@ -168,7 +169,7 @@ but rather relative weight, which means that there are no restrictions on the up
     "attackDamage": -1,
     "armor": 4,
     "knockbackResistance": 2,
-    "weight": 20
+    "weight": 40
   },
   {
     "name": "Sharp",
@@ -181,7 +182,7 @@ but rather relative weight, which means that there are no restrictions on the up
   {
     "name": "Infernal",
     "ability": "FIRE",
-    "weight": 40
+    "weight": 20
   },
   {
     "name": "Murderous",
@@ -189,7 +190,14 @@ but rather relative weight, which means that there are no restrictions on the up
     "attackDamage": 2,
     "attackSpeed": 0.5,
     "movementSpeed": 0.1,
-    "weight": 40
+    "weight": 20
+  },
+  {
+    "name": "Enraged",
+    "ability": "STORM",
+    "attackDamage": 3,
+    "attackSpeed": 0.3,
+    "weight": 20
   }
 ]
 ```
@@ -322,6 +330,31 @@ Specifies the speed of the weapon when thrown in blocks.
 
 Specifies the maximum distance from the weapon which will damage an entity.
 
+#### stormAbilities: object
+
+This is the fourth base ability. It allows the player to strike a circle of lighting around them.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: integer
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### radius: double
+
+Specifies the radius of the circle formed around the player.
+
+##### frequency: double
+
+Specifies the "frequency" of the lighting. The "frequency" is used to determine the step angle, which is 180 divided
+by the "frequency". The higher the number is, The further apart will the lighting be.
+
 ```json
 {
   "shieldAbilities": {
@@ -363,6 +396,16 @@ Specifies the maximum distance from the weapon which will damage an entity.
       "damageAmplifier": 0.75,
       "speed": 0.5,
       "range": 1
+    }
+  },
+  "stormAbilities": {
+    "STORM": {
+      "price": {
+        "health": 2,
+        "hunger": 4
+      },
+      "radius": 3,
+      "frequency": 9
     }
   }
 }
