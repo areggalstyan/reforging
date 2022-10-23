@@ -144,9 +144,7 @@ The name of the ability of the reforging as per `abilities.json`.
 
 These are all the attributes, each corresponding to their respective stat and placeholder.
 
-- **baseAttackSpeed**
 - **attackSpeed**
-- **baseAttackDamage**
 - **attackDamage**
 - **maxHealth**
 - **knockbackResistance**
