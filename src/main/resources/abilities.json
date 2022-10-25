@@ -3,7 +3,7 @@
     "SHIELD": {
       "price": {
         "health": 6,
-        "hunger": 6
+        "food": 6
       },
       "particle": "ENCHANTMENT_TABLE",
       "particleFrequency": 9,
@@ -16,7 +16,7 @@
     "FIRE": {
       "price": {
         "health": 4,
-        "hunger": 4
+        "food": 4
       },
       "particle": "FLAME",
       "particleFrequency": 9,
@@ -32,7 +32,7 @@
     "THROW": {
       "price": {
         "health": 0,
-        "hunger": 1
+        "food": 1
       },
       "maxDistance": 5,
       "damageAmplifier": 0.75,
@@ -44,7 +44,7 @@
     "STORM": {
       "price": {
         "health": 2,
-        "hunger": 4
+        "food": 4
       },
       "radius": 3,
       "frequency": 9

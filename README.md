@@ -359,7 +359,7 @@ by the "frequency". The higher the number is, The further apart will the lightin
     "SHIELD": {
       "price": {
         "health": 6,
-        "hunger": 6
+        "food": 6
       },
       "particle": "ENCHANTMENT_TABLE",
       "particleFrequency": 9,
@@ -372,7 +372,7 @@ by the "frequency". The higher the number is, The further apart will the lightin
     "FIRE": {
       "price": {
         "health": 4,
-        "hunger": 4
+        "food": 4
       },
       "particle": "FLAME",
       "particleFrequency": 9,
@@ -388,7 +388,7 @@ by the "frequency". The higher the number is, The further apart will the lightin
     "THROW": {
       "price": {
         "health": 0,
-        "hunger": 1
+        "food": 1
       },
       "maxDistance": 5,
       "damageAmplifier": 0.75,
@@ -400,7 +400,7 @@ by the "frequency". The higher the number is, The further apart will the lightin
     "STORM": {
       "price": {
         "health": 2,
-        "hunger": 4
+        "food": 4
       },
       "radius": 3,
       "frequency": 9
