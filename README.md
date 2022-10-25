@@ -263,7 +263,7 @@ Specifies the amount of food subtracted from the player when activating the abil
 
 ##### particle: string
 
-Specifies the type of the particle which is used to form a circles. All CAPS, without `minecraft:`.
+Specifies the type of the particle which is used to form circles. All CAPS, without `minecraft:`.
 **Visit this page for the types of the particles [https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html)**.
 
 ##### particleFrequency: double
