@@ -240,7 +240,7 @@ Specifies the type of the particle which is used to form a circle around the pla
 ##### particleFrequency: double
 
 Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180 divided
-by the "frequency". The higher the number is, The further apart will the particles be.
+by the "frequency". The higher the number is, the further apart will the particles be.
 
 ##### radius: double
 
@@ -279,7 +279,7 @@ Specifies the type of the particle which is used to form circles. All CAPS, with
 ##### particleFrequency: double
 
 Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180 divided
-by the "frequency". The higher the number is, The further apart will the particles be.
+by the "frequency". The higher the number is, the further apart will the particles be.
 
 ##### circleDistance: double
 
@@ -361,7 +361,7 @@ Specifies the radius of the circle formed around the player.
 ##### frequency: double
 
 Specifies the "frequency" of the lighting. The "frequency" is used to determine the step angle, which is 180 divided
-by the "frequency". The higher the number is, The further apart will the lighting be.
+by the "frequency". The higher the number is, the further apart will the lighting be.
 
 #### earthAbilities: object
 
@@ -386,7 +386,7 @@ Specifies the radius of the circle formed around the player.
 ##### frequency: double
 
 Specifies the "frequency" of the blocks. The "frequency" is used to determine the step angle, which is 180 divided
-by the "frequency". The higher the number is, The further apart will the blocks be.
+by the "frequency". The higher the number is, the further apart will the blocks be.
 
 ```json
 {
