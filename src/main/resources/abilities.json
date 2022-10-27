@@ -49,5 +49,15 @@
       "radius": 3,
       "frequency": 9
     }
+  },
+  "earthAbilities": {
+    "EARTH": {
+      "price": {
+        "health": 1,
+        "food": 1
+      },
+      "radius": 3,
+      "frequency": 9
+    }
   }
 }

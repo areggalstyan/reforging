@@ -8,6 +8,7 @@ customizable with options to add custom reforges, heavily tweak existing abiliti
 ![Storm Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/storm_ability.png)
 ![Throw Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/throw_ability.png)
 ![Sword on an Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/sword_on_anvil.png)
+![Earth Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/earth_ability.png)
 ![Axe on an Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/axe_on_anvil.png)
 ![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png)
 ![Shield Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shield_ability.png)
@@ -198,6 +199,13 @@ but rather relative weight, which means that there are no restrictions on the up
     "attackDamage": 3,
     "attackSpeed": 0.3,
     "weight": 20
+  },
+  {
+    "name": "Titanic",
+    "ability": "EARTH",
+    "attackDamage": -1,
+    "armor": 2,
+    "weight": 20
   }
 ]
 ```
@@ -355,6 +363,31 @@ Specifies the radius of the circle formed around the player.
 Specifies the "frequency" of the lighting. The "frequency" is used to determine the step angle, which is 180 divided
 by the "frequency". The higher the number is, The further apart will the lighting be.
 
+#### earthAbilities: object
+
+This is the fifth base ability. It allows the player to form a protective block circle around them.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: integer
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### radius: double
+
+Specifies the radius of the circle formed around the player.
+
+##### frequency: double
+
+Specifies the "frequency" of the blocks. The "frequency" is used to determine the step angle, which is 180 divided
+by the "frequency". The higher the number is, The further apart will the blocks be.
+
 ```json
 {
   "shieldAbilities": {
@@ -403,6 +436,16 @@ by the "frequency". The higher the number is, The further apart will the lightin
       "price": {
         "health": 2,
         "food": 4
+      },
+      "radius": 3,
+      "frequency": 9
+    }
+  },
+  "earthAbilities": {
+    "EARTH": {
+      "price": {
+        "health": 1,
+        "food": 1
       },
       "radius": 3,
       "frequency": 9

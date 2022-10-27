@@ -35,5 +35,12 @@
     "attackDamage": 3,
     "attackSpeed": 0.3,
     "weight": 20
+  },
+  {
+    "name": "Titanic",
+    "ability": "EARTH",
+    "attackDamage": -1,
+    "armor": 2,
+    "weight": 20
   }
 ]
