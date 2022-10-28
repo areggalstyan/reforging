@@ -1,7 +1,6 @@
 package com.aregcraft.reforging.ability;
 
 import com.aregcraft.reforging.Reforging;
-import com.aregcraft.reforging.data.Price;
 import com.google.common.math.DoubleMath;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -18,14 +17,29 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-public class ThrowAbility implements Ability {
+/**
+ * This is the third base ability. It allows the player to throw sword which will disappear after hitting a solid block
+ * or travelling the maximum specified distance and damage all the entities it hits on the way.
+ */
+public class ThrowAbility extends Ability {
     public static final double EPSILON = 0.000001;
 
     private final Set<UUID> players = new HashSet<>();
-    private Price price;
+    /**
+     * Specifies the maximum distance that the weapon travels before disappearing.
+     */
     private double maxDistance;
+    /**
+     * Specifies how the amplifier applied to the weapons usual damage when thrown.
+     */
     private double damageAmplifier;
+    /**
+     * Specifies the speed of the weapon when thrown in blocks.
+     */
     private double speed;
+    /**
+     * Specifies the maximum distance from the weapon which will damage an entity.
+     */
     private double range;
 
     @Override
@@ -34,8 +48,6 @@ public class ThrowAbility implements Ability {
         if (players.contains(id)) {
             return;
         }
-        player.damage(price.health);
-        player.setFoodLevel(Math.max(player.getFoodLevel() - price.food, 0));
         players.add(id);
         var location = player.getLocation();
         var direction = location.getDirection();

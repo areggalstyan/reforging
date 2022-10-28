@@ -22,3 +22,14 @@ tasks.register("debugPlugin") {
     dependsOn(tasks["prepareSpigotPlugins"])
     dependsOn(tasks["runSpigot"])
 }
+
+tasks.register<Javadoc>("generateAbilities") {
+    dependsOn(project("doclet").tasks["shadowJar"])
+    source = sourceSets["main"].allJava
+    title = null
+    classpath = sourceSets["main"].compileClasspath
+    options.docletpath = listOf(project(":doclet").tasks.getByName<Jar>("jar").archiveFile.get().asFile)
+    options.doclet = "com.aregcraft.reforgingdoclet.ReforgingDoclet"
+    options.destinationDirectory = file("abilities")
+    outputs.upToDateWhen { false }
+}

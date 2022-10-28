@@ -1,6 +1,5 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.reforging.data.Price;
 import com.aregcraft.reforging.Reforging;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -12,16 +11,44 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public class FireAbility implements Ability {
+/**
+ * This is the second base ability. It forms multiple circles in the direction where the player is facing, each further
+ * from the player, and with bigger radius. If any entity hits the particle, then that entity will be set on fire.
+ */
+public class FireAbility extends Ability {
     private final Set<UUID> players = new HashSet<>();
-    private Price price;
+    /**
+     * Specifies the type of the particle which is used to form circles.
+     */
     private Particle particle;
+    /**
+     * Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180
+     * divided by the "frequency". The higher the number is, the further apart will the particles be.
+     */
     private double particleFrequency;
+    /**
+     * Specifies the distance between each circle.
+     */
     private double circleDistance;
+    /**
+     * Specifies the radius of the smallest circle.
+     */
     private double radius;
+    /**
+     * Specifies the maximum distance from a particle which will set an entity on fire.
+     */
     private double fireRange;
+    /**
+     * Specifies the count of the circles. Each next circle is bigger than the previous one.
+     */
     private int circleCount;
+    /**
+     * Specifies how long will hit entities be on fire in ticks (1 second = 20 ticks).
+     */
     private int fireDuration;
+    /**
+     * Specifies how much time after forming a circle should pass to form the next one in ticks (1 second = 20 ticks).
+     */
     private int circlePeriod;
 
     @Override
@@ -30,8 +57,6 @@ public class FireAbility implements Ability {
         if (players.contains(id)) {
             return;
         }
-        player.damage(price.health);
-        player.setFoodLevel(Math.max(player.getFoodLevel() - price.food, 0));
         players.add(id);
         new BukkitRunnable() {
             private int circle = 0;

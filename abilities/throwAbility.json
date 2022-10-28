@@ -1,0 +1,21 @@
+{
+  "description": "This is the third base ability. It allows the player to throw sword which will disappear after hitting a solid block or travelling the maximum specified distance and damage all the entities it hits on the way.",
+  "properties": {
+    "maxDistance": {
+      "type": "double",
+      "description": "Specifies the maximum distance that the weapon travels before disappearing."
+    },
+    "damageAmplifier": {
+      "type": "double",
+      "description": "Specifies how the amplifier applied to the weapons usual damage when thrown."
+    },
+    "speed": {
+      "type": "double",
+      "description": "Specifies the speed of the weapon when thrown in blocks."
+    },
+    "range": {
+      "type": "double",
+      "description": "Specifies the maximum distance from the weapon which will damage an entity."
+    }
+  }
+}

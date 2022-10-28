@@ -1,7 +1,6 @@
 package com.aregcraft.reforging.ability;
 
 import com.aregcraft.reforging.Reforging;
-import com.aregcraft.reforging.data.Price;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,10 +12,19 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public class StormAbility implements Ability, Listener {
+/**
+ * Specifies the maximum distance from the weapon which will damage an entity.
+ */
+public class StormAbility extends Ability implements Listener {
     private final Set<UUID> players = new HashSet<>();
-    private Price price;
+    /**
+     * Specifies the radius of the circle formed around the player.
+     */
     private double radius;
+    /**
+     * Specifies the "frequency" of the lighting. The "frequency" is used to determine the step angle, which is 180
+     * divided by the "frequency". The higher the number is, the further apart will the lighting be.
+     */
     private double frequency;
 
     public StormAbility() {
@@ -29,8 +37,6 @@ public class StormAbility implements Ability, Listener {
         if (players.contains(id)) {
             return;
         }
-        player.damage(price.health);
-        player.setFoodLevel(Math.max(player.getFoodLevel() - price.food, 0));
         players.add(id);
         for (double i = 0; i < 2 * Math.PI; i += Math.PI / frequency) {
             player.getWorld().strikeLightning(player.getLocation().add(radius * Math.cos(i), 0,

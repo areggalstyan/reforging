@@ -226,6 +226,9 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
         if (!dataContainer.has(REFORGE_KEY, PersistentDataType.STRING)) {
             return;
         }
-        REFORGES.get(dataContainer.get(REFORGE_KEY, PersistentDataType.STRING)).ability.activate(player);
+        var ability = REFORGES.get(dataContainer.get(REFORGE_KEY, PersistentDataType.STRING)).ability;
+        player.damage(ability.price.health);
+        player.setFoodLevel(Math.max(player.getFoodLevel() - ability.price.food, 0));
+        ability.activate(player);
     }
 }

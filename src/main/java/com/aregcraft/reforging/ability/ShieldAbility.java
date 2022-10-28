@@ -1,6 +1,5 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.reforging.data.Price;
 import com.aregcraft.reforging.Reforging;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
@@ -14,13 +13,32 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public class ShieldAbility implements Ability, Listener {
+/**
+ * This is the first base ability. It gives player damage resistance for a specified period of time. You can have
+ * multiple abilities inheriting from this with different options and names.
+ */
+public class ShieldAbility extends Ability implements Listener {
     private final Set<UUID> players = new HashSet<>();
-    private Price price;
+    /**
+     * Specifies the type of the particle which is used to form a circle around the player.
+     */
     private Particle particle;
+    /**
+     * Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180
+     * divided by the "frequency". The higher the number is, the further apart will the particles be.
+     */
     private double particleFrequency;
+    /**
+     * Specifies the radius of the circle formed around the player.
+     */
     private double radius;
+    /**
+     * Specifies the duration of the shield in ticks (1 second = 20 ticks).
+     */
     private int duration;
+    /**
+     * Specifies whether the player should be prevented from attacking other entities while the shield is active.
+     */
     private boolean disableAttack;
 
     public ShieldAbility() {
@@ -33,8 +51,6 @@ public class ShieldAbility implements Ability, Listener {
         if (players.contains(id)) {
             return;
         }
-        player.damage(price.health);
-        player.setFoodLevel(Math.max(player.getFoodLevel() - price.food, 0));
         players.add(id);
         new BukkitRunnable() {
             private int time = 0;

@@ -1,0 +1,37 @@
+{
+  "description": "This is the second base ability. It forms multiple circles in the direction where the player is facing, each further from the player, and with bigger radius. If any entity hits the particle, then that entity will be set on fire.",
+  "properties": {
+    "particle": {
+      "type": "Particle",
+      "description": "Specifies the type of the particle which is used to form circles."
+    },
+    "particleFrequency": {
+      "type": "double",
+      "description": "Specifies the \"frequency\" of the particles. The \"frequency\" is used to determine the step angle, which is 180 divided by the \"frequency\". The higher the number is, the further apart will the particles be."
+    },
+    "circleDistance": {
+      "type": "double",
+      "description": "Specifies the distance between each circle."
+    },
+    "radius": {
+      "type": "double",
+      "description": "Specifies the radius of the smallest circle."
+    },
+    "fireRange": {
+      "type": "double",
+      "description": "Specifies the maximum distance from a particle which will set an entity on fire."
+    },
+    "circleCount": {
+      "type": "int",
+      "description": "Specifies the count of the circles. Each next circle is bigger than the previous one."
+    },
+    "fireDuration": {
+      "type": "int",
+      "description": "Specifies how long will hit entities be on fire in ticks (1 second \u003d 20 ticks)."
+    },
+    "circlePeriod": {
+      "type": "int",
+      "description": "Specifies how much time after forming a circle should pass to form the next one in ticks (1 second \u003d 20 ticks)."
+    }
+  }
+}

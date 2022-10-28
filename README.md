@@ -212,8 +212,8 @@ but rather relative weight, which means that there are no restrictions on the up
 
 ### abilities.json
 
-There are currently only 2 abilities but more will be added soon. Each ability has many customizable options.
-This file allows creating multiple abilities with their own names and tweaks to the 2 base built-in abilities.
+Each ability has many customizable options. This file allows creating multiple abilities with their own names and
+tweaks to the base built-in abilities.
 
 #### shieldAbilities: object
 
