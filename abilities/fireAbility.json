@@ -2,7 +2,7 @@
   "description": "This is the second base ability. It forms multiple circles in the direction where the player is facing, each further from the player, and with bigger radius. If any entity hits the particle, then that entity will be set on fire.",
   "properties": {
     "particle": {
-      "type": "Particle",
+      "type": "string",
       "description": "Specifies the type of the particle which is used to form circles."
     },
     "particleFrequency": {

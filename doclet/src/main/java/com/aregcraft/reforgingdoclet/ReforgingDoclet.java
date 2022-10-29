@@ -128,8 +128,7 @@ public class ReforgingDoclet implements Doclet {
     }
 
     private String getTypeSimpleName(TypeMirror typeMirror) {
-        var strings = typeMirror.toString().split("\\.");
-        return strings[strings.length - 1];
+        return typeMirror.getKind().toString().toLowerCase().replaceAll("declared", "string");
     }
 
     @Override
@@ -138,7 +137,7 @@ public class ReforgingDoclet implements Doclet {
         environment.getSpecifiedElements().stream()
                 .filter(it -> {
                     var name = getElementSimpleName(it);
-                    return name.contains("Ability") && !name.equals("Ability");
+                    return name.contains("Ability") && !name.equals("Ability") || name.equals("Price");
                 }).forEach(e -> {
                     var docCommentTree = docTrees.getDocCommentTree(e);
                     if (docCommentTree != null) {

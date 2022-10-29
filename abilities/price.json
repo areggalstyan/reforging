@@ -1,0 +1,13 @@
+{
+  "description": "Specifies the price the player pays when activates this ability.",
+  "properties": {
+    "health": {
+      "type": "double",
+      "description": "Specifies the amount of health subtracted from the player when activating the ability."
+    },
+    "food": {
+      "type": "int",
+      "description": "Specifies the amount of food subtracted from the player when activating the ability."
+    }
+  }
+}

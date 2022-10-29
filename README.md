@@ -5,13 +5,17 @@
 Reforging plugin adds a new mechanic for enhancing weapons with various stat boosts and abilities. It is completely
 customizable with options to add custom reforges, heavily tweak existing abilities, and change the looks of items.
 
-![Storm Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/storm_ability.png)
-![Throw Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/throw_ability.png)
-![Sword on an Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/sword_on_anvil.png)
-![Earth Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/earth_ability.png)
-![Axe on an Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/axe_on_anvil.png)
-![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png)
-![Shield Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shield_ability.png)
+<!-- <screenshots> -->
+
+![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png})
+![Shield Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shield_ability.png})
+![Axe on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/axe_on_anvil.png})
+![Earth Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/earth_ability.png})
+![Sword on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/sword_on_anvil.png})
+![Throw Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/throw_ability.png})
+![Storm Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/storm_ability.png})
+
+<!-- </screenshots> -->
 
 ## Config
 
@@ -98,7 +102,7 @@ Maps single symbols to their respective item. Item should be specified with all 
 
 Specifies the volume and pitch of the sound (`BLOCK_ANVIL_USE`) played whenever a player performs reforging.
 
-#### price: integer
+#### price: int
 
 Specifies the amount of respective material (e.g., diamonds for diamond sword, iron ingots for iron axe) required
 to perform reforging.
@@ -215,49 +219,11 @@ but rather relative weight, which means that there are no restrictions on the up
 Each ability has many customizable options. This file allows creating multiple abilities with their own names and
 tweaks to the base built-in abilities.
 
-#### shieldAbilities: object
+<!-- <abilities> -->
 
-This is the first base ability. It gives player damage resistance for a specified period of time. You can have
-multiple abilities inheriting from this with different options and names.
+#### fireAbility: object
 
-##### price: object
-
-Specifies the price the player pays when activates this ability.
-
-###### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-###### food: integer
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
-##### particle: string
-
-Specifies the type of the particle which is used to form a circle around the player. All CAPS, without `minecraft:`.
-**Visit this page for the types of the particles [https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html)**.
-
-##### particleFrequency: double
-
-Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180 divided
-by the "frequency". The higher the number is, the further apart will the particles be.
-
-##### radius: double
-
-Specifies the radius of the circle formed around the player.
-
-##### duration: integer
-
-Specifies the duration of the shield in ticks **(1 second = 20 ticks)**.
-
-##### disableAttack: boolean (true/false)
-
-Specifies whether the player should be prevented from attacking other entities while the shield is active.
-
-#### fireAbilities: object
-
-This is the second base ability. It forms multiple circles in the direction where the player is facing, each further
-from the player, and with bigger radius. If any entity hits the particle, then that entity will be set on fire.
+This is the second base ability. It forms multiple circles in the direction where the player is facing, each further from the player, and with bigger radius. If any entity hits the particle, then that entity will be set on fire.
 
 ##### price: object
 
@@ -267,19 +233,17 @@ Specifies the price the player pays when activates this ability.
 
 Specifies the amount of health subtracted from the player when activating the ability.
 
-###### food: integer
+###### food: int
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
 ##### particle: string
 
-Specifies the type of the particle which is used to form circles. All CAPS, without `minecraft:`.
-**Visit this page for the types of the particles [https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html)**.
+Specifies the type of the particle which is used to form circles.
 
 ##### particleFrequency: double
 
-Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180 divided
-by the "frequency". The higher the number is, the further apart will the particles be.
+Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180 divided by the "frequency". The higher the number is, the further apart will the particles be.
 
 ##### circleDistance: double
 
@@ -293,22 +257,21 @@ Specifies the radius of the smallest circle.
 
 Specifies the maximum distance from a particle which will set an entity on fire.
 
-##### circleCount: integer
+##### circleCount: int
 
 Specifies the count of the circles. Each next circle is bigger than the previous one.
 
-##### fireDuration: integer
+##### fireDuration: int
 
-Specifies how long will hit entities be on fire in ticks **(1 second = 20 ticks)**.
+Specifies how long will hit entities be on fire in ticks (1 second = 20 ticks).
 
-##### circlePeriod: integer
+##### circlePeriod: int
 
-Specifies how much time after forming a circle should pass to form the next one in ticks **(1 second = 20 ticks)**.
+Specifies how much time after forming a circle should pass to form the next one in ticks (1 second = 20 ticks).
 
-#### throwAbilities: object
+#### stormAbility: object
 
-This is the third base ability. It allows the player to throw sword which will disappear after hitting a solid block
-or travelling the maximum specified distance and damage all the entities it hits on the way.
+Specifies the maximum distance from the weapon which will damage an entity.
 
 ##### price: object
 
@@ -318,7 +281,31 @@ Specifies the price the player pays when activates this ability.
 
 Specifies the amount of health subtracted from the player when activating the ability.
 
-###### food: integer
+###### food: int
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### radius: double
+
+Specifies the radius of the circle formed around the player.
+
+##### frequency: double
+
+Specifies the "frequency" of the lighting. The "frequency" is used to determine the step angle, which is 180 divided by the "frequency". The higher the number is, the further apart will the lighting be.
+
+#### throwAbility: object
+
+This is the third base ability. It allows the player to throw sword which will disappear after hitting a solid block or travelling the maximum specified distance and damage all the entities it hits on the way.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: int
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
@@ -338,9 +325,9 @@ Specifies the speed of the weapon when thrown in blocks.
 
 Specifies the maximum distance from the weapon which will damage an entity.
 
-#### stormAbilities: object
+#### shieldAbility: object
 
-This is the fourth base ability. It allows the player to strike a circle of lighting around them.
+This is the first base ability. It gives player damage resistance for a specified period of time. You can have multiple abilities inheriting from this with different options and names.
 
 ##### price: object
 
@@ -350,20 +337,31 @@ Specifies the price the player pays when activates this ability.
 
 Specifies the amount of health subtracted from the player when activating the ability.
 
-###### food: integer
+###### food: int
 
 Specifies the amount of food subtracted from the player when activating the ability.
+
+##### particle: string
+
+Specifies the type of the particle which is used to form a circle around the player.
+
+##### particleFrequency: double
+
+Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180 divided by the "frequency". The higher the number is, the further apart will the particles be.
 
 ##### radius: double
 
 Specifies the radius of the circle formed around the player.
 
-##### frequency: double
+##### duration: int
 
-Specifies the "frequency" of the lighting. The "frequency" is used to determine the step angle, which is 180 divided
-by the "frequency". The higher the number is, the further apart will the lighting be.
+Specifies the duration of the shield in ticks (1 second = 20 ticks).
 
-#### earthAbilities: object
+##### disableAttack: boolean
+
+Specifies whether the player should be prevented from attacking other entities while the shield is active.
+
+#### earthAbility: object
 
 This is the fifth base ability. It allows the player to form a protective block circle around them.
 
@@ -375,7 +373,7 @@ Specifies the price the player pays when activates this ability.
 
 Specifies the amount of health subtracted from the player when activating the ability.
 
-###### food: integer
+###### food: int
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
@@ -385,71 +383,29 @@ Specifies the radius of the circle formed around the player.
 
 ##### frequency: double
 
-Specifies the "frequency" of the blocks. The "frequency" is used to determine the step angle, which is 180 divided
-by the "frequency". The higher the number is, the further apart will the blocks be.
+Specifies the "frequency" of the blocks. The "frequency" is used to determine the step angle, which is 180 divided by the "frequency". The higher the number is, the further apart will the blocks be.
 
-```json
-{
-  "shieldAbilities": {
-    "SHIELD": {
-      "price": {
-        "health": 6,
-        "food": 6
-      },
-      "particle": "ENCHANTMENT_TABLE",
-      "particleFrequency": 9,
-      "radius": 1,
-      "duration": 60,
-      "disableAttack": true
-    }
-  },
-  "fireAbilities": {
-    "FIRE": {
-      "price": {
-        "health": 4,
-        "food": 4
-      },
-      "particle": "FLAME",
-      "particleFrequency": 9,
-      "circleDistance": 1,
-      "radius": 0.25,
-      "fireRange": 1,
-      "circleCount": 5,
-      "fireDuration": 40,
-      "circlePeriod": 2
-    }
-  },
-  "throwAbilities": {
-    "THROW": {
-      "price": {
-        "health": 0,
-        "food": 1
-      },
-      "maxDistance": 5,
-      "damageAmplifier": 0.75,
-      "speed": 0.5,
-      "range": 1
-    }
-  },
-  "stormAbilities": {
-    "STORM": {
-      "price": {
-        "health": 2,
-        "food": 4
-      },
-      "radius": 3,
-      "frequency": 9
-    }
-  },
-  "earthAbilities": {
-    "EARTH": {
-      "price": {
-        "health": 1,
-        "food": 1
-      },
-      "radius": 3,
-      "frequency": 9
-    }
-  }
-}
-```
+#### price: object
+
+Specifies the price the player pays when activates this ability.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: int
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food subtracted from the player when activating the ability.
+

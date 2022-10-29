@@ -1,4 +1,5 @@
 import kr.entree.spigradle.kotlin.spigot
+import com.google.gson.Gson
 
 plugins {
     java
@@ -24,12 +25,75 @@ tasks.register("debugPlugin") {
 }
 
 tasks.register<Javadoc>("generateAbilities") {
-    dependsOn(project("doclet").tasks["shadowJar"])
+    dependsOn(project(":doclet").tasks["shadowJar"])
     source = sourceSets["main"].allJava
     title = null
     classpath = sourceSets["main"].compileClasspath
     options.docletpath = listOf(project(":doclet").tasks.getByName<Jar>("jar").archiveFile.get().asFile)
     options.doclet = "com.aregcraft.reforgingdoclet.ReforgingDoclet"
     options.destinationDirectory = file("abilities")
+    outputs.upToDateWhen { false }
+}
+
+data class AbilityProperty(val type: String, val description: String)
+data class Ability(val description: String, val properties: Map<String, AbilityProperty>)
+
+tasks.register("updateReadMe") {
+    dependsOn(tasks["generateAbilities"])
+    val gson = Gson()
+    val price = file("abilities/price.json").bufferedReader().use { gson.fromJson(it, Ability::class.java) }
+    val file = file("README.md")
+    val lines = file.readLines()
+    var skip = false
+    file.printWriter().use { writer ->
+        lines.forEach { line ->
+            if (line == "<!-- </screenshots> -->" || line == "<!-- </abilities> -->") {
+                skip = false
+            }
+            if (skip) {
+                return@forEach
+            }
+            writer.println(line)
+            if (line == "<!-- <screenshots> -->") {
+                skip = true
+                writer.println()
+                file("screenshots").walk().filter { it.isFile }.forEach {
+                    val alt = it.nameWithoutExtension.replace("_", " ").split(" ")
+                        .joinToString(" ") { it.capitalize().replace("On", "on") }
+                    val name = it.name
+                    writer.println("![$alt](https://github.com/Aregcraft/reforging/blob/master/screenshots/$name})")
+                }
+                writer.println()
+            }
+            if (line == "<!-- <abilities> -->") {
+                skip = true
+                writer.println()
+                file("abilities").walk().filter { it.isFile }.forEach { file ->
+                    val name = file.nameWithoutExtension;
+                    val ability = file.bufferedReader().use { gson.fromJson(it, Ability::class.java) }
+                    writer.println("#### $name: object")
+                    writer.println()
+                    writer.println(ability.description)
+                    writer.println()
+                    writer.println("##### price: object")
+                    writer.println()
+                    writer.println(price.description)
+                    writer.println()
+                    price.properties.forEach {
+                        writer.println("###### ${it.key}: ${it.value.type.toLowerCase()}")
+                        writer.println()
+                        writer.println(it.value.description)
+                        writer.println()
+                    }
+                    ability.properties.forEach {
+                        writer.println("##### ${it.key}: ${it.value.type.toLowerCase()}")
+                        writer.println()
+                        writer.println(it.value.description)
+                        writer.println()
+                    }
+                }
+            }
+        }
+    }
     outputs.upToDateWhen { false }
 }
