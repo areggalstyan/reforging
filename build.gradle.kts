@@ -61,7 +61,7 @@ tasks.register("updateReadMe") {
                     val alt = file.nameWithoutExtension.replace("_", " ").split(" ")
                         .joinToString(" ") { it.capitalize().replace("On", "on") }
                     val name = file.name
-                    writer.println("![$alt](https://github.com/Aregcraft/reforging/blob/master/screenshots/$name})")
+                    writer.println("![$alt](https://github.com/Aregcraft/reforging/blob/master/screenshots/$name)")
                 }
                 writer.println()
             }
@@ -92,6 +92,9 @@ tasks.register("updateReadMe") {
                         writer.println()
                     }
                 }
+                writer.println("```json")
+                writer.println(file("src/main/resources/abilities.json").readText())
+                writer.println("```")
             }
         }
     }

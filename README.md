@@ -7,13 +7,13 @@ customizable with options to add custom reforges, heavily tweak existing abiliti
 
 <!-- <screenshots> -->
 
-![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png})
-![Shield Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shield_ability.png})
-![Axe on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/axe_on_anvil.png})
-![Earth Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/earth_ability.png})
-![Sword on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/sword_on_anvil.png})
-![Throw Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/throw_ability.png})
-![Storm Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/storm_ability.png})
+![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png)
+![Shield Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shield_ability.png)
+![Axe on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/axe_on_anvil.png)
+![Earth Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/earth_ability.png)
+![Sword on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/sword_on_anvil.png)
+![Throw Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/throw_ability.png)
+![Storm Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/storm_ability.png)
 
 <!-- </screenshots> -->
 
@@ -409,3 +409,68 @@ Specifies the amount of health subtracted from the player when activating the ab
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
+```json
+{
+  "shieldAbilities": {
+    "SHIELD": {
+      "price": {
+        "health": 6,
+        "food": 6
+      },
+      "particle": "ENCHANTMENT_TABLE",
+      "particleFrequency": 9,
+      "radius": 1,
+      "duration": 60,
+      "disableAttack": true
+    }
+  },
+  "fireAbilities": {
+    "FIRE": {
+      "price": {
+        "health": 4,
+        "food": 4
+      },
+      "particle": "FLAME",
+      "particleFrequency": 9,
+      "circleDistance": 1,
+      "radius": 0.25,
+      "fireRange": 1,
+      "circleCount": 5,
+      "fireDuration": 40,
+      "circlePeriod": 2
+    }
+  },
+  "throwAbilities": {
+    "THROW": {
+      "price": {
+        "health": 0,
+        "food": 1
+      },
+      "maxDistance": 5,
+      "damageAmplifier": 0.75,
+      "speed": 0.5,
+      "range": 1
+    }
+  },
+  "stormAbilities": {
+    "STORM": {
+      "price": {
+        "health": 2,
+        "food": 4
+      },
+      "radius": 3,
+      "frequency": 9
+    }
+  },
+  "earthAbilities": {
+    "EARTH": {
+      "price": {
+        "health": 1,
+        "food": 1
+      },
+      "radius": 3,
+      "frequency": 9
+    }
+  }
+}
+```
