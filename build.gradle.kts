@@ -1,4 +1,5 @@
 import kr.entree.spigradle.kotlin.spigot
+import com.google.gson.GsonBuilder
 import com.google.gson.Gson
 
 plugins {
@@ -100,4 +101,24 @@ tasks.register("updateReadMe") {
         }
     }
     outputs.upToDateWhen { false }
+}
+
+data class Manifest(val version: String, val abilities: List<String>, val screenshots: List<String>)
+
+tasks.register("generateManifest") {
+    dependsOn(tasks["generateAbilities"])
+    val gson = GsonBuilder().setPrettyPrinting().create()
+    val file = file("manifest.json")
+    file.createNewFile()
+    file.bufferedWriter().use { writer ->
+        gson.toJson(Manifest(version as String,
+            file("abilities").listFiles()?.map { it.name }?.filter { it != "price.json" } ?: listOf(),
+            file("screenshots").listFiles()?.map { it.name } ?: listOf()), writer)
+    }
+}
+
+tasks.register("prepareRelease") {
+    dependsOn(tasks["generateManifest"])
+    dependsOn(tasks["updateReadme"])
+    dependsOn(tasks["prepareSpigotPlugins"])
 }

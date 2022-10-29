@@ -1,0 +1,19 @@
+{
+  "version": "1.3.0-SNAPSHOT",
+  "abilities": [
+    "fireAbility.json",
+    "stormAbility.json",
+    "throwAbility.json",
+    "shieldAbility.json",
+    "earthAbility.json"
+  ],
+  "screenshots": [
+    "fire_ability.png",
+    "shield_ability.png",
+    "axe_on_anvil.png",
+    "earth_ability.png",
+    "sword_on_anvil.png",
+    "throw_ability.png",
+    "storm_ability.png"
+  ]
+}
