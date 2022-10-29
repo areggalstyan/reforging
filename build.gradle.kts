@@ -57,10 +57,10 @@ tasks.register("updateReadMe") {
             if (line == "<!-- <screenshots> -->") {
                 skip = true
                 writer.println()
-                file("screenshots").walk().filter { it.isFile }.forEach {
-                    val alt = it.nameWithoutExtension.replace("_", " ").split(" ")
+                file("screenshots").walk().filter { it.isFile }.forEach { file ->
+                    val alt = file.nameWithoutExtension.replace("_", " ").split(" ")
                         .joinToString(" ") { it.capitalize().replace("On", "on") }
-                    val name = it.name
+                    val name = file.name
                     writer.println("![$alt](https://github.com/Aregcraft/reforging/blob/master/screenshots/$name})")
                 }
                 writer.println()
@@ -69,7 +69,7 @@ tasks.register("updateReadMe") {
                 skip = true
                 writer.println()
                 file("abilities").walk().filter { it.isFile }.forEach { file ->
-                    val name = file.nameWithoutExtension;
+                    val name = file.nameWithoutExtension
                     val ability = file.bufferedReader().use { gson.fromJson(it, Ability::class.java) }
                     writer.println("#### $name: object")
                     writer.println()
