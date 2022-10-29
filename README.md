@@ -474,3 +474,5 @@ Specifies the amount of food subtracted from the player when activating the abil
   }
 }
 ```
+
+<!-- </abilities> -->

@@ -95,6 +95,7 @@ tasks.register("updateReadMe") {
                 writer.println("```json")
                 writer.println(file("src/main/resources/abilities.json").readText())
                 writer.println("```")
+                writer.println()
             }
         }
     }
