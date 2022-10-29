@@ -68,7 +68,7 @@ tasks.register("updateReadMe") {
             if (line == "<!-- <abilities> -->") {
                 skip = true
                 writer.println()
-                file("abilities").walk().filter { it.isFile }.forEach { file ->
+                file("abilities").walk().filter { it.isFile }.filter { it.name != "price.json" }.forEach { file ->
                     val name = file.nameWithoutExtension
                     val ability = file.bufferedReader().use { gson.fromJson(it, Ability::class.java) }
                     writer.println("#### $name: object")

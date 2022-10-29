@@ -385,30 +385,6 @@ Specifies the radius of the circle formed around the player.
 
 Specifies the "frequency" of the blocks. The "frequency" is used to determine the step angle, which is 180 divided by the "frequency". The higher the number is, the further apart will the blocks be.
 
-#### price: object
-
-Specifies the price the player pays when activates this ability.
-
-##### price: object
-
-Specifies the price the player pays when activates this ability.
-
-###### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-###### food: int
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
-##### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-##### food: int
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
 ```json
 {
   "shieldAbilities": {
