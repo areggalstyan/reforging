@@ -128,7 +128,8 @@ public class ReforgingDoclet implements Doclet {
     }
 
     private String getTypeSimpleName(TypeMirror typeMirror) {
-        return typeMirror.getKind().toString().toLowerCase().replaceAll("declared", "string");
+        var name = typeMirror.toString().split("\\.");
+        return name[name.length - 1].toLowerCase();
     }
 
     @Override

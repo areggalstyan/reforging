@@ -2,7 +2,7 @@
   "description": "This is the first base ability. It gives player damage resistance for a specified period of time. You can have multiple abilities inheriting from this with different options and names.",
   "properties": {
     "particle": {
-      "type": "string",
+      "type": "particle",
       "description": "Specifies the type of the particle which is used to form a circle around the player."
     },
     "particleFrequency": {
