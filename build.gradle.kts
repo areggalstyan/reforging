@@ -119,6 +119,6 @@ tasks.register("generateManifest") {
 
 tasks.register("prepareRelease") {
     dependsOn(tasks["generateManifest"])
-    dependsOn(tasks["updateReadme"])
+    dependsOn(tasks["updateReadMe"])
     dependsOn(tasks["prepareSpigotPlugins"])
 }
