@@ -1,6 +1,6 @@
 # Reforging
 
-### NEW! For a fully featured custom configuration generator visit its website https://aregcraft.github.io/reforging-site/.
+### NEW! For a fully featured custom configuration generator visit its website https://reforging.vercel.app/.
 
 Reforging plugin adds a new mechanic for enhancing weapons with various stat boosts and abilities. It is completely
 customizable with options to add custom reforges, heavily tweak existing abilities, and change the looks of items.
