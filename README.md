@@ -237,7 +237,7 @@ Specifies the amount of health subtracted from the player when activating the ab
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
-##### particle: string
+##### particle: particle
 
 Specifies the type of the particle which is used to form circles.
 
@@ -341,7 +341,7 @@ Specifies the amount of health subtracted from the player when activating the ab
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
-##### particle: string
+##### particle: particle
 
 Specifies the type of the particle which is used to form a circle around the player.
 

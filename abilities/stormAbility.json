@@ -1,5 +1,5 @@
 {
-  "description": "Specifies the maximum distance from the weapon which will damage an entity.",
+  "description": "This is the fourth base ability. It allows the player to strike a circle of lighting around them.",
   "properties": {
     "radius": {
       "type": "double",

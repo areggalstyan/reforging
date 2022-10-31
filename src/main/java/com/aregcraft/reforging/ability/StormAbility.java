@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * Specifies the maximum distance from the weapon which will damage an entity.
+ * This is the fourth base ability. It allows the player to strike a circle of lighting around them.
  */
 public class StormAbility extends Ability implements Listener {
     private final Set<UUID> players = new HashSet<>();
