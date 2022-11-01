@@ -18,8 +18,8 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * This is the third base ability. It allows the player to throw sword which will disappear after hitting a solid block
- * or travelling the maximum specified distance and damage all the entities it hits on the way.
+ * Allows the player to throw sword which will disappear after hitting a solid block or travelling the maximum
+ * specified distance and damage all the entities it hits on the way.
  */
 public class ThrowAbility extends Ability {
     public static final double EPSILON = 0.000001;

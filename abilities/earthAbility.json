@@ -1,5 +1,5 @@
 {
-  "description": "This is the fifth base ability. It allows the player to form a protective block circle around them.",
+  "description": "Allows the player to form a protective block circle around them.",
   "properties": {
     "radius": {
       "type": "double",
@@ -7,7 +7,7 @@
     },
     "frequency": {
       "type": "double",
-      "description": "Specifies the \"frequency\" of the blocks. The \"frequency\" is used to determine the step angle, which is 180 divided by the \"frequency\". The higher the number is, the further apart will the blocks be."
+      "description": "Specifies the number of blocks."
     }
   }
 }

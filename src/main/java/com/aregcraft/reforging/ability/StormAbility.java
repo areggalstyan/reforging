@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * This is the fourth base ability. It allows the player to strike a circle of lighting around them.
+ * Allows the player to strike a circle of lighting around them.
  */
 public class StormAbility extends Ability implements Listener {
     private final Set<UUID> players = new HashSet<>();
@@ -22,8 +22,7 @@ public class StormAbility extends Ability implements Listener {
      */
     private double radius;
     /**
-     * Specifies the "frequency" of the lighting. The "frequency" is used to determine the step angle, which is 180
-     * divided by the "frequency". The higher the number is, the further apart will the lighting be.
+     * Specifies the number of lightnings.
      */
     private double frequency;
 

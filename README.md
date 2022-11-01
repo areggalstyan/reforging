@@ -9,7 +9,6 @@ customizable with options to add custom reforges, heavily tweak existing abiliti
 
 ![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png)
 ![Shield Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shield_ability.png)
-![Axe on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/axe_on_anvil.png)
 ![Earth Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/earth_ability.png)
 ![Sword on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/sword_on_anvil.png)
 ![Throw Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/throw_ability.png)
@@ -223,7 +222,7 @@ tweaks to the base built-in abilities.
 
 #### fireAbility: object
 
-This is the second base ability. It forms multiple circles in the direction where the player is facing, each further from the player, and with bigger radius. If any entity hits the particle, then that entity will be set on fire.
+Forms multiple circles in the direction where the player is facing, each further from the player, and with bigger radius. If any entity hits the particle, then that entity will be set on fire.
 
 ##### price: object
 
@@ -243,7 +242,7 @@ Specifies the type of the particle which is used to form circles.
 
 ##### particleFrequency: double
 
-Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180 divided by the "frequency". The higher the number is, the further apart will the particles be.
+Specifies the number of particles.
 
 ##### circleDistance: double
 
@@ -271,7 +270,7 @@ Specifies how much time after forming a circle should pass to form the next one 
 
 #### stormAbility: object
 
-Specifies the maximum distance from the weapon which will damage an entity.
+Allows the player to strike a circle of lighting around them.
 
 ##### price: object
 
@@ -291,11 +290,11 @@ Specifies the radius of the circle formed around the player.
 
 ##### frequency: double
 
-Specifies the "frequency" of the lighting. The "frequency" is used to determine the step angle, which is 180 divided by the "frequency". The higher the number is, the further apart will the lighting be.
+Specifies the number of lightnings.
 
 #### throwAbility: object
 
-This is the third base ability. It allows the player to throw sword which will disappear after hitting a solid block or travelling the maximum specified distance and damage all the entities it hits on the way.
+Allows the player to throw sword which will disappear after hitting a solid block or travelling the maximum specified distance and damage all the entities it hits on the way.
 
 ##### price: object
 
@@ -327,7 +326,7 @@ Specifies the maximum distance from the weapon which will damage an entity.
 
 #### shieldAbility: object
 
-This is the first base ability. It gives player damage resistance for a specified period of time. You can have multiple abilities inheriting from this with different options and names.
+Gives player damage resistance for a specified period of time. You can have multiple abilities inheriting from this with different options and names.
 
 ##### price: object
 
@@ -347,7 +346,7 @@ Specifies the type of the particle which is used to form a circle around the pla
 
 ##### particleFrequency: double
 
-Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180 divided by the "frequency". The higher the number is, the further apart will the particles be.
+Specifies the number of particles.
 
 ##### radius: double
 
@@ -363,7 +362,7 @@ Specifies whether the player should be prevented from attacking other entities w
 
 #### earthAbility: object
 
-This is the fifth base ability. It allows the player to form a protective block circle around them.
+Allows the player to form a protective block circle around them.
 
 ##### price: object
 
@@ -383,7 +382,7 @@ Specifies the radius of the circle formed around the player.
 
 ##### frequency: double
 
-Specifies the "frequency" of the blocks. The "frequency" is used to determine the step angle, which is 180 divided by the "frequency". The higher the number is, the further apart will the blocks be.
+Specifies the number of blocks.
 
 ```json
 {

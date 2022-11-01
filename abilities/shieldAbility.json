@@ -1,5 +1,5 @@
 {
-  "description": "This is the first base ability. It gives player damage resistance for a specified period of time. You can have multiple abilities inheriting from this with different options and names.",
+  "description": "Gives player damage resistance for a specified period of time. You can have multiple abilities inheriting from this with different options and names.",
   "properties": {
     "particle": {
       "type": "particle",
@@ -7,7 +7,7 @@
     },
     "particleFrequency": {
       "type": "double",
-      "description": "Specifies the \"frequency\" of the particles. The \"frequency\" is used to determine the step angle, which is 180 divided by the \"frequency\". The higher the number is, the further apart will the particles be."
+      "description": "Specifies the number of particles."
     },
     "radius": {
       "type": "double",

@@ -14,8 +14,8 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * This is the first base ability. It gives player damage resistance for a specified period of time. You can have
- * multiple abilities inheriting from this with different options and names.
+ * Gives player damage resistance for a specified period of time. You can have multiple abilities inheriting from this
+ * with different options and names.
  */
 public class ShieldAbility extends Ability implements Listener {
     private final Set<UUID> players = new HashSet<>();
@@ -24,8 +24,7 @@ public class ShieldAbility extends Ability implements Listener {
      */
     private Particle particle;
     /**
-     * Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180
-     * divided by the "frequency". The higher the number is, the further apart will the particles be.
+     * Specifies the number of particles.
      */
     private double particleFrequency;
     /**

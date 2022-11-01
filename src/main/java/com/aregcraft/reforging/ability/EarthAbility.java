@@ -3,7 +3,7 @@ package com.aregcraft.reforging.ability;
 import org.bukkit.entity.Player;
 
 /**
- * This is the fifth base ability. It allows the player to form a protective block circle around them.
+ * Allows the player to form a protective block circle around them.
  */
 public class EarthAbility extends Ability {
     /**
@@ -11,8 +11,7 @@ public class EarthAbility extends Ability {
      */
     private double radius;
     /**
-     * Specifies the "frequency" of the blocks. The "frequency" is used to determine the step angle, which is 180
-     * divided by the "frequency". The higher the number is, the further apart will the blocks be.
+     * Specifies the number of blocks.
      */
     private double frequency;
 

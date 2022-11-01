@@ -12,8 +12,8 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * This is the second base ability. It forms multiple circles in the direction where the player is facing, each further
- * from the player, and with bigger radius. If any entity hits the particle, then that entity will be set on fire.
+ * Forms multiple circles in the direction where the player is facing, each further from the player, and with bigger
+ * radius. If any entity hits the particle, then that entity will be set on fire.
  */
 public class FireAbility extends Ability {
     private final Set<UUID> players = new HashSet<>();
@@ -22,8 +22,7 @@ public class FireAbility extends Ability {
      */
     private Particle particle;
     /**
-     * Specifies the "frequency" of the particles. The "frequency" is used to determine the step angle, which is 180
-     * divided by the "frequency". The higher the number is, the further apart will the particles be.
+     * Specifies the number of particles.
      */
     private double particleFrequency;
     /**

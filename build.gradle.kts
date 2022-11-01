@@ -115,10 +115,12 @@ tasks.register("generateManifest") {
             file("abilities").listFiles()?.map { it.name }?.filter { it != "price.json" } ?: listOf(),
             file("screenshots").listFiles()?.map { it.name } ?: listOf()), writer)
     }
+    outputs.upToDateWhen { false }
 }
 
 tasks.register("prepareRelease") {
     dependsOn(tasks["generateManifest"])
     dependsOn(tasks["updateReadMe"])
     dependsOn(tasks["prepareSpigotPlugins"])
+    outputs.upToDateWhen { false }
 }
