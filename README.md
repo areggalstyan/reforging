@@ -1,9 +1,32 @@
 # Reforging
 
-### NEW! For a fully featured custom configuration generator visit its website https://reforging.vercel.app/.
-
 Reforging plugin adds a new mechanic for enhancing weapons with various stat boosts and abilities. It is completely
 customizable with options to add custom reforges, heavily tweak existing abilities, and change the looks of items.
+
+### How to apply a reforge?
+
+1. Craft a reforge anvil (recipe specified in anvil.json)
+2. Place it somewhere in the world
+3. Right-click it with a weapon in your hand (any sword or axe)
+4. You will see it placed on the anvil
+5. Right-click it with the set amount of the individual material (e.g., diamonds for the diamond sword, the amount specified in anvil.json)
+6. The set amount of the individual material will be consumed
+7. It will drop, when you pick it up, it will have a reforge on it
+
+### How to activate an ability?
+
+1. Right-click on the air with the weapon in your hand. Note, that it is possible for the reforge to stay the same.
+
+### Configuration
+
+Visit [https://reforging.vercel.app/](https://reforging.vercel.app/) for a fully featured custom configuration
+generator. Visit [https://github.com/Aregcraft/reforging](https://github.com/Aregcraft/reforging) for an in-depth
+description of abilities and help with manual configuration.
+
+### Support
+
+If you encounter any bugs or issues please report them at
+[https://github.com/Aregcraft/reforging/issues](https://github.com/Aregcraft/reforging/issues).
 
 <!-- <screenshots> -->
 
@@ -16,7 +39,7 @@ customizable with options to add custom reforges, heavily tweak existing abiliti
 
 <!-- </screenshots> -->
 
-## Config
+## Manual Configuration
 
 **If you are not familiar with JSON, you may use online YAML to JSON converters,
 for example [https://onlineyamltools.com/convert-yaml-to-json](https://onlineyamltools.com/convert-yaml-to-json).**
@@ -32,7 +55,7 @@ Configures the visuals of reforged items.
 The name of each reforged item.
 
 Colorized, placeholders:
-- REFORGE_NAME - The name of the reforging (e.g., "Sharp", "Shielded")
+- REFORGE_NAME - The name of the reforge (e.g., "Sharp", "Shielded")
 - NAME - THe name of the item (e.g., "Diamond Sword")
 
 #### lore: string array
@@ -41,15 +64,15 @@ The lore attached to the end of each reforged item.
 
 Colorized, placeholders:
 - **BASE_ATTACK_SPEED** - The base attack speed of the weapon
-- **ATTACK_SPEED** - The boost of attack speed provided by the reforging
+- **ATTACK_SPEED** - The boost of attack speed provided by the reforge
 - **BASE_ATTACK_DAMAGE** - The base attack damage of the weapon
-- **ATTACK_DAMAGE** - The boost of attack damage provided by the reforging
-- **MAX_HEALTH** - The boost of max health provided by the reforging
-- **KNOCKBACK_RESISTANCE** - The boost of knockback resistance provided by the reforging
-- **MOVEMENT_SPEED** - The boost of movement speed provided by the reforging
-- **ARMOR** - The boost of armor provided by the reforging
-- **ARMOR_TOUGHNESS** - The boost of armor toughness provided by the reforging
-- **ATTACK_KNOCKBACK** - The boost of attack knockback provided by the reforging
+- **ATTACK_DAMAGE** - The boost of attack damage provided by the reforge
+- **MAX_HEALTH** - The boost of max health provided by the reforge
+- **KNOCKBACK_RESISTANCE** - The boost of knockback resistance provided by the reforge
+- **MOVEMENT_SPEED** - The boost of movement speed provided by the reforge
+- **ARMOR** - The boost of armor provided by the reforge
+- **ARMOR_TOUGHNESS** - The boost of armor toughness provided by the reforge
+- **ATTACK_KNOCKBACK** - The boost of attack knockback provided by the reforge
 
 ```json
 {
@@ -71,17 +94,17 @@ Colorized, placeholders:
 
 ### anvil.json
 
-Configures the visuals and mechanics of the reforging anvil.
+Configures the visuals and mechanics of the reforge anvil.
 
 #### name: string
 
-The name of the reforging anvil item.
+The name of the reforge anvil item.
 
 Colorized, no placeholders.
 
 #### lore: string array
 
-The lore of the reforging anvil item.
+The lore of the reforge anvil item.
 
 Colorized, no placeholders.
 
@@ -89,7 +112,7 @@ Colorized, no placeholders.
 
 ##### shape: string array
 
-The shape of the crafting recipe for the reforging anvil item. 
+The shape of the crafting recipe for the reforge anvil item. 
 
 3 strings, each consisting of 3 symbols representing items as per `keys`.
 
@@ -99,12 +122,12 @@ Maps single symbols to their respective item. Item should be specified with all 
 
 #### soundEffect: object
 
-Specifies the volume and pitch of the sound (`BLOCK_ANVIL_USE`) played whenever a player performs reforging.
+Specifies the volume and pitch of the sound (`BLOCK_ANVIL_USE`) played whenever a player applies a reforge.
 
 #### price: int
 
 Specifies the amount of respective material (e.g., diamonds for diamond sword, iron ingots for iron axe) required
-to perform reforging.
+to apply a reforge.
 
 ```json
 {
@@ -140,11 +163,11 @@ This file allows you to create as many unique reforges as you wish.
 
 #### name: string
 
-The name of the reforging, it corresponds to the `REFORGE_NAME` label.
+The name of the reforge, it corresponds to the `REFORGE_NAME` label.
 
 #### ability: string
 
-The name of the ability of the reforging as per `abilities.json`.
+The name of the ability of the reforge as per `abilities.json`.
 
 #### [attribute]: float
 
