@@ -49,6 +49,7 @@ public class ThrowAbility extends Ability {
             return;
         }
         players.add(id);
+        charge(player);
         var location = player.getLocation();
         var direction = location.getDirection();
         location.add(direction.getCrossProduct(new Vector(0, 1, 0)).normalize().multiply(0.25));

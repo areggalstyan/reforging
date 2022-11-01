@@ -13,4 +13,9 @@ public abstract class Ability {
     public Price price;
 
     public abstract void activate(Player player);
+
+    protected void charge(Player player) {
+        player.damage(price.health);
+        player.setFoodLevel(Math.max(player.getFoodLevel() - price.food, 0));
+    }
 }

@@ -42,5 +42,13 @@
     "attackDamage": -1,
     "armor": 2,
     "weight": 20
+  },
+  {
+    "name": "Stealthy",
+    "ability": "TELEPORT",
+    "attackDamage": 0.5,
+    "attackSpeed": 0.1,
+    "armor": -0.5,
+    "armorToughness": -0.5
   }
 ]

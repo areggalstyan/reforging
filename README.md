@@ -469,6 +469,16 @@ Specifies the number of blocks.
       "radius": 3,
       "frequency": 9
     }
+  },
+  "teleportAbilities": {
+    "TELEPORT": {
+      "price": {
+        "health": 3,
+        "food": 3
+      },
+      "maxDistance": 2,
+      "cooldown": 40
+    }
   }
 }
 ```

@@ -57,6 +57,7 @@ public class FireAbility extends Ability {
             return;
         }
         players.add(id);
+        charge(player);
         new BukkitRunnable() {
             private int circle = 0;
             private Location origin;

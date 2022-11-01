@@ -1,0 +1,13 @@
+{
+  "description": "Allows players to teleport at the direction that they are looking.",
+  "properties": {
+    "maxDistance": {
+      "type": "double",
+      "description": "Specifies the maximum distance that player can teleport."
+    },
+    "cooldown": {
+      "type": "int",
+      "description": "Specifies the cooldown in ticks (1 second \u003d 20 ticks)."
+    }
+  }
+}

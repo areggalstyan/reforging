@@ -51,6 +51,7 @@ public class ShieldAbility extends Ability implements Listener {
             return;
         }
         players.add(id);
+        charge(player);
         new BukkitRunnable() {
             private int time = 0;
 

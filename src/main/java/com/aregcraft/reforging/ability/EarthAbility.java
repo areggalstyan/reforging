@@ -17,6 +17,7 @@ public class EarthAbility extends Ability {
 
     @Override
     public void activate(Player player) {
+        charge(player);
         for (double i = 0; i < 2 * Math.PI; i += Math.PI / frequency) {
             var location = player.getLocation().add(radius * Math.cos(i), 0, radius * Math.sin(i));
             var block = location.getBlock();

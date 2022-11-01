@@ -37,6 +37,7 @@ public class StormAbility extends Ability implements Listener {
             return;
         }
         players.add(id);
+        charge(player);
         for (double i = 0; i < 2 * Math.PI; i += Math.PI / frequency) {
             player.getWorld().strikeLightning(player.getLocation().add(radius * Math.cos(i), 0,
                     radius * Math.sin(i)));
