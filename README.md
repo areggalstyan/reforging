@@ -347,6 +347,30 @@ Specifies the speed of the weapon when thrown in blocks.
 
 Specifies the maximum distance from the weapon which will damage an entity.
 
+#### teleportAbility: object
+
+Allows players to teleport at the direction that they are looking.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: int
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### maxDistance: double
+
+Specifies the maximum distance that player can teleport.
+
+##### cooldown: int
+
+Specifies the cooldown in ticks (1 second = 20 ticks).
+
 #### shieldAbility: object
 
 Gives player damage resistance for a specified period of time. You can have multiple abilities inheriting from this with different options and names.

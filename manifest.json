@@ -4,6 +4,7 @@
     "fireAbility.json",
     "stormAbility.json",
     "throwAbility.json",
+    "teleportAbility.json",
     "shieldAbility.json",
     "earthAbility.json"
   ],
