@@ -15,7 +15,7 @@ customizable with options to add custom reforges, heavily tweak existing abiliti
 
 ### How to activate an ability?
 
-1. Right-click on the air with the weapon in your hand. Note, that it is possible for the reforge to stay the same.
+1. Right-click on the air with the weapon in your hand
 
 ### Configuration
 
@@ -56,7 +56,7 @@ The name of each reforged item.
 
 Colorized, placeholders:
 - REFORGE_NAME - The name of the reforge (e.g., "Sharp", "Shielded")
-- NAME - THe name of the item (e.g., "Diamond Sword")
+- NAME - The name of the item (e.g., "Diamond Sword")
 
 #### lore: string array
 
