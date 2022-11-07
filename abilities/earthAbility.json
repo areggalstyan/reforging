@@ -2,6 +2,7 @@
   "description": "Forms one block tall protective barrier around the player according to the specified function.",
   "properties": {},
   "external": [
+    "price",
     "function"
   ]
 }

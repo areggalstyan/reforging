@@ -15,6 +15,7 @@
     }
   },
   "external": [
+    "price",
     "function"
   ]
 }

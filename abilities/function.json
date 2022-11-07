@@ -26,5 +26,7 @@
       "description": "Specifies the change of the parameter's value."
     }
   },
-  "external": []
+  "external": [
+    "price"
+  ]
 }

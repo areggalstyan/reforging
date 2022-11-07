@@ -14,5 +14,7 @@
       "description": "Specifies the duration in ticks (1 second = 20 ticks)."
     }
   },
-  "external": []
+  "external": [
+    "price"
+  ]
 }

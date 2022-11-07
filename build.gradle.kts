@@ -52,7 +52,6 @@ data class Ability(val description: String, val properties: Map<String, AbilityP
 tasks.register("updateReadMe") {
     dependsOn(tasks["generateAbilities"])
     val gson = Gson()
-    val price = file("abilities/price.json").bufferedReader().use { gson.fromJson(it, Ability::class.java) }
     val file = file("README.md")
     val lines = file.readLines()
     var skip = false
@@ -86,16 +85,6 @@ tasks.register("updateReadMe") {
                     writer.println()
                     writer.println(ability.description)
                     writer.println()
-                    writer.println("##### price: object")
-                    writer.println()
-                    writer.println(price.description)
-                    writer.println()
-                    price.properties.forEach {
-                        writer.println("###### ${it.key}: ${it.value.type.toLowerCase()}")
-                        writer.println()
-                        writer.println(it.value.description)
-                        writer.println()
-                    }
                     ability.external.forEach { external ->
                         val value = file("abilities/$external.json").bufferedReader().use {
                             gson.fromJson(it, Ability::class.java)
