@@ -31,7 +31,8 @@ description of abilities and help with manual configuration.
 ### Support
 
 If you encounter any bugs or issues please report them at
-[https://github.com/Aregcraft/reforging/issues](https://github.com/Aregcraft/reforging/issues).
+[https://github.com/Aregcraft/reforging/issues](https://github.com/Aregcraft/reforging/issues). You can contact me on
+discord Aregcraft#6844. I am usually available from 5:00 PM to 10:00 PM (GMT+4 time zone).
 
 <!-- <screenshots> -->
 
