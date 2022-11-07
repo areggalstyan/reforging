@@ -18,7 +18,7 @@ customizable with options to add custom reforges, heavily tweak existing abiliti
 
 1. Right-click on the air with the weapon in your hand
 
-### /reforge
+### /reforge &lt;reforgeName&gt;
 
 Reforges the item in the main hand of the player (`reforging.command.reforge`).
 
