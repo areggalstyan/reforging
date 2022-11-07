@@ -117,17 +117,20 @@ tasks.register("updateReadMe") {
     outputs.upToDateWhen { false }
 }
 
-data class Manifest(val version: String, val abilities: List<String>, val screenshots: List<String>)
+data class Manifest(val version: String, val abilities: List<String>, val external: List<String>,
+                    val screenshots: List<String>)
 
 tasks.register("generateManifest") {
     dependsOn(tasks["generateAbilities"])
     val gson = GsonBuilder().setPrettyPrinting().create()
     val file = file("manifest.json")
     file.createNewFile()
+    val files = file("abilities").listFiles()?.map { it.name }
     file.bufferedWriter().use { writer ->
         gson.toJson(Manifest(version as String,
-            file("abilities").listFiles()?.map { it.name }?.filter { it.endsWith("Ability.json") }
-                ?: listOf(), file("screenshots").listFiles()?.map { it.name } ?: listOf()), writer)
+            files?.filter { it.endsWith("Ability.json") } ?: listOf(),
+            files?.filter { !it.endsWith("Ability.json") } ?: listOf(),
+            file("screenshots").listFiles()?.map { it.name } ?: listOf()), writer)
     }
     outputs.upToDateWhen { false }
 }

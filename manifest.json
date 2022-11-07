@@ -8,6 +8,10 @@
     "shieldAbility.json",
     "earthAbility.json"
   ],
+  "external": [
+    "function.json",
+    "price.json"
+  ],
   "screenshots": [
     "fire_ability.png",
     "shield_ability.png",
