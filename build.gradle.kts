@@ -8,21 +8,31 @@ plugins {
 }
 
 group = "com.aregcraft"
-version = "1.4.0-SNAPSHOT"
+version = "2.0.0-SNAPSHOT"
 
 dependencies {
     compileOnly(spigot("1.19.2"))
+    implementation("org.mariuszgromada.math:MathParser.org-mXparser:5.0.7")
+    implementation("org.apache.commons:commons-rng-sampling:1.5")
 }
 
 spigot {
     name = "Reforging"
     apiVersion = "1.16"
     authors = listOf("Aregcraft")
+    commands {
+        create("reforge") {
+            description = "Reforges the item in the main hand of the player."
+            usage = "Usage: /<command> <reforgeName>"
+            permission = "reforging.command.reforge"
+        }
+    }
 }
 
 tasks.register("debugPlugin") {
     dependsOn(tasks["prepareSpigotPlugins"])
     dependsOn(tasks["runSpigot"])
+    file("debug/spigot/plugins/${spigot.name}").deleteRecursively()
 }
 
 tasks.register<Javadoc>("generateAbilities") {
@@ -37,7 +47,7 @@ tasks.register<Javadoc>("generateAbilities") {
 }
 
 data class AbilityProperty(val type: String, val description: String)
-data class Ability(val description: String, val properties: Map<String, AbilityProperty>)
+data class Ability(val description: String, val properties: Map<String, AbilityProperty>, val external: List<String>)
 
 tasks.register("updateReadMe") {
     dependsOn(tasks["generateAbilities"])
@@ -86,6 +96,21 @@ tasks.register("updateReadMe") {
                         writer.println(it.value.description)
                         writer.println()
                     }
+                    ability.external.forEach { external ->
+                        val value = file("abilities/$external.json").bufferedReader().use {
+                            gson.fromJson(it, Ability::class.java)
+                        }
+                        writer.println("##### $external: object")
+                        writer.println()
+                        writer.println(value.description)
+                        writer.println()
+                        value.properties.forEach {
+                            writer.println("###### ${it.key}: ${it.value.type.toLowerCase()}")
+                            writer.println()
+                            writer.println(it.value.description)
+                            writer.println()
+                        }
+                    }
                     ability.properties.forEach {
                         writer.println("##### ${it.key}: ${it.value.type.toLowerCase()}")
                         writer.println()
@@ -112,8 +137,8 @@ tasks.register("generateManifest") {
     file.createNewFile()
     file.bufferedWriter().use { writer ->
         gson.toJson(Manifest(version as String,
-            file("abilities").listFiles()?.map { it.name }?.filter { it != "price.json" } ?: listOf(),
-            file("screenshots").listFiles()?.map { it.name } ?: listOf()), writer)
+            file("abilities").listFiles()?.map { it.name }?.filter { it.endsWith("Ability.json") }
+                ?: listOf(), file("screenshots").listFiles()?.map { it.name } ?: listOf()), writer)
     }
     outputs.upToDateWhen { false }
 }

@@ -5,17 +5,32 @@ customizable with options to add custom reforges, heavily tweak existing abiliti
 
 ### How to apply a reforge?
 
-1. Craft a reforge anvil (recipe specified in anvil.json)
+1. Craft a reforging anvil (recipe specified in anvil.json)
 2. Place it somewhere in the world
 3. Right-click it with a weapon in your hand (any sword or axe)
 4. You will see it placed on the anvil
-5. Right-click it with the set amount of the individual material (e.g., diamonds for the diamond sword, the amount specified in anvil.json)
+5. Right-click it with the set amount of the individual material (e.g., diamonds for the diamond sword, the amount
+   specified in anvil.json)
 6. The set amount of the individual material will be consumed
 7. It will drop, when you pick it up, it will have a reforge on it
 
 ### How to activate an ability?
 
 1. Right-click on the air with the weapon in your hand
+
+### Commands
+
+#### /reforge
+
+Reforges the item in the main hand of the player.
+
+##### Usage
+
+/reforge &lt;reforgeName&gt;
+
+##### Permission
+
+`reforging.command.reforge`
 
 ### Configuration
 
@@ -94,25 +109,27 @@ Colorized, placeholders:
 
 ### anvil.json
 
-Configures the visuals and mechanics of the reforge anvil.
+Configures the visuals and mechanics of the reforging anvil.
 
 #### name: string
 
-The name of the reforge anvil item.
+The name of the reforging anvil item.
 
 Colorized, no placeholders.
 
 #### lore: string array
 
-The lore of the reforge anvil item.
+The lore of the reforging anvil item.
 
 Colorized, no placeholders.
 
 #### recipe: object
 
+Specifies the crafting recipe for the reforging anvil item.
+
 ##### shape: string array
 
-The shape of the crafting recipe for the reforge anvil item. 
+The shape of the crafting recipe for the reforging anvil item. 
 
 3 strings, each consisting of 3 symbols representing items as per `keys`.
 
@@ -131,7 +148,7 @@ to apply a reforge.
 
 ```json
 {
-  "name": "%DARK_PURPLE%Reforge Anvil",
+  "name": "%DARK_PURPLE%Reforging Anvil",
   "lore": [
     "%GRAY%Place this anvil anywhere in the world",
     "%GRAY%to start reforging stuff!"
@@ -182,7 +199,7 @@ These are all the attributes, each corresponding to their respective stat and pl
 - **armorToughness**
 - **attackKnockback**
 
-#### weight: int
+#### weight: double
 
 Represents the chance of this particular reforge being applied to the weapon. This is not a percentage,
 but rather relative weight, which means that there are no restrictions on the upper bound of the number.
@@ -245,7 +262,7 @@ tweaks to the base built-in abilities.
 
 #### fireAbility: object
 
-Forms multiple circles in the direction where the player is facing, each further from the player, and with bigger radius. If any entity hits the particle, then that entity will be set on fire.
+Sets entities on fire in the player's facing direction according to the specified function.
 
 ##### price: object
 
@@ -259,41 +276,49 @@ Specifies the amount of health subtracted from the player when activating the ab
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
+##### function: object
+
+Specifies a mathematical parametric function with variable t.
+
+###### x: expression
+
+Specifies the parametric expression for the x coordinate.
+
+###### y: expression
+
+Specifies the parametric expression for the y coordinate.
+
+###### z: expression
+
+Specifies the parametric expression for the z coordinate.
+
+###### min: double
+
+Specifies the minimum value of the parameter.
+
+###### max: double
+
+Specifies the maximum value of the parameter.
+
+###### delta: double
+
+Specifies the change of the parameter's value.
+
 ##### particle: particle
 
-Specifies the type of the particle which is used to form circles.
-
-##### particleFrequency: double
-
-Specifies the number of particles.
-
-##### circleDistance: double
-
-Specifies the distance between each circle.
-
-##### radius: double
-
-Specifies the radius of the smallest circle.
-
-##### fireRange: double
-
-Specifies the maximum distance from a particle which will set an entity on fire.
-
-##### circleCount: int
-
-Specifies the count of the circles. Each next circle is bigger than the previous one.
+Specifies the type of the particle which is used to visualize the function.
 
 ##### fireDuration: int
 
 Specifies how long will hit entities be on fire in ticks (1 second = 20 ticks).
 
-##### circlePeriod: int
+##### duration: int
 
-Specifies how much time after forming a circle should pass to form the next one in ticks (1 second = 20 ticks).
+Specifies the duration in ticks (1 second = 20 ticks).
 
 #### stormAbility: object
 
-Allows the player to strike a circle of lighting around them.
+Strikes lighting around the player according to the specified function.
 
 ##### price: object
 
@@ -307,17 +332,37 @@ Specifies the amount of health subtracted from the player when activating the ab
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
-##### radius: double
+##### function: object
 
-Specifies the radius of the circle formed around the player.
+Specifies a mathematical parametric function with variable t.
 
-##### frequency: double
+###### x: expression
 
-Specifies the number of lightnings.
+Specifies the parametric expression for the x coordinate.
+
+###### y: expression
+
+Specifies the parametric expression for the y coordinate.
+
+###### z: expression
+
+Specifies the parametric expression for the z coordinate.
+
+###### min: double
+
+Specifies the minimum value of the parameter.
+
+###### max: double
+
+Specifies the maximum value of the parameter.
+
+###### delta: double
+
+Specifies the change of the parameter's value.
 
 #### throwAbility: object
 
-Allows the player to throw sword which will disappear after hitting a solid block or travelling the maximum specified distance and damage all the entities it hits on the way.
+Allows the player to throw their weapon which will travel for the specified amount of time and damage all the entities it hits on the way.
 
 ##### price: object
 
@@ -331,25 +376,21 @@ Specifies the amount of health subtracted from the player when activating the ab
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
-##### maxDistance: double
+##### damageFactor: double
 
-Specifies the maximum distance that the weapon travels before disappearing.
-
-##### damageAmplifier: double
-
-Specifies how the amplifier applied to the weapons usual damage when thrown.
+Specifies the factor that is applied to the weapon's normal damage.
 
 ##### speed: double
 
-Specifies the speed of the weapon when thrown in blocks.
+Specifies the speed of the weapon when thrown in blocks per tick.
 
-##### range: double
+##### duration: int
 
-Specifies the maximum distance from the weapon which will damage an entity.
+Specifies the duration in ticks (1 second = 20 ticks).
 
 #### teleportAbility: object
 
-Allows players to teleport at the direction that they are looking.
+Teleports the player in their facing direction.
 
 ##### price: object
 
@@ -363,7 +404,7 @@ Specifies the amount of health subtracted from the player when activating the ab
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
-##### maxDistance: double
+##### distance: double
 
 Specifies the maximum distance that player can teleport.
 
@@ -373,7 +414,7 @@ Specifies the cooldown in ticks (1 second = 20 ticks).
 
 #### shieldAbility: object
 
-Gives player damage resistance for a specified period of time. You can have multiple abilities inheriting from this with different options and names.
+Gives player damage resistance for the specified period of time.
 
 ##### price: object
 
@@ -387,29 +428,49 @@ Specifies the amount of health subtracted from the player when activating the ab
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
+##### function: object
+
+Specifies a mathematical parametric function with variable t.
+
+###### x: expression
+
+Specifies the parametric expression for the x coordinate.
+
+###### y: expression
+
+Specifies the parametric expression for the y coordinate.
+
+###### z: expression
+
+Specifies the parametric expression for the z coordinate.
+
+###### min: double
+
+Specifies the minimum value of the parameter.
+
+###### max: double
+
+Specifies the maximum value of the parameter.
+
+###### delta: double
+
+Specifies the change of the parameter's value.
+
 ##### particle: particle
 
-Specifies the type of the particle which is used to form a circle around the player.
-
-##### particleFrequency: double
-
-Specifies the number of particles.
-
-##### radius: double
-
-Specifies the radius of the circle formed around the player.
-
-##### duration: int
-
-Specifies the duration of the shield in ticks (1 second = 20 ticks).
+Specifies the type of the particle which is used to visualize the function.
 
 ##### disableAttack: boolean
 
 Specifies whether the player should be prevented from attacking other entities while the shield is active.
 
-#### earthAbility: object
+##### duration: int
 
-Allows the player to form a protective block circle around them.
+Specifies the duration in ticks (1 second = 20 ticks).
+
+#### function: object
+
+Specifies a mathematical parametric function with variable t.
 
 ##### price: object
 
@@ -423,13 +484,73 @@ Specifies the amount of health subtracted from the player when activating the ab
 
 Specifies the amount of food subtracted from the player when activating the ability.
 
-##### radius: double
+##### x: expression
 
-Specifies the radius of the circle formed around the player.
+Specifies the parametric expression for the x coordinate.
 
-##### frequency: double
+##### y: expression
 
-Specifies the number of blocks.
+Specifies the parametric expression for the y coordinate.
+
+##### z: expression
+
+Specifies the parametric expression for the z coordinate.
+
+##### min: double
+
+Specifies the minimum value of the parameter.
+
+##### max: double
+
+Specifies the maximum value of the parameter.
+
+##### delta: double
+
+Specifies the change of the parameter's value.
+
+#### earthAbility: object
+
+Forms one block tall protective barrier around the player according to the specified function.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: int
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### function: object
+
+Specifies a mathematical parametric function with variable t.
+
+###### x: expression
+
+Specifies the parametric expression for the x coordinate.
+
+###### y: expression
+
+Specifies the parametric expression for the y coordinate.
+
+###### z: expression
+
+Specifies the parametric expression for the z coordinate.
+
+###### min: double
+
+Specifies the minimum value of the parameter.
+
+###### max: double
+
+Specifies the maximum value of the parameter.
+
+###### delta: double
+
+Specifies the change of the parameter's value.
 
 ```json
 {
@@ -439,10 +560,16 @@ Specifies the number of blocks.
         "health": 6,
         "food": 6
       },
+      "duration": 200,
+      "function": {
+        "x": "cos(48t)",
+        "y": "0.5t",
+        "z": "sin(48t)",
+        "min": 0,
+        "max": 5,
+        "delta": 0.25
+      },
       "particle": "ENCHANTMENT_TABLE",
-      "particleFrequency": 9,
-      "radius": 1,
-      "duration": 60,
       "disableAttack": true
     }
   },
@@ -452,14 +579,17 @@ Specifies the number of blocks.
         "health": 4,
         "food": 4
       },
+      "duration": 1,
+      "function": {
+        "x": "0.025tcos(t)",
+        "y": "0.025tsin(t)",
+        "z": "0.005t",
+        "min": 0,
+        "max": 20,
+        "delta": 0.25
+      },
       "particle": "FLAME",
-      "particleFrequency": 9,
-      "circleDistance": 1,
-      "radius": 0.25,
-      "fireRange": 1,
-      "circleCount": 5,
-      "fireDuration": 40,
-      "circlePeriod": 2
+      "fireDuration": 40
     }
   },
   "throwAbilities": {
@@ -468,10 +598,9 @@ Specifies the number of blocks.
         "health": 0,
         "food": 1
       },
-      "maxDistance": 5,
-      "damageAmplifier": 0.75,
-      "speed": 0.5,
-      "range": 1
+      "duration": 20,
+      "damageFactor": 0.75,
+      "speed": 0.5
     }
   },
   "stormAbilities": {
@@ -480,8 +609,13 @@ Specifies the number of blocks.
         "health": 2,
         "food": 4
       },
-      "radius": 3,
-      "frequency": 9
+      "function": {
+        "x": "3cos(t)",
+        "z": "3sin(t)",
+        "min": 0,
+        "max": 6.28318530718,
+        "delta": 0.34906585039
+      }
     }
   },
   "earthAbilities": {
@@ -490,8 +624,13 @@ Specifies the number of blocks.
         "health": 1,
         "food": 1
       },
-      "radius": 3,
-      "frequency": 9
+      "function": {
+        "x": "3cos(t)",
+        "z": "3sin(t)",
+        "min": 0,
+        "max": 6.28318530718,
+        "delta": 0.34906585039
+      }
     }
   },
   "teleportAbilities": {
@@ -500,11 +639,10 @@ Specifies the number of blocks.
         "health": 3,
         "food": 3
       },
-      "maxDistance": 2,
-      "cooldown": 40
+      "cooldown": 40,
+      "distance": 2
     }
   }
 }
 ```
 
-<!-- </abilities> -->

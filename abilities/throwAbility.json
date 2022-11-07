@@ -1,21 +1,18 @@
 {
-  "description": "Allows the player to throw sword which will disappear after hitting a solid block or travelling the maximum specified distance and damage all the entities it hits on the way.",
+  "description": "Allows the player to throw their weapon which will travel for the specified amount of time and damage all the entities it hits on the way.",
   "properties": {
-    "maxDistance": {
+    "damageFactor": {
       "type": "double",
-      "description": "Specifies the maximum distance that the weapon travels before disappearing."
-    },
-    "damageAmplifier": {
-      "type": "double",
-      "description": "Specifies how the amplifier applied to the weapons usual damage when thrown."
+      "description": "Specifies the factor that is applied to the weapon's normal damage."
     },
     "speed": {
       "type": "double",
-      "description": "Specifies the speed of the weapon when thrown in blocks."
+      "description": "Specifies the speed of the weapon when thrown in blocks per tick."
     },
-    "range": {
-      "type": "double",
-      "description": "Specifies the maximum distance from the weapon which will damage an entity."
+    "duration": {
+      "type": "int",
+      "description": "Specifies the duration in ticks (1 second = 20 ticks)."
     }
-  }
+  },
+  "external": []
 }

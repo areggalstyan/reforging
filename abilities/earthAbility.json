@@ -1,13 +1,7 @@
 {
-  "description": "Allows the player to form a protective block circle around them.",
-  "properties": {
-    "radius": {
-      "type": "double",
-      "description": "Specifies the radius of the circle formed around the player."
-    },
-    "frequency": {
-      "type": "double",
-      "description": "Specifies the number of blocks."
-    }
-  }
+  "description": "Forms one block tall protective barrier around the player according to the specified function.",
+  "properties": {},
+  "external": [
+    "function"
+  ]
 }

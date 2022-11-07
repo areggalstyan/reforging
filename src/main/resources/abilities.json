@@ -5,10 +5,16 @@
         "health": 6,
         "food": 6
       },
+      "duration": 200,
+      "function": {
+        "x": "cos(48t)",
+        "y": "0.5t",
+        "z": "sin(48t)",
+        "min": 0,
+        "max": 5,
+        "delta": 0.25
+      },
       "particle": "ENCHANTMENT_TABLE",
-      "particleFrequency": 9,
-      "radius": 1,
-      "duration": 60,
       "disableAttack": true
     }
   },
@@ -18,14 +24,17 @@
         "health": 4,
         "food": 4
       },
+      "duration": 1,
+      "function": {
+        "x": "0.025tcos(t)",
+        "y": "0.025tsin(t)",
+        "z": "0.005t",
+        "min": 0,
+        "max": 20,
+        "delta": 0.25
+      },
       "particle": "FLAME",
-      "particleFrequency": 9,
-      "circleDistance": 1,
-      "radius": 0.25,
-      "fireRange": 1,
-      "circleCount": 5,
-      "fireDuration": 40,
-      "circlePeriod": 2
+      "fireDuration": 40
     }
   },
   "throwAbilities": {
@@ -34,10 +43,9 @@
         "health": 0,
         "food": 1
       },
-      "maxDistance": 5,
-      "damageAmplifier": 0.75,
-      "speed": 0.5,
-      "range": 1
+      "duration": 20,
+      "damageFactor": 0.75,
+      "speed": 0.5
     }
   },
   "stormAbilities": {
@@ -46,8 +54,13 @@
         "health": 2,
         "food": 4
       },
-      "radius": 3,
-      "frequency": 9
+      "function": {
+        "x": "3cos(t)",
+        "z": "3sin(t)",
+        "min": 0,
+        "max": 6.28318530718,
+        "delta": 0.34906585039
+      }
     }
   },
   "earthAbilities": {
@@ -56,8 +69,13 @@
         "health": 1,
         "food": 1
       },
-      "radius": 3,
-      "frequency": 9
+      "function": {
+        "x": "3cos(t)",
+        "z": "3sin(t)",
+        "min": 0,
+        "max": 6.28318530718,
+        "delta": 0.34906585039
+      }
     }
   },
   "teleportAbilities": {
@@ -66,8 +84,8 @@
         "health": 3,
         "food": 3
       },
-      "maxDistance": 2,
-      "cooldown": 40
+      "cooldown": 40,
+      "distance": 2
     }
   }
 }

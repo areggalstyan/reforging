@@ -1,10 +1,12 @@
 package com.aregcraft.reforging;
 
-import com.aregcraft.reforging.data.Abilities;
 import com.aregcraft.reforging.ability.Ability;
+import com.aregcraft.reforging.data.Abilities;
 import com.aregcraft.reforging.data.Item;
 import com.aregcraft.reforging.util.ChatText;
 import com.aregcraft.reforging.util.Config;
+import org.apache.commons.rng.UniformRandomProvider;
+import org.apache.commons.rng.sampling.DiscreteProbabilityCollectionSampler;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -30,7 +32,7 @@ import java.util.stream.Collectors;
 
 public record Reforge(String name, Ability ability, float maxHealth, float knockbackResistance,
                       float movementSpeed, float attackDamage, float armor, float armorToughness, float attackSpeed,
-                      float attackKnockback, int weight) implements Listener {
+                      float attackKnockback, double weight) implements Listener {
 
     public static final Map<String, Ability> ABILITIES = new HashMap<>();
     static {
@@ -46,17 +48,11 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
     public static final Item ITEM = Config.readFile("item", Item.class);
     public static final Map<String, Reforge> REFORGES = List.of(Config.readFile("reforges", Reforge[].class))
             .stream().collect(Collectors.toMap(Reforge::name, Function.identity()));
+    public static final Random RANDOM = new Random();
     public static final NamespacedKey REFORGE_KEY = new NamespacedKey(Reforging.PLUGIN, "reforge");
-    public static final TreeMap<Integer, Reforge> WEIGHTS = new TreeMap<>();
-    public static final int TOTAL_WEIGHT;
-    static {
-        int totalWeight = 0;
-        for (var reforge : REFORGES.values()) {
-            totalWeight += reforge.weight;
-            WEIGHTS.put(totalWeight, reforge);
-        }
-        TOTAL_WEIGHT = totalWeight;
-    }
+    public static final DiscreteProbabilityCollectionSampler<Reforge> REFORGE_SAMPLER =
+            new DiscreteProbabilityCollectionSampler<>(RANDOM::nextLong, REFORGES.values().stream().collect(
+                    Collectors.toMap(Function.identity(), Reforge::weight)));
     public static final NamespacedKey DISPLAY_NAME_KEY = new NamespacedKey(Reforging.PLUGIN, "display_name");
     public static final Map<Material, Integer> ATTACK_DAMAGES = Map.ofEntries(
             Map.entry(Material.WOODEN_SWORD, 4),

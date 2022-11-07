@@ -1,37 +1,20 @@
 {
-  "description": "Forms multiple circles in the direction where the player is facing, each further from the player, and with bigger radius. If any entity hits the particle, then that entity will be set on fire.",
+  "description": "Sets entities on fire in the player's facing direction according to the specified function.",
   "properties": {
     "particle": {
       "type": "particle",
-      "description": "Specifies the type of the particle which is used to form circles."
-    },
-    "particleFrequency": {
-      "type": "double",
-      "description": "Specifies the number of particles."
-    },
-    "circleDistance": {
-      "type": "double",
-      "description": "Specifies the distance between each circle."
-    },
-    "radius": {
-      "type": "double",
-      "description": "Specifies the radius of the smallest circle."
-    },
-    "fireRange": {
-      "type": "double",
-      "description": "Specifies the maximum distance from a particle which will set an entity on fire."
-    },
-    "circleCount": {
-      "type": "int",
-      "description": "Specifies the count of the circles. Each next circle is bigger than the previous one."
+      "description": "Specifies the type of the particle which is used to visualize the function."
     },
     "fireDuration": {
       "type": "int",
-      "description": "Specifies how long will hit entities be on fire in ticks (1 second \u003d 20 ticks)."
+      "description": "Specifies how long will hit entities be on fire in ticks (1 second = 20 ticks)."
     },
-    "circlePeriod": {
+    "duration": {
       "type": "int",
-      "description": "Specifies how much time after forming a circle should pass to form the next one in ticks (1 second \u003d 20 ticks)."
+      "description": "Specifies the duration in ticks (1 second = 20 ticks)."
     }
-  }
+  },
+  "external": [
+    "function"
+  ]
 }

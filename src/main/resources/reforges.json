@@ -26,7 +26,7 @@
     "ability": "THROW",
     "attackDamage": 2,
     "attackSpeed": 0.5,
-    "movementSpeed": 0.1,
+    "movementSpeed": 0.01,
     "weight": 20
   },
   {
@@ -49,6 +49,7 @@
     "attackDamage": 0.5,
     "attackSpeed": 0.1,
     "armor": -0.5,
-    "armorToughness": -0.5
+    "armorToughness": -0.5,
+    "weight": 20
   }
 ]

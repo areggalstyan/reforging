@@ -7,34 +7,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
 
 /**
- * Gives player damage resistance for a specified period of time. You can have multiple abilities inheriting from this
- * with different options and names.
+ * Gives player damage resistance for the specified period of time.
  */
-public class ShieldAbility extends Ability implements Listener {
-    private final Set<UUID> players = new HashSet<>();
+public class ShieldAbility extends RepeatingAbility implements Listener {
+    private Function function;
     /**
-     * Specifies the type of the particle which is used to form a circle around the player.
+     * Specifies the type of the particle which is used to visualize the function.
      */
     private Particle particle;
-    /**
-     * Specifies the number of particles.
-     */
-    private double particleFrequency;
-    /**
-     * Specifies the radius of the circle formed around the player.
-     */
-    private double radius;
-    /**
-     * Specifies the duration of the shield in ticks (1 second = 20 ticks).
-     */
-    private int duration;
     /**
      * Specifies whether the player should be prevented from attacking other entities while the shield is active.
      */
@@ -45,34 +27,18 @@ public class ShieldAbility extends Ability implements Listener {
     }
 
     @Override
-    public void activate(Player player) {
-        var id = player.getUniqueId();
-        if (players.contains(id)) {
-            return;
+    protected boolean perform(Player player) {
+        for (var i = function.min; i < function.max; i += function.delta) {
+            spawnParticle(evaluate(function, i), particle, player.getLocation());
         }
-        players.add(id);
-        charge(player);
-        new BukkitRunnable() {
-            private int time = 0;
-
-            @Override
-            public void run() {
-                if (time++ == duration || player.isDead()) {
-                    players.remove(id);
-                    cancel();
-                }
-                for (double i = 0; i < 2 * Math.PI; i += Math.PI / particleFrequency) {
-                    player.getWorld().spawnParticle(particle, player.getLocation().add(radius * Math.cos(i), 1,
-                            radius * Math.sin(i)), 0);
-                }
-            }
-        }.runTaskTimerAsynchronously(Reforging.PLUGIN, 0, 1);
+        return true;
     }
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        event.setCancelled(event.getEntity() instanceof Player entity && players.contains(entity.getUniqueId())
-                || disableAttack && event.getDamager() instanceof Player damager
-                && players.contains(damager.getUniqueId()));
+        if (players.contains(event.getEntity().getUniqueId()) || disableAttack
+                && players.contains(event.getDamager().getUniqueId())) {
+            event.setDamage(0);
+        }
     }
 }

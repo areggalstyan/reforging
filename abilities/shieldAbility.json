@@ -1,25 +1,20 @@
 {
-  "description": "Gives player damage resistance for a specified period of time. You can have multiple abilities inheriting from this with different options and names.",
+  "description": "Gives player damage resistance for the specified period of time.",
   "properties": {
     "particle": {
       "type": "particle",
-      "description": "Specifies the type of the particle which is used to form a circle around the player."
-    },
-    "particleFrequency": {
-      "type": "double",
-      "description": "Specifies the number of particles."
-    },
-    "radius": {
-      "type": "double",
-      "description": "Specifies the radius of the circle formed around the player."
-    },
-    "duration": {
-      "type": "int",
-      "description": "Specifies the duration of the shield in ticks (1 second \u003d 20 ticks)."
+      "description": "Specifies the type of the particle which is used to visualize the function."
     },
     "disableAttack": {
       "type": "boolean",
       "description": "Specifies whether the player should be prevented from attacking other entities while the shield is active."
+    },
+    "duration": {
+      "type": "int",
+      "description": "Specifies the duration in ticks (1 second = 20 ticks)."
     }
-  }
+  },
+  "external": [
+    "function"
+  ]
 }

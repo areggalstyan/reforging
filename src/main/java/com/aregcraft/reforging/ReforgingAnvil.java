@@ -5,7 +5,10 @@ import com.aregcraft.reforging.util.ChatText;
 import com.aregcraft.reforging.util.Config;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Directional;
@@ -26,12 +29,10 @@ import org.bukkit.util.BoundingBox;
 import org.bukkit.util.EulerAngle;
 
 import java.util.Objects;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class ReforgeAnvil implements Listener {
-    public static final Random random = new Random();
+public class ReforgingAnvil implements Listener {
     public static final Anvil ANVIL = Config.readFile("anvil", Anvil.class);
     public static final ItemStack ITEM = new ItemStack(Material.ANVIL);
     public static final NamespacedKey KEY = new NamespacedKey(Reforging.PLUGIN, "id");
@@ -70,7 +71,7 @@ public class ReforgeAnvil implements Listener {
             .put(Material.NETHERITE_AXE, Material.NETHERITE_SCRAP)
             .build();
 
-    public ReforgeAnvil() {
+    public ReforgingAnvil() {
         var itemMeta = ITEM.getItemMeta();
         if (itemMeta == null) {
             return;
@@ -167,7 +168,7 @@ public class ReforgeAnvil implements Listener {
             return;
         }
         item.setAmount(amount - ANVIL.price);
-        Reforge.WEIGHTS.higherEntry(random.nextInt(Reforge.TOTAL_WEIGHT)).getValue().apply(previousItem);
+        Reforge.REFORGE_SAMPLER.sample().apply(previousItem);
         dropItem(block, previousItem, equipment);
         block.getWorld().playSound(block.getLocation(), Sound.BLOCK_ANVIL_USE, ANVIL.soundEffect.volume,
                 ANVIL.soundEffect.pitch);

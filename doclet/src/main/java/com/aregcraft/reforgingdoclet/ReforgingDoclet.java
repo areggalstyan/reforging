@@ -2,17 +2,17 @@ package com.aregcraft.reforgingdoclet;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.sun.source.doctree.DocCommentTree;
+import com.sun.source.util.DocTrees;
 import jdk.javadoc.doclet.Doclet;
 import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.Reporter;
 
 import javax.lang.model.SourceVersion;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.Modifier;
-import javax.lang.model.element.VariableElement;
+import javax.lang.model.element.*;
+import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,7 +23,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class ReforgingDoclet implements Doclet {
-    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     private Path destinationDirectory;
 
     @Override
@@ -138,44 +138,60 @@ public class ReforgingDoclet implements Doclet {
         environment.getSpecifiedElements().stream()
                 .filter(it -> {
                     var name = getElementSimpleName(it);
-                    return name.contains("Ability") && !name.equals("Ability") || name.equals("Price");
+                    return name.contains("Ability") && !name.equals("Ability")
+                            || name.equals("Price")
+                            || name.equals("Function");
                 }).forEach(e -> {
                     var docCommentTree = docTrees.getDocCommentTree(e);
-                    if (docCommentTree != null) {
-                        var file = destinationDirectory.resolve(toCamelCase(getElementSimpleName(e)) + ".json");
-                        if (Files.notExists(file)) {
-                            try {
-                                Files.createFile(file);
-                            } catch (IOException exception) {
-                                exception.printStackTrace();
-                            }
-                        }
-                        try (var writer = Files.newBufferedWriter(file)) {
-                            var obj = new JsonObject();
-                            obj.addProperty("description", docCommentTreeToString(docCommentTree));
-                            var properties = new JsonObject();
-                            obj.add("properties", properties);
-                            e.getEnclosedElements().stream()
-                                    .filter(it -> it.getKind() == ElementKind.FIELD)
-                                    .filter(it -> !it.getModifiers().contains(Modifier.FINAL))
-                                    .map(it -> (VariableElement) it)
-                                    .forEach(p -> {
-                                        var property = new JsonObject();
-                                        property.addProperty("type", getTypeSimpleName(p.asType()));
-                                        var propertyDocCommentTree = docTrees.getDocCommentTree(p);
-                                        if (propertyDocCommentTree == null) {
-                                            return;
-                                        }
-                                        property.addProperty("description",
-                                                docCommentTreeToString(propertyDocCommentTree));
-                                        properties.add(getElementSimpleName(p), property);
-                                    });
-                            GSON.toJson(obj, writer);
+                    if (docCommentTree == null) {
+                        return;
+                    }
+                    var file = destinationDirectory.resolve(toCamelCase(getElementSimpleName(e)) + ".json");
+                    if (Files.notExists(file)) {
+                        try {
+                            Files.createFile(file);
                         } catch (IOException exception) {
                             exception.printStackTrace();
                         }
                     }
+                    try (var writer = Files.newBufferedWriter(file)) {
+                        var obj = new JsonObject();
+                        obj.addProperty("description", docCommentTreeToString(docCommentTree));
+                        var properties = new JsonObject();
+                        obj.add("properties", properties);
+                        parseProperties(docTrees, e, properties);
+                        parseProperties(docTrees, ((DeclaredType) ((TypeElement) e).getSuperclass()).asElement(),
+                                properties);
+                        var external = new JsonArray();
+                        obj.add("external", external);
+                        e.getEnclosedElements().stream()
+                                .filter(it -> it.getKind() == ElementKind.FIELD)
+                                .filter(it -> !it.getModifiers().contains(Modifier.FINAL))
+                                .filter(it -> !it.getModifiers().contains(Modifier.TRANSIENT))
+                                .filter(it -> docTrees.getDocCommentTree(it) == null)
+                                .forEach(it -> external.add(getElementSimpleName(it)));
+                        GSON.toJson(obj, writer);
+                    } catch (IOException exception) {
+                        exception.printStackTrace();
+                    }
                 });
         return true;
+    }
+
+    private void parseProperties(DocTrees docTrees, Element element, JsonObject properties) {
+        element.getEnclosedElements().stream()
+                .filter(it -> it.getKind() == ElementKind.FIELD)
+                .filter(it -> !it.getModifiers().contains(Modifier.FINAL))
+                .map(it -> (VariableElement) it)
+                .forEach(it -> {
+                    var property = new JsonObject();
+                    property.addProperty("type", getTypeSimpleName(it.asType()));
+                    var propertyDocCommentTree = docTrees.getDocCommentTree(it);
+                    if (propertyDocCommentTree == null) {
+                        return;
+                    }
+                    property.addProperty("description", docCommentTreeToString(propertyDocCommentTree));
+                    properties.add(getElementSimpleName(it), property);
+                });
     }
 }
