@@ -164,7 +164,9 @@ public class ReforgingDoclet implements Doclet {
                                 properties);
                         var external = new JsonArray();
                         obj.add("external", external);
-                        external.add("price");
+                        if (getElementSimpleName(e).contains("Ability")) {
+                            external.add("price");
+                        }
                         e.getEnclosedElements().stream()
                                 .filter(it -> it.getKind() == ElementKind.FIELD)
                                 .filter(it -> !it.getModifiers().contains(Modifier.FINAL))

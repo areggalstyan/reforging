@@ -463,18 +463,6 @@ Specifies the duration in ticks (1 second = 20 ticks).
 
 Specifies a mathematical parametric function with variable t.
 
-##### price: object
-
-Specifies the price the player pays when activates this ability.
-
-###### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-###### food: int
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
 ##### x: expression
 
 Specifies the parametric expression for the x coordinate.
