@@ -87,5 +87,15 @@
       "cooldown": 40,
       "distance": 2
     }
+  },
+  "shulkerAbilities": {
+    "SHULKER": {
+      "price": {
+        "health": 3,
+        "food": 3
+      },
+      "cooldown": 20,
+      "speed": 1
+    }
   }
 }

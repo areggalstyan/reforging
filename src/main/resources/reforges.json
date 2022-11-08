@@ -51,5 +51,10 @@
     "armor": -0.5,
     "armorToughness": -0.5,
     "weight": 20
+  },
+  {
+    "name": "Purple",
+    "ability": "SHULKER",
+    "weight": 15
   }
 ]

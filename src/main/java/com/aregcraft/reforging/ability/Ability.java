@@ -5,10 +5,7 @@ import com.aregcraft.reforging.math.Matrix;
 import com.aregcraft.reforging.math.Vector;
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.function.Consumer;
@@ -45,6 +42,14 @@ public abstract class Ability {
             z = function.z.calculate();
         }
         return new Vector(x, y, z);
+    }
+
+    protected <T extends Entity> T spawnEntity(Vector vector, Class<T> entityType, Location location) {
+        var world = location.getWorld();
+        if (world == null) {
+            return null;
+        }
+        return world.spawn(vector.at(location), entityType);
     }
 
     protected void spawnParticle(Vector vector, Particle particle, Location location) {

@@ -44,6 +44,7 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
         ABILITIES.putAll(abilities.stormAbilities);
         ABILITIES.putAll(abilities.earthAbilities);
         ABILITIES.putAll(abilities.teleportAbilities);
+        ABILITIES.putAll(abilities.shulkerAbilities);
     }
     public static final Item ITEM = Config.readFile("item", Item.class);
     public static final Map<String, Reforge> REFORGES = List.of(Config.readFile("reforges", Reforge[].class))

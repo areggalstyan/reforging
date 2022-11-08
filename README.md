@@ -39,6 +39,7 @@ discord Aregcraft#6844. I am usually available from 5:00 PM to 10:00 PM (GMT+4 t
 ![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png)
 ![Shield Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shield_ability.png)
 ![Earth Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/earth_ability.png)
+![Shulker Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shulker_ability.png)
 ![Sword on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/sword_on_anvil.png)
 ![Throw Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/throw_ability.png)
 ![Storm Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/storm_ability.png)
@@ -373,7 +374,7 @@ Specifies the factor that is applied to the weapon's normal damage.
 
 ##### speed: double
 
-Specifies the speed of the weapon when thrown in blocks per tick.
+Specifies the speed of the weapon when thrown in blocks per tick (1 second = 20 ticks).
 
 ##### duration: int
 
@@ -398,6 +399,30 @@ Specifies the amount of food subtracted from the player when activating the abil
 ##### distance: double
 
 Specifies the maximum distance that player can teleport.
+
+##### cooldown: int
+
+Specifies the cooldown in ticks (1 second = 20 ticks).
+
+#### shulkerAbility: object
+
+Allows the player to launch a shulker bullet like an arrow.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: int
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### speed: double
+
+Specifies the speed of the projectile when thrown in blocks per tick (1 second = 20 ticks).
 
 ##### cooldown: int
 
@@ -620,6 +645,16 @@ Specifies the change of the parameter's value.
       },
       "cooldown": 40,
       "distance": 2
+    }
+  },
+  "shulkerAbilities": {
+    "SHULKER": {
+      "price": {
+        "health": 3,
+        "food": 3
+      },
+      "cooldown": 20,
+      "speed": 1
     }
   }
 }

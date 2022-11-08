@@ -17,7 +17,7 @@ public class ThrowAbility extends RepeatingAbility {
      */
     private double damageFactor;
     /**
-     * Specifies the speed of the weapon when thrown in blocks per tick.
+     * Specifies the speed of the weapon when thrown in blocks per tick (1 second = 20 ticks).
      */
     private double speed;
     private transient ArmorStand armorStand;

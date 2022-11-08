@@ -7,7 +7,7 @@
     },
     "speed": {
       "type": "double",
-      "description": "Specifies the speed of the weapon when thrown in blocks per tick."
+      "description": "Specifies the speed of the weapon when thrown in blocks per tick (1 second = 20 ticks)."
     },
     "duration": {
       "type": "int",
