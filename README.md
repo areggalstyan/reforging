@@ -199,50 +199,71 @@ but rather relative weight, which means that there are no restrictions on the up
 
 ```json
 [
-  {
-    "name": "Shielded",
-    "ability": "SHIELD",
-    "maxHealth": 4,
-    "attackDamage": -1,
-    "armor": 4,
-    "knockbackResistance": 2,
-    "weight": 40
-  },
-  {
-    "name": "Sharp",
-    "ability": "DUMMY",
-    "maxHealth": -2,
-    "attackDamage": 4,
-    "attackSpeed": 0.2,
-    "weight": 80
-  },
-  {
-    "name": "Infernal",
-    "ability": "FIRE",
-    "weight": 20
-  },
-  {
-    "name": "Murderous",
-    "ability": "THROW",
-    "attackDamage": 2,
-    "attackSpeed": 0.5,
-    "movementSpeed": 0.1,
-    "weight": 20
-  },
-  {
-    "name": "Enraged",
-    "ability": "STORM",
-    "attackDamage": 3,
-    "attackSpeed": 0.3,
-    "weight": 20
-  },
-  {
-    "name": "Titanic",
-    "ability": "EARTH",
-    "attackDamage": -1,
-    "armor": 2,
-    "weight": 20
-  }
+   {
+      "name": "Shielded",
+      "ability": "SHIELD",
+      "maxHealth": 4,
+      "attackDamage": -1,
+      "armor": 4,
+      "knockbackResistance": 2,
+      "weight": 40
+   },
+   {
+      "name": "Sharp",
+      "ability": "DUMMY",
+      "maxHealth": -2,
+      "attackDamage": 4,
+      "attackSpeed": 0.2,
+      "weight": 80
+   },
+   {
+      "name": "Infernal",
+      "ability": "FIRE",
+      "weight": 20
+   },
+   {
+      "name": "Murderous",
+      "ability": "THROW",
+      "attackDamage": 2,
+      "attackSpeed": 0.5,
+      "movementSpeed": 0.01,
+      "weight": 20
+   },
+   {
+      "name": "Enraged",
+      "ability": "STORM",
+      "attackDamage": 3,
+      "attackSpeed": 0.3,
+      "weight": 20
+   },
+   {
+      "name": "Titanic",
+      "ability": "EARTH",
+      "attackDamage": -1,
+      "armor": 2,
+      "weight": 20
+   },
+   {
+      "name": "Stealthy",
+      "ability": "TELEPORT",
+      "attackDamage": 0.5,
+      "attackSpeed": 0.1,
+      "armor": -0.5,
+      "armorToughness": -0.5,
+      "weight": 20
+   },
+   {
+      "name": "Purple",
+      "ability": "SHULKER",
+      "weight": 15
+   },
+   {
+      "name": "Gigantic",
+      "ability": "SEISMIC_WAVE",
+      "armor": 6,
+      "health": 6,
+      "weight": 10
+   }
 ]
 ```
 
