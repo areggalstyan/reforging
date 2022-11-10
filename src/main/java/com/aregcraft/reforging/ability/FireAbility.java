@@ -18,7 +18,7 @@ public class FireAbility extends RepeatingAbility {
     private int fireDuration;
 
     @Override
-    protected boolean perform(Player player) {
+    protected boolean perform(Player player, int time) {
         var location = player.getLocation().add(0, 1, 0);
         var matrix = changeOfBasisDirection(player);
         for (var i = function.min; i < function.max; i += function.delta) {

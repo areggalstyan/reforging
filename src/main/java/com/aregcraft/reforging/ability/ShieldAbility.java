@@ -27,7 +27,7 @@ public class ShieldAbility extends RepeatingAbility implements Listener {
     }
 
     @Override
-    protected boolean perform(Player player) {
+    protected boolean perform(Player player, int time) {
         for (var i = function.min; i < function.max; i += function.delta) {
             spawnParticle(evaluate(function, i), particle, player.getLocation());
         }

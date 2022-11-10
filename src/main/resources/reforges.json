@@ -56,5 +56,12 @@
     "name": "Purple",
     "ability": "SHULKER",
     "weight": 15
+  },
+  {
+    "name": "Gigantic",
+    "ability": "SEISMIC_WAVE",
+    "armor": 6,
+    "health": 6,
+    "weight": 10
   }
 ]

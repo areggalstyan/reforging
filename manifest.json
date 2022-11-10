@@ -1,5 +1,5 @@
 {
-  "version": "2.1.0-SNAPSHOT",
+  "version": "2.2.0-SNAPSHOT",
   "abilities": [
     "fireAbility.json",
     "stormAbility.json",
@@ -16,6 +16,7 @@
   "screenshots": [
     "fire_ability.png",
     "shield_ability.png",
+    "seismic_wave_ability.png",
     "earth_ability.png",
     "shulker_ability.png",
     "sword_on_anvil.png",

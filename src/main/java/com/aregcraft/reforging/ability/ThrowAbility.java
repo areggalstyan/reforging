@@ -43,7 +43,7 @@ public class ThrowAbility extends RepeatingAbility {
     }
 
     @Override
-    protected boolean perform(Player player) {
+    protected boolean perform(Player player, int time) {
         var location = armorStand.getLocation();
         armorStand.teleport(velocity.at(location));
         forEachEntity(location.add(0, 1, 0), player, it -> it.damage(damage));

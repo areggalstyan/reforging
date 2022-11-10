@@ -28,7 +28,7 @@ public abstract class RepeatingAbility extends Ability {
 
             @Override
             public void run() {
-                if (time++ == duration || player.isDead() || !perform(player)) {
+                if (time++ == duration || player.isDead() || !perform(player, time)) {
                     players.remove(id);
                     shutdown(player);
                     cancel();
@@ -43,5 +43,5 @@ public abstract class RepeatingAbility extends Ability {
     protected void shutdown(Player player) {
     }
 
-    protected abstract boolean perform(Player player);
+    protected abstract boolean perform(Player player, int time);
 }

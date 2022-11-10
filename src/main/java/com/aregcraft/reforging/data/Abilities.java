@@ -12,4 +12,5 @@ public class Abilities {
     public Map<String, EarthAbility> earthAbilities;
     public Map<String, TeleportAbility> teleportAbilities;
     public Map<String, ShulkerAbility> shulkerAbilities;
+    public Map<String, SeismicWaveAbility> seismicWaveAbilities;
 }

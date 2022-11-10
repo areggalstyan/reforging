@@ -38,6 +38,7 @@ discord Aregcraft#6844. I am usually available from 5:00 PM to 10:00 PM (GMT+4 t
 
 ![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png)
 ![Shield Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shield_ability.png)
+![Seismic Wave Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/seismic_wave_ability.png)
 ![Earth Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/earth_ability.png)
 ![Shulker Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shulker_ability.png)
 ![Sword on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/sword_on_anvil.png)
@@ -655,6 +656,27 @@ Specifies the change of the parameter's value.
       },
       "cooldown": 20,
       "speed": 1
+    }
+  },
+  "seismicWaveAbilities": {
+    "SEISMIC_WAVE": {
+      "price": {
+        "health": 5,
+        "food": 5
+      },
+      "duration": 40,
+      "function": {
+        "x": "0.5cos(t)",
+        "z": "0.5sin(t)",
+        "min": 0,
+        "max": 6.28318530718,
+        "delta": 0.25
+      },
+      "particle": "EXPLOSION_NORMAL",
+      "range": 10,
+      "factor": 1,
+      "height": 0.5,
+      "damage": 2
     }
   }
 }
