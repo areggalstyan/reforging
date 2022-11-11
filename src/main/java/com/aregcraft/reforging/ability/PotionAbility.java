@@ -17,7 +17,7 @@ public class PotionAbility extends CooldownAbility {
      */
     private PotionEffectType effect;
     /**
-     * Specifies the duration of the effect.
+     * Specifies the duration of the effect in ticks (1 second = 20 ticks).
      */
     private int duration;
     /**

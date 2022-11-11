@@ -7,7 +7,7 @@
     },
     "duration": {
       "type": "int",
-      "description": "Specifies the duration of the effect."
+      "description": "Specifies the duration of the effect in ticks (1 second = 20 ticks)."
     },
     "amplifier": {
       "type": "int",

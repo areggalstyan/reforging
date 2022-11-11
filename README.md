@@ -371,7 +371,7 @@ Specifies the potion effect.
 
 ##### duration: int
 
-Specifies the duration of the effect.
+Specifies the duration of the effect in ticks (1 second = 20 ticks).
 
 ##### amplifier: int
 
