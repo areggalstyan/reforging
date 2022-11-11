@@ -274,6 +274,74 @@ tweaks to the base built-in abilities.
 
 <!-- <abilities> -->
 
+#### seismicWaveAbility: object
+
+Damages and pushes back all entities in the specified range.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: int
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### function: object
+
+Specifies a mathematical parametric function with variable t.
+
+###### x: expression
+
+Specifies the parametric expression for the x coordinate.
+
+###### y: expression
+
+Specifies the parametric expression for the y coordinate.
+
+###### z: expression
+
+Specifies the parametric expression for the z coordinate.
+
+###### min: double
+
+Specifies the minimum value of the parameter.
+
+###### max: double
+
+Specifies the maximum value of the parameter.
+
+###### delta: double
+
+Specifies the change of the parameter's value.
+
+##### particle: particle
+
+Specifies the type of the particle which is used to visualize the function.
+
+##### range: double
+
+Specifies the range of the seismic wave.
+
+##### factor: double
+
+Specifies how much to push the surrounding entities back.
+
+##### height: double
+
+Specifies how high to push the surrounding entities.
+
+##### damage: double
+
+Specifies the damage to deal to the surrounding entities.
+
+##### duration: int
+
+Specifies the duration in ticks (1 second = 20 ticks).
+
 #### fireAbility: object
 
 Sets entities on fire in the player's facing direction according to the specified function.

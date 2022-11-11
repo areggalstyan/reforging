@@ -1,6 +1,7 @@
 {
   "version": "2.2.0-SNAPSHOT",
   "abilities": [
+    "seismicWaveAbility.json",
     "fireAbility.json",
     "stormAbility.json",
     "throwAbility.json",
