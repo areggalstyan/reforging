@@ -42,6 +42,7 @@ discord Aregcraft#6844. I am usually available from 5:00 PM to 10:00 PM (GMT+4 t
 ![Earth Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/earth_ability.png)
 ![Shulker Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shulker_ability.png)
 ![Sword on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/sword_on_anvil.png)
+![Potion Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/potion_ability.png)
 ![Throw Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/throw_ability.png)
 ![Storm Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/storm_ability.png)
 
@@ -263,6 +264,12 @@ but rather relative weight, which means that there are no restrictions on the up
       "armor": 6,
       "health": 6,
       "weight": 10
+   },
+   {
+      "name": "Wicked",
+      "ability": "POTION",
+      "attackKnockback": 1,
+      "weight": 15
    }
 ]
 ```
@@ -341,6 +348,38 @@ Specifies the damage to deal to the surrounding entities.
 ##### duration: int
 
 Specifies the duration in ticks (1 second = 20 ticks).
+
+#### potionAbility: object
+
+Allows player to throw a potion with the specified effect, duration and amplifier.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: int
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### effect: potioneffecttype
+
+Specifies the potion effect.
+
+##### duration: int
+
+Specifies the duration of the effect.
+
+##### amplifier: int
+
+Specifies the amplifier of the effect.
+
+##### cooldown: int
+
+Specifies the cooldown in ticks (1 second = 20 ticks).
 
 #### fireAbility: object
 
@@ -766,6 +805,18 @@ Specifies the change of the parameter's value.
       "factor": 1,
       "height": 0.5,
       "damage": 2
+    }
+  },
+  "potionAbilities": {
+    "POTION": {
+      "price": {
+        "health": 5,
+        "food": 5
+      },
+      "cooldown": 20,
+      "effect": "POISON",
+      "duration": "80",
+      "amplifier": 2
     }
   }
 }

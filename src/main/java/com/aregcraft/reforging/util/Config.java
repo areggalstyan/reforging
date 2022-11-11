@@ -5,6 +5,7 @@ import com.aregcraft.reforging.Reforging;
 import com.aregcraft.reforging.ability.Function;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.bukkit.potion.PotionEffectType;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,7 +14,9 @@ import java.util.Objects;
 
 public class Config {
     public static final Gson GSON = new GsonBuilder().registerTypeAdapter(Reforge.class, new ReforgeDeserializer())
-            .registerTypeAdapter(Function.class, new Function.Deserializer()).setPrettyPrinting().create();
+            .registerTypeAdapter(PotionEffectType.class, new PotionEffectTypeDeserializer())
+            .registerTypeAdapter(Function.class, new Function.Deserializer())
+            .setPrettyPrinting().create();
 
     public static <T> T readFile(String name, Class<T> type) {
         name += ".json";

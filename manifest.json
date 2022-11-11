@@ -1,7 +1,8 @@
 {
-  "version": "2.2.0-SNAPSHOT",
+  "version": "2.3.0-SNAPSHOT",
   "abilities": [
     "seismicWaveAbility.json",
+    "potionAbility.json",
     "fireAbility.json",
     "stormAbility.json",
     "throwAbility.json",
@@ -21,6 +22,7 @@
     "earth_ability.png",
     "shulker_ability.png",
     "sword_on_anvil.png",
+    "potion_ability.png",
     "throw_ability.png",
     "storm_ability.png"
   ]

@@ -118,5 +118,17 @@
       "height": 0.5,
       "damage": 2
     }
+  },
+  "potionAbilities": {
+    "POTION": {
+      "price": {
+        "health": 5,
+        "food": 5
+      },
+      "cooldown": 20,
+      "effect": "POISON",
+      "duration": "80",
+      "amplifier": 2
+    }
   }
 }

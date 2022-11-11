@@ -63,5 +63,11 @@
     "armor": 6,
     "health": 6,
     "weight": 10
+  },
+  {
+    "name": "Wicked",
+    "ability": "POTION",
+    "attackKnockback": 1,
+    "weight": 15
   }
 ]
