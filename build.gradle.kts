@@ -57,7 +57,9 @@ tasks.register("updateReadMe") {
     var skip = false
     file.printWriter().use { writer ->
         lines.forEach { line ->
-            if (line == "<!-- </screenshots> -->" || line == "<!-- </abilities> -->") {
+            if (line == "<!-- </screenshots> -->"
+                || line == "<!-- </abilities> -->"
+                || line == "<!-- </reforges> -->") {
                 skip = false
             }
             if (skip) {
@@ -74,8 +76,7 @@ tasks.register("updateReadMe") {
                     writer.println("![$alt](https://github.com/Aregcraft/reforging/blob/master/screenshots/$name)")
                 }
                 writer.println()
-            }
-            if (line == "<!-- <abilities> -->") {
+            } else if (line == "<!-- <abilities> -->") {
                 skip = true
                 writer.println()
                 file("abilities").walk().filter { it.isFile }.filter { it.name != "price.json" }.forEach { file ->
@@ -109,6 +110,13 @@ tasks.register("updateReadMe") {
                 }
                 writer.println("```json")
                 writer.println(file("src/main/resources/abilities.json").readText())
+                writer.println("```")
+                writer.println()
+            } else if (line == "<!-- <reforges> -->") {
+                skip = true
+                writer.println()
+                writer.println("```json")
+                writer.println(file("src/main/resources/reforges.json").readText())
                 writer.println("```")
                 writer.println()
             }
