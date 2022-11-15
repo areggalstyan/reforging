@@ -3,6 +3,7 @@
   "lore": [
     "",
     "%GRAY%When in main hand:",
+    "%DARK_GREEN% %BOLD%%ABILITY% %RESET%%DARK_GREEN%Ability",
     "%DARK_GREEN% %BASE_ATTACK_SPEED% %DARK_BLUE%(%ATTACK_SPEED%)%DARK_GREEN% Attack Speed",
     "%DARK_GREEN% %BASE_ATTACK_DAMAGE% %DARK_BLUE%(%ATTACK_DAMAGE%)%DARK_GREEN% Attack Damage",
     "%DARK_BLUE% %MAX_HEALTH% Max Health",

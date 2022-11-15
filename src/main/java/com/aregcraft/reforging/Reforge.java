@@ -153,7 +153,7 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
     }
 
     private String format(String line, Material type) {
-        return ChatText.format(line, Map.of(
+        return ChatText.format(ChatText.format(line, Map.of(
                 "%BASE_ATTACK_SPEED%", ATTACK_SPEEDS.get(type),
                 "%ATTACK_SPEED%", attackSpeed,
                 "%BASE_ATTACK_DAMAGE%", ATTACK_DAMAGES.get(type),
@@ -164,7 +164,8 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
                 "%ARMOR%", armor,
                 "%ARMOR_TOUGHNESS%", armorToughness,
                 "%ATTACK_KNOCKBACK%", attackKnockback
-        ), new DecimalFormat()::format);
+        ), new DecimalFormat()::format), Map.of("%ABILITY%", ABILITIES.keySet().stream()
+                .filter(it -> ABILITIES.get(it).equals(ability)).findAny().orElseThrow()));
     }
 
     private void removeAttributeModifier(ItemMeta itemMeta, Attribute attribute, String previousName) {

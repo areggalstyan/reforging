@@ -72,6 +72,7 @@ Colorized, placeholders:
 The lore attached to the end of each reforged item.
 
 Colorized, placeholders:
+- **ABILITY** - The ability of the reforge
 - **BASE_ATTACK_SPEED** - The base attack speed of the weapon
 - **ATTACK_SPEED** - The boost of attack speed provided by the reforge
 - **BASE_ATTACK_DAMAGE** - The base attack damage of the weapon
@@ -89,6 +90,7 @@ Colorized, placeholders:
   "lore": [
     "",
     "%GRAY%When in main hand:",
+    "%DARK_GREEN% %BOLD%%ABILITY% %RESET%%DARK_GREEN%Ability",
     "%DARK_GREEN% %BASE_ATTACK_SPEED% %DARK_BLUE%(%ATTACK_SPEED%)%DARK_GREEN% Attack Speed",
     "%DARK_GREEN% %BASE_ATTACK_DAMAGE% %DARK_BLUE%(%ATTACK_DAMAGE%)%DARK_GREEN% Attack Damage",
     "%DARK_BLUE% %MAX_HEALTH% Max Health",
@@ -126,7 +128,7 @@ Specifies the crafting recipe for the reforging anvil item.
 The shape of the crafting recipe for the reforging anvil item. 
 
 3 strings, each consisting of 3 symbols representing items as per `keys`.
-
+   
 ##### keys: object
 
 Maps single symbols to their respective item. Item should be specified with all CAPS and without `minecraft:`.
