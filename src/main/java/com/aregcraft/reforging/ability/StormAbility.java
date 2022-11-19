@@ -1,6 +1,9 @@
 package com.aregcraft.reforging.ability;
 
 import com.aregcraft.reforging.Reforging;
+import com.aregcraft.reforging.ability.base.PlayerAwareAbility;
+import com.aregcraft.reforging.ability.external.Function;
+import com.aregcraft.reforging.annotation.Ability;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 /**
  * Strikes lighting around the player according to the specified function.
  */
+@Ability
 public class StormAbility extends PlayerAwareAbility implements Listener {
     private Function function;
 

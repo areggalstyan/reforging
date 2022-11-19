@@ -127,6 +127,17 @@ public class ReforgingDoclet implements Doclet {
         return element.getSimpleName().toString();
     }
 
+    private boolean hasAnnotations(Element element, String... annotations) {
+        var names = element.getAnnotationMirrors().stream().map(AnnotationMirror::getAnnotationType)
+                .map(DeclaredType::asElement).map(this::getElementSimpleName).toList();
+        for (var annotation : annotations) {
+            if (!names.contains(annotation)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private String getTypeSimpleName(TypeMirror typeMirror) {
         var name = typeMirror.toString().split("\\.");
         return name[name.length - 1].toLowerCase();
@@ -136,12 +147,7 @@ public class ReforgingDoclet implements Doclet {
     public boolean run(DocletEnvironment environment) {
         var docTrees = environment.getDocTrees();
         environment.getSpecifiedElements().stream()
-                .filter(it -> {
-                    var name = getElementSimpleName(it);
-                    return name.contains("Ability") && !name.equals("Ability")
-                            || name.equals("Price")
-                            || name.equals("Function");
-                }).forEach(e -> {
+                .filter(it -> hasAnnotations(it, "Ability", "External")).forEach(e -> {
                     var docCommentTree = docTrees.getDocCommentTree(e);
                     if (docCommentTree == null) {
                         return;
@@ -164,7 +170,7 @@ public class ReforgingDoclet implements Doclet {
                                 properties);
                         var external = new JsonArray();
                         obj.add("external", external);
-                        if (getElementSimpleName(e).contains("Ability")) {
+                        if (hasAnnotations(e, "Ability")) {
                             external.add("price");
                         }
                         e.getEnclosedElements().stream()

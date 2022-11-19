@@ -1,6 +1,6 @@
 package com.aregcraft.reforging.math;
 
-public final class Matrix {
+public class Matrix {
     private final double[][] array;
 
     public static Matrix scale(Vector scale) {

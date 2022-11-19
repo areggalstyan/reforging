@@ -1,21 +1,21 @@
 package com.aregcraft.reforging.command;
 
-import com.aregcraft.reforging.Reforge;
+import com.aregcraft.reforging.Reforging;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class ReforgeCommand implements CommandExecutor, TabCompleter {
+public class ReforgeCommand implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player player) || args.length != 1 || !Reforge.REFORGES.containsKey(args[0])) {
+        if (!(sender instanceof Player player) || args.length != 1
+                || !Reforging.CONFIG.reforges.containsKey(args[0])) {
             return false;
         }
-        Reforge.REFORGES.get(args[0]).apply(player.getInventory().getItemInMainHand());
+        Reforging.CONFIG.reforges.get(args[0]).apply(player.getInventory().getItemInMainHand());
         return true;
     }
 
@@ -24,6 +24,6 @@ public class ReforgeCommand implements CommandExecutor, TabCompleter {
         if (args.length > 1) {
             return null;
         }
-        return Reforge.REFORGES.keySet().stream().toList();
+        return Reforging.CONFIG.reforges.keySet().stream().toList();
     }
 }

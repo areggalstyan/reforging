@@ -1,12 +1,7 @@
 package com.aregcraft.reforging;
 
-import com.aregcraft.reforging.ability.Ability;
-import com.aregcraft.reforging.data.Abilities;
-import com.aregcraft.reforging.data.Item;
-import com.aregcraft.reforging.util.ChatText;
-import com.aregcraft.reforging.util.Config;
-import org.apache.commons.rng.UniformRandomProvider;
-import org.apache.commons.rng.sampling.DiscreteProbabilityCollectionSampler;
+import com.aregcraft.reforging.ability.base.BaseAbility;
+import com.aregcraft.reforging.format.ChatText;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -26,36 +21,13 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.text.DecimalFormat;
 import java.util.*;
-import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
-public record Reforge(String name, Ability ability, float maxHealth, float knockbackResistance,
+public record Reforge(String name, BaseAbility ability, float maxHealth, float knockbackResistance,
                       float movementSpeed, float attackDamage, float armor, float armorToughness, float attackSpeed,
                       float attackKnockback, double weight) implements Listener {
 
-    public static final Map<String, Ability> ABILITIES = new HashMap<>();
-    static {
-        var abilities = Config.readFile("abilities", Abilities.class);
-        ABILITIES.put("DUMMY", Ability.DUMMY);
-        ABILITIES.putAll(abilities.shieldAbilities);
-        ABILITIES.putAll(abilities.fireAbilities);
-        ABILITIES.putAll(abilities.throwAbilities);
-        ABILITIES.putAll(abilities.stormAbilities);
-        ABILITIES.putAll(abilities.earthAbilities);
-        ABILITIES.putAll(abilities.teleportAbilities);
-        ABILITIES.putAll(abilities.shulkerAbilities);
-        ABILITIES.putAll(abilities.seismicWaveAbilities);
-        ABILITIES.putAll(abilities.potionAbilities);
-    }
-    public static final Item ITEM = Config.readFile("item", Item.class);
-    public static final Map<String, Reforge> REFORGES = List.of(Config.readFile("reforges", Reforge[].class))
-            .stream().collect(Collectors.toMap(Reforge::name, Function.identity()));
-    public static final Random RANDOM = new Random();
     public static final NamespacedKey REFORGE_KEY = new NamespacedKey(Reforging.PLUGIN, "reforge");
-    public static final DiscreteProbabilityCollectionSampler<Reforge> REFORGE_SAMPLER =
-            new DiscreteProbabilityCollectionSampler<>(RANDOM::nextLong, REFORGES.values().stream().collect(
-                    Collectors.toMap(Function.identity(), Reforge::weight)));
     public static final NamespacedKey DISPLAY_NAME_KEY = new NamespacedKey(Reforging.PLUGIN, "display_name");
     public static final Map<Material, Integer> ATTACK_DAMAGES = Map.ofEntries(
             Map.entry(Material.WOODEN_SWORD, 4),
@@ -116,8 +88,8 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
             removeAllAttributeModifiers(itemMeta, previousName);
             var lore = itemMeta.getLore();
             if (lore != null) {
-                var previousReforge = REFORGES.get(previousName);
-                ITEM.lore.stream().filter(Predicate.not(previousReforge::containsAbsent))
+                var previousReforge = Reforging.CONFIG.reforges.get(previousName);
+                Reforging.CONFIG.item.lore.stream().filter(Predicate.not(previousReforge::containsAbsent))
                         .map(it -> previousReforge.format(it, type)).mapToInt(lore::lastIndexOf)
                         .filter(it -> it > -1).forEach(lore::remove);
                 itemMeta.setLore(lore);
@@ -133,11 +105,11 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
         itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         var displayName = dataContainer.get(DISPLAY_NAME_KEY, PersistentDataType.STRING);
         if (displayName != null) {
-            itemMeta.setDisplayName(ChatText.format(ITEM.name, Map.of("%REFORGE_NAME%", name,
-                    "%NAME%", displayName)));
+            itemMeta.setDisplayName(ChatText.format(Reforging.CONFIG.item.name, Map.of("%REFORGE_NAME%",
+                    name, "%NAME%", displayName)));
         }
         var lore = Objects.requireNonNullElse(itemMeta.getLore(), new ArrayList<String>());
-        ITEM.lore.stream().filter(Predicate.not(this::containsAbsent))
+        Reforging.CONFIG.item.lore.stream().filter(Predicate.not(this::containsAbsent))
                 .map(it -> format(it, type)).forEach(lore::add);
         itemMeta.setLore(lore);
         item.setItemMeta(itemMeta);
@@ -164,8 +136,8 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
                 "%ARMOR%", armor,
                 "%ARMOR_TOUGHNESS%", armorToughness,
                 "%ATTACK_KNOCKBACK%", attackKnockback
-        ), new DecimalFormat()::format), Map.of("%ABILITY%", ABILITIES.keySet().stream()
-                .filter(it -> ABILITIES.get(it).equals(ability)).findAny().orElseThrow()));
+        ), new DecimalFormat()::format), Map.of("%ABILITY%",
+                Reforging.CONFIG.abilities.inverse().get(ability)));
     }
 
     private void removeAttributeModifier(ItemMeta itemMeta, Attribute attribute, String previousName) {
@@ -227,6 +199,7 @@ public record Reforge(String name, Ability ability, float maxHealth, float knock
         if (!dataContainer.has(REFORGE_KEY, PersistentDataType.STRING)) {
             return;
         }
-        REFORGES.get(dataContainer.get(REFORGE_KEY, PersistentDataType.STRING)).ability.activate(player);
+        Reforging.CONFIG.reforges.get(dataContainer.get(REFORGE_KEY, PersistentDataType.STRING))
+                .ability.activate(player);
     }
 }

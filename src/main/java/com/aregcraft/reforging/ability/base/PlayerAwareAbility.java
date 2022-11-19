@@ -1,4 +1,4 @@
-package com.aregcraft.reforging.ability;
+package com.aregcraft.reforging.ability.base;
 
 import org.bukkit.entity.Player;
 
@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public abstract class PlayerAwareAbility extends Ability {
+public abstract class PlayerAwareAbility extends BaseAbility {
     protected final Set<UUID> players = new HashSet<>();
 
     @Override

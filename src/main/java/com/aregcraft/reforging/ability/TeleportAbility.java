@@ -1,11 +1,14 @@
 package com.aregcraft.reforging.ability;
 
+import com.aregcraft.reforging.ability.base.CooldownAbility;
+import com.aregcraft.reforging.annotation.Ability;
 import com.aregcraft.reforging.math.Vector;
 import org.bukkit.entity.Player;
 
 /**
  * Teleports the player in their facing direction.
  */
+@Ability
 public class TeleportAbility extends CooldownAbility {
     /**
      * Specifies the maximum distance that player can teleport.

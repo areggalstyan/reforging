@@ -1,6 +1,7 @@
-package com.aregcraft.reforging.ability;
+package com.aregcraft.reforging.ability.base;
 
-import com.aregcraft.reforging.data.Price;
+import com.aregcraft.reforging.ability.external.Function;
+import com.aregcraft.reforging.ability.external.Price;
 import com.aregcraft.reforging.math.Matrix;
 import com.aregcraft.reforging.math.Vector;
 import org.bukkit.Location;
@@ -10,8 +11,8 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.function.Consumer;
 
-public abstract class Ability {
-    public static final Ability DUMMY = new Ability() {
+public abstract class BaseAbility {
+    public static final BaseAbility DUMMY = new BaseAbility() {
         @Override
         public void activate(Player player) {
         }

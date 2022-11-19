@@ -1,4 +1,4 @@
-package com.aregcraft.reforging.util;
+package com.aregcraft.reforging.config.adapter;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

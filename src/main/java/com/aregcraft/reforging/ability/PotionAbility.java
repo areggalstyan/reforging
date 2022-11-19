@@ -1,5 +1,7 @@
 package com.aregcraft.reforging.ability;
 
+import com.aregcraft.reforging.ability.base.CooldownAbility;
+import com.aregcraft.reforging.annotation.Ability;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.ThrownPotion;
@@ -11,6 +13,7 @@ import org.bukkit.potion.PotionEffectType;
 /**
  * Allows player to throw a potion with the specified effect, duration and amplifier.
  */
+@Ability
 public class PotionAbility extends CooldownAbility {
     /**
      * Specifies the potion effect.

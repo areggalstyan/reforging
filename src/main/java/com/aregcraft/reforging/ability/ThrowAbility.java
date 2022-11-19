@@ -1,5 +1,7 @@
 package com.aregcraft.reforging.ability;
 
+import com.aregcraft.reforging.ability.base.RepeatingAbility;
+import com.aregcraft.reforging.annotation.Ability;
 import com.aregcraft.reforging.math.Vector;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -11,6 +13,7 @@ import org.bukkit.util.EulerAngle;
  * Allows the player to throw their weapon which will travel for the specified amount of time and damage all the
  * entities it hits on the way.
  */
+@Ability
 public class ThrowAbility extends RepeatingAbility {
     /**
      * Specifies the factor that is applied to the weapon's normal damage.

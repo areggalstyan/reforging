@@ -1,8 +1,6 @@
 package com.aregcraft.reforging;
 
-import com.aregcraft.reforging.data.Anvil;
-import com.aregcraft.reforging.util.ChatText;
-import com.aregcraft.reforging.util.Config;
+import com.aregcraft.reforging.format.ChatText;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import org.bukkit.Bukkit;
@@ -33,7 +31,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public class ReforgingAnvil implements Listener {
-    public static final Anvil ANVIL = Config.readFile("anvil", Anvil.class);
     public static final ItemStack ITEM = new ItemStack(Material.ANVIL);
     public static final NamespacedKey KEY = new NamespacedKey(Reforging.PLUGIN, "id");
     public static final Set<Material> TYPES = Set.of(
@@ -76,13 +73,13 @@ public class ReforgingAnvil implements Listener {
         if (itemMeta == null) {
             return;
         }
-        itemMeta.setDisplayName(ChatText.colorize(ANVIL.name));
-        itemMeta.setLore(ANVIL.lore.stream().map(ChatText::colorize).toList());
+        itemMeta.setDisplayName(ChatText.colorize(Reforging.CONFIG.anvil.name));
+        itemMeta.setLore(Reforging.CONFIG.anvil.lore.stream().map(ChatText::colorize).toList());
         itemMeta.getPersistentDataContainer().set(KEY, PersistentDataType.STRING, "REFORGING_ANVIL");
         ITEM.setItemMeta(itemMeta);
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(Reforging.PLUGIN, "reforging_anvil"), ITEM);
-        recipe.shape(ANVIL.recipe.shape);
-        ANVIL.recipe.keys.forEach((key, value) -> recipe.setIngredient(key.charAt(0), value));
+        recipe.shape(Reforging.CONFIG.anvil.recipe.shape);
+        Reforging.CONFIG.anvil.recipe.keys.forEach((key, value) -> recipe.setIngredient(key.charAt(0), value));
         Bukkit.addRecipe(recipe);
         Bukkit.getPluginManager().registerEvents(this, Reforging.PLUGIN);
     }
@@ -164,14 +161,14 @@ public class ReforgingAnvil implements Listener {
             return;
         }
         var amount = item.getAmount();
-        if (amount < ANVIL.price) {
+        if (amount < Reforging.CONFIG.anvil.price) {
             return;
         }
-        item.setAmount(amount - ANVIL.price);
-        Reforge.REFORGE_SAMPLER.sample().apply(previousItem);
+        item.setAmount(amount - Reforging.CONFIG.anvil.price);
+        Reforging.CONFIG.reforgeSampler.sample().apply(previousItem);
         dropItem(block, previousItem, equipment);
-        block.getWorld().playSound(block.getLocation(), Sound.BLOCK_ANVIL_USE, ANVIL.soundEffect.volume,
-                ANVIL.soundEffect.pitch);
+        block.getWorld().playSound(block.getLocation(), Sound.BLOCK_ANVIL_USE, Reforging.CONFIG.anvil.soundEffect.volume,
+                Reforging.CONFIG.anvil.soundEffect.pitch);
     }
 
     private void dropItem(Block block, ItemStack item, EntityEquipment equipment) {

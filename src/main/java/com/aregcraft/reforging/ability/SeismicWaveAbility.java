@@ -1,5 +1,8 @@
 package com.aregcraft.reforging.ability;
 
+import com.aregcraft.reforging.ability.base.RepeatingAbility;
+import com.aregcraft.reforging.ability.external.Function;
+import com.aregcraft.reforging.annotation.Ability;
 import org.bukkit.Particle;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -8,6 +11,7 @@ import org.bukkit.util.Vector;
 /**
  * Damages and pushes back all entities in the specified range.
  */
+@Ability
 public class SeismicWaveAbility extends RepeatingAbility {
     private Function function;
     /**

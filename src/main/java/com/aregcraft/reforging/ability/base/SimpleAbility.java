@@ -1,8 +1,8 @@
-package com.aregcraft.reforging.ability;
+package com.aregcraft.reforging.ability.base;
 
 import org.bukkit.entity.Player;
 
-public abstract class SimpleAbility extends Ability {
+public abstract class SimpleAbility extends BaseAbility {
     @Override
     public void activate(Player player) {
         charge(player);

@@ -1,11 +1,15 @@
 package com.aregcraft.reforging.ability;
 
+import com.aregcraft.reforging.ability.base.RepeatingAbility;
+import com.aregcraft.reforging.ability.external.Function;
+import com.aregcraft.reforging.annotation.Ability;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 
 /**
  * Sets entities on fire in the player's facing direction according to the specified function.
  */
+@Ability
 public class FireAbility extends RepeatingAbility {
     private Function function;
     /**

@@ -1,6 +1,9 @@
 package com.aregcraft.reforging.ability;
 
 import com.aregcraft.reforging.Reforging;
+import com.aregcraft.reforging.ability.base.RepeatingAbility;
+import com.aregcraft.reforging.ability.external.Function;
+import com.aregcraft.reforging.annotation.Ability;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -11,6 +14,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 /**
  * Gives player damage resistance for the specified period of time.
  */
+@Ability
 public class ShieldAbility extends RepeatingAbility implements Listener {
     private Function function;
     /**

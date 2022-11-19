@@ -26,6 +26,12 @@ spigot {
             usage = "Usage: /<command> <reforgeName>"
             permission = "reforging.command.reforge"
         }
+        create("reloadreforging") {
+            aliases = listOf("rr")
+            description = "Reloads the configuration files."
+            usage = "Usage: /<command>"
+            permission = "reforging.command.reloadreforging"
+        }
     }
 }
 

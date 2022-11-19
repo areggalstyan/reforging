@@ -1,5 +1,6 @@
-package com.aregcraft.reforging.ability;
+package com.aregcraft.reforging.ability.external;
 
+import com.aregcraft.reforging.annotation.External;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -11,31 +12,32 @@ import java.lang.reflect.Type;
 /**
  * Specifies a mathematical parametric function with variable t.
  */
+@External
 public class Function {
     /**
      * Specifies the parametric expression for the x coordinate.
      */
-    Expression x;
+    public Expression x;
     /**
      * Specifies the parametric expression for the y coordinate.
      */
-    Expression y;
+    public Expression y;
     /**
      * Specifies the parametric expression for the z coordinate.
      */
-    Expression z;
+    public Expression z;
     /**
      * Specifies the minimum value of the parameter.
      */
-    double min;
+    public double min;
     /**
      * Specifies the maximum value of the parameter.
      */
-    double max;
+    public double max;
     /**
      * Specifies the change of the parameter's value.
      */
-    double delta;
+    public double delta;
 
     public static class Deserializer implements JsonDeserializer<Function> {
         @Override
