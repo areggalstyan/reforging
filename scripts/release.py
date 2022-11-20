@@ -50,13 +50,13 @@ def login_github():
 def create_release():
     login_github()
     sleep(3)
-    driver.execute_script('document.querySelector(".js-release-tag > div > div:first-child summary").click()')
-    sleep(1)
+    driver.find_element(By.CSS_SELECTOR, '.js-release-tag > div > div:first-child').click()
     driver.find_element(By.CSS_SELECTOR, '[placeholder="Find or create a new tag"]').send_keys(f'v{version}')
-    sleep(30)
+    sleep(3)
     driver.execute_script('document.querySelector(".SelectMenu-item.text-bold").click()')
     driver.execute_script('document.querySelector("#release_name").value = `Reforging ${arguments[0]}`', version)
     driver.find_element(By.ID, 'releases-upload').send_keys(glob(abspath('../debug/spigot/plugins/*.jar'))[0])
+    sleep(3)
     driver.execute_script('document.querySelector(".js-publish-release").click()')
 
 
@@ -113,6 +113,7 @@ def post_resource_update():
                               message, message_xpath)
     else:
         upload_images()
+    sleep(3)
     driver.execute_script('document.querySelector("[value=\'Save Update\']").click()')
 
 
@@ -129,6 +130,7 @@ def edit_resource_description():
     driver.find_element(By.CSS_SELECTOR, 'body > p:last-child').send_keys(Keys.END)
     driver.switch_to.default_content()
     upload_images()
+    sleep(3)
     driver.execute_script('document.querySelector("[value=\'Save\']").click()')
 
 
@@ -143,8 +145,11 @@ prefs = {
 options.add_experimental_option("prefs", prefs)
 driver = Chrome(options=options)
 create_release()
+sleep(6)
 convert_to_jpg()
 post_resource_update()
+sleep(6)
 if len(screenshots) != 0:
     edit_resource_description()
+sleep(6)
 driver.close()

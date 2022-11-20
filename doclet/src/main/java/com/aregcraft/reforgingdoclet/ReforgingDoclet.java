@@ -127,7 +127,6 @@ public class ReforgingDoclet implements Doclet {
     private boolean hasAnnotations(Element element, String... annotations) {
         var names = element.getAnnotationMirrors().stream().map(AnnotationMirror::getAnnotationType)
                 .map(DeclaredType::asElement).map(this::getElementSimpleName).toList();
-        System.out.println(Arrays.toString(names.toArray(String[]::new)));
         for (var annotation : annotations) {
             if (names.contains(annotation)) {
                 return true;
