@@ -1,6 +1,6 @@
-import kr.entree.spigradle.kotlin.spigot
-import com.google.gson.GsonBuilder
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import kr.entree.spigradle.kotlin.spigot
 
 plugins {
     java
@@ -74,59 +74,63 @@ tasks.register("updateReadMe") {
                 return@forEach
             }
             writer.println(line)
-            if (line == "<!-- <screenshots> -->") {
-                skip = true
-                writer.println()
-                file("screenshots").walk().filter { it.isFile }.forEach { file ->
-                    val alt = file.nameWithoutExtension.replace("_", " ").split(" ")
-                        .joinToString(" ") { it.capitalize().replace("On", "on") }
-                    val name = file.name
-                    writer.println("![$alt](https://github.com/Aregcraft/reforging/blob/master/screenshots/$name)")
+            when (line) {
+                "<!-- <screenshots> -->" -> {
+                    skip = true
+                    writer.println()
+                    file("screenshots").walk().filter { it.isFile }.forEach { file ->
+                        val alt = file.nameWithoutExtension.replace("_", " ").split(" ")
+                            .joinToString(" ") { it.capitalize().replace("On", "on") }
+                        val name = file.name
+                        writer.println("![$alt](https://github.com/Aregcraft/reforging/blob/master/screenshots/$name)")
+                    }
+                    writer.println()
                 }
-                writer.println()
-            } else if (line == "<!-- <abilities> -->") {
-                skip = true
-                writer.println()
-                file("abilities").walk().filter { it.isFile }.filter { it.name != "price.json" }.forEach { file ->
-                    val name = file.nameWithoutExtension
-                    val ability = file.bufferedReader().use { gson.fromJson(it, Ability::class.java) }
-                    writer.println("#### $name: object")
+                "<!-- <abilities> -->" -> {
+                    skip = true
                     writer.println()
-                    writer.println(ability.description)
-                    writer.println()
-                    ability.external.forEach { external ->
-                        val value = file("abilities/$external.json").bufferedReader().use {
-                            gson.fromJson(it, Ability::class.java)
+                    file("abilities").walk().filter { it.isFile }.filter { it.name != "price.json" }.forEach { file ->
+                        val name = file.nameWithoutExtension
+                        val ability = file.bufferedReader().use { gson.fromJson(it, Ability::class.java) }
+                        writer.println("#### $name: object")
+                        writer.println()
+                        writer.println(ability.description)
+                        writer.println()
+                        ability.external.forEach { external ->
+                            val value = file("abilities/$external.json").bufferedReader().use {
+                                gson.fromJson(it, Ability::class.java)
+                            }
+                            writer.println("##### $external: object")
+                            writer.println()
+                            writer.println(value.description)
+                            writer.println()
+                            value.properties.forEach {
+                                writer.println("###### ${it.key}: ${it.value.type.toLowerCase()}")
+                                writer.println()
+                                writer.println(it.value.description)
+                                writer.println()
+                            }
                         }
-                        writer.println("##### $external: object")
-                        writer.println()
-                        writer.println(value.description)
-                        writer.println()
-                        value.properties.forEach {
-                            writer.println("###### ${it.key}: ${it.value.type.toLowerCase()}")
+                        ability.properties.forEach {
+                            writer.println("##### ${it.key}: ${it.value.type.toLowerCase()}")
                             writer.println()
                             writer.println(it.value.description)
                             writer.println()
                         }
                     }
-                    ability.properties.forEach {
-                        writer.println("##### ${it.key}: ${it.value.type.toLowerCase()}")
-                        writer.println()
-                        writer.println(it.value.description)
-                        writer.println()
-                    }
+                    writer.println("```json")
+                    writer.println(file("src/main/resources/abilities.json").readText())
+                    writer.println("```")
+                    writer.println()
                 }
-                writer.println("```json")
-                writer.println(file("src/main/resources/abilities.json").readText())
-                writer.println("```")
-                writer.println()
-            } else if (line == "<!-- <reforges> -->") {
-                skip = true
-                writer.println()
-                writer.println("```json")
-                writer.println(file("src/main/resources/reforges.json").readText())
-                writer.println("```")
-                writer.println()
+                "<!-- <reforges> -->" -> {
+                    skip = true
+                    writer.println()
+                    writer.println("```json")
+                    writer.println(file("src/main/resources/reforges.json").readText())
+                    writer.println("```")
+                    writer.println()
+                }
             }
         }
     }
