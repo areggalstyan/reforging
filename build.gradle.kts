@@ -38,6 +38,8 @@ spigot {
 tasks.register("debugPlugin") {
     dependsOn(tasks["prepareSpigotPlugins"])
     dependsOn(tasks["runSpigot"])
+    file("build/libs").deleteRecursively()
+    file("debug/spigot/plugins").walk().filter { it.extension == "jar" }.forEach { it.delete() }
     file("debug/spigot/plugins/${spigot.name}").deleteRecursively()
 }
 
