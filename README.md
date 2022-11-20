@@ -24,7 +24,7 @@ Reforges the item in the main hand of the player (`reforging.command.reforge`).
 
 ### /reloadreforging or /rr
 
-Reloads the configuration files. (`reforging.command.reloadreforging`).
+Reloads the configuration files (`reforging.command.reloadreforging`).
 
 ### Configuration
 
