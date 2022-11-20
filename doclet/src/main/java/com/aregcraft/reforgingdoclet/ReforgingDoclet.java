@@ -17,10 +17,7 @@ import javax.lang.model.type.TypeMirror;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class ReforgingDoclet implements Doclet {
     public static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
@@ -130,12 +127,13 @@ public class ReforgingDoclet implements Doclet {
     private boolean hasAnnotations(Element element, String... annotations) {
         var names = element.getAnnotationMirrors().stream().map(AnnotationMirror::getAnnotationType)
                 .map(DeclaredType::asElement).map(this::getElementSimpleName).toList();
+        System.out.println(Arrays.toString(names.toArray(String[]::new)));
         for (var annotation : annotations) {
-            if (!names.contains(annotation)) {
-                return false;
+            if (names.contains(annotation)) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     private String getTypeSimpleName(TypeMirror typeMirror) {

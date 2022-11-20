@@ -130,5 +130,15 @@
       "duration": "80",
       "amplifier": 2
     }
+  },
+  "dragonAbilities": {
+    "DRAGON": {
+      "price": {
+        "health": 8,
+        "food": 8
+      },
+      "cooldown": 200,
+      "speed": 3
+    }
   }
 }

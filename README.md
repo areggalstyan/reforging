@@ -37,6 +37,7 @@ discord Aregcraft#6844. I am usually available from 5:00 PM to 10:00 PM (GMT+4 t
 <!-- <screenshots> -->
 
 ![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png)
+![Dragon Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/dragon_ability.png)
 ![Shield Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shield_ability.png)
 ![Seismic Wave Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/seismic_wave_ability.png)
 ![Earth Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/earth_ability.png)
@@ -274,6 +275,16 @@ but rather relative weight, which means that there are no restrictions on the up
     "ability": "POTION",
     "attackKnockback": 1,
     "weight": 15
+  },
+  {
+    "name": "Draconian",
+    "ability": "DRAGON",
+    "attackDamage": 6,
+    "armor": 8,
+    "health": 10,
+    "armorToughness": 6,
+    "attackKnockback": 2,
+    "weight": 3
   }
 ]
 ```
@@ -442,6 +453,30 @@ Specifies how long will hit entities be on fire in ticks (1 second = 20 ticks).
 ##### duration: int
 
 Specifies the duration in ticks (1 second = 20 ticks).
+
+#### dragonAbility: object
+
+Allows the player to launch a dragon fireball.
+
+##### price: object
+
+Specifies the price the player pays when activates this ability.
+
+###### health: double
+
+Specifies the amount of health subtracted from the player when activating the ability.
+
+###### food: int
+
+Specifies the amount of food subtracted from the player when activating the ability.
+
+##### speed: double
+
+Specifies the speed of the projectile when thrown in blocks per tick (1 second = 20 ticks).
+
+##### cooldown: int
+
+Specifies the cooldown in ticks (1 second = 20 ticks).
 
 #### stormAbility: object
 
@@ -823,6 +858,16 @@ Specifies the change of the parameter's value.
       "effect": "POISON",
       "duration": "80",
       "amplifier": 2
+    }
+  },
+  "dragonAbilities": {
+    "DRAGON": {
+      "price": {
+        "health": 8,
+        "food": 8
+      },
+      "cooldown": 200,
+      "speed": 3
     }
   }
 }

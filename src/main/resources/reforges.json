@@ -69,5 +69,15 @@
     "ability": "POTION",
     "attackKnockback": 1,
     "weight": 15
+  },
+  {
+    "name": "Draconian",
+    "ability": "DRAGON",
+    "attackDamage": 6,
+    "armor": 8,
+    "health": 10,
+    "armorToughness": 6,
+    "attackKnockback": 2,
+    "weight": 3
   }
 ]
