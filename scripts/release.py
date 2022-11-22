@@ -15,7 +15,7 @@ message_xpath = '/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div/div[2]/div/f
 description_xpath = '/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div/div[2]/div/form/fieldset[3]/dl[' \
                     '1]/dd/div/div/iframe'
 upload_images_xpath = '/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div/div[2]/div/form/dl/dd/span/span[2]/input[2]'
-title = f'REFORGING | {input("Update Title: ").upper()}'
+title = f'Reforging | {input("Update Title: ").upper()}'
 message = ''
 screenshots = []
 
