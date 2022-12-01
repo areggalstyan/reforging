@@ -3,7 +3,6 @@
 [![](images/spigotmc_button.png)](https://www.spigotmc.org/resources/reforging.105707/)
 [![](images/website_button.png)](https://reforging.vercel.app/)
 [![](images/github_button.png)](https://github.com/Aregcraft/reforging)
-
 ![](images/banner_1.png)
 ![](images/banner_2.png)
 ![](images/banner_3.png)
