@@ -3,30 +3,37 @@ package com.aregcraft.reforging.ability;
 import com.aregcraft.reforging.ability.base.CooldownAbility;
 import com.aregcraft.reforging.annotation.Ability;
 import com.aregcraft.reforging.math.Vector;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 /**
- * Teleports the player in their facing direction.
+ * Allows the player to teleport in their looking direction.
  */
 @Ability
 public class TeleportAbility extends CooldownAbility {
     /**
-     * Specifies the maximum distance that player can teleport.
+     * Specifies the maximum distance the player can teleport.
      */
-    private double distance;
+    private int distance;
 
     @Override
     protected void perform(Player player) {
         var location = player.getLocation();
         var direction = new Vector(location.getDirection());
-        for (var i = 0; i < Math.floor(distance); i++) {
+        for (var i = 0; i < distance; i++) {
             var target = direction.multiply(distance - i).at(location.clone());
-            if (isUnfilled(location) && isUnfilled(target.add(0, 1, 0))) {
-                while (isUnfilled(target.subtract(0, 1, 0)));
-                target.setY(Math.floor(target.getY()));
-                player.teleport(target.add(0, 1, 0));
+            for (int j = 0; j < i; j++) {
+                target.clone().add(0, 1, 0);
+            }
+            if (isValidTarget(target)) {
+                player.teleport(target);
                 break;
             }
         }
+    }
+
+    private boolean isValidTarget(Location location) {
+        return !location.getBlock().getType().isSolid() && !location.clone().add(0, 1, 0).getBlock()
+                .getType().isSolid();
     }
 }

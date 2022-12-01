@@ -3,6 +3,14 @@ package com.aregcraft.reforging.math;
 public class Matrix {
     private final double[][] array;
 
+    public Matrix(double a, double b, double c, double d, double e, double f, double g, double h, double i) {
+        array = new double[][]{
+                new double[]{a, b, c},
+                new double[]{d, e, f},
+                new double[]{g, h, i}
+        };
+    }
+
     public static Matrix scale(Vector scale) {
         return new Matrix(scale.x(), 0, 0,
                 0, scale.y(), 0,
@@ -29,14 +37,6 @@ public class Matrix {
         return new Matrix(i.x(), j.x(), k.x(),
                 i.y(), j.y(), k.y(),
                 i.z(), j.z(), k.z());
-    }
-
-    public Matrix(double a, double b, double c, double d, double e, double f, double g, double h, double i) {
-        array = new double[][]{
-                new double[]{a, b, c},
-                new double[]{d, e, f},
-                new double[]{g, h, i}
-        };
     }
 
     public double get(int row, int column) {

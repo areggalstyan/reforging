@@ -1,0 +1,37 @@
+{
+  "description": "Allows the player to create a seismic wave knocking back and damaging all entities within range.",
+  "properties": {
+    "duration": {
+      "type": "int",
+      "description": "Specifies the duration of the ability in ticks (1 second = 20 ticks)."
+    },
+    "damage": {
+      "type": "double",
+      "description": "Specifies the damage that is dealt to the entities."
+    },
+    "name": {
+      "type": "String",
+      "description": "Specifies the name of the ability."
+    },
+    "range": {
+      "type": "double",
+      "description": "Specifies the range of the ability."
+    },
+    "particle": {
+      "type": "Particle",
+      "description": "Specifies the particle used to create visual effects."
+    },
+    "speed": {
+      "type": "double",
+      "description": "Specifies the speed at which to knock back the entities."
+    },
+    "height": {
+      "type": "double",
+      "description": "Specifies the height to which to knock back the entities."
+    }
+  },
+  "external": {
+    "price": "PriceModel",
+    "function": "Function2Model"
+  }
+}

@@ -4,37 +4,36 @@ import com.aregcraft.reforging.Reforging;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
-
-public abstract class RepeatingAbility extends BaseAbility {
-    protected final Set<UUID> players = new HashSet<>();
+public abstract class RepeatingAbility extends PlayerAwareAbility {
     /**
-     * Specifies the duration in ticks (1 second = 20 ticks).
+     * Specifies the duration of the ability in ticks (1 second = 20 ticks).
      */
     private int duration;
 
     @Override
-    public void activate(Player player) {
-        var id = player.getUniqueId();
-        if (!players.add(id)) {
-            return;
+    public boolean activate(Player player) {
+        if (!super.activate(player)) {
+            return false;
         }
-        charge(player);
-        setup(player);
         new BukkitRunnable() {
             private int time = 0;
 
             @Override
             public void run() {
-                if (time++ == duration || player.isDead() || !perform(player, time)) {
-                    players.remove(id);
-                    shutdown(player);
-                    cancel();
+                if (time++ < duration && update(player, time)) {
+                    return;
                 }
+                removePlayer(player);
+                shutdown(player);
+                cancel();
             }
-        }.runTaskTimer(Reforging.PLUGIN, 0, 1);
+        }.runTaskTimer(Reforging.plugin(), 0, 1);
+        return true;
+    }
+
+    @Override
+    protected void perform(Player player) {
+        setup(player);
     }
 
     protected void setup(Player player) {
@@ -43,5 +42,5 @@ public abstract class RepeatingAbility extends BaseAbility {
     protected void shutdown(Player player) {
     }
 
-    protected abstract boolean perform(Player player, int time);
+    protected abstract boolean update(Player player, int time);
 }

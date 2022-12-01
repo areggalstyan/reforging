@@ -1,144 +1,141 @@
-{
-  "shieldAbilities": {
-    "SHIELD": {
-      "price": {
-        "health": 6,
-        "food": 6
-      },
-      "duration": 200,
-      "function": {
-        "x": "cos(48t)",
-        "y": "0.5t",
-        "z": "sin(48t)",
-        "min": 0,
-        "max": 5,
-        "delta": 0.25
-      },
-      "particle": "ENCHANTMENT_TABLE",
-      "disableAttack": true
+[
+  {
+    "name": "SHIELD",
+    "type": "Shield",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "duration": 100,
+    "function": {
+      "x": "cos(48t)",
+      "y": "0.5t",
+      "z": "sin(48t)",
+      "min": 0,
+      "max": 5,
+      "delta": 0.25
+    },
+    "particle": "ENCHANTMENT_TABLE",
+    "disableAttack": true
+  },
+  {
+    "name": "FIRE",
+    "type": "Fire",
+    "price": {
+      "health": 2,
+      "food": 2
+    },
+    "cooldown": 20,
+    "function": {
+      "x": "0.025tcos(t)",
+      "y": "0.025tsin(t)",
+      "z": "0.005t",
+      "min": 0,
+      "max": 20,
+      "delta": 0.25
+    },
+    "particle": "FLAME",
+    "duration": 60
+  },
+  {
+    "name": "THROW",
+    "type": "Throw",
+    "price": {
+      "health": 1,
+      "food": 1
+    },
+    "duration": 20,
+    "damageFactor": 0.75,
+    "speed": 0.75
+  },
+  {
+    "name": "STORM",
+    "type": "Storm",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 60,
+    "function": {
+      "x": "3cos(t)",
+      "z": "3sin(t)",
+      "min": 0,
+      "max": 6.28318530718,
+      "delta": 0.34906585039
     }
   },
-  "fireAbilities": {
-    "FIRE": {
-      "price": {
-        "health": 4,
-        "food": 4
-      },
-      "duration": 1,
-      "function": {
-        "x": "0.025tcos(t)",
-        "y": "0.025tsin(t)",
-        "z": "0.005t",
-        "min": 0,
-        "max": 20,
-        "delta": 0.25
-      },
-      "particle": "FLAME",
-      "fireDuration": 40
-    }
+  {
+    "name": "TELEPORT",
+    "type": "Teleport",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 60,
+    "distance": 4
   },
-  "throwAbilities": {
-    "THROW": {
-      "price": {
-        "health": 0,
-        "food": 1
-      },
-      "duration": 20,
-      "damageFactor": 0.75,
-      "speed": 0.5
-    }
+  {
+    "name": "SHULKER",
+    "type": "Shulker",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 60,
+    "speed": 1
   },
-  "stormAbilities": {
-    "STORM": {
-      "price": {
-        "health": 2,
-        "food": 4
-      },
-      "function": {
-        "x": "3cos(t)",
-        "z": "3sin(t)",
-        "min": 0,
-        "max": 6.28318530718,
-        "delta": 0.34906585039
-      }
-    }
+  {
+    "name": "SEISMIC WAVE",
+    "type": "SeismicWave",
+    "price": {
+      "health": 6,
+      "food": 6
+    },
+    "duration": 10,
+    "function": {
+      "x": "0.5cos(t)",
+      "z": "0.5sin(t)",
+      "min": 0,
+      "max": 6.28318530718,
+      "delta": 0.5
+    },
+    "particle": "EXPLOSION_NORMAL",
+    "range": 5,
+    "speed": 0.5,
+    "height": 0.5,
+    "damage": 4
   },
-  "earthAbilities": {
-    "EARTH": {
-      "price": {
-        "health": 1,
-        "food": 1
-      },
-      "function": {
-        "x": "3cos(t)",
-        "z": "3sin(t)",
-        "min": 0,
-        "max": 6.28318530718,
-        "delta": 0.34906585039
-      }
-    }
+  {
+    "name": "POTION",
+    "type": "Potion",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 40,
+    "speed": 0.5,
+    "effect": "POISON",
+    "duration": 60,
+    "amplifier": 2
   },
-  "teleportAbilities": {
-    "TELEPORT": {
-      "price": {
-        "health": 3,
-        "food": 3
-      },
-      "cooldown": 40,
-      "distance": 2
-    }
+  {
+    "name": "DRAGON",
+    "type": "Dragon",
+    "price": {
+      "health": 8,
+      "food": 8
+    },
+    "cooldown": 100,
+    "speed": 4
   },
-  "shulkerAbilities": {
-    "SHULKER": {
-      "price": {
-        "health": 3,
-        "food": 3
-      },
-      "cooldown": 20,
-      "speed": 1
-    }
-  },
-  "seismicWaveAbilities": {
-    "SEISMIC_WAVE": {
-      "price": {
-        "health": 5,
-        "food": 5
-      },
-      "duration": 40,
-      "function": {
-        "x": "0.5cos(t)",
-        "z": "0.5sin(t)",
-        "min": 0,
-        "max": 6.28318530718,
-        "delta": 0.25
-      },
-      "particle": "EXPLOSION_NORMAL",
-      "range": 10,
-      "factor": 1,
-      "height": 0.5,
-      "damage": 2
-    }
-  },
-  "potionAbilities": {
-    "POTION": {
-      "price": {
-        "health": 5,
-        "food": 5
-      },
-      "cooldown": 20,
-      "effect": "POISON",
-      "duration": "80",
-      "amplifier": 2
-    }
-  },
-  "dragonAbilities": {
-    "DRAGON": {
-      "price": {
-        "health": 8,
-        "food": 8
-      },
-      "cooldown": 200,
-      "speed": 3
-    }
+  {
+    "name": "WITHER",
+    "type": "Wither",
+    "price": {
+      "health": 6,
+      "food": 6
+    },
+    "cooldown": 100,
+    "speed": 4
   }
-}
+]

@@ -4,32 +4,23 @@ import com.aregcraft.reforging.Reforging;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
-
-public abstract class CooldownAbility extends BaseAbility {
-    protected final Set<UUID> players = new HashSet<>();
+public abstract class CooldownAbility extends PlayerAwareAbility {
     /**
-     * Specifies the cooldown in ticks (1 second = 20 ticks).
+     * Specifies the cooldown of the ability.
      */
     private int cooldown;
 
     @Override
-    public void activate(Player player) {
-        var id = player.getUniqueId();
-        if (!players.add(id)) {
-            return;
+    public boolean activate(Player player) {
+        if (!super.activate(player)) {
+            return false;
         }
-        charge(player);
-        perform(player);
         new BukkitRunnable() {
             @Override
             public void run() {
-                players.remove(id);
+                removePlayer(player);
             }
-        }.runTaskLater(Reforging.PLUGIN, cooldown);
+        }.runTaskLater(Reforging.plugin(), cooldown);
+        return true;
     }
-
-    protected abstract void perform(Player player);
 }

@@ -1,0 +1,20 @@
+{
+  "version": "2.5.0-SNAPSHOT",
+  "abilities": [
+    "TeleportAbility",
+    "DragonAbility",
+    "StormAbility",
+    "FireAbility",
+    "PotionAbility",
+    "ShieldAbility",
+    "SeismicWaveAbility",
+    "WitherAbility",
+    "ThrowAbility",
+    "ShulkerAbility"
+  ],
+  "external": [
+    "Function3Model",
+    "Function2Model",
+    "PriceModel"
+  ]
+}

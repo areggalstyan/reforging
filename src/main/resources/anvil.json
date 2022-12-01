@@ -1,9 +1,11 @@
 {
-  "name": "%DARK_PURPLE%Reforging Anvil",
-  "lore": [
-    "%GRAY%Place this anvil anywhere in the world",
-    "%GRAY%to start reforging stuff!"
-  ],
+  "item": {
+    "name": "%DARK_PURPLE%Reforging Anvil",
+    "lore": [
+      "%GRAY%Place this anvil anywhere in the world",
+      "%GRAY%to start reforging items!"
+    ]
+  },
   "recipe": {
     "shape": [
       "ooo",
@@ -17,7 +19,7 @@
       "i": "IRON_BLOCK"
     }
   },
-  "soundEffect": {
+  "sound": {
     "volume": 1,
     "pitch": 0
   },

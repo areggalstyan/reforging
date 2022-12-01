@@ -1,101 +1,56 @@
-# Reforging
+# Overview
 
-Reforging plugin adds a new mechanic for enhancing weapons with various stat boosts and abilities. It is completely
-customizable with options to add custom reforges, heavily tweak existing abilities, and change the looks of items.
+[![](images/spigotmc_button.png)](https://www.spigotmc.org/resources/reforging.105707/)
+[![](images/website_button.png)](https://reforging.vercel.app/)
+[![](images/github_button.png)](https://github.com/Aregcraft/reforging)
 
-### How to apply a reforge?
+![](images/banner_1.png)
+![](images/banner_2.png)
+![](images/banner_3.png)
+![](images/banner_4.png)
 
-1. Craft a reforging anvil (recipe specified in anvil.json)
-2. Place it somewhere in the world
-3. Right-click it with a weapon in your hand (any sword or axe)
-4. You will see it placed on the anvil
-5. Right-click it with the set amount of the individual material (e.g., diamonds for the diamond sword, the amount
-   specified in anvil.json)
-6. The set amount of the individual material will be consumed
-7. It will drop, when you pick it up, it will have a reforge on it
-
-### How to activate an ability?
-
-1. Right-click on the air with the weapon in your hand
-
-### /reforge &lt;reforgeName&gt;
-
-Reforges the item in the main hand of the player (`reforging.command.reforge`).
-
-### /reloadreforging or /rr
-
-Reloads the configuration files (`reforging.command.reloadreforging`).
-
-### Configuration
-
-Visit [https://reforging.vercel.app/](https://reforging.vercel.app/) for a fully featured custom configuration
-generator. Visit [https://github.com/Aregcraft/reforging](https://github.com/Aregcraft/reforging) for an in-depth
-description of abilities and help with manual configuration.
-
-### Support
-
-If you encounter any bugs or issues please report them at
-[https://github.com/Aregcraft/reforging/issues](https://github.com/Aregcraft/reforging/issues). You can contact me on
-discord Aregcraft#6844. I am usually available from 5:00 PM to 10:00 PM (GMT+4 time zone).
-
-<!-- <screenshots> -->
-
-![Fire Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/fire_ability.png)
-![Dragon Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/dragon_ability.png)
-![Shield Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shield_ability.png)
-![Seismic Wave Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/seismic_wave_ability.png)
-![Earth Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/earth_ability.png)
-![Shulker Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/shulker_ability.png)
-![Sword on Anvil](https://github.com/Aregcraft/reforging/blob/master/screenshots/sword_on_anvil.png)
-![Potion Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/potion_ability.png)
-![Throw Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/throw_ability.png)
-![Storm Ability](https://github.com/Aregcraft/reforging/blob/master/screenshots/storm_ability.png)
-
-<!-- </screenshots> -->
-
-## Manual Configuration
-
-**If you are not familiar with JSON, you may use online YAML to JSON converters,
-for example [https://onlineyamltools.com/convert-yaml-to-json](https://onlineyamltools.com/convert-yaml-to-json).**
+# Configuration
 
 Specify colors and placeholders with `%COLOR_NAME%` or `%PLACEHOLDER_NAME%` (e.g., `%DARK_BLUE%`, `%REFORGE_NAME%`).
 
-### item.json
+## item.json
 
-Configures the visuals of reforged items.
+Configures the look of reforged items.
 
-#### name: string
+### name: string
 
-The name of each reforged item.
-
-Colorized, placeholders:
-- REFORGE_NAME - The name of the reforge (e.g., "Sharp", "Shielded")
-- NAME - The name of the item (e.g., "Diamond Sword")
-
-#### lore: string array
-
-The lore attached to the end of each reforged item.
+Specifies the name of reforged items.
 
 Colorized, placeholders:
-- **ABILITY** - The ability of the reforge
-- **BASE_ATTACK_SPEED** - The base attack speed of the weapon
-- **ATTACK_SPEED** - The boost of attack speed provided by the reforge
-- **BASE_ATTACK_DAMAGE** - The base attack damage of the weapon
-- **ATTACK_DAMAGE** - The boost of attack damage provided by the reforge
-- **MAX_HEALTH** - The boost of max health provided by the reforge
-- **KNOCKBACK_RESISTANCE** - The boost of knockback resistance provided by the reforge
-- **MOVEMENT_SPEED** - The boost of movement speed provided by the reforge
-- **ARMOR** - The boost of armor provided by the reforge
-- **ARMOR_TOUGHNESS** - The boost of armor toughness provided by the reforge
-- **ATTACK_KNOCKBACK** - The boost of attack knockback provided by the reforge
+- **REFORGE_NAME** - the name of the reforge (e.g., "Sharp", "Shielded")
+- **NAME** - the name of the item (e.g., "Diamond Sword")
+
+### lore: string list
+
+Specifies the lore attached to the end of reforged items.
+
+Colorized, placeholders:
+- **ABILITY** - the ability of the reforge
+- **BASE_ATTACK_SPEED** - the base attack speed of the weapon
+- **ATTACK_SPEED** - the attack speed provided by the reforge
+- **BASE_ATTACK_DAMAGE** - the base attack damage of the weapon
+- **ATTACK_DAMAGE** - the attack damage provided by the reforge
+- **MAX_HEALTH** - the max health provided by the reforge
+- **KNOCKBACK_RESISTANCE** - the knockback resistance provided by the reforge
+- **MOVEMENT_SPEED** - the movement speed provided by the reforge
+- **ARMOR** - the armor provided by the reforge
+- **ARMOR_TOUGHNESS** - the armor toughness provided by the reforge
+- **ATTACK_KNOCKBACK** - the attack knockback provided by the reforge
 
 ```json
 {
   "name": "%RESET%%REFORGE_NAME% %NAME%",
   "lore": [
     "",
+    "%GRAY%When right clicked:",
+    " %GOLD%%BOLD%%ABILITY% %GOLD%Ability",
+    "",
     "%GRAY%When in main hand:",
-    "%DARK_GREEN% %BOLD%%ABILITY% %RESET%%DARK_GREEN%Ability",
     "%DARK_GREEN% %BASE_ATTACK_SPEED% %DARK_BLUE%(%ATTACK_SPEED%)%DARK_GREEN% Attack Speed",
     "%DARK_GREEN% %BASE_ATTACK_DAMAGE% %DARK_BLUE%(%ATTACK_DAMAGE%)%DARK_GREEN% Attack Damage",
     "%DARK_BLUE% %MAX_HEALTH% Max Health",
@@ -108,52 +63,63 @@ Colorized, placeholders:
 }
 ```
 
-### anvil.json
+## anvil.json
 
-Configures the visuals and mechanics of the reforging anvil.
+Configures the look and mechanics of the reforged anvil.
+
+### item
+
+Configures the look of the reforging anvil.
 
 #### name: string
 
-The name of the reforging anvil item.
+Specifies the name of the reforging anvil.
 
 Colorized, no placeholders.
 
-#### lore: string array
+#### lore: string list
 
-The lore of the reforging anvil item.
+Specifies the lore of the reforging anvil.
 
 Colorized, no placeholders.
 
-#### recipe: object
+### recipe
 
-Specifies the crafting recipe for the reforging anvil item.
+Specifies the crafting recipe of the reforging anvil.
 
-##### shape: string array
+#### shape: string list
 
-The shape of the crafting recipe for the reforging anvil item. 
+Specifies the shape of the crafting recipe.
 
-3 strings, each consisting of 3 symbols representing items as per `keys`.
-   
-##### keys: object
+#### keys: char to material map
 
-Maps single symbols to their respective item. Item should be specified with all CAPS and without `minecraft:`.
+Specifies single-character aliases for materials used in the shape.
 
-#### soundEffect: object
+### sound
 
-Specifies the volume and pitch of the sound (`BLOCK_ANVIL_USE`) played whenever a player applies a reforge.
+Specifies the sound played when a player is using a reforging anvil.
 
-#### price: int
+#### volume: double
 
-Specifies the amount of respective material (e.g., diamonds for diamond sword, iron ingots for iron axe) required
-to apply a reforge.
+Specifies the volume of the sound.
+
+#### pitch: double
+
+Specifies the pitch of the sound.
+
+### price: int
+
+Specifies the amount of the respective ingredient required to use a reforging anvil.
 
 ```json
 {
-  "name": "%DARK_PURPLE%Reforging Anvil",
-  "lore": [
-    "%GRAY%Place this anvil anywhere in the world",
-    "%GRAY%to start reforging stuff!"
-  ],
+  "item": {
+    "name": "%DARK_PURPLE%Reforging Anvil",
+    "lore": [
+      "%GRAY%Place this anvil anywhere in the world",
+      "%GRAY%to start reforging items!"
+    ]
+  },
   "recipe": {
     "shape": [
       "ooo",
@@ -167,7 +133,7 @@ to apply a reforge.
       "i": "IRON_BLOCK"
     }
   },
-  "soundEffect": {
+  "sound": {
     "volume": 1,
     "pitch": 0
   },
@@ -175,705 +141,825 @@ to apply a reforge.
 }
 ```
 
-### reforges.json
+## standard_reforges.json
 
-This file allows you to create as many unique reforges as you wish.
+Configures standard reforges.
 
-#### name: string
+### name: string
 
-The name of the reforge, it corresponds to the `REFORGE_NAME` label.
+Specifies the name of the reforge.
 
-#### ability: string
+### ability: string
 
-The name of the ability of the reforge as per `abilities.json`.
+Specifies the name of the ability of the reforge.
 
-#### [attribute]: float
+### [attribute]: float
 
-These are all the attributes, each corresponding to their respective stat and placeholder.
+- **attackSpeed** - the attack speed provided by the reforge
+- **attackDamage** - the attack damage provided by the reforge
+- **maxHealth** - the max health provided by the reforge
+- **knockbackResistance** - the knockback resistance provided by the reforge
+- **movementSpeed** - the movement speed provided by the reforge
+- **armor** - the armor provided by the reforge
+- **armorToughness** - the armor toughness provided by the reforge
+- **attackKnockback** - the attack knockback provided by the reforge
 
-- **attackSpeed**
-- **attackDamage**
-- **maxHealth**
-- **knockbackResistance**
-- **movementSpeed**
-- **armor**
-- **armorToughness**
-- **attackKnockback**
+### weight: double
 
-#### weight: double
+Specifies the relative chance of the reforge being applied to the weapon.
 
-Represents the chance of this particular reforge being applied to the weapon. This is not a percentage,
-but rather relative weight, which means that there are no restrictions on the upper bound of the number.
-
-<!-- <reforges> -->
+<!-- <standard_reforges_json> -->
 
 ```json
 [
   {
-    "name": "Shielded",
-    "ability": "SHIELD",
-    "maxHealth": 4,
-    "attackDamage": -1,
-    "armor": 4,
-    "knockbackResistance": 2,
+    "name": "Sharp",
+    "ability": "NONE",
+    "maxHealth": -4,
+    "attackDamage": 2,
+    "attackSpeed": 0.4,
+    "attackKnockback": 2,
     "weight": 40
   },
   {
-    "name": "Sharp",
-    "ability": "DUMMY",
-    "maxHealth": -2,
-    "attackDamage": 4,
-    "attackSpeed": 0.2,
-    "weight": 80
+    "name": "Shielded",
+    "ability": "SHIELD",
+    "maxHealth": 4,
+    "knockbackResistance": 2,
+    "attackDamage": -1,
+    "armor": 4,
+    "armorToughness": 4,
+    "weight": 20
   },
   {
     "name": "Infernal",
     "ability": "FIRE",
+    "maxHealth": 2,
+    "knockbackResistance": 1,
+    "attackDamage": -1,
+    "armor": 2,
+    "attackSpeed": 0.2,
     "weight": 20
   },
   {
     "name": "Murderous",
     "ability": "THROW",
     "attackDamage": 2,
-    "attackSpeed": 0.5,
-    "movementSpeed": 0.01,
-    "weight": 20
+    "attackSpeed": 0.4,
+    "weight": 10
   },
   {
     "name": "Enraged",
     "ability": "STORM",
-    "attackDamage": 3,
-    "attackSpeed": 0.3,
-    "weight": 20
-  },
-  {
-    "name": "Titanic",
-    "ability": "EARTH",
-    "attackDamage": -1,
-    "armor": 2,
-    "weight": 20
+    "maxHealth": -2,
+    "attackDamage": 2,
+    "attackSpeed": 0.8,
+    "weight": 10
   },
   {
     "name": "Stealthy",
     "ability": "TELEPORT",
-    "attackDamage": 0.5,
-    "attackSpeed": 0.1,
-    "armor": -0.5,
-    "armorToughness": -0.5,
-    "weight": 20
+    "maxHealth": -2,
+    "movementSpeed": 0.025,
+    "attackDamage": 1,
+    "attackSpeed": 0.4,
+    "weight": 10
   },
   {
     "name": "Purple",
     "ability": "SHULKER",
-    "weight": 15
+    "maxHealth": 2,
+    "weight": 10
   },
   {
-    "name": "Gigantic",
-    "ability": "SEISMIC_WAVE",
-    "armor": 6,
-    "health": 6,
+    "name": "Titanic",
+    "ability": "SEISMIC WAVE",
+    "maxHealth": 8,
+    "movementSpeed": -0.025,
+    "attackDamage": -2,
+    "armor": 8,
     "weight": 10
   },
   {
     "name": "Wicked",
     "ability": "POTION",
-    "attackKnockback": 1,
-    "weight": 15
-  },
-  {
-    "name": "Draconian",
-    "ability": "DRAGON",
-    "attackDamage": 6,
-    "armor": 8,
-    "health": 10,
-    "armorToughness": 6,
+    "maxHealth": 2,
     "attackKnockback": 2,
-    "weight": 3
+    "weight": 10
   }
 ]
 ```
 
-<!-- </reforges> -->
+<!-- </standard_reforges_json> -->
 
-### abilities.json
+## ultimate_reforges.json
 
-Each ability has many customizable options. This file allows creating multiple abilities with their own names and
-tweaks to the base built-in abilities.
+Configures ultimate reforges.
+
+### name: string
+
+Specifies the name of the reforge.
+
+### ability: string
+
+Specifies the name of the ability of the reforge.
+
+### [attribute]: float
+
+- **attackSpeed** - the attack speed provided by the reforge
+- **attackDamage** - the attack damage provided by the reforge
+- **maxHealth** - the max health provided by the reforge
+- **knockbackResistance** - the knockback resistance provided by the reforge
+- **movementSpeed** - the movement speed provided by the reforge
+- **armor** - the armor provided by the reforge
+- **armorToughness** - the armor toughness provided by the reforge
+- **attackKnockback** - the attack knockback provided by the reforge
+
+### stone
+
+Configures the reforge stone of this ultimate reforge.
+
+#### name: string
+
+Specifies the name of the reforge stone.
+
+#### item
+
+Configures the look of the reforge stone.
+
+##### name: string
+
+Specifies the name of the reforge stone.
+
+Colorized, no placeholders.
+
+##### lore: string list
+
+Specifies the lore of the reforge stone.
+
+Colorized, no placeholders.
+
+#### material: material
+
+Specifies the material of the reforge stone.
+
+#### recipe
+
+Specifies the crafting recipe of the reforge stone.
+
+##### shape: string list
+
+Specifies the shape of the crafting recipe.
+
+##### keys: char to material map
+
+Specifies single-character aliases for materials used in the shape.
+
+<!-- <ultimate_reforges_json> -->
+
+```json
+[
+  {
+    "name": "Draconian",
+    "ability": "DRAGON",
+    "maxHealth": 10,
+    "attackDamage": 6,
+    "armor": 8,
+    "armorToughness": 6,
+    "attackKnockback": 2,
+    "stone": {
+      "name": "DRAGON_CLAW",
+      "item": {
+        "name": "%LIGHT_PURPLE%Dragon Claw",
+        "lore": [
+          "%GRAY%Use this item on a reforging anvil to",
+          "%GRAY%obtain the %GOLD%%BOLD%DRACONIAN %RESET%%GRAY%reforge!"
+        ]
+      },
+      "material": "END_ROD",
+      "recipe": {
+        "shape": [
+          "bdb",
+          "ded",
+          "bdb"
+        ],
+        "keys": {
+          "d": "DIAMOND",
+          "b": "DRAGON_BREATH",
+          "e": "ELYTRA"
+        }
+      }
+    }
+  },
+  {
+    "name": "Withered",
+    "ability": "WITHER",
+    "maxHealth": 12,
+    "attackDamage": 8,
+    "armor": 4,
+    "armorToughness": 3,
+    "attackKnockback": 1,
+    "stone": {
+      "name": "WITHER_BLOOD",
+      "item": {
+        "name": "%RED%Wither Blood",
+        "lore": [
+          "%GRAY%Use this item on a reforging anvil to",
+          "%GRAY%obtain the %GOLD%%BOLD%WITHERED %RESET%%GRAY%reforge!"
+        ]
+      },
+      "material": "WITHER_SKELETON_SKULL",
+      "recipe": {
+        "shape": [
+          "wgw",
+          "gsg",
+          "wgw"
+        ],
+        "keys": {
+          "w": "WITHER_SKELETON_SKULL",
+          "g": "GOLD_BLOCK",
+          "s": "NETHER_STAR"
+        }
+      }
+    }
+  }
+]
+```
+
+<!-- </ultimate_reforges_json> -->
+
+## abilities.json
+
+Configures abilities.
 
 <!-- <abilities> -->
 
-#### seismicWaveAbility: object
+### TeleportAbility
 
-Damages and pushes back all entities in the specified range.
+Allows the player to teleport in their looking direction.
 
-##### price: object
+#### price
 
-Specifies the price the player pays when activates this ability.
+Specifies the amount of health and food taken from the player when activating the ability.
 
-###### health: double
+##### health: double
 
-Specifies the amount of health subtracted from the player when activating the ability.
+Specifies the amount of health taken from the player when activating the ability.
 
-###### food: int
+##### food: int
 
-Specifies the amount of food subtracted from the player when activating the ability.
+Specifies the amount of food taken from the player when activating the ability.
 
-##### function: object
+#### distance: int
 
-Specifies a mathematical parametric function with variable t.
+Specifies the maximum distance the player can teleport.
 
-###### x: expression
+#### cooldown: int
 
-Specifies the parametric expression for the x coordinate.
+Specifies the cooldown of the ability.
 
-###### y: expression
+#### name: string
 
-Specifies the parametric expression for the y coordinate.
+Specifies the name of the ability.
 
-###### z: expression
+### DragonAbility
 
-Specifies the parametric expression for the z coordinate.
+Allows the player to throw a dragon fireball.
 
-###### min: double
+#### price
 
-Specifies the minimum value of the parameter.
+Specifies the amount of health and food taken from the player when activating the ability.
 
-###### max: double
+##### health: double
 
-Specifies the maximum value of the parameter.
+Specifies the amount of health taken from the player when activating the ability.
 
-###### delta: double
+##### food: int
 
-Specifies the change of the parameter's value.
+Specifies the amount of food taken from the player when activating the ability.
 
-##### particle: particle
+#### cooldown: int
 
-Specifies the type of the particle which is used to visualize the function.
+Specifies the cooldown of the ability.
 
-##### range: double
+#### name: string
 
-Specifies the range of the seismic wave.
+Specifies the name of the ability.
 
-##### factor: double
+#### speed: double
 
-Specifies how much to push the surrounding entities back.
+Specifies the speed of the projectile.
 
-##### height: double
+### StormAbility
 
-Specifies how high to push the surrounding entities.
+Allows the player to strike lighting around them.
 
-##### damage: double
+#### price
 
-Specifies the damage to deal to the surrounding entities.
+Specifies the amount of health and food taken from the player when activating the ability.
 
-##### duration: int
+##### health: double
 
-Specifies the duration in ticks (1 second = 20 ticks).
+Specifies the amount of health taken from the player when activating the ability.
 
-#### potionAbility: object
+##### food: int
 
-Allows player to throw a potion with the specified effect, duration and amplifier.
+Specifies the amount of food taken from the player when activating the ability.
 
-##### price: object
+#### function
 
-Specifies the price the player pays when activates this ability.
-
-###### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-###### food: int
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
-##### effect: potioneffecttype
-
-Specifies the potion effect.
-
-##### duration: int
-
-Specifies the duration of the effect in ticks (1 second = 20 ticks).
-
-##### amplifier: int
-
-Specifies the amplifier of the effect.
-
-##### cooldown: int
-
-Specifies the cooldown in ticks (1 second = 20 ticks).
-
-#### fireAbility: object
-
-Sets entities on fire in the player's facing direction according to the specified function.
-
-##### price: object
-
-Specifies the price the player pays when activates this ability.
-
-###### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-###### food: int
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
-##### function: object
-
-Specifies a mathematical parametric function with variable t.
-
-###### x: expression
-
-Specifies the parametric expression for the x coordinate.
-
-###### y: expression
-
-Specifies the parametric expression for the y coordinate.
-
-###### z: expression
-
-Specifies the parametric expression for the z coordinate.
-
-###### min: double
-
-Specifies the minimum value of the parameter.
-
-###### max: double
-
-Specifies the maximum value of the parameter.
-
-###### delta: double
-
-Specifies the change of the parameter's value.
-
-##### particle: particle
-
-Specifies the type of the particle which is used to visualize the function.
-
-##### fireDuration: int
-
-Specifies how long will hit entities be on fire in ticks (1 second = 20 ticks).
-
-##### duration: int
-
-Specifies the duration in ticks (1 second = 20 ticks).
-
-#### dragonAbility: object
-
-Allows the player to launch a dragon fireball.
-
-##### price: object
-
-Specifies the price the player pays when activates this ability.
-
-###### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-###### food: int
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
-##### speed: double
-
-Specifies the speed of the projectile when thrown in blocks per tick (1 second = 20 ticks).
-
-##### cooldown: int
-
-Specifies the cooldown in ticks (1 second = 20 ticks).
-
-#### stormAbility: object
-
-Strikes lighting around the player according to the specified function.
-
-##### price: object
-
-Specifies the price the player pays when activates this ability.
-
-###### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-###### food: int
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
-##### function: object
-
-Specifies a mathematical parametric function with variable t.
-
-###### x: expression
-
-Specifies the parametric expression for the x coordinate.
-
-###### y: expression
-
-Specifies the parametric expression for the y coordinate.
-
-###### z: expression
-
-Specifies the parametric expression for the z coordinate.
-
-###### min: double
-
-Specifies the minimum value of the parameter.
-
-###### max: double
-
-Specifies the maximum value of the parameter.
-
-###### delta: double
-
-Specifies the change of the parameter's value.
-
-#### throwAbility: object
-
-Allows the player to throw their weapon which will travel for the specified amount of time and damage all the entities it hits on the way.
-
-##### price: object
-
-Specifies the price the player pays when activates this ability.
-
-###### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-###### food: int
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
-##### damageFactor: double
-
-Specifies the factor that is applied to the weapon's normal damage.
-
-##### speed: double
-
-Specifies the speed of the weapon when thrown in blocks per tick (1 second = 20 ticks).
-
-##### duration: int
-
-Specifies the duration in ticks (1 second = 20 ticks).
-
-#### teleportAbility: object
-
-Teleports the player in their facing direction.
-
-##### price: object
-
-Specifies the price the player pays when activates this ability.
-
-###### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-###### food: int
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
-##### distance: double
-
-Specifies the maximum distance that player can teleport.
-
-##### cooldown: int
-
-Specifies the cooldown in ticks (1 second = 20 ticks).
-
-#### shulkerAbility: object
-
-Allows the player to launch a shulker bullet like an arrow.
-
-##### price: object
-
-Specifies the price the player pays when activates this ability.
-
-###### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-###### food: int
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
-##### speed: double
-
-Specifies the speed of the projectile when thrown in blocks per tick (1 second = 20 ticks).
-
-##### cooldown: int
-
-Specifies the cooldown in ticks (1 second = 20 ticks).
-
-#### shieldAbility: object
-
-Gives player damage resistance for the specified period of time.
-
-##### price: object
-
-Specifies the price the player pays when activates this ability.
-
-###### health: double
-
-Specifies the amount of health subtracted from the player when activating the ability.
-
-###### food: int
-
-Specifies the amount of food subtracted from the player when activating the ability.
-
-##### function: object
-
-Specifies a mathematical parametric function with variable t.
-
-###### x: expression
-
-Specifies the parametric expression for the x coordinate.
-
-###### y: expression
-
-Specifies the parametric expression for the y coordinate.
-
-###### z: expression
-
-Specifies the parametric expression for the z coordinate.
-
-###### min: double
-
-Specifies the minimum value of the parameter.
-
-###### max: double
-
-Specifies the maximum value of the parameter.
-
-###### delta: double
-
-Specifies the change of the parameter's value.
-
-##### particle: particle
-
-Specifies the type of the particle which is used to visualize the function.
-
-##### disableAttack: boolean
-
-Specifies whether the player should be prevented from attacking other entities while the shield is active.
-
-##### duration: int
-
-Specifies the duration in ticks (1 second = 20 ticks).
-
-#### function: object
-
-Specifies a mathematical parametric function with variable t.
-
-##### x: expression
-
-Specifies the parametric expression for the x coordinate.
-
-##### y: expression
-
-Specifies the parametric expression for the y coordinate.
-
-##### z: expression
-
-Specifies the parametric expression for the z coordinate.
+Specifies the two-dimensional mathematical function used to create visual effects.
 
 ##### min: double
 
-Specifies the minimum value of the parameter.
+Specifies the starting value of t.
 
 ##### max: double
 
-Specifies the maximum value of the parameter.
+Specifies the ending value of t.
+
+##### x: expression
+
+Specifies how much x changes based on t.
 
 ##### delta: double
 
-Specifies the change of the parameter's value.
+Specifies the step of t.
 
-#### earthAbility: object
+##### z: expression
 
-Forms one block tall protective barrier around the player according to the specified function.
+Specifies how much z changes based on t.
 
-##### price: object
+#### cooldown: int
 
-Specifies the price the player pays when activates this ability.
+Specifies the cooldown of the ability.
 
-###### health: double
+#### name: string
 
-Specifies the amount of health subtracted from the player when activating the ability.
+Specifies the name of the ability.
 
-###### food: int
+### FireAbility
 
-Specifies the amount of food subtracted from the player when activating the ability.
+Allows the player to create a shape (e.g., spiral) and ignite all entities that collide with it.
 
-##### function: object
+#### price
 
-Specifies a mathematical parametric function with variable t.
+Specifies the amount of health and food taken from the player when activating the ability.
 
-###### x: expression
+##### health: double
 
-Specifies the parametric expression for the x coordinate.
+Specifies the amount of health taken from the player when activating the ability.
 
-###### y: expression
+##### food: int
 
-Specifies the parametric expression for the y coordinate.
+Specifies the amount of food taken from the player when activating the ability.
 
-###### z: expression
+#### function
 
-Specifies the parametric expression for the z coordinate.
+Specifies the three-dimensional mathematical function used to create visual effects.
 
-###### min: double
+##### min: double
 
-Specifies the minimum value of the parameter.
+Specifies the starting value of t.
 
-###### max: double
+##### max: double
 
-Specifies the maximum value of the parameter.
+Specifies the ending value of t.
 
-###### delta: double
+##### x: expression
 
-Specifies the change of the parameter's value.
+Specifies how much x changes based on t.
+
+##### delta: double
+
+Specifies the step of t.
+
+##### y: expression
+
+Specifies how much y changes based on t.
+
+##### z: expression
+
+Specifies how much z changes based on t.
+
+#### duration: int
+
+Specifies the duration of burning in ticks (1 second = 20 ticks).
+
+#### cooldown: int
+
+Specifies the cooldown of the ability.
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### particle: particle
+
+Specifies the particle used to create visual effects.
+
+### PotionAbility
+
+Allows the player to throw a potion.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### duration: int
+
+Specifies the duration of the effect in ticks (1 second = 20 ticks).
+
+#### effect: potion effect type
+
+Specifies the effect of the thrown potion.
+
+#### cooldown: int
+
+Specifies the cooldown of the ability.
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### amplifier: int
+
+Specifies the amplifier of the effect.
+
+#### speed: double
+
+Specifies the speed of the projectile.
+
+### ShieldAbility
+
+Makes the player immune to attacks from aggressive mobs.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### function
+
+Specifies the three-dimensional mathematical function used to create visual effects.
+
+##### min: double
+
+Specifies the starting value of t.
+
+##### max: double
+
+Specifies the ending value of t.
+
+##### x: expression
+
+Specifies how much x changes based on t.
+
+##### delta: double
+
+Specifies the step of t.
+
+##### y: expression
+
+Specifies how much y changes based on t.
+
+##### z: expression
+
+Specifies how much z changes based on t.
+
+#### duration: int
+
+Specifies the duration of the ability in ticks (1 second = 20 ticks).
+
+#### disableAttack: boolean
+
+Specifies whether the player should be prevented from attacking other entities.
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### particle: particle
+
+Specifies the particle used to create visual effects.
+
+### SeismicWaveAbility
+
+Allows the player to create a seismic wave knocking back and damaging all entities within range.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### function
+
+Specifies the two-dimensional mathematical function used to create visual effects.
+
+##### min: double
+
+Specifies the starting value of t.
+
+##### max: double
+
+Specifies the ending value of t.
+
+##### x: expression
+
+Specifies how much x changes based on t.
+
+##### delta: double
+
+Specifies the step of t.
+
+##### z: expression
+
+Specifies how much z changes based on t.
+
+#### duration: int
+
+Specifies the duration of the ability in ticks (1 second = 20 ticks).
+
+#### damage: double
+
+Specifies the damage that is dealt to the entities.
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### range: double
+
+Specifies the range of the ability.
+
+#### particle: particle
+
+Specifies the particle used to create visual effects.
+
+#### speed: double
+
+Specifies the speed at which to knock back the entities.
+
+#### height: double
+
+Specifies the height to which to knock back the entities.
+
+### WitherAbility
+
+Allows the player to throw a wither skull.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### cooldown: int
+
+Specifies the cooldown of the ability.
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### speed: double
+
+Specifies the speed of the projectile.
+
+### ThrowAbility
+
+Allows the player to throw their weapon dealing damage to all entities it hits.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### duration: int
+
+Specifies the duration of the ability in ticks (1 second = 20 ticks).
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### damageFactor: double
+
+Specifies the factory by which to multiply the base damage of the weapon.
+
+#### speed: double
+
+Specifies the speed of the weapon.
+
+### ShulkerAbility
+
+Allows the player to throw a shulker bullet.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### cooldown: int
+
+Specifies the cooldown of the ability.
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### speed: double
+
+Specifies the speed of the projectile.
+
+<!-- </abilities> -->
+
+<!-- <abilities_json> -->
 
 ```json
-{
-  "shieldAbilities": {
-    "SHIELD": {
-      "price": {
-        "health": 6,
-        "food": 6
-      },
-      "duration": 200,
-      "function": {
-        "x": "cos(48t)",
-        "y": "0.5t",
-        "z": "sin(48t)",
-        "min": 0,
-        "max": 5,
-        "delta": 0.25
-      },
-      "particle": "ENCHANTMENT_TABLE",
-      "disableAttack": true
+[
+  {
+    "name": "SHIELD",
+    "type": "Shield",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "duration": 100,
+    "function": {
+      "x": "cos(48t)",
+      "y": "0.5t",
+      "z": "sin(48t)",
+      "min": 0,
+      "max": 5,
+      "delta": 0.25
+    },
+    "particle": "ENCHANTMENT_TABLE",
+    "disableAttack": true
+  },
+  {
+    "name": "FIRE",
+    "type": "Fire",
+    "price": {
+      "health": 2,
+      "food": 2
+    },
+    "cooldown": 20,
+    "function": {
+      "x": "0.025tcos(t)",
+      "y": "0.025tsin(t)",
+      "z": "0.005t",
+      "min": 0,
+      "max": 20,
+      "delta": 0.25
+    },
+    "particle": "FLAME",
+    "duration": 60
+  },
+  {
+    "name": "THROW",
+    "type": "Throw",
+    "price": {
+      "health": 1,
+      "food": 1
+    },
+    "duration": 20,
+    "damageFactor": 0.75,
+    "speed": 0.75
+  },
+  {
+    "name": "STORM",
+    "type": "Storm",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 60,
+    "function": {
+      "x": "3cos(t)",
+      "z": "3sin(t)",
+      "min": 0,
+      "max": 6.28318530718,
+      "delta": 0.34906585039
     }
   },
-  "fireAbilities": {
-    "FIRE": {
-      "price": {
-        "health": 4,
-        "food": 4
-      },
-      "duration": 1,
-      "function": {
-        "x": "0.025tcos(t)",
-        "y": "0.025tsin(t)",
-        "z": "0.005t",
-        "min": 0,
-        "max": 20,
-        "delta": 0.25
-      },
-      "particle": "FLAME",
-      "fireDuration": 40
-    }
+  {
+    "name": "TELEPORT",
+    "type": "Teleport",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 60,
+    "distance": 4
   },
-  "throwAbilities": {
-    "THROW": {
-      "price": {
-        "health": 0,
-        "food": 1
-      },
-      "duration": 20,
-      "damageFactor": 0.75,
-      "speed": 0.5
-    }
+  {
+    "name": "SHULKER",
+    "type": "Shulker",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 60,
+    "speed": 1
   },
-  "stormAbilities": {
-    "STORM": {
-      "price": {
-        "health": 2,
-        "food": 4
-      },
-      "function": {
-        "x": "3cos(t)",
-        "z": "3sin(t)",
-        "min": 0,
-        "max": 6.28318530718,
-        "delta": 0.34906585039
-      }
-    }
+  {
+    "name": "SEISMIC WAVE",
+    "type": "SeismicWave",
+    "price": {
+      "health": 6,
+      "food": 6
+    },
+    "duration": 10,
+    "function": {
+      "x": "0.5cos(t)",
+      "z": "0.5sin(t)",
+      "min": 0,
+      "max": 6.28318530718,
+      "delta": 0.5
+    },
+    "particle": "EXPLOSION_NORMAL",
+    "range": 5,
+    "speed": 0.5,
+    "height": 0.5,
+    "damage": 4
   },
-  "earthAbilities": {
-    "EARTH": {
-      "price": {
-        "health": 1,
-        "food": 1
-      },
-      "function": {
-        "x": "3cos(t)",
-        "z": "3sin(t)",
-        "min": 0,
-        "max": 6.28318530718,
-        "delta": 0.34906585039
-      }
-    }
+  {
+    "name": "POTION",
+    "type": "Potion",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 40,
+    "speed": 0.5,
+    "effect": "POISON",
+    "duration": 60,
+    "amplifier": 2
   },
-  "teleportAbilities": {
-    "TELEPORT": {
-      "price": {
-        "health": 3,
-        "food": 3
-      },
-      "cooldown": 40,
-      "distance": 2
-    }
+  {
+    "name": "DRAGON",
+    "type": "Dragon",
+    "price": {
+      "health": 8,
+      "food": 8
+    },
+    "cooldown": 100,
+    "speed": 4
   },
-  "shulkerAbilities": {
-    "SHULKER": {
-      "price": {
-        "health": 3,
-        "food": 3
-      },
-      "cooldown": 20,
-      "speed": 1
-    }
-  },
-  "seismicWaveAbilities": {
-    "SEISMIC_WAVE": {
-      "price": {
-        "health": 5,
-        "food": 5
-      },
-      "duration": 40,
-      "function": {
-        "x": "0.5cos(t)",
-        "z": "0.5sin(t)",
-        "min": 0,
-        "max": 6.28318530718,
-        "delta": 0.25
-      },
-      "particle": "EXPLOSION_NORMAL",
-      "range": 10,
-      "factor": 1,
-      "height": 0.5,
-      "damage": 2
-    }
-  },
-  "potionAbilities": {
-    "POTION": {
-      "price": {
-        "health": 5,
-        "food": 5
-      },
-      "cooldown": 20,
-      "effect": "POISON",
-      "duration": "80",
-      "amplifier": 2
-    }
-  },
-  "dragonAbilities": {
-    "DRAGON": {
-      "price": {
-        "health": 8,
-        "food": 8
-      },
-      "cooldown": 200,
-      "speed": 3
-    }
+  {
+    "name": "WITHER",
+    "type": "Wither",
+    "price": {
+      "health": 6,
+      "food": 6
+    },
+    "cooldown": 100,
+    "speed": 4
   }
-}
+]
 ```
 
+<!-- </abilities_json> -->

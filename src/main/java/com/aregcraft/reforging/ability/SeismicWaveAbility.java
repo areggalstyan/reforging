@@ -1,56 +1,52 @@
 package com.aregcraft.reforging.ability;
 
 import com.aregcraft.reforging.ability.base.RepeatingAbility;
-import com.aregcraft.reforging.ability.external.Function;
 import com.aregcraft.reforging.annotation.Ability;
+import com.aregcraft.reforging.config.model.Function2Model;
+import com.aregcraft.reforging.util.Spawner;
 import org.bukkit.Particle;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 /**
- * Damages and pushes back all entities in the specified range.
+ * Allows the player to create a seismic wave knocking back and damaging all entities within range.
  */
 @Ability
 public class SeismicWaveAbility extends RepeatingAbility {
-    private Function function;
+    private Function2Model function;
     /**
-     * Specifies the type of the particle which is used to visualize the function.
+     * Specifies the particle used to create visual effects.
      */
     private Particle particle;
     /**
-     * Specifies the range of the seismic wave.
+     * Specifies the range of the ability.
      */
     private double range;
     /**
-     * Specifies how much to push the surrounding entities back.
+     * Specifies the speed at which to knock back the entities.
      */
-    private double factor;
+    private double speed;
     /**
-     * Specifies how high to push the surrounding entities.
+     * Specifies the height to which to knock back the entities.
      */
     private double height;
     /**
-     * Specifies the damage to deal to the surrounding entities.
+     * Specifies the damage that is dealt to the entities.
      */
     private double damage;
 
     @Override
     protected void setup(Player player) {
-        player.getNearbyEntities(range / 2, 1, range / 2).stream()
-                .filter(it -> it != player).filter(it -> it instanceof LivingEntity)
-                .map(it -> (LivingEntity) it).forEach(it -> {
-                    it.setVelocity(it.getLocation().subtract(player.getLocation()).toVector().normalize()
-                            .multiply(factor).add(new Vector(0, height, 0)));
-                    it.damage(damage);
-                });
+        Spawner.nearbyEntities(player, player.getLocation(), range, 1, range).forEach(it -> {
+            it.setVelocity(it.getLocation().subtract(player.getLocation()).toVector().normalize().multiply(speed)
+                    .add(new Vector(0, height, 0)));
+            it.damage(damage);
+        });
     }
 
     @Override
-    public boolean perform(Player player, int time) {
-        for (var i = function.min; i < function.max; i += function.delta) {
-            spawnParticle(evaluate(function, i).multiply(time), particle, player.getLocation());
-        }
+    protected boolean update(Player player, int time) {
+        function.evaluate(it -> Spawner.spawnParticle(particle, it.multiply(time).at(player.getLocation())));
         return true;
     }
 }

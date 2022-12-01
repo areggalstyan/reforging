@@ -1,0 +1,30 @@
+{
+  "description": "Specifies the three-dimensional mathematical function used to create visual effects.",
+  "properties": {
+    "min": {
+      "type": "double",
+      "description": "Specifies the starting value of t."
+    },
+    "max": {
+      "type": "double",
+      "description": "Specifies the ending value of t."
+    },
+    "x": {
+      "type": "Expression",
+      "description": "Specifies how much x changes based on t."
+    },
+    "delta": {
+      "type": "double",
+      "description": "Specifies the step of t."
+    },
+    "y": {
+      "type": "Expression",
+      "description": "Specifies how much y changes based on t."
+    },
+    "z": {
+      "type": "Expression",
+      "description": "Specifies how much z changes based on t."
+    }
+  },
+  "external": {}
+}

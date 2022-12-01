@@ -1,0 +1,16 @@
+package com.aregcraft.reforging.config.adapter;
+
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import org.mariuszgromada.math.mxparser.Argument;
+import org.mariuszgromada.math.mxparser.Expression;
+
+import java.lang.reflect.Type;
+
+public class ExpressionDeserializer implements JsonDeserializer<Expression> {
+    @Override
+    public Expression deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
+        return new Expression(json.getAsString(), new Argument("t"));
+    }
+}

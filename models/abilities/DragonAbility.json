@@ -1,0 +1,20 @@
+{
+  "description": "Allows the player to throw a dragon fireball.",
+  "properties": {
+    "cooldown": {
+      "type": "int",
+      "description": "Specifies the cooldown of the ability."
+    },
+    "name": {
+      "type": "String",
+      "description": "Specifies the name of the ability."
+    },
+    "speed": {
+      "type": "double",
+      "description": "Specifies the speed of the projectile."
+    }
+  },
+  "external": {
+    "price": "PriceModel"
+  }
+}

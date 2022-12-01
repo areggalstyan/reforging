@@ -1,35 +1,40 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.reforging.ability.base.RepeatingAbility;
-import com.aregcraft.reforging.ability.external.Function;
+import com.aregcraft.reforging.ability.base.CooldownAbility;
 import com.aregcraft.reforging.annotation.Ability;
+import com.aregcraft.reforging.config.model.Function3Model;
+import com.aregcraft.reforging.math.Matrix;
+import com.aregcraft.reforging.math.Vector;
+import com.aregcraft.reforging.util.Spawner;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 
 /**
- * Sets entities on fire in the player's facing direction according to the specified function.
+ * Allows the player to create a shape (e.g., spiral) and ignite all entities that collide with it.
  */
 @Ability
-public class FireAbility extends RepeatingAbility {
-    private Function function;
+public class FireAbility extends CooldownAbility {
+    private Function3Model function;
     /**
-     * Specifies the type of the particle which is used to visualize the function.
+     * Specifies the particle used to create visual effects.
      */
     private Particle particle;
     /**
-     * Specifies how long will hit entities be on fire in ticks (1 second = 20 ticks).
+     * Specifies the duration of burning in ticks (1 second = 20 ticks).
      */
-    private int fireDuration;
+    private int duration;
 
     @Override
-    protected boolean perform(Player player, int time) {
+    protected void perform(Player player) {
+        var z = new Vector(player.getLocation().getDirection());
+        var x = z.cross(new Vector(0, 1, 0));
+        var y = x.cross(z);
+        var matrix = Matrix.changeOfBasis(x, y, z);
         var location = player.getLocation().add(0, 1, 0);
-        var matrix = changeOfBasisDirection(player);
-        for (var i = function.min; i < function.max; i += function.delta) {
-            var target = evaluate(function, i).multiply(matrix);
-            spawnParticle(target, particle, location);
-            forEachEntity(target.at(location), player, it -> it.setFireTicks(fireDuration));
-        }
-        return true;
+        function.evaluate(vector -> {
+            var target = vector.multiply(matrix).at(location);
+            Spawner.spawnParticle(particle, target);
+            Spawner.nearbyEntities(player, target, 0.5, 0.5, 0.5).forEach(it -> it.setFireTicks(duration));
+        });
     }
 }

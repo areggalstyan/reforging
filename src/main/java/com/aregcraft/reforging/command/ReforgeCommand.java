@@ -1,29 +1,26 @@
 package com.aregcraft.reforging.command;
 
 import com.aregcraft.reforging.Reforging;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class ReforgeCommand implements TabExecutor {
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player player) || args.length != 1
-                || !Reforging.CONFIG.reforges.containsKey(args[0])) {
-            return false;
-        }
-        Reforging.CONFIG.reforges.get(args[0]).apply(player.getInventory().getItemInMainHand());
-        return true;
+public class ReforgeCommand extends SimpleCommand<Player> {
+    public ReforgeCommand() {
+        super("reforge", 1, Player.class);
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length > 1) {
-            return null;
+    public boolean perform(Player sender, List<String> arguments) {
+        var name = arguments.get(0);
+        if (Reforging.config().reforges().containsKey(name)) {
+            return Reforging.config().reforges().get(name).apply(sender.getInventory().getItemInMainHand());
         }
-        return Reforging.CONFIG.reforges.keySet().stream().toList();
+        return false;
+    }
+
+    @Override
+    public List<String> suggest(Player sender, List<String> arguments) {
+        return arguments.size() == 1 ? Reforging.config().reforges().keySet().stream().toList() : null;
     }
 }

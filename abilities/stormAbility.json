@@ -1,8 +1,0 @@
-{
-  "description": "Strikes lighting around the player according to the specified function.",
-  "properties": {},
-  "external": [
-    "price",
-    "function"
-  ]
-}

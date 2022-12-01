@@ -1,14 +1,18 @@
 package com.aregcraft.reforging.command;
 
 import com.aregcraft.reforging.Reforging;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class ReloadReforgingCommand implements CommandExecutor {
+import java.util.List;
+
+public class ReloadReforgingCommand extends SimpleCommand<CommandSender> {
+    public ReloadReforgingCommand() {
+        super("reloadreforging", 0, CommandSender.class);
+    }
+
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Reforging.CONFIG.load();
+    public boolean perform(CommandSender sender, List<String> arguments) {
+        Reforging.loadConfig();
         return true;
     }
 }

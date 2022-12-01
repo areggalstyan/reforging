@@ -1,22 +1,19 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.reforging.ability.base.CooldownAbility;
+import com.aregcraft.reforging.ability.base.ProjectileAbility;
 import com.aregcraft.reforging.annotation.Ability;
+import com.aregcraft.reforging.item.ItemStackWrapper;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.ThrownPotion;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 /**
- * Allows player to throw a potion with the specified effect, duration and amplifier.
+ * Allows the player to throw a potion.
  */
 @Ability
-public class PotionAbility extends CooldownAbility {
+public class PotionAbility extends ProjectileAbility<ThrownPotion> {
     /**
-     * Specifies the potion effect.
+     * Specifies the effect of the thrown potion.
      */
     private PotionEffectType effect;
     /**
@@ -28,12 +25,14 @@ public class PotionAbility extends CooldownAbility {
      */
     private int amplifier;
 
+    protected PotionAbility() {
+        super(ThrownPotion.class);
+    }
+
     @Override
-    protected void perform(Player player) {
-        var item = new ItemStack(Material.SPLASH_POTION);
-        var itemMeta = (PotionMeta) item.getItemMeta();
-        itemMeta.addCustomEffect(new PotionEffect(effect, duration, amplifier), true);
-        item.setItemMeta(itemMeta);
-        player.launchProjectile(ThrownPotion.class).setItem(item);
+    protected void configure(ThrownPotion projectile) {
+        var item = ItemStackWrapper.create(Material.SPLASH_POTION);
+        item.addEffect(effect, duration, amplifier);
+        projectile.setItem(item.unwrap());
     }
 }

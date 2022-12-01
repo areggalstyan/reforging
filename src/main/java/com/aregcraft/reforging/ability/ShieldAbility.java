@@ -2,8 +2,9 @@ package com.aregcraft.reforging.ability;
 
 import com.aregcraft.reforging.Reforging;
 import com.aregcraft.reforging.ability.base.RepeatingAbility;
-import com.aregcraft.reforging.ability.external.Function;
 import com.aregcraft.reforging.annotation.Ability;
+import com.aregcraft.reforging.config.model.Function3Model;
+import com.aregcraft.reforging.util.Spawner;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -12,36 +13,33 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 /**
- * Gives player damage resistance for the specified period of time.
+ * Makes the player immune to attacks from aggressive mobs.
  */
 @Ability
 public class ShieldAbility extends RepeatingAbility implements Listener {
-    private Function function;
+    private Function3Model function;
     /**
-     * Specifies the type of the particle which is used to visualize the function.
+     * Specifies the particle used to create visual effects.
      */
     private Particle particle;
     /**
-     * Specifies whether the player should be prevented from attacking other entities while the shield is active.
+     * Specifies whether the player should be prevented from attacking other entities.
      */
     private boolean disableAttack;
 
     public ShieldAbility() {
-        Bukkit.getPluginManager().registerEvents(this, Reforging.PLUGIN);
+        Bukkit.getPluginManager().registerEvents(this, Reforging.plugin());
     }
 
     @Override
-    protected boolean perform(Player player, int time) {
-        for (var i = function.min; i < function.max; i += function.delta) {
-            spawnParticle(evaluate(function, i), particle, player.getLocation());
-        }
+    protected boolean update(Player player, int time) {
+        function.evaluate(it -> Spawner.spawnParticle(particle, it.at(player.getLocation())));
         return true;
     }
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (players.contains(event.getEntity().getUniqueId()) || disableAttack
-                && players.contains(event.getDamager().getUniqueId())) {
+        if (hasPlayer(event.getEntity()) || disableAttack && hasPlayer(event.getDamager())) {
             event.setDamage(0);
         }
     }

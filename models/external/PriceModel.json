@@ -1,0 +1,14 @@
+{
+  "description": "Specifies the amount of health and food taken from the player when activating the ability.",
+  "properties": {
+    "health": {
+      "type": "double",
+      "description": "Specifies the amount of health taken from the player when activating the ability."
+    },
+    "food": {
+      "type": "int",
+      "description": "Specifies the amount of food taken from the player when activating the ability."
+    }
+  },
+  "external": {}
+}
