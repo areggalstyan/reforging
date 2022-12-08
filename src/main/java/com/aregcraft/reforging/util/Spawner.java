@@ -8,6 +8,7 @@ import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,6 +26,10 @@ public class Spawner implements Listener {
 
     public static <T extends Entity> T spawnEntity(Class<T> type, Location location) {
         return location.getWorld().spawn(location, type);
+    }
+
+    public static Entity spawnEntity(EntityType type, Location location) {
+        return location.getWorld().spawnEntity(location, type);
     }
 
     public static void spawnParticle(Particle particle, Location location) {

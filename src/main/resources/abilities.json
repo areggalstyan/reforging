@@ -137,5 +137,22 @@
     },
     "cooldown": 100,
     "speed": 4
+  },
+  {
+    "name": "PAWN",
+    "type": "Pawn",
+    "price": {
+      "health": 6,
+      "food": 6
+    },
+    "cooldown": 200,
+    "entity": "ZOMBIE",
+    "customName": "%YELLOW%%PLAYER%'s Pawn",
+    "adult": true,
+    "count": 2,
+    "duration": 200,
+    "maxHealth": 10,
+    "attackDamage": 4,
+    "armor": 4
   }
 ]

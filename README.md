@@ -381,6 +381,36 @@ Specifies single-character aliases for materials used in the shape.
         }
       }
     }
+  },
+  {
+    "name": "Puppetmaster",
+    "ability": "PAWN",
+    "maxHealth": 10,
+    "attackDamage": -1,
+    "armor": 10,
+    "stone": {
+      "name": "PUPPET",
+      "item": {
+        "name": "%YELLOW%Puppet",
+        "lore": [
+          "%GRAY%Use this item on a reforging anvil to",
+          "%GRAY%obtain the %GOLD%%BOLD%PUPPETMASTER %RESET%%GRAY%reforge!"
+        ]
+      },
+      "material": "PUFFERFISH",
+      "recipe": {
+        "shape": [
+          "dgd",
+          "gng",
+          "dgd"
+        ],
+        "keys": {
+          "d": "DIAMOND_BLOCK",
+          "g": "GOLD_BLOCK",
+          "n": "NETHER_STAR"
+        }
+      }
+    }
   }
 ]
 ```
@@ -448,6 +478,82 @@ Specifies the name of the ability.
 #### speed: double
 
 Specifies the speed of the projectile.
+
+### PawnAbility
+
+Allows the player to spawn pawns who will attack other players.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### attackKnockback: double
+
+Specifies the attack knockback of the pawns.
+
+#### followRange: double
+
+Specifies the follow range of the pawns.
+
+#### count: int
+
+Specifies the number of pawns to spawn.
+
+#### customName: string
+
+Specifies the custom name of the entity.
+
+#### movementSpeed: double
+
+Specifies the movement speed of the pawns.
+
+#### duration: int
+
+Specifies the duration of the lives of the pawns in ticks (1 second = 20 ticks). If 0, the lives of the pawns will not be limited.
+
+#### armorToughness: double
+
+Specifies the armor toughness of the pawns.
+
+#### armor: double
+
+Specifies the armor of the pawns.
+
+#### cooldown: int
+
+Specifies the cooldown of the ability.
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### maxHealth: double
+
+Specifies the health of the pawns.
+
+#### adult: boolean
+
+Specifies whether the entity should be an adult.
+
+#### entity: entity type
+
+Specifies the type of the entity.
+
+#### knockbackResistance: double
+
+Specifies the knockback resistance of the pawns.
+
+#### attackDamage: double
+
+Specifies the attack damage of the pawns.
 
 ### StormAbility
 
@@ -957,6 +1063,23 @@ Specifies the speed of the projectile.
     },
     "cooldown": 100,
     "speed": 4
+  },
+  {
+    "name": "PAWN",
+    "type": "Pawn",
+    "price": {
+      "health": 6,
+      "food": 6
+    },
+    "cooldown": 200,
+    "entity": "ZOMBIE",
+    "customName": "%YELLOW%%PLAYER%'s Pawn",
+    "adult": true,
+    "count": 2,
+    "duration": 200,
+    "maxHealth": 10,
+    "attackDamage": 4,
+    "armor": 4
   }
 ]
 ```

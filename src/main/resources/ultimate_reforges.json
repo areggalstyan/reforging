@@ -62,5 +62,35 @@
         }
       }
     }
+  },
+  {
+    "name": "Puppetmaster",
+    "ability": "PAWN",
+    "maxHealth": 10,
+    "attackDamage": -1,
+    "armor": 10,
+    "stone": {
+      "name": "PUPPET",
+      "item": {
+        "name": "%YELLOW%Puppet",
+        "lore": [
+          "%GRAY%Use this item on a reforging anvil to",
+          "%GRAY%obtain the %GOLD%%BOLD%PUPPETMASTER %RESET%%GRAY%reforge!"
+        ]
+      },
+      "material": "PUFFERFISH",
+      "recipe": {
+        "shape": [
+          "dgd",
+          "gng",
+          "dgd"
+        ],
+        "keys": {
+          "d": "DIAMOND_BLOCK",
+          "g": "GOLD_BLOCK",
+          "n": "NETHER_STAR"
+        }
+      }
+    }
   }
 ]
