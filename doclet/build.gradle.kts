@@ -3,11 +3,11 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
-group = "com.aregcraft"
-version = "1.0.0-SNAPSHOT"
+group = "com.aregcraft.reforging"
+version = "3.1.0-SNAPSHOT"
 
 repositories {
-    mavenCentral();
+    mavenCentral()
 }
 
 dependencies {

@@ -1,57 +1,82 @@
-import kr.entree.spigradle.kotlin.spigot
-
 plugins {
     java
-    id("kr.entree.spigradle") version "2.4.2"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
-group = "com.aregcraft"
+group = "com.aregcraft.reforging"
 version = "3.1.0-SNAPSHOT"
 
+allprojects {
+    group = "com.aregcraft.reforging"
+    version = "3.1.0-SNAPSHOT"
+}
+
+repositories {
+    mavenCentral()
+}
+
 dependencies {
-    compileOnly(spigot("1.19.2"))
-    implementation("org.mariuszgromada.math:MathParser.org-mXparser:5.0.7")
-    implementation("org.apache.commons:commons-rng-sampling:1.5")
+    implementation(project("core"))
+    implementation(project("plugin"))
 }
 
-spigot {
-    name = "Reforging"
-    apiVersion = "1.16"
-    authors = listOf("Aregcraft")
-    commands {
-        create("reforge") {
-            description = "Reforges the item in the main hand of the player."
-            usage = "Usage: /<command> <reforgeName>"
-            permission = "reforging.command.reforge"
-        }
-        create("reloadreforging") {
-            aliases = listOf("rr")
-            description = "Reloads the configuration files."
-            usage = "Usage: /<command>"
-            permission = "reforging.command.reloadreforging"
-        }
-    }
-}
-
-tasks.register("debugPlugin") {
-    dependsOn(tasks["prepareSpigotPlugins"])
-    dependsOn(tasks["runSpigot"])
-    file("build/libs").deleteRecursively()
-    file("debug/spigot/plugins").walk().filter { it.extension == "jar" }.forEach { it.delete() }
-    file("debug/spigot/plugins/${spigot.name}").deleteRecursively()
+tasks.shadowJar {
+    relocate("org.bstats", "${project.group}.plugin")
+    archiveClassifier.set("")
 }
 
 tasks.register<Javadoc>("release") {
-    dependsOn(project(":doclet").tasks["shadowJar"])
-    source = sourceSets["main"].allJava
-    title = null
-    classpath = sourceSets["main"].compileClasspath
+    dependsOn(gradle.includedBuild("doclet").task(":shadowJar"))
+    val main = project("plugin").sourceSets["main"]
+    source(main.allJava)
+    classpath = main.compileClasspath
     options {
         this as StandardJavadocDocletOptions
-        docletpath = listOf(project(":doclet").tasks.getByName<Jar>("jar").archiveFile.get().asFile)
-        doclet = "com.aregcraft.reforgingdoclet.ReforgingDoclet"
-        destinationDirectory = projectDir
+        docletpath(file("doclet/build/libs/doclet-$version.jar"))
+        doclet("${project.group}.doclet.ReforgingDoclet")
+        destinationDirectory(projectDir)
         addStringOption("version", version as String)
     }
     outputs.upToDateWhen { false }
+}
+
+tasks.register("generatePluginDescription") {
+    File(sourceSets["main"].output.resourcesDir, "plugin.yml").writeText("""
+        name: Reforging
+        main: ${project.group}.plugin.Reforging
+        version: $version
+        api-version: 1.19
+        author: Aregcraft
+        website: https://reforging.vercel.app/
+        commands:
+            reforge:
+                description: Reforges the item in the main hand of the player.
+                usage: "Usage: /<command> <reforgeName>"
+                permission: reforging.command.reforge
+            reloadreforging:
+                aliases: rr
+                description: Reloads the configuration files.
+                usage: "Usage: /<command>"
+                permission: reforging.command.reloadreforging
+    """.trimIndent())
+}
+
+tasks.register<Copy>("copyPlugin") {
+    dependsOn(tasks["generatePluginDescription"])
+    from(tasks["shadowJar"])
+    destinationDir = file("debug/spigot/plugins")
+}
+
+tasks.register("preparePlugin") {
+    dependsOn(tasks["copyPlugin"])
+    file("debug/spigot/plugins").walk().filter { it.extension == "jar" }.forEach { it.delete() }
+    file("debug/spigot/plugins/Reforging").deleteRecursively()
+}
+
+tasks.register<JavaExec>("debugPlugin") {
+    dependsOn(tasks["preparePlugin"])
+    workingDir("debug/spigot")
+    classpath(files("debug/spigot/server.jar"))
+    args("nogui")
+    standardInput = System.`in`
 }
