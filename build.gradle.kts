@@ -61,21 +61,21 @@ tasks.register("generatePluginDescription") {
     """.trimIndent())
 }
 
-tasks.register<Copy>("copyPlugin") {
-    dependsOn(tasks["generatePluginDescription"])
-    from(tasks["shadowJar"])
-    destinationDir = file("debug/spigot/plugins")
-}
-
-tasks.register("preparePlugin") {
-    dependsOn(tasks["copyPlugin"])
+tasks.register("prepareDebug") {
     file("build/libs").walk().filter { it.extension == "jar" }.forEach { it.delete() }
     file("debug/spigot/plugins").walk().filter { it.extension == "jar" }.forEach { it.delete() }
     file("debug/spigot/plugins/Reforging").deleteRecursively()
 }
 
+tasks.register<Copy>("copyPlugin") {
+    dependsOn(tasks["prepareDebug"])
+    dependsOn(tasks["generatePluginDescription"])
+    from(tasks["shadowJar"])
+    destinationDir = file("debug/spigot/plugins")
+}
+
 tasks.register<JavaExec>("debugPlugin") {
-    dependsOn(tasks["preparePlugin"])
+    dependsOn(tasks["copyPlugin"])
     workingDir("debug/spigot")
     classpath(files("debug/spigot/server.jar"))
     args("nogui")
