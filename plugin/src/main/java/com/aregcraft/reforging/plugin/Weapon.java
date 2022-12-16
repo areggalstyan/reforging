@@ -1,5 +1,6 @@
-package com.aregcraft.reforging.plugin.item;
+package com.aregcraft.reforging.plugin;
 
+import com.aregcraft.reforging.core.item.ItemWrapper;
 import org.bukkit.Material;
 
 import java.util.Arrays;
@@ -28,11 +29,11 @@ public enum Weapon {
         this.material = material;
     }
 
-    public static boolean has(ItemStackWrapper item) {
+    public static boolean has(ItemWrapper item) {
         return item != null && Arrays.stream(values()).map(Enum::name).anyMatch(item.material().name()::equals);
     }
 
-    public static Weapon of(ItemStackWrapper item) {
+    public static Weapon of(ItemWrapper item) {
         return Weapon.valueOf(item.material().name());
     }
 

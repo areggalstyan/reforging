@@ -1,7 +1,7 @@
 package com.aregcraft.reforging.plugin.config.model;
 
 import com.aregcraft.reforging.plugin.annotation.External;
-import com.aregcraft.reforging.plugin.math.Vector;
+import com.aregcraft.reforging.core.math.Vector;
 import org.mariuszgromada.math.mxparser.Expression;
 
 import java.util.function.Consumer;

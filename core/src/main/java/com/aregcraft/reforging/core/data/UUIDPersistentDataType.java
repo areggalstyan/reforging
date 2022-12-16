@@ -1,4 +1,4 @@
-package com.aregcraft.reforging.plugin.util;
+package com.aregcraft.reforging.core.data;
 
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataType;
@@ -7,9 +7,7 @@ import java.nio.ByteBuffer;
 import java.util.UUID;
 
 public class UUIDPersistentDataType implements PersistentDataType<byte[], UUID> {
-    public static final PersistentDataType<byte[], UUID> UUID = new UUIDPersistentDataType();
-
-    private UUIDPersistentDataType() {
+    UUIDPersistentDataType() {
     }
 
     @Override

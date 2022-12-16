@@ -64,6 +64,7 @@
     "maxHealth": 8,
     "movementSpeed": -0.025,
     "attackDamage": -2,
+    "attackSpeed": -0.1,
     "armor": 8,
     "weight": 10
   },
@@ -72,6 +73,14 @@
     "ability": "POTION",
     "maxHealth": 2,
     "attackKnockback": 2,
+    "weight": 10
+  },
+  {
+    "name": "Frozen",
+    "ability": "FREEZE",
+    "movementSpeed": -0.01,
+    "attackSpeed": -0.1,
+    "armor": 4,
     "weight": 10
   }
 ]

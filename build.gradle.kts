@@ -4,11 +4,11 @@ plugins {
 }
 
 group = "com.aregcraft.reforging"
-version = "3.1.0-SNAPSHOT"
+version = "3.2.0-SNAPSHOT"
 
 allprojects {
-    group = "com.aregcraft.reforging"
-    version = "3.1.0-SNAPSHOT"
+    group = project.group
+    version = project.version
 }
 
 repositories {
@@ -69,6 +69,7 @@ tasks.register<Copy>("copyPlugin") {
 
 tasks.register("preparePlugin") {
     dependsOn(tasks["copyPlugin"])
+    file("build/libs").walk().filter { it.extension == "jar" }.forEach { it.delete() }
     file("debug/spigot/plugins").walk().filter { it.extension == "jar" }.forEach { it.delete() }
     file("debug/spigot/plugins/Reforging").deleteRecursively()
 }

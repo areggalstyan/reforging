@@ -7,7 +7,7 @@ import com.aregcraft.reforging.plugin.config.model.ItemModel;
 import com.aregcraft.reforging.plugin.reforge.Reforge;
 import com.aregcraft.reforging.plugin.reforge.StandardReforge;
 import com.aregcraft.reforging.plugin.reforge.UltimateReforge;
-import com.aregcraft.reforging.plugin.util.Named;
+import com.aregcraft.reforging.core.Named;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
@@ -86,7 +86,7 @@ public record PluginConfig(ItemModel item, AnvilModel anvil, Map<String, String>
         try {
             var path = Files.createDirectories(Reforging.plugin().getDataFolder().toPath()).resolve(name);
             if (Files.notExists(path)) {
-                Files.copy(Reforging.plugin().getResource(name), path);
+                Files.copy(Objects.requireNonNull(Reforging.plugin().getResource(name)), path);
             }
             try (var reader = Files.newBufferedReader(path)) {
                 return gson.fromJson(reader, type);

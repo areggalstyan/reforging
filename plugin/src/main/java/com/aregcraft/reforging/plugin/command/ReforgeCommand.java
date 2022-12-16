@@ -1,5 +1,6 @@
 package com.aregcraft.reforging.plugin.command;
 
+import com.aregcraft.reforging.core.SimpleCommand;
 import com.aregcraft.reforging.plugin.Reforging;
 import org.bukkit.entity.Player;
 

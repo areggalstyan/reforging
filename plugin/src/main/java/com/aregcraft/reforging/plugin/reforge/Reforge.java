@@ -2,10 +2,10 @@ package com.aregcraft.reforging.plugin.reforge;
 
 import com.aregcraft.reforging.plugin.Reforging;
 import com.aregcraft.reforging.plugin.ability.base.BaseAbility;
-import com.aregcraft.reforging.plugin.format.Format;
-import com.aregcraft.reforging.plugin.item.ItemStackWrapper;
-import com.aregcraft.reforging.plugin.item.Weapon;
-import com.aregcraft.reforging.plugin.util.Named;
+import com.aregcraft.reforging.core.Format;
+import com.aregcraft.reforging.core.item.ItemWrapper;
+import com.aregcraft.reforging.plugin.Weapon;
+import com.aregcraft.reforging.core.Named;
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
@@ -16,6 +16,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -51,26 +52,27 @@ public class Reforge implements Named, Listener {
     }
 
     public boolean apply(ItemStack item) {
-        return apply(ItemStackWrapper.wrap(item));
+        return apply(ItemWrapper.wrap(item));
     }
 
-    public boolean apply(ItemStackWrapper item) {
+    public boolean apply(ItemWrapper item) {
         if (!Weapon.has(item)) {
             return false;
         }
-        if (item.has("reforge")) {
-            var name = item.get("reforge");
+        if (item.data().has("reforge", PersistentDataType.STRING)) {
+            var name = item.data().get("reforge", PersistentDataType.STRING);
             if (Reforging.config().reforges().containsKey(name)) {
                 removeModifiers(item, name);
                 removeLore(item, name);
             }
         }
-        if (!item.has("display_name")) {
-            item.set("display_name", item.hasDisplayName() ? item.displayName() : Weapon.of(item).displayName());
+        if (!item.data().has("display_name", PersistentDataType.STRING)) {
+            item.data().set("display_name", PersistentDataType.STRING,
+                    item.hasName() ? item.name() : Weapon.of(item).displayName());
         }
-        item.set("reforge", name);
+        item.data().set("reforge", PersistentDataType.STRING, name);
         addModifiers(item);
-        item.displayName(displayNameFormat(item).format(Reforging.config().item().name()));
+        item.name(displayNameFormat(item).format(Reforging.config().item().name()));
         addLore(item);
         return true;
     }
@@ -84,7 +86,7 @@ public class Reforge implements Named, Listener {
                 || text.contains("%ATTACK_KNOCKBACK%") && attackKnockback == 0);
     }
 
-    private Format loreFormat(ItemStackWrapper item) {
+    private Format loreFormat(ItemWrapper item) {
         return Format.builder()
                 .entry("ABILITY", ability.name())
                 .entry("BASE_ATTACK_SPEED", Weapon.of(item).speed())
@@ -101,47 +103,60 @@ public class Reforge implements Named, Listener {
                 .build();
     }
 
-    private Format displayNameFormat(ItemStackWrapper item) {
+    private Format displayNameFormat(ItemWrapper item) {
         return Format.builder()
                 .entry("REFORGE_NAME", name)
-                .entry("NAME", item.get("display_name"))
+                .entry("NAME", item.data().get("display_name", PersistentDataType.STRING))
                 .build();
     }
 
-    private void removeModifiers(ItemStackWrapper item, String name) {
-        item.removeModifier(Attribute.GENERIC_MAX_HEALTH, name);
-        item.removeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, name);
-        item.removeModifier(Attribute.GENERIC_MOVEMENT_SPEED, name);
-        item.removeModifier(Attribute.GENERIC_ATTACK_DAMAGE, name);
-        item.removeModifier(Attribute.GENERIC_ARMOR, name);
-        item.removeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, name);
-        item.removeModifier(Attribute.GENERIC_ATTACK_SPEED, name);
-        item.removeModifier(Attribute.GENERIC_ATTACK_KNOCKBACK, name);
+    private void removeModifiers(ItemWrapper item, String name) {
+        removeModifier(item, Attribute.GENERIC_MAX_HEALTH, name);
+        removeModifier(item, Attribute.GENERIC_KNOCKBACK_RESISTANCE, name);
+        removeModifier(item, Attribute.GENERIC_MOVEMENT_SPEED, name);
+        removeModifier(item, Attribute.GENERIC_ATTACK_DAMAGE, name);
+        removeModifier(item, Attribute.GENERIC_ARMOR, name);
+        removeModifier(item, Attribute.GENERIC_ARMOR_TOUGHNESS, name);
+        removeModifier(item, Attribute.GENERIC_ATTACK_SPEED, name);
+        removeModifier(item, Attribute.GENERIC_ATTACK_KNOCKBACK, name);
     }
 
-    private void addModifiers(ItemStackWrapper item) {
-        item.addModifier(Attribute.GENERIC_MAX_HEALTH, name, maxHealth);
-        item.addModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, name, knockbackResistance);
-        item.addModifier(Attribute.GENERIC_MOVEMENT_SPEED, name, movementSpeed);
-        item.addModifier(Attribute.GENERIC_ATTACK_DAMAGE, name, Weapon.of(item).damage() + attackDamage);
-        item.addModifier(Attribute.GENERIC_ARMOR, name, armor);
-        item.addModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, name, armorToughness);
-        item.addModifier(Attribute.GENERIC_ATTACK_SPEED, name, Weapon.of(item).speed() - 4 + attackSpeed);
-        item.addModifier(Attribute.GENERIC_ATTACK_KNOCKBACK, name, attackKnockback);
-        item.flags(ItemFlag.HIDE_ATTRIBUTES);
+    private void removeModifier(ItemWrapper item, Attribute attribute, String name) {
+        item.modifier().attribute(attribute).name(name).remove();
     }
 
-    private void removeLore(ItemStackWrapper item, String name) {
+    private void addModifiers(ItemWrapper item) {
+        addModifier(item, Attribute.GENERIC_MAX_HEALTH, name, maxHealth);
+        addModifier(item, Attribute.GENERIC_KNOCKBACK_RESISTANCE, name, knockbackResistance);
+        addModifier(item, Attribute.GENERIC_MOVEMENT_SPEED, name, movementSpeed);
+        addModifier(item, Attribute.GENERIC_ATTACK_DAMAGE, name, Weapon.of(item).damage() + attackDamage);
+        addModifier(item, Attribute.GENERIC_ARMOR, name, armor);
+        addModifier(item, Attribute.GENERIC_ARMOR_TOUGHNESS, name, armorToughness);
+        addModifier(item, Attribute.GENERIC_ATTACK_SPEED, name, Weapon.of(item).speed() - 4 + attackSpeed);
+        addModifier(item, Attribute.GENERIC_ATTACK_KNOCKBACK, name, attackKnockback);
+        item.addFlags(ItemFlag.HIDE_ATTRIBUTES);
+    }
+
+    private void addModifier(ItemWrapper item, Attribute attribute, String name, float amount) {
+        item.modifier().attribute(attribute).name(name).amount(amount).add();
+    }
+
+    private void removeLore(ItemWrapper item, String name) {
         var lore = new ArrayList<>(item.lore());
-        Reforging.config().item().lore().stream().map(Reforging.config().reforges().get(name).loreFormat(item)::format)
-                .filter(lore::contains).mapToInt(lore::lastIndexOf).forEach(lore::remove);
+        Reforging.config().item().lore().stream()
+                .map(Reforging.config().reforges().get(name).loreFormat(item)::format)
+                .filter(lore::contains)
+                .mapToInt(lore::lastIndexOf)
+                .forEach(lore::remove);
         item.lore(lore);
     }
 
-    private void addLore(ItemStackWrapper item) {
+    private void addLore(ItemWrapper item) {
         var lore = new ArrayList<>(item.lore());
-        Reforging.config().item().lore().stream().filter(this::isDisplayable)
-                .map(loreFormat(item)::format).forEach(lore::add);
+        Reforging.config().item().lore().stream()
+                .filter(this::isDisplayable)
+                .map(loreFormat(item)::format)
+                .forEach(lore::add);
         item.lore(lore);
     }
 
@@ -159,11 +174,12 @@ public class Reforge implements Named, Listener {
     }
 
     private void activateAbility(ItemStack rawItem, Player player) {
-        var item = ItemStackWrapper.wrap(rawItem);
-        if (item == null || !item.has("reforge")) {
+        var item = ItemWrapper.wrap(rawItem);
+        if (item == null || !item.data().has("reforge", PersistentDataType.STRING)) {
             return;
         }
-        var reforge = Reforging.config().reforges().get(item.get("reforge"));
+        var reforge = Reforging.config().reforges().get(item.data().get("reforge",
+                PersistentDataType.STRING));
         if (reforge != null && reforge.ability != null) {
             reforge.ability.activate(player);
         }

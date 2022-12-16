@@ -1,10 +1,12 @@
-package com.aregcraft.reforging.plugin.util;
+package com.aregcraft.reforging.core;
 
-import com.aregcraft.reforging.plugin.Reforging;
-import com.aregcraft.reforging.plugin.item.ItemStackWrapper;
+import com.aregcraft.reforging.core.data.Data;
+import com.aregcraft.reforging.core.data.PersistentDataTypeExtension;
+import com.aregcraft.reforging.core.item.ItemWrapper;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -17,23 +19,24 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.BoundingBox;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 public class Spawner implements Listener {
     public Spawner() {
-        Bukkit.getPluginManager().registerEvents(this, Reforging.plugin());
+        Bukkit.getPluginManager().registerEvents(this, Context.plugin());
     }
 
     public static <T extends Entity> T spawnEntity(Class<T> type, Location location) {
-        return location.getWorld().spawn(location, type);
+        return nullSafeWorld(location).spawn(location, type);
     }
 
     public static Entity spawnEntity(EntityType type, Location location) {
-        return location.getWorld().spawnEntity(location, type);
+        return nullSafeWorld(location).spawnEntity(location, type);
     }
 
     public static void spawnParticle(Particle particle, Location location) {
-        location.getWorld().spawnParticle(particle, location, 0);
+        nullSafeWorld(location).spawnParticle(particle, location, 0);
     }
 
     public static ArmorStand spawnArmorStand(Location location) {
@@ -43,20 +46,19 @@ public class Spawner implements Listener {
         armorStand.setArms(true);
         armorStand.setGravity(false);
         armorStand.setCanPickupItems(false);
-        armorStand.getPersistentDataContainer().set(Reforging.key("disable_interaction"), PersistentDataType.BYTE,
-                (byte) 1);
+        Data.of(armorStand).set("disable_interaction", PersistentDataType.BYTE, (byte) 1);
         return armorStand;
     }
 
-    public static ArmorStand spawnArmorStand(Location location, ItemStackWrapper item) {
+    public static ArmorStand spawnArmorStand(Location location, ItemWrapper item) {
         var armorStand = spawnArmorStand(location);
-        armorStand.getEquipment().setItemInMainHand(item.unwrap());
+        Objects.requireNonNull(armorStand.getEquipment()).setItemInMainHand(item.unwrap());
         return armorStand;
     }
 
     public static List<LivingEntity> nearbyEntities(Entity exclude, Location location, double x, double y, double z) {
-        return location.getWorld().getNearbyEntities(location, x, y, z).stream()
-                .filter(Predicate.not(Predicate.isEqual(exclude)))
+        return nullSafeWorld(location).getNearbyEntities(location, x, y, z).stream()
+                .filter(Predicate.not(exclude::equals))
                 .filter(LivingEntity.class::isInstance)
                 .map(LivingEntity.class::cast).toList();
     }
@@ -69,8 +71,10 @@ public class Spawner implements Listener {
 
     @EventHandler
     public void onPlayerInteractAtEntity(PlayerInteractAtEntityEvent event) {
-        var disableInteraction = event.getRightClicked().getPersistentDataContainer()
-                .get(Reforging.key("disable_interaction"), PersistentDataType.BYTE);
-        event.setCancelled(disableInteraction != null && disableInteraction == (byte) 1);
+        event.setCancelled(Data.of(event.getRightClicked()).get("id", PersistentDataTypeExtension.BOOLEAN));
+    }
+
+    private static World nullSafeWorld(Location location) {
+        return Objects.requireNonNull(location.getWorld());
     }
 }

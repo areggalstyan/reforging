@@ -1,13 +1,15 @@
 package com.aregcraft.reforging.plugin.ability;
 
+import com.aregcraft.reforging.core.data.Data;
+import com.aregcraft.reforging.core.data.PersistentDataTypeExtension;
 import com.aregcraft.reforging.plugin.Reforging;
 import com.aregcraft.reforging.plugin.ability.base.CooldownAbility;
 import com.aregcraft.reforging.plugin.annotation.Ability;
 import com.aregcraft.reforging.plugin.annotation.Placeholder;
 import com.aregcraft.reforging.plugin.annotation.Placeholders;
-import com.aregcraft.reforging.plugin.format.Format;
-import com.aregcraft.reforging.plugin.util.Spawner;
-import com.aregcraft.reforging.plugin.util.UUIDPersistentDataType;
+import com.aregcraft.reforging.core.Format;
+import com.aregcraft.reforging.core.Spawner;
+import com.aregcraft.reforging.core.data.UUIDPersistentDataType;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attributable;
@@ -22,7 +24,9 @@ import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.persistence.PersistentDataHolder;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,9 +35,6 @@ import java.util.UUID;
  */
 @Ability
 public class PawnAbility extends CooldownAbility implements Listener {
-    private static final NamespacedKey MASTER = Reforging.key("master");
-    private static final NamespacedKey INFLAMMABLE = Reforging.key("inflammable");
-
     /**
      * Specifies the type of the entity.
      */
@@ -94,11 +95,11 @@ public class PawnAbility extends CooldownAbility implements Listener {
     }
 
     private static UUID getEntityPlayerData(PersistentDataHolder entity) {
-        return entity.getPersistentDataContainer().get(MASTER, UUIDPersistentDataType.UUID);
+        return Data.of(entity).get("master", PersistentDataTypeExtension.UUID);
     }
 
     private static void setEntityPlayerData(PersistentDataHolder entity, Player player) {
-        entity.getPersistentDataContainer().set(MASTER, UUIDPersistentDataType.UUID, player.getUniqueId());
+        Data.of(entity).set("master", PersistentDataTypeExtension.UUID, player.getUniqueId());
     }
 
     private static void setAttributeValueIfPresent(Attributable entity, Attribute attribute, double value) {
@@ -108,12 +109,11 @@ public class PawnAbility extends CooldownAbility implements Listener {
     }
 
     private static boolean isEntityInflammable(PersistentDataHolder entity) {
-        var inflammable = entity.getPersistentDataContainer().get(INFLAMMABLE, PersistentDataType.BYTE);
-        return inflammable != null && inflammable != 0;
+        return Data.of(entity).getOrElse("inflammable", PersistentDataTypeExtension.BOOLEAN, false);
     }
 
     private static void makeEntityInflammable(PersistentDataHolder entity) {
-        entity.getPersistentDataContainer().set(INFLAMMABLE, PersistentDataType.BYTE, (byte) 1);
+        Data.of(entity).set("inflammable", PersistentDataTypeExtension.BOOLEAN, true);
     }
 
     private static Format format(Player player) {
@@ -149,7 +149,12 @@ public class PawnAbility extends CooldownAbility implements Listener {
                 pawn.setCustomNameVisible(true);
             }
             if (duration > 0) {
-                Bukkit.getScheduler().scheduleSyncDelayedTask(Reforging.plugin(), pawn::remove, duration);
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        pawn.remove();
+                    }
+                }.runTaskLater(Reforging.plugin(), duration);
             }
         }
     }

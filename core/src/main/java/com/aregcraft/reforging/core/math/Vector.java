@@ -1,8 +1,10 @@
-package com.aregcraft.reforging.plugin.math;
+package com.aregcraft.reforging.core.math;
 
 import org.bukkit.Location;
 
 public record Vector(double x, double y, double z) {
+    public static final Vector EMPTY = new Vector(0, 0, 0);
+
     public Vector(org.bukkit.util.Vector vector) {
         this(vector.getX(), vector.getY(), vector.getZ());
     }
@@ -32,15 +34,15 @@ public record Vector(double x, double y, double z) {
     }
 
     public Vector multiply(Matrix matrix) {
-        return new Vector(matrix.get(0, 0) * x
-                + matrix.get(0, 1) * y
-                + matrix.get(0, 2) * z,
-                matrix.get(1, 0) * x
-                        + matrix.get(1, 1) * y
-                        + matrix.get(1, 2) * z,
-                matrix.get(2, 0) * x
-                        + matrix.get(2, 1) * y
-                        + matrix.get(2, 2) * z);
+        return new Vector(multiplyRow(matrix, 0),
+                multiplyRow(matrix, 1),
+                multiplyRow(matrix, 2));
+    }
+
+    private double multiplyRow(Matrix matrix, int row) {
+        return matrix.get(row, 0) * x
+                + matrix.get(row, 1) * y
+                + matrix.get(row, 2) * z;
     }
 
     public Vector divide(double scalar) {

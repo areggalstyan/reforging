@@ -1,10 +1,11 @@
 package com.aregcraft.reforging.plugin.ability;
 
+import com.aregcraft.reforging.core.item.PotionItemWrapper;
 import com.aregcraft.reforging.plugin.ability.base.ProjectileAbility;
 import com.aregcraft.reforging.plugin.annotation.Ability;
-import com.aregcraft.reforging.plugin.item.ItemStackWrapper;
 import org.bukkit.Material;
 import org.bukkit.entity.ThrownPotion;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 /**
@@ -31,8 +32,8 @@ public class PotionAbility extends ProjectileAbility<ThrownPotion> {
 
     @Override
     protected void configure(ThrownPotion projectile) {
-        var item = ItemStackWrapper.create(Material.SPLASH_POTION);
-        item.addEffect(effect, duration, amplifier);
+        var item = PotionItemWrapper.create(Material.SPLASH_POTION);
+        item.addEffect(new PotionEffect(effect, duration, amplifier));
         projectile.setItem(item.unwrap());
     }
 }

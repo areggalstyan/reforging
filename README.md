@@ -236,6 +236,7 @@ Specifies the relative chance of the reforge being applied to the weapon.
     "maxHealth": 8,
     "movementSpeed": -0.025,
     "attackDamage": -2,
+    "attackSpeed": -0.1,
     "armor": 8,
     "weight": 10
   },
@@ -244,6 +245,14 @@ Specifies the relative chance of the reforge being applied to the weapon.
     "ability": "POTION",
     "maxHealth": 2,
     "attackKnockback": 2,
+    "weight": 10
+  },
+  {
+    "name": "Frozen",
+    "ability": "FREEZE",
+    "movementSpeed": -0.01,
+    "attackSpeed": -0.1,
+    "armor": 4,
     "weight": 10
   }
 ]
@@ -466,6 +475,38 @@ Specifies the amount of health taken from the player when activating the ability
 ##### food: int
 
 Specifies the amount of food taken from the player when activating the ability.
+
+#### cooldown: int
+
+Specifies the cooldown of the ability.
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### speed: double
+
+Specifies the speed of the projectile.
+
+### FreezeAbility
+
+Allows the player to throw a snowball, freezing the hit entity.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### duration: int
+
+Specifies how long to freeze the hit entity.
 
 #### cooldown: int
 
@@ -1080,6 +1121,17 @@ Specifies the speed of the projectile.
     "maxHealth": 10,
     "attackDamage": 4,
     "armor": 4
+  },
+  {
+    "name": "FREEZE",
+    "type": "Freeze",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 60,
+    "speed": 2,
+    "duration": 60
   }
 ]
 ```

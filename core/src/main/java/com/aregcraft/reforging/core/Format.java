@@ -1,4 +1,4 @@
-package com.aregcraft.reforging.plugin.format;
+package com.aregcraft.reforging.core;
 
 import net.md_5.bungee.api.ChatColor;
 

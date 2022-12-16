@@ -2,7 +2,7 @@ package com.aregcraft.reforging.plugin.ability;
 
 import com.aregcraft.reforging.plugin.ability.base.CooldownAbility;
 import com.aregcraft.reforging.plugin.annotation.Ability;
-import com.aregcraft.reforging.plugin.math.Vector;
+import com.aregcraft.reforging.core.math.Vector;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 

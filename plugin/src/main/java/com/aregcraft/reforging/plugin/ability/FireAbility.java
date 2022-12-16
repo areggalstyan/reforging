@@ -3,9 +3,9 @@ package com.aregcraft.reforging.plugin.ability;
 import com.aregcraft.reforging.plugin.ability.base.CooldownAbility;
 import com.aregcraft.reforging.plugin.annotation.Ability;
 import com.aregcraft.reforging.plugin.config.model.Function3Model;
-import com.aregcraft.reforging.plugin.math.Matrix;
-import com.aregcraft.reforging.plugin.math.Vector;
-import com.aregcraft.reforging.plugin.util.Spawner;
+import com.aregcraft.reforging.core.math.Matrix;
+import com.aregcraft.reforging.core.math.Vector;
+import com.aregcraft.reforging.core.Spawner;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 

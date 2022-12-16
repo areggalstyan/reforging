@@ -2,9 +2,9 @@ package com.aregcraft.reforging.plugin.ability;
 
 import com.aregcraft.reforging.plugin.ability.base.RepeatingAbility;
 import com.aregcraft.reforging.plugin.annotation.Ability;
-import com.aregcraft.reforging.plugin.item.ItemStackWrapper;
-import com.aregcraft.reforging.plugin.math.Vector;
-import com.aregcraft.reforging.plugin.util.Spawner;
+import com.aregcraft.reforging.core.item.ItemWrapper;
+import com.aregcraft.reforging.core.math.Vector;
+import com.aregcraft.reforging.core.Spawner;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.ArmorStand;
@@ -33,7 +33,7 @@ public class ThrowAbility extends RepeatingAbility {
         var location = player.getLocation();
         var direction = new Vector(location.getDirection());
         direction.cross(new Vector(0, 1, 0)).normalize().multiply(0.25).at(location);
-        var item = ItemStackWrapper.wrap(player.getInventory().getItemInMainHand());
+        var item = ItemWrapper.wrap(player.getInventory().getItemInMainHand());
         armorStand = Spawner.spawnArmorStand(location, item);
         armorStand.setRightArmPose(new EulerAngle(0, Math.toRadians(location.getPitch()), 1.5 * Math.PI));
         damage = damageFactor * item.modifiers(Attribute.GENERIC_ATTACK_DAMAGE).stream()

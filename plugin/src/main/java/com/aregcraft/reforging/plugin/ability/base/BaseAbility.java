@@ -1,7 +1,7 @@
 package com.aregcraft.reforging.plugin.ability.base;
 
 import com.aregcraft.reforging.plugin.config.model.PriceModel;
-import com.aregcraft.reforging.plugin.util.Named;
+import com.aregcraft.reforging.core.Named;
 import org.bukkit.entity.Player;
 
 public abstract class BaseAbility implements Named {

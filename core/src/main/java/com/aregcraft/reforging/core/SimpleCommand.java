@@ -1,4 +1,4 @@
-package com.aregcraft.reforging.plugin.command;
+package com.aregcraft.reforging.core;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 
 import java.util.List;
+import java.util.Objects;
 
 public abstract class SimpleCommand<T extends CommandSender> implements TabExecutor {
     private final int argumentCount;
@@ -14,7 +15,7 @@ public abstract class SimpleCommand<T extends CommandSender> implements TabExecu
     protected SimpleCommand(String name, int argumentCount, Class<T> senderType) {
         this.argumentCount = argumentCount;
         this.senderType = senderType;
-        var command = Bukkit.getPluginCommand(name);
+        var command = Objects.requireNonNull(Bukkit.getPluginCommand(name));
         command.setExecutor(this);
         command.setTabCompleter(this);
     }

@@ -1,8 +1,8 @@
 package com.aregcraft.reforging.plugin;
 
-import com.aregcraft.reforging.plugin.item.ItemStackWrapper;
-import com.aregcraft.reforging.plugin.item.Weapon;
-import com.aregcraft.reforging.plugin.util.Spawner;
+import com.aregcraft.reforging.core.item.ItemWrapper;
+import com.aregcraft.reforging.core.Spawner;
+import com.aregcraft.reforging.core.data.Data;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -19,22 +19,23 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.EulerAngle;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class ReforgingAnvil implements Listener {
-    private static final ItemStack ITEM = ItemStackWrapper.fromModel(Material.ANVIL, Reforging.config().anvil().item(),
-            "REFORGING_ANVIL").unwrap();
+    private static final ItemStack ITEM = Reforging.config().anvil().item()
+            .create(Material.ANVIL, "REFORGING_ANVIL");
 
     public ReforgingAnvil() {
-        var recipe = new ShapedRecipe(Reforging.key("reforging_anvil"), ITEM);
+        var recipe = new ShapedRecipe(Reforging.plugin().key("reforging_anvil"), ITEM);
         recipe.shape(Reforging.config().anvil().recipe().shape());
         Reforging.config().anvil().recipe().keys().forEach(recipe::setIngredient);
         Bukkit.addRecipe(recipe);
         Bukkit.getPluginManager().registerEvents(this, Reforging.plugin());
     }
 
-    private static boolean isReforgingAnvil(ItemStackWrapper item) {
-        return "REFORGING_ANVIL".equals(item.get("id"));
+    private static boolean isReforgingAnvil(ItemWrapper item) {
+        return "REFORGING_ANVIL".equals(item.data().get("id", PersistentDataType.STRING));
     }
 
     private static boolean isReforgingAnvil(Block block) {
@@ -42,27 +43,27 @@ public class ReforgingAnvil implements Listener {
     }
 
     private static boolean isReforgingAnvil(Entity entity) {
-        return "REFORGING_ANVIL".equals(entity.getPersistentDataContainer().get(Reforging.key("id"),
-                PersistentDataType.STRING));
+        return "REFORGING_ANVIL".equals(Data.of(entity).get("id", PersistentDataType.STRING));
     }
 
     private static ArmorStand armorStandAt(Block block) {
-        return (ArmorStand) Spawner.nearbyEntities(block).stream().filter(ReforgingAnvil::isReforgingAnvil).findAny()
-                .orElse(null);
+        return (ArmorStand) Spawner.nearbyEntities(block).stream().filter(ReforgingAnvil::isReforgingAnvil)
+                .findAny().orElse(null);
     }
 
-    private static void dropItemAndPlaySound(EntityEquipment equipment, ItemStackWrapper weapon, World world,
+    private static void dropItemAndPlaySound(EntityEquipment equipment, ItemWrapper weapon, World world,
                                              Location location) {
         world.dropItemNaturally(location, weapon.unwrap());
         equipment.setItemInMainHand(null);
-        world.playSound(location, Sound.BLOCK_ANVIL_USE, Reforging.config().anvil().sound().volume(),
+        world.playSound(location, Sound.BLOCK_ANVIL_USE,
+                Reforging.config().anvil().sound().volume(),
                 Reforging.config().anvil().sound().pitch());
     }
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        var item = ItemStackWrapper.wrap(event.getItemInHand());
-        if (item == null || !isReforgingAnvil(item)) {
+        var item = ItemWrapper.wrap(event.getItemInHand());
+        if (!isReforgingAnvil(item)) {
             return;
         }
         var block = event.getBlock();
@@ -76,8 +77,7 @@ public class ReforgingAnvil implements Listener {
         }
         var armorStand = Spawner.spawnArmorStand(location);
         armorStand.setRightArmPose(new EulerAngle(0, 0, 1.5 * Math.PI));
-        armorStand.getPersistentDataContainer().set(Reforging.key("id"), PersistentDataType.STRING,
-                "REFORGING_ANVIL");
+        Data.of(armorStand).set("id", PersistentDataType.STRING, "REFORGING_ANVIL");
     }
 
     @EventHandler
@@ -87,7 +87,7 @@ public class ReforgingAnvil implements Listener {
             return;
         }
         var armorStand = armorStandAt(block);
-        var item = armorStand.getEquipment().getItemInMainHand();
+        var item = nullSafeEquipment(armorStand).getItemInMainHand();
         armorStand.remove();
         if (!event.isDropItems()) {
             return;
@@ -111,23 +111,20 @@ public class ReforgingAnvil implements Listener {
             return;
         }
         event.setCancelled(true);
-        var equipment = armorStandAt(block).getEquipment();
-        var weapon = ItemStackWrapper.wrap(equipment.getItemInMainHand());
-        var item = ItemStackWrapper.wrap(event.getItem());
+        var equipment = nullSafeEquipment(armorStandAt(block));
+        var weapon = ItemWrapper.wrap(equipment.getItemInMainHand());
+        var item = ItemWrapper.wrap(event.getItem());
         var world = block.getWorld();
         var location = block.getLocation().add(0, 1, 0);
         if (item == null || Weapon.has(item)) {
-            if (weapon != null && weapon.material() != Material.AIR) {
+            if (weapon.material() != Material.AIR) {
                 world.dropItemNaturally(location, weapon.unwrap());
             }
-            equipment.setItemInMainHand(Optional.ofNullable(item).map(ItemStackWrapper::unwrap).orElse(null));
+            equipment.setItemInMainHand(Optional.ofNullable(item).map(ItemWrapper::unwrap).orElse(null));
             event.getPlayer().getInventory().setItemInMainHand(null);
             return;
         }
-        if (weapon == null) {
-            return;
-        }
-        var id = item.get("id");
+        var id = item.data().get("id", PersistentDataType.STRING);
         if (id != null && Reforging.config().reforgeStones().containsKey(id)) {
             Reforging.config().reforges().get(Reforging.config().reforgeStones().get(id)).apply(weapon);
             item.amount(item.amount() - 1);
@@ -154,5 +151,9 @@ public class ReforgingAnvil implements Listener {
     @EventHandler
     public void onPistonRetract(BlockPistonRetractEvent event) {
         event.setCancelled(event.getBlocks().stream().anyMatch(ReforgingAnvil::isReforgingAnvil));
+    }
+
+    private EntityEquipment nullSafeEquipment(ArmorStand armorStand) {
+        return Objects.requireNonNull(armorStand.getEquipment());
     }
 }

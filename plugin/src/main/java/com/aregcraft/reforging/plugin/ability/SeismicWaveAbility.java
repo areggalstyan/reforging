@@ -3,7 +3,7 @@ package com.aregcraft.reforging.plugin.ability;
 import com.aregcraft.reforging.plugin.ability.base.RepeatingAbility;
 import com.aregcraft.reforging.plugin.annotation.Ability;
 import com.aregcraft.reforging.plugin.config.model.Function2Model;
-import com.aregcraft.reforging.plugin.util.Spawner;
+import com.aregcraft.reforging.core.Spawner;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
