@@ -32,7 +32,7 @@ tasks.register<Javadoc>("release") {
     classpath = main.compileClasspath
     options {
         this as StandardJavadocDocletOptions
-        docletpath(file("doclet/build/libs/doclet-$version.jar"))
+        docletpath(file("doclet/build/libs/doclet-1.0.0-SNAPSHOT.jar"))
         doclet("${project.group}.doclet.ReforgingDoclet")
         destinationDirectory(projectDir)
         addStringOption("version", version as String)
