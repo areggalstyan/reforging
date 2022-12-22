@@ -1,9 +1,9 @@
 {
-  "description": "Allows the player to throw a snowball, freezing the hit entity.",
+  "description": "Allows the player to become invisible.",
   "properties": {
     "duration": {
       "type": "int",
-      "description": "Specifies how long to freeze the hit entity in ticks (1 second = 20 ticks)."
+      "description": "Specifies how long to hide the player in ticks (1 second = 20 ticks)."
     },
     "cooldown": {
       "type": "int",
@@ -12,10 +12,6 @@
     "name": {
       "type": "String",
       "description": "Specifies the name of the ability."
-    },
-    "speed": {
-      "type": "double",
-      "description": "Specifies the speed of the projectile."
     }
   },
   "external": {

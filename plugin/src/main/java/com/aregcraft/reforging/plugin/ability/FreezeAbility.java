@@ -21,7 +21,7 @@ import org.bukkit.potion.PotionEffectType;
 @Ability
 public class FreezeAbility extends ProjectileAbility<Snowball> implements Listener {
     /**
-     * Specifies how long to freeze the hit entity.
+     * Specifies how long to freeze the hit entity in ticks (1 second = 20 ticks).
      */
     private int duration;
 
@@ -42,8 +42,8 @@ public class FreezeAbility extends ProjectileAbility<Snowball> implements Listen
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
         if (isEntityFreezing(event.getEntity()) && event.getHitEntity() instanceof LivingEntity entity) {
-            entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,
-                    duration, 255, false, false));
+            entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, duration, 255,
+                    false, false));
         }
     }
 }

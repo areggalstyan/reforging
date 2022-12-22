@@ -254,6 +254,14 @@ Specifies the relative chance of the reforge being applied to the weapon.
     "attackSpeed": -0.1,
     "armor": 4,
     "weight": 10
+  },
+  {
+    "name": "Illusory",
+    "ability": "HIDE",
+    "maxHealth": -4,
+    "movementSpeed": 0.01,
+    "attackSpeed": 0.2,
+    "weight": 10
   }
 ]
 ```
@@ -432,34 +440,6 @@ Configures abilities.
 
 <!-- <abilities> -->
 
-### TeleportAbility
-
-Allows the player to teleport in their looking direction.
-
-#### price
-
-Specifies the amount of health and food taken from the player when activating the ability.
-
-##### health: double
-
-Specifies the amount of health taken from the player when activating the ability.
-
-##### food: int
-
-Specifies the amount of food taken from the player when activating the ability.
-
-#### distance: int
-
-Specifies the maximum distance the player can teleport.
-
-#### cooldown: int
-
-Specifies the cooldown of the ability.
-
-#### name: string
-
-Specifies the name of the ability.
-
 ### DragonAbility
 
 Allows the player to throw a dragon fireball.
@@ -475,38 +455,6 @@ Specifies the amount of health taken from the player when activating the ability
 ##### food: int
 
 Specifies the amount of food taken from the player when activating the ability.
-
-#### cooldown: int
-
-Specifies the cooldown of the ability.
-
-#### name: string
-
-Specifies the name of the ability.
-
-#### speed: double
-
-Specifies the speed of the projectile.
-
-### FreezeAbility
-
-Allows the player to throw a snowball, freezing the hit entity.
-
-#### price
-
-Specifies the amount of health and food taken from the player when activating the ability.
-
-##### health: double
-
-Specifies the amount of health taken from the player when activating the ability.
-
-##### food: int
-
-Specifies the amount of food taken from the player when activating the ability.
-
-#### duration: int
-
-Specifies how long to freeze the hit entity.
 
 #### cooldown: int
 
@@ -596,57 +544,9 @@ Specifies the knockback resistance of the pawns.
 
 Specifies the attack damage of the pawns.
 
-### StormAbility
+### HideAbility
 
-Allows the player to strike lighting around them.
-
-#### price
-
-Specifies the amount of health and food taken from the player when activating the ability.
-
-##### health: double
-
-Specifies the amount of health taken from the player when activating the ability.
-
-##### food: int
-
-Specifies the amount of food taken from the player when activating the ability.
-
-#### function
-
-Specifies the two-dimensional mathematical function used to create visual effects.
-
-##### min: double
-
-Specifies the starting value of t.
-
-##### max: double
-
-Specifies the ending value of t.
-
-##### x: expression
-
-Specifies how much x changes based on t.
-
-##### delta: double
-
-Specifies the step of t.
-
-##### z: expression
-
-Specifies how much z changes based on t.
-
-#### cooldown: int
-
-Specifies the cooldown of the ability.
-
-#### name: string
-
-Specifies the name of the ability.
-
-### FireAbility
-
-Allows the player to create a shape (e.g., spiral) and ignite all entities that collide with it.
+Allows the player to become invisible.
 
 #### price
 
@@ -659,38 +559,10 @@ Specifies the amount of health taken from the player when activating the ability
 ##### food: int
 
 Specifies the amount of food taken from the player when activating the ability.
-
-#### function
-
-Specifies the three-dimensional mathematical function used to create visual effects.
-
-##### min: double
-
-Specifies the starting value of t.
-
-##### max: double
-
-Specifies the ending value of t.
-
-##### x: expression
-
-Specifies how much x changes based on t.
-
-##### delta: double
-
-Specifies the step of t.
-
-##### y: expression
-
-Specifies how much y changes based on t.
-
-##### z: expression
-
-Specifies how much z changes based on t.
 
 #### duration: int
 
-Specifies the duration of burning in ticks (1 second = 20 ticks).
+Specifies how long to hide the player in ticks (1 second = 20 ticks).
 
 #### cooldown: int
 
@@ -699,10 +571,6 @@ Specifies the cooldown of the ability.
 #### name: string
 
 Specifies the name of the ability.
-
-#### particle: particle
-
-Specifies the particle used to create visual effects.
 
 ### PotionAbility
 
@@ -872,34 +740,6 @@ Specifies the speed at which to knock back the entities.
 
 Specifies the height to which to knock back the entities.
 
-### WitherAbility
-
-Allows the player to throw a wither skull.
-
-#### price
-
-Specifies the amount of health and food taken from the player when activating the ability.
-
-##### health: double
-
-Specifies the amount of health taken from the player when activating the ability.
-
-##### food: int
-
-Specifies the amount of food taken from the player when activating the ability.
-
-#### cooldown: int
-
-Specifies the cooldown of the ability.
-
-#### name: string
-
-Specifies the name of the ability.
-
-#### speed: double
-
-Specifies the speed of the projectile.
-
 ### ThrowAbility
 
 Allows the player to throw their weapon dealing damage to all entities it hits.
@@ -935,6 +775,202 @@ Specifies the speed of the weapon.
 ### ShulkerAbility
 
 Allows the player to throw a shulker bullet.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### cooldown: int
+
+Specifies the cooldown of the ability.
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### speed: double
+
+Specifies the speed of the projectile.
+
+### TeleportAbility
+
+Allows the player to teleport in their looking direction.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### distance: int
+
+Specifies the maximum distance the player can teleport.
+
+#### cooldown: int
+
+Specifies the cooldown of the ability.
+
+#### name: string
+
+Specifies the name of the ability.
+
+### FreezeAbility
+
+Allows the player to throw a snowball, freezing the hit entity.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### duration: int
+
+Specifies how long to freeze the hit entity in ticks (1 second = 20 ticks).
+
+#### cooldown: int
+
+Specifies the cooldown of the ability.
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### speed: double
+
+Specifies the speed of the projectile.
+
+### StormAbility
+
+Allows the player to strike lighting around them.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### function
+
+Specifies the two-dimensional mathematical function used to create visual effects.
+
+##### min: double
+
+Specifies the starting value of t.
+
+##### max: double
+
+Specifies the ending value of t.
+
+##### x: expression
+
+Specifies how much x changes based on t.
+
+##### delta: double
+
+Specifies the step of t.
+
+##### z: expression
+
+Specifies how much z changes based on t.
+
+#### cooldown: int
+
+Specifies the cooldown of the ability.
+
+#### name: string
+
+Specifies the name of the ability.
+
+### FireAbility
+
+Allows the player to create a shape (e.g., spiral) and ignite all entities that collide with it.
+
+#### price
+
+Specifies the amount of health and food taken from the player when activating the ability.
+
+##### health: double
+
+Specifies the amount of health taken from the player when activating the ability.
+
+##### food: int
+
+Specifies the amount of food taken from the player when activating the ability.
+
+#### function
+
+Specifies the three-dimensional mathematical function used to create visual effects.
+
+##### min: double
+
+Specifies the starting value of t.
+
+##### max: double
+
+Specifies the ending value of t.
+
+##### x: expression
+
+Specifies how much x changes based on t.
+
+##### delta: double
+
+Specifies the step of t.
+
+##### y: expression
+
+Specifies how much y changes based on t.
+
+##### z: expression
+
+Specifies how much z changes based on t.
+
+#### duration: int
+
+Specifies the duration of burning in ticks (1 second = 20 ticks).
+
+#### cooldown: int
+
+Specifies the cooldown of the ability.
+
+#### name: string
+
+Specifies the name of the ability.
+
+#### particle: particle
+
+Specifies the particle used to create visual effects.
+
+### WitherAbility
+
+Allows the player to throw a wither skull.
 
 #### price
 
@@ -1132,6 +1168,16 @@ Specifies the speed of the projectile.
     "cooldown": 60,
     "speed": 2,
     "duration": 60
+  },
+  {
+    "name": "HIDE",
+    "type": "Hide",
+    "price": {
+      "health": 8,
+      "food": 8
+    },
+    "cooldown": 100,
+    "duration": 200
   }
 ]
 ```

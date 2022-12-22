@@ -165,5 +165,15 @@
     "cooldown": 60,
     "speed": 2,
     "duration": 60
+  },
+  {
+    "name": "HIDE",
+    "type": "Hide",
+    "price": {
+      "health": 8,
+      "food": 8
+    },
+    "cooldown": 100,
+    "duration": 200
   }
 ]

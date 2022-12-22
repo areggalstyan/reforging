@@ -82,5 +82,13 @@
     "attackSpeed": -0.1,
     "armor": 4,
     "weight": 10
+  },
+  {
+    "name": "Illusory",
+    "ability": "HIDE",
+    "maxHealth": -4,
+    "movementSpeed": 0.01,
+    "attackSpeed": 0.2,
+    "weight": 10
   }
 ]

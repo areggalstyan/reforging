@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.aregcraft.reforging"
-version = "3.2.0-SNAPSHOT"
+version = "3.3.0-SNAPSHOT"
 
 allprojects {
     group = project.group
