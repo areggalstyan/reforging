@@ -301,7 +301,8 @@ public class ItemWrapper implements Wrapper<ItemStack>, DataHolder {
         }
 
         public void remove() {
-            item.removeModifier(attribute, new AttributeModifier(uuid, name, amount, operation, slot));
+            item.modifiers(attribute).stream().filter(it -> it.getName().equals(name))
+                    .forEach(it -> item.removeModifier(attribute, it));
         }
     }
 }

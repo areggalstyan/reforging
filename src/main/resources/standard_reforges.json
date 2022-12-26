@@ -90,5 +90,14 @@
     "movementSpeed": 0.01,
     "attackSpeed": 0.2,
     "weight": 10
+  },
+  {
+    "name": "Outraged",
+    "ability": "RAGE",
+    "maxHealth": -4,
+    "movementSpeed": 0.01,
+    "attackDamage": 3,
+    "attackSpeed": 0.3,
+    "weight": 10
   }
 ]

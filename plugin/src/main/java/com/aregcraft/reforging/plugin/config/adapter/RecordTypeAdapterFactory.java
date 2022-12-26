@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.RecordComponent;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -39,10 +39,13 @@ public class RecordTypeAdapterFactory implements TypeAdapterFactory {
                     return null;
                 }
                 var nameToType = nameToType();
-                var arguments = new ArrayList<>();
+                var names = names();
+                var arguments = Arrays.asList(new Object[nameToType.size()]);
                 in.beginObject();
                 while (in.hasNext()) {
-                    arguments.add(gson.getAdapter(TypeToken.get(nameToType.get(in.nextName()))).read(in));
+                    var name = in.nextName();
+                    arguments.set(names.indexOf(name),
+                            gson.getAdapter(TypeToken.get(nameToType.get(name))).read(in));
                 }
                 in.endObject();
                 try {
@@ -51,6 +54,10 @@ public class RecordTypeAdapterFactory implements TypeAdapterFactory {
                         | NoSuchMethodException e) {
                     throw new RuntimeException(e);
                 }
+            }
+
+            private List<String> names() {
+                return Arrays.stream(clazz.getRecordComponents()).map(RecordComponent::getName).toList();
             }
 
             private Class<?>[] types() {
