@@ -1,0 +1,387 @@
+{
+  "version": "4.0.0",
+  "abilities": [
+    {
+      "name": "Pawn",
+      "description": "Allows the player to spawn entities that will attack other players but not them",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "long",
+          "name": "duration",
+          "description": "How long the entities should exist, unlimited by default"
+        },
+        {
+          "type": "EntityBuilder",
+          "name": "entity",
+          "description": "The entity"
+        },
+        {
+          "type": "int",
+          "name": "number",
+          "description": "The number of entities"
+        }
+      ]
+    },
+    {
+      "name": "Rage",
+      "description": "Allows the player to deal more damage in exchange for receiving its portion",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "int",
+          "name": "duration",
+          "description": "The duration in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "int",
+          "name": "amplifier",
+          "description": "The effect amplifier"
+        },
+        {
+          "type": "double",
+          "name": "multiplier",
+          "description": "How much damage to reflect on the player"
+        }
+      ]
+    },
+    {
+      "name": "Effect",
+      "description": "Allows the player to add an effect on themselves",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "PotionEffectType",
+          "name": "type",
+          "description": "The effect type"
+        },
+        {
+          "type": "int",
+          "name": "duration",
+          "description": "The effect duration in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "int",
+          "name": "amplifier",
+          "description": "The effect amplifier"
+        },
+        {
+          "type": "boolean",
+          "name": "hideParticles",
+          "description": "Whether to hide the effect particles"
+        }
+      ]
+    },
+    {
+      "name": "Throw",
+      "description": "Allows the player to throw their weapon, damaging all hiy entities",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "long",
+          "name": "duration",
+          "description": "How long should the weapon fly in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "Vector",
+          "name": "velocity",
+          "description": "The velocity"
+        },
+        {
+          "type": "double",
+          "name": "damageMultiplier",
+          "description": "How much of the actual weapon damage to deal"
+        }
+      ]
+    },
+    {
+      "name": "Fire",
+      "description": "Allows the player to create a spiral in the looking direction (or any other shape) of fire, igniting all touching entities",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "Function3",
+          "name": "function",
+          "description": "The function describing the shape"
+        },
+        {
+          "type": "Particle",
+          "name": "particle",
+          "description": "The particle used to create the shape"
+        },
+        {
+          "type": "int",
+          "name": "fireDuration",
+          "description": "How long the entities should burn in ticks (1 second = 20 ticks)"
+        }
+      ]
+    },
+    {
+      "name": "Freeze",
+      "description": "Allows the player to throw a snowball (or any other projectile), freezing the hit entity",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "EntityType",
+          "name": "projectileType",
+          "description": "The projectile type"
+        },
+        {
+          "type": "Vector",
+          "name": "projectileVelocity",
+          "description": "The projectile velocity"
+        },
+        {
+          "type": "int",
+          "name": "duration",
+          "description": "How long to freeze hit entity in ticks (1 second = 20 ticks)"
+        }
+      ]
+    },
+    {
+      "name": "Projectile",
+      "description": "Allows the player to throw a projectile",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "EntityType",
+          "name": "type",
+          "description": "The projectile type"
+        },
+        {
+          "type": "Vector",
+          "name": "velocity",
+          "description": "The projectile velocity"
+        }
+      ]
+    },
+    {
+      "name": "Storm",
+      "description": "Allows the player to strike a circle (or any other shape) of lightning bolts around them",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "Function2",
+          "name": "function",
+          "description": "The function describing the shape"
+        }
+      ]
+    },
+    {
+      "name": "SeismicWave",
+      "description": "Allows the player to create a spiral (or any other shape) around them, damaging and knocking back all entities within the range",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "Function2",
+          "name": "function",
+          "description": "The function describing the shape"
+        },
+        {
+          "type": "Particle",
+          "name": "particle",
+          "description": "The particle used to create the shape"
+        },
+        {
+          "type": "Vector",
+          "name": "knockback",
+          "description": "How much to knock back the entities within range"
+        },
+        {
+          "type": "double",
+          "name": "height",
+          "description": "How high to knock back the entities within range"
+        },
+        {
+          "type": "double",
+          "name": "damage",
+          "description": "How much to damage the entities within range"
+        },
+        {
+          "type": "double",
+          "name": "range",
+          "description": "The range"
+        }
+      ]
+    },
+    {
+      "name": "Shield",
+      "description": "Allows the player to create a spiral (or any other shape) around them, protecting them from all entities",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "long",
+          "name": "duration",
+          "description": "The duration in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "Function3",
+          "name": "function",
+          "description": "The function describing the shape"
+        },
+        {
+          "type": "Particle",
+          "name": "particle",
+          "description": "The particle used to create the shape"
+        },
+        {
+          "type": "boolean",
+          "name": "disableAttack",
+          "description": "Whether the player should not be able to attack other entities"
+        }
+      ]
+    },
+    {
+      "name": "Teleport",
+      "description": "Allows the player to teleport in the looking direction",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "int",
+          "name": "distance",
+          "description": "The maximum distance"
+        }
+      ]
+    },
+    {
+      "name": "Potion",
+      "description": "Allows the player to throw a potion with a custom effect",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "PotionEffectType",
+          "name": "type",
+          "description": "The effect type"
+        },
+        {
+          "type": "int",
+          "name": "duration",
+          "description": "The effect duration in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "int",
+          "name": "amplifier",
+          "description": "The effect amplifier"
+        },
+        {
+          "type": "boolean",
+          "name": "hideParticles",
+          "description": "Whether to hide the effect particles"
+        },
+        {
+          "type": "Vector",
+          "name": "velocity",
+          "description": "The potion velocity"
+        }
+      ]
+    }
+  ]
+}

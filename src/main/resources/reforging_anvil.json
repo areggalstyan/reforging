@@ -1,0 +1,29 @@
+{
+  "item": {
+    "material": "ANVIL",
+    "name": "%green%Reforging Anvil",
+    "lore": [
+      "%gray%Place this anvil anywhere in the world",
+      "%gray%to start reforging items!"
+    ]
+  },
+  "recipe": {
+    "shape": [
+      "ooo",
+      "dad",
+      "iii"
+    ],
+    "ingredients": {
+      "o": "OBSIDIAN",
+      "d": "DIAMOND",
+      "a": "ANVIL",
+      "i": "IRON_BLOCK"
+    }
+  },
+  "sound": {
+    "type": "BLOCK_ANVIL_USE",
+    "volume": 1,
+    "pitch": 0
+  },
+  "price": 2
+}

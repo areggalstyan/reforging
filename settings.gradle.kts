@@ -1,4 +1,9 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+    }
+}
+
 rootProject.name = "reforging"
-include("core")
-include("plugin")
-includeBuild("doclet")
+include(":meta")

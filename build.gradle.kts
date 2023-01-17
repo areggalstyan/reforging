@@ -1,83 +1,55 @@
 plugins {
     java
     id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.aregcraft.delta.plugin") version "1.0.0"
 }
 
-group = "com.aregcraft.reforging"
-version = "3.4.0-SNAPSHOT"
-
-allprojects {
-    group = project.group
-    version = project.version
-}
+group = "com.aregcraft"
+version = "4.0.0"
 
 repositories {
-    mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
-    implementation(project("core"))
-    implementation(project("plugin"))
+    compileOnly(project(":meta"))
+    compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
+    implementation("com.aregcraft.delta:api:1.0.0")
+    implementation("org.mariuszgromada.math:MathParser.org-mXparser:5.0.7")
+    implementation("org.bstats:bstats-bukkit:3.0.0")
+}
+
+pluginDescription {
+    main.set("$group.reforging.Reforging")
+    apiVersion.set("1.19")
+    load.set("STARTUP")
+    commands {
+        create("reforge") {
+            description.set("Reforges the weapon in the main hand of the player.")
+            usage.set("Usage: /<command> <reforgeName>")
+            permission.set("reforging.command.reforge")
+        }
+        create("reloadreforging") {
+            aliases.add("rr")
+            description.set("Reloads the configuration files.")
+            usage.set("Usage: /<command>")
+            permission.set("reforging.command.reloadreforging")
+        }
+    }
 }
 
 tasks.shadowJar {
-    relocate("org.bstats", "${project.group}.plugin")
-    archiveClassifier.set("")
+    relocate("org.bstats", "${project.group}.reforging")
+    relocate("com.aregcraft.delta", "${project.group}.reforging")
 }
 
-tasks.register<Javadoc>("release") {
-    dependsOn(gradle.includedBuild("doclet").task(":shadowJar"))
-    val main = project("plugin").sourceSets["main"]
-    source(main.allJava)
-    classpath = main.compileClasspath
-    options {
-        this as StandardJavadocDocletOptions
-        docletpath(file("doclet/build/libs/doclet-1.0.0-SNAPSHOT.jar"))
-        doclet("${project.group}.doclet.ReforgingDoclet")
-        destinationDirectory(projectDir)
-        addStringOption("version", version as String)
-    }
+tasks.register<Javadoc>("generateMeta") {
+    dependsOn(project(":meta").tasks["shadowJar"])
+    source = sourceSets.main.get().allJava
+    classpath = sourceSets.main.get().compileClasspath
+    options.destinationDirectory(projectDir)
+    options.docletpath(project(":meta").tasks.getByName<Jar>("shadowJar").archiveFile.get().asFile)
+    options.doclet("${project.group}.reforging.meta.ReforgingMeta")
+    (options as StandardJavadocDocletOptions).addStringOption("version", version.toString())
     outputs.upToDateWhen { false }
-}
-
-tasks.register("generatePluginDescription") {
-    File(sourceSets["main"].output.resourcesDir, "plugin.yml").writeText("""
-        name: Reforging
-        main: ${project.group}.plugin.Reforging
-        version: $version
-        api-version: 1.19
-        author: Aregcraft
-        website: https://reforging.vercel.app/
-        commands:
-            reforge:
-                description: Reforges the item in the main hand of the player.
-                usage: "Usage: /<command> <reforgeName>"
-                permission: reforging.command.reforge
-            reloadreforging:
-                aliases: rr
-                description: Reloads the configuration files.
-                usage: "Usage: /<command>"
-                permission: reforging.command.reloadreforging
-    """.trimIndent())
-}
-
-tasks.register("prepareDebug") {
-    file("build/libs").walk().filter { it.extension == "jar" }.forEach { it.delete() }
-    file("debug/spigot/plugins").walk().filter { it.extension == "jar" }.forEach { it.delete() }
-    file("debug/spigot/plugins/Reforging").deleteRecursively()
-}
-
-tasks.register<Copy>("copyPlugin") {
-    dependsOn(tasks["prepareDebug"])
-    dependsOn(tasks["generatePluginDescription"])
-    from(tasks["shadowJar"])
-    destinationDir = file("debug/spigot/plugins")
-}
-
-tasks.register<JavaExec>("debugPlugin") {
-    dependsOn(tasks["copyPlugin"])
-    workingDir("debug/spigot")
-    classpath(files("debug/spigot/server.jar"))
-    args("nogui")
-    standardInput = System.`in`
 }

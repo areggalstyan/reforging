@@ -1,72 +1,166 @@
 [
   {
-    "name": "SHIELD",
-    "type": "Shield",
-    "price": {
-      "health": 4,
-      "food": 4
-    },
-    "duration": 100,
-    "function": {
-      "x": "cos(48t)",
-      "y": "0.5t",
-      "z": "sin(48t)",
-      "min": 0,
-      "max": 5,
-      "delta": 0.25
-    },
-    "particle": "ENCHANTMENT_TABLE",
-    "disableAttack": true
-  },
-  {
-    "name": "FIRE",
-    "type": "Fire",
-    "price": {
-      "health": 2,
-      "food": 2
-    },
-    "cooldown": 20,
-    "function": {
-      "x": "0.025tcos(t)",
-      "y": "0.025tsin(t)",
-      "z": "0.005t",
-      "min": 0,
-      "max": 20,
-      "delta": 0.25
-    },
-    "particle": "FLAME",
-    "duration": 60
-  },
-  {
-    "name": "THROW",
-    "type": "Throw",
-    "price": {
-      "health": 1,
-      "food": 1
-    },
-    "duration": 20,
-    "damageFactor": 0.75,
-    "speed": 0.75
-  },
-  {
-    "name": "STORM",
-    "type": "Storm",
+    "base": "Projectile",
+    "id": "WITHER",
     "price": {
       "health": 4,
       "food": 4
     },
     "cooldown": 60,
-    "function": {
-      "x": "3cos(t)",
-      "z": "3sin(t)",
-      "min": 0,
-      "max": 6.28318530718,
-      "delta": 0.34906585039
+    "type": "WITHER_SKULL",
+    "velocity": {
+      "x": 2,
+      "y": 2,
+      "z": 2
     }
   },
   {
-    "name": "TELEPORT",
-    "type": "Teleport",
+    "base": "Effect",
+    "id": "REGENERATION",
+    "price": {
+      "food": 8
+    },
+    "cooldown": 200,
+    "type": "minecraft:regeneration",
+    "duration": 100,
+    "amplifier": 1,
+    "hideParticles": true
+  },
+  {
+    "base": "Freeze",
+    "id": "FREEZE",
+    "price": {
+      "health": 8,
+      "food": 8
+    },
+    "cooldown": 200,
+    "projectileType": "SNOWBALL",
+    "projectileVelocity": {
+      "x": 2,
+      "y": 2,
+      "z": 2
+    },
+    "duration": 100
+  },
+  {
+    "base": "Rage",
+    "id": "RAGE",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 200,
+    "duration": 100,
+    "amplifier": 1,
+    "multiplier": 0.25
+  },
+  {
+    "base": "Storm",
+    "id": "STORM",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 200,
+    "function": {
+      "x": "2cos(t)",
+      "z": "2sin(t)",
+      "min": 0,
+      "max": 6.28318530718,
+      "delta": 0.78539816339
+    }
+  },
+  {
+    "base": "Shield",
+    "id": "SHIELD",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 200,
+    "duration": 200,
+    "function": {
+      "x": "cos(10t)",
+      "y": "t",
+      "z": "sin(10t)",
+      "min": 0,
+      "max": 2,
+      "delta": 0.1
+    },
+    "particle": "ENCHANTMENT_TABLE",
+    "disableAttack": true
+  },
+  {
+    "base": "SeismicWave",
+    "id": "SEISMIC_WAVE",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 20,
+    "function": {
+      "x": "tcos(2t)",
+      "z": "tsin(2t)",
+      "min": 0,
+      "max": 6.28318530718,
+      "delta": 0.19634954084
+    },
+    "particle": "EXPLOSION_NORMAL",
+    "knockback": {
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "height": 0.5,
+    "damage": 5,
+    "range": 5
+  },
+  {
+    "base": "Throw",
+    "id": "THROW",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 100,
+    "duration": 40,
+    "velocity": {
+      "x": 2,
+      "y": 2,
+      "z": 2
+    },
+    "damageMultiplier": 0.75
+  },
+  {
+    "base": "Pawn",
+    "id": "PAWN",
+    "price": {
+      "health": 6,
+      "food": 6
+    },
+    "cooldown": 400,
+    "duration": 200,
+    "entity": {
+      "type": "ZOMBIE",
+      "name": "%red%%player%'s Pawn",
+      "nameVisible": true,
+      "attributeModifiers": {
+        "GENERIC_MAX_HEALTH": [
+          {
+            "name": "minecraft.generic_max_health",
+            "amount": 30
+          }
+        ]
+      },
+      "helmet": {
+        "material": "LEATHER_HELMET"
+      }
+    },
+    "number": 2
+  },
+  {
+    "base": "Teleport",
+    "id": "TELEPORT",
     "price": {
       "health": 4,
       "food": 4
@@ -75,117 +169,40 @@
     "distance": 4
   },
   {
-    "name": "SHULKER",
-    "type": "Shulker",
+    "base": "Potion",
+    "id": "POTION",
     "price": {
       "health": 4,
       "food": 4
-    },
-    "cooldown": 60,
-    "speed": 1
-  },
-  {
-    "name": "SEISMIC WAVE",
-    "type": "SeismicWave",
-    "price": {
-      "health": 6,
-      "food": 6
-    },
-    "duration": 10,
-    "function": {
-      "x": "0.5cos(t)",
-      "z": "0.5sin(t)",
-      "min": 0,
-      "max": 6.28318530718,
-      "delta": 0.5
-    },
-    "particle": "EXPLOSION_NORMAL",
-    "range": 5,
-    "speed": 0.5,
-    "height": 0.5,
-    "damage": 4
-  },
-  {
-    "name": "POTION",
-    "type": "Potion",
-    "price": {
-      "health": 4,
-      "food": 4
-    },
-    "cooldown": 40,
-    "speed": 0.5,
-    "effect": "POISON",
-    "duration": 60,
-    "amplifier": 2
-  },
-  {
-    "name": "DRAGON",
-    "type": "Dragon",
-    "price": {
-      "health": 8,
-      "food": 8
     },
     "cooldown": 100,
-    "speed": 4
-  },
-  {
-    "name": "WITHER",
-    "type": "Wither",
-    "price": {
-      "health": 6,
-      "food": 6
-    },
-    "cooldown": 100,
-    "speed": 4
-  },
-  {
-    "name": "PAWN",
-    "type": "Pawn",
-    "price": {
-      "health": 6,
-      "food": 6
-    },
-    "cooldown": 200,
-    "entity": "ZOMBIE",
-    "customName": "%YELLOW%%PLAYER%'s Pawn",
-    "adult": true,
-    "count": 2,
-    "duration": 200,
-    "maxHealth": 10,
-    "attackDamage": 4,
-    "armor": 4
-  },
-  {
-    "name": "FREEZE",
-    "type": "Freeze",
-    "price": {
-      "health": 4,
-      "food": 4
-    },
-    "cooldown": 60,
-    "speed": 2,
-    "duration": 60
-  },
-  {
-    "name": "HIDE",
-    "type": "Hide",
-    "price": {
-      "health": 8,
-      "food": 8
-    },
-    "cooldown": 100,
-    "duration": 200
-  },
-  {
-    "name": "RAGE",
-    "type": "Rage",
-    "price": {
-      "health": 4,
-      "food": 4
-    },
-    "cooldown": 120,
+    "type": "minecraft:poison",
     "duration": 100,
-    "amplifier": 2,
-    "multiplier": 0.25
+    "amplifier": 0,
+    "hideParticles": false,
+    "velocity": {
+      "x": 1,
+      "y": 1,
+      "z": 1
+    }
+  },
+  {
+    "base": "Fire",
+    "id": "FIRE",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 100,
+    "function": {
+      "x": "0.5tcos(6t)",
+      "y": "0.5tsin(6t)",
+      "z": "t",
+      "min": 0,
+      "max": 3.14159265359,
+      "delta": 0.09817477042
+    },
+    "particle": "FLAME",
+    "fireDuration": 100
   }
 ]

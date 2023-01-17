@@ -1,18 +1,15 @@
 {
-  "name": "%RESET%%REFORGE_NAME% %NAME%",
+  "name": "%reforge_name% %name%",
   "lore": [
     "",
-    "%GRAY%When right clicked:",
-    " %GOLD%%BOLD%%ABILITY% %GOLD%Ability",
-    "",
-    "%GRAY%When in main hand:",
-    "%DARK_GREEN% %BASE_ATTACK_SPEED% %DARK_BLUE%(%ATTACK_SPEED%)%DARK_GREEN% Attack Speed",
-    "%DARK_GREEN% %BASE_ATTACK_DAMAGE% %DARK_BLUE%(%ATTACK_DAMAGE%)%DARK_GREEN% Attack Damage",
-    "%DARK_BLUE% %MAX_HEALTH% Max Health",
-    "%DARK_BLUE% %KNOCKBACK_RESISTANCE% Knockback Resistance",
-    "%DARK_BLUE% %MOVEMENT_SPEED% Movement Speed",
-    "%DARK_BLUE% %ARMOR% Armor",
-    "%DARK_BLUE% %ARMOR_TOUGHNESS% Armor Toughness",
-    "%DARK_BLUE% %ATTACK_KNOCKBACK% Attack Knockback"
+    "%gray%When in main hand:",
+    "%dark_green% %base_attack_speed% (%generic_attack_speed%) Attack Speed",
+    "%dark_green% %base_attack_damage% (%generic_attack_damage%) Attack Damage",
+    "%dark_green% %generic_max_health% Max Health",
+    "%dark_green% %generic_knockback_resistance% Knockback Resistance",
+    "%dark_green% %generic_movement_speed% Movement Speed",
+    "%dark_green% %generic_armor% Armor",
+    "%dark_green% %generic_armor_toughness% Armor Toughness",
+    "%dark_green% %generic_attack_knockback% Attack Knockback"
   ]
 }
