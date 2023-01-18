@@ -1,5 +1,5 @@
 {
-  "version": "4.0.0",
+  "version": "4.1.0",
   "abilities": [
     {
       "name": "Pawn",
@@ -189,6 +189,27 @@
           "type": "int",
           "name": "duration",
           "description": "How long to freeze hit entity in ticks (1 second = 20 ticks)"
+        }
+      ]
+    },
+    {
+      "name": "Evoker",
+      "description": "Allows the player to summon evoker fangs",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "int",
+          "name": "number",
+          "description": "The number of fangs"
         }
       ]
     },

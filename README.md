@@ -28,6 +28,7 @@ Make your server unique by creating your own reforges from scratch. All abilitie
 | Throw | Allows the player to throw their weapon, damaging all hiy entities |
 | Fire | Allows the player to create a spiral in the looking direction (or any other shape) of fire, igniting all touching entities |
 | Freeze | Allows the player to throw a snowball (or any other projectile), freezing the hit entity |
+| Evoker | Allows the player to summon evoker fangs |
 | Projectile | Allows the player to throw a projectile |
 | Storm | Allows the player to strike a circle (or any other shape) of lightning bolts around them |
 | SeismicWave | Allows the player to create a spiral (or any other shape) around them, damaging and knocking back all entities within the range |
@@ -629,6 +630,17 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
       "GENERIC_ATTACK_DAMAGE": 5
     },
     "ability": "FIRE"
+  },
+  {
+    "id": "VENGEFUL",
+    "name": "%gray%Vengeful",
+    "attributes": {
+      "GENERIC_ATTACK_DAMAGE": 4,
+      "GENERIC_ATTACK_SPEED": 0.1,
+      "GENERIC_MOVEMENT_SPEED": 0.025,
+      "GENERIC_MAX_HEALTH": -3
+    },
+    "ability": "EVOKER"
   }
 ]
 ```
@@ -747,6 +759,14 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 | projectileType | `EntityType` | The projectile type |
 | projectileVelocity | `Vector` | The projectile velocity |
 | duration | `int` | How long to freeze hit entity in ticks (1 second = 20 ticks) |
+
+#### Evoker
+
+| Name | Type | Description |
+| --- | --- | --- |
+| price | `Price` | The amount of health and hunger deducted from the player upon activation |
+| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
+| number | `int` | The number of fangs |
 
 #### Projectile
 
@@ -1018,6 +1038,16 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
     },
     "particle": "FLAME",
     "fireDuration": 100
+  },
+  {
+    "base": "Evoker",
+    "id": "EVOKER",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 100,
+    "number": 16
   }
 ]
 ```

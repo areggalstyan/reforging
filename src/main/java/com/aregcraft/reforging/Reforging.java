@@ -6,6 +6,7 @@ import com.aregcraft.delta.api.item.ItemWrapper;
 import com.aregcraft.delta.api.json.JsonConfigurationLoader;
 import com.aregcraft.reforging.ability.Ability;
 import com.google.gson.reflect.TypeToken;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
@@ -34,6 +35,7 @@ public class Reforging extends DeltaPlugin {
         super.onEnable();
         load();
         configurationLoader.get(UpdateChecker.class).scheduleChecks(this);
+        new Metrics(this, 16827);
     }
 
     public ReforgingAnvil getReforgingAnvil() {
