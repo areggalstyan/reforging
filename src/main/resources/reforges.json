@@ -135,5 +135,14 @@
       "GENERIC_MAX_HEALTH": -3
     },
     "ability": "EVOKER"
+  },
+  {
+    "id": "AGILE",
+    "name": "%green%Agile",
+    "attributes": {
+      "GENERIC_MAX_HEALTH": 4,
+      "GENERIC_MOVEMENT_SPEED": 0.025
+    },
+    "ability": "DASH"
   }
 ]
