@@ -1,6 +1,5 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.delta.api.PlayerRegistry;
 import com.aregcraft.delta.api.entity.ProjectileBuilder;
 import com.aregcraft.delta.api.item.ItemWrapper;
 import com.aregcraft.reforging.Reforging;
@@ -19,7 +18,6 @@ import org.bukkit.util.Vector;
  */
 @ProcessedAbility
 public class PotionAbility extends Ability {
-    private final PlayerRegistry cooldownPlayers = PlayerRegistry.createAsynchronous();
     /**
      * The amount of health and hunger deducted from the player upon activation
      */
@@ -52,10 +50,10 @@ public class PotionAbility extends Ability {
 
     @Override
     public void activate(Player player) {
-        if (cooldownPlayers.contains(player)) {
+        if (cooldownManager.isOnCooldown(player, cooldown, plugin)) {
             return;
         }
-        cooldownPlayers.add(player, cooldown, plugin);
+        cooldownManager.putOnCooldown(player, plugin);
         price.deduct(player);
         launchProjectile(player).setItem(ItemWrapper.builder()
                 .material(Material.SPLASH_POTION)

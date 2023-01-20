@@ -1,6 +1,5 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.delta.api.PlayerRegistry;
 import com.aregcraft.delta.api.entity.Entities;
 import com.aregcraft.delta.api.entity.EntityFinder;
 import com.aregcraft.delta.api.entity.selector.ExcludingSelector;
@@ -18,7 +17,6 @@ import org.bukkit.util.Vector;
  */
 @ProcessedAbility
 public class FireAbility extends Ability {
-    private final PlayerRegistry cooldownPlayers = PlayerRegistry.createAsynchronous();
     /**
      * The amount of health and hunger deducted from the player upon activation
      */
@@ -43,10 +41,10 @@ public class FireAbility extends Ability {
 
     @Override
     public void activate(Player player) {
-        if (cooldownPlayers.contains(player)) {
+        if (cooldownManager.isOnCooldown(player, cooldown, plugin)) {
             return;
         }
-        cooldownPlayers.add(player, cooldown, plugin);
+        cooldownManager.putOnCooldown(player, plugin);
         price.deduct(player);
         function.evaluate(it -> spawnParticleAndIgniteEntities(player, it));
     }

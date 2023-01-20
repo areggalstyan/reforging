@@ -1,7 +1,6 @@
 package com.aregcraft.reforging.ability;
 
 import com.aregcraft.delta.api.PersistentDataWrapper;
-import com.aregcraft.delta.api.PlayerRegistry;
 import com.aregcraft.delta.api.entity.Entities;
 import com.aregcraft.delta.api.entity.ProjectileBuilder;
 import com.aregcraft.reforging.Reforging;
@@ -20,7 +19,6 @@ import org.bukkit.util.Vector;
  */
 @ProcessedAbility
 public class FreezeAbility extends Ability implements Listener {
-    private final PlayerRegistry cooldownPlayers = PlayerRegistry.createAsynchronous();
     /**
      * The amount of health and hunger deducted from the player upon activation
      */
@@ -45,10 +43,10 @@ public class FreezeAbility extends Ability implements Listener {
 
     @Override
     public void activate(Player player) {
-        if (cooldownPlayers.contains(player)) {
+        if (cooldownManager.isOnCooldown(player, cooldown, plugin)) {
             return;
         }
-        cooldownPlayers.add(player, cooldown, plugin);
+        cooldownManager.putOnCooldown(player, plugin);
         price.deduct(player);
         new ProjectileBuilder()
                 .source(player)

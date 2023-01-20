@@ -22,10 +22,12 @@ Make your server unique by creating your own reforges from scratch. All abilitie
 <!-- <abilities> -->
 | Name | Description |
 | --- | --- |
+| Dash | Allows the player to start a rapid movement in the looking direction |
 | Pawn | Allows the player to spawn entities that will attack other players but not them |
 | Rage | Allows the player to deal more damage in exchange for receiving its portion |
 | Effect | Allows the player to add an effect on themselves |
 | Throw | Allows the player to throw their weapon, damaging all hiy entities |
+| Reveal | Allows the player to reveal all invisible entities within range |
 | Fire | Allows the player to create a spiral in the looking direction (or any other shape) of fire, igniting all touching entities |
 | Freeze | Allows the player to throw a snowball (or any other projectile), freezing the hit entity |
 | Evoker | Allows the player to summon evoker fangs |
@@ -649,6 +651,14 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
       "GENERIC_MOVEMENT_SPEED": 0.025
     },
     "ability": "DASH"
+  },
+  {
+    "id": "ENLIGHTENED",
+    "name": "%blue%Enlightened",
+    "attributes": {
+      "GENERIC_MAX_HEALTH": 6
+    },
+    "ability": "REVEAL"
   }
 ]
 ```
@@ -929,11 +939,22 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
     "price": {
       "food": 4
     },
+    "cooldown": 60,
     "velocity": {
       "x": 2,
       "y": 2,
       "z": 2
     }
+  },
+  {
+    "base": "Reveal",
+    "id": "REVEAL",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 200,
+    "range": 10
   }
 ]
 ```
@@ -942,6 +963,14 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 ### Bases
 
 <!-- <bases> -->
+#### Dash
+
+| Name | Type | Description |
+| --- | --- | --- |
+| price | `Price` | The amount of health and hunger deducted from the player upon activation |
+| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
+| velocity | `Vector` | The velocity |
+
 #### Pawn
 
 | Name | Type | Description |
@@ -982,6 +1011,14 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 | duration | `long` | How long should the weapon fly in ticks (1 second = 20 ticks) |
 | velocity | `Vector` | The velocity |
 | damageMultiplier | `double` | How much of the actual weapon damage to deal |
+
+#### Reveal
+
+| Name | Type | Description |
+| --- | --- | --- |
+| price | `Price` | The amount of health and hunger deducted from the player upon activation |
+| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
+| range | `double` | The range |
 
 #### Fire
 

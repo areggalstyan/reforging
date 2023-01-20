@@ -38,6 +38,7 @@ public class Reforge implements Identifiable, Listener {
 
     public ItemWrapper apply(Player player, ItemWrapper item, Reforging plugin) {
         var persistentData = item.getPersistentData(plugin);
+        persistentData.remove("cooldown");
         persistentData.setIfAbsent("name", item.getNameOrElse(plugin.getDefaultName(player, item)));
         var display = plugin.getItemDisplay();
         if (persistentData.has("reforge", String.class)) {

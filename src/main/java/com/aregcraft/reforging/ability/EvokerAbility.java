@@ -1,6 +1,5 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.delta.api.PlayerRegistry;
 import com.aregcraft.delta.api.entity.Entities;
 import com.aregcraft.reforging.Reforging;
 import com.aregcraft.reforging.meta.ProcessedAbility;
@@ -13,7 +12,6 @@ import org.bukkit.entity.Player;
  */
 @ProcessedAbility
 public class EvokerAbility extends Ability {
-    private final PlayerRegistry cooldownPlayers = PlayerRegistry.createAsynchronous();
     /**
      * The amount of health and hunger deducted from the player upon activation
      */
@@ -30,10 +28,10 @@ public class EvokerAbility extends Ability {
 
     @Override
     public void activate(Player player) {
-        if (cooldownPlayers.contains(player)) {
+        if (cooldownManager.isOnCooldown(player, cooldown, plugin)) {
             return;
         }
-        cooldownPlayers.add(player, cooldown, plugin);
+        cooldownManager.putOnCooldown(player, plugin);
         price.deduct(player);
         var location = player.getLocation();
         var direction = location.getDirection().setY(0);

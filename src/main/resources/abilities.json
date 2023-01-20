@@ -221,10 +221,21 @@
     "price": {
       "food": 4
     },
+    "cooldown": 60,
     "velocity": {
       "x": 2,
       "y": 2,
       "z": 2
     }
+  },
+  {
+    "base": "Reveal",
+    "id": "REVEAL",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 200,
+    "range": 10
   }
 ]

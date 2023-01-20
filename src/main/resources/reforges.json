@@ -144,5 +144,13 @@
       "GENERIC_MOVEMENT_SPEED": 0.025
     },
     "ability": "DASH"
+  },
+  {
+    "id": "ENLIGHTENED",
+    "name": "%blue%Enlightened",
+    "attributes": {
+      "GENERIC_MAX_HEALTH": 6
+    },
+    "ability": "REVEAL"
   }
 ]

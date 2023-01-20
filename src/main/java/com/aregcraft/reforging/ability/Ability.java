@@ -4,6 +4,7 @@ import com.aregcraft.reforging.Identifiable;
 import org.bukkit.entity.Player;
 
 public abstract class Ability implements Identifiable {
+    protected final CooldownManager cooldownManager = new CooldownManager();
     private String id;
 
     @Override

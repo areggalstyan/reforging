@@ -1,6 +1,6 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.delta.api.PlayerRegistry;
+import com.aregcraft.delta.api.PersistentDataWrapper;
 import com.aregcraft.delta.api.entity.Entities;
 import com.aregcraft.reforging.Reforging;
 import com.aregcraft.reforging.meta.ProcessedAbility;
@@ -15,8 +15,6 @@ import org.bukkit.potion.PotionEffectType;
  */
 @ProcessedAbility
 public class RageAbility extends Ability implements Listener {
-    private final PlayerRegistry cooldownPlayers = PlayerRegistry.createAsynchronous();
-    private final PlayerRegistry activatePlayers = PlayerRegistry.createAsynchronous();
     /**
      * The amount of health and hunger deducted from the player upon activation
      */
@@ -41,18 +39,21 @@ public class RageAbility extends Ability implements Listener {
 
     @Override
     public void activate(Player player) {
-        if (cooldownPlayers.contains(player)) {
+        if (cooldownManager.isOnCooldown(player, cooldown, plugin)) {
             return;
         }
-        cooldownPlayers.add(player, cooldown, plugin);
-        activatePlayers.add(player, duration, plugin);
+        cooldownManager.putOnCooldown(player, plugin);
+        var persistentData = PersistentDataWrapper.wrap(plugin, player);
+        persistentData.set("rage", true);
+        plugin.getSynchronousScheduler().scheduleDelayedTask(() -> persistentData.remove("rage"), duration);
         price.deduct(player);
         Entities.addPotionEffect(player, PotionEffectType.INCREASE_DAMAGE, duration, amplifier, true);
     }
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager() instanceof Player player && activatePlayers.contains(player)) {
+        if (event.getDamager() instanceof Player player
+                && PersistentDataWrapper.wrap(plugin, player).check("rage", true)) {
             player.damage(multiplier * event.getDamage());
         }
     }

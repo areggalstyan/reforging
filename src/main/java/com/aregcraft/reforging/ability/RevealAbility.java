@@ -1,15 +1,18 @@
 package com.aregcraft.reforging.ability;
 
+import com.aregcraft.delta.api.entity.EntityFinder;
+import com.aregcraft.delta.api.entity.selector.ExcludingSelector;
 import com.aregcraft.reforging.Reforging;
 import com.aregcraft.reforging.meta.ProcessedAbility;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
+import org.bukkit.potion.PotionEffectType;
 
 /**
- * Allows the player to start a rapid movement in the looking direction
+ * Allows the player to reveal all invisible entities within range
  */
 @ProcessedAbility
-public class DashAbility extends Ability {
+public class RevealAbility extends Ability {
     /**
      * The amount of health and hunger deducted from the player upon activation
      */
@@ -19,9 +22,9 @@ public class DashAbility extends Ability {
      */
     private long cooldown;
     /**
-     * The velocity
+     * The range
      */
-    private Vector velocity;
+    private double range;
     private transient Reforging plugin;
 
     @Override
@@ -31,6 +34,8 @@ public class DashAbility extends Ability {
         }
         cooldownManager.putOnCooldown(player, plugin);
         price.deduct(player);
-        player.setVelocity(player.getLocation().getDirection().multiply(velocity));
+        EntityFinder.createAtLocation(player.getLocation(), range / 2)
+                .find(LivingEntity.class, new ExcludingSelector(player))
+                .forEach(it -> it.removePotionEffect(PotionEffectType.INVISIBILITY));
     }
 }

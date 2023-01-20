@@ -1,6 +1,6 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.delta.api.PlayerRegistry;
+import com.aregcraft.delta.api.PersistentDataWrapper;
 import com.aregcraft.delta.api.entity.Entities;
 import com.aregcraft.reforging.Reforging;
 import com.aregcraft.reforging.function.Function3;
@@ -16,8 +16,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
  */
 @ProcessedAbility
 public class ShieldAbility extends Ability implements Listener {
-    private final PlayerRegistry cooldownPlayers = PlayerRegistry.createAsynchronous();
-    private final PlayerRegistry activatePlayers = PlayerRegistry.createAsynchronous();
     /**
      * The amount of health and hunger deducted from the player upon activation
      */
@@ -46,11 +44,13 @@ public class ShieldAbility extends Ability implements Listener {
 
     @Override
     public void activate(Player player) {
-        if (cooldownPlayers.contains(player)) {
+        if (cooldownManager.isOnCooldown(player, cooldown, plugin)) {
             return;
         }
-        cooldownPlayers.add(player, cooldown, plugin);
-        activatePlayers.add(player, duration, plugin);
+        cooldownManager.putOnCooldown(player, plugin);
+        var persistentData = PersistentDataWrapper.wrap(plugin, player);
+        persistentData.set("shield", true);
+        plugin.getSynchronousScheduler().scheduleDelayedTask(() -> persistentData.remove("shield"), duration);
         price.deduct(player);
         plugin.getSynchronousScheduler().scheduleRepeatingTask(() -> update(player), 0, 1, duration);
     }
@@ -61,7 +61,7 @@ public class ShieldAbility extends Ability implements Listener {
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        event.setCancelled(activatePlayers.contains(event.getEntity())
-                || disableAttack && activatePlayers.contains(event.getDamager()));
+        event.setCancelled(PersistentDataWrapper.wrap(plugin, event.getEntity()).check("shield", true)
+                || disableAttack && PersistentDataWrapper.wrap(plugin, event.getDamager()).check("shield", true));
     }
 }

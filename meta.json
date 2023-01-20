@@ -1,6 +1,27 @@
 {
-  "version": "4.2.0",
+  "version": "4.3.0",
   "abilities": [
+    {
+      "name": "Dash",
+      "description": "Allows the player to start a rapid movement in the looking direction",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "Vector",
+          "name": "velocity",
+          "description": "The velocity"
+        }
+      ]
+    },
     {
       "name": "Pawn",
       "description": "Allows the player to spawn entities that will attack other players but not them",
@@ -127,6 +148,27 @@
           "type": "double",
           "name": "damageMultiplier",
           "description": "How much of the actual weapon damage to deal"
+        }
+      ]
+    },
+    {
+      "name": "Reveal",
+      "description": "Allows the player to reveal all invisible entities within range",
+      "properties": [
+        {
+          "type": "Price",
+          "name": "price",
+          "description": "The amount of health and hunger deducted from the player upon activation"
+        },
+        {
+          "type": "long",
+          "name": "cooldown",
+          "description": "The cooldown in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "double",
+          "name": "range",
+          "description": "The range"
         }
       ]
     },

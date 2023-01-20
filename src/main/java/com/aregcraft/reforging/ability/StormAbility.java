@@ -1,6 +1,6 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.delta.api.PlayerRegistry;
+import com.aregcraft.delta.api.PersistentDataWrapper;
 import com.aregcraft.reforging.Reforging;
 import com.aregcraft.reforging.function.Function2;
 import com.aregcraft.reforging.meta.ProcessedAbility;
@@ -16,8 +16,6 @@ import org.bukkit.event.entity.EntityDamageEvent;
 public class StormAbility extends Ability implements Listener {
     private static final long INVULNERABILITY_DURATION = 20;
 
-    private final PlayerRegistry cooldownPlayers = PlayerRegistry.createAsynchronous();
-    private final PlayerRegistry activatorPlayers = PlayerRegistry.createAsynchronous();
     /**
      * The amount of health and hunger deducted from the player upon activation
      */
@@ -34,18 +32,23 @@ public class StormAbility extends Ability implements Listener {
 
     @Override
     public void activate(Player player) {
-        if (cooldownPlayers.contains(player)) {
+        if (cooldownManager.isOnCooldown(player, cooldown, plugin)) {
             return;
         }
-        cooldownPlayers.add(player, cooldown, plugin);
-        activatorPlayers.add(player, INVULNERABILITY_DURATION, plugin);
+        cooldownManager.putOnCooldown(player, plugin);
+        var persistentData = PersistentDataWrapper.wrap(plugin, player);
+        persistentData.set("storm", true);
+        plugin.getSynchronousScheduler()
+                .scheduleDelayedTask(() -> persistentData.remove("storm"), INVULNERABILITY_DURATION);
         price.deduct(player);
         function.evaluate(it -> player.getWorld().strikeLightning(player.getLocation().add(it)));
     }
 
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
-        event.setCancelled(event.getCause() == EntityDamageEvent.DamageCause.LIGHTNING
-                && activatorPlayers.contains(event.getEntity()));
+        if (event.getCause() == EntityDamageEvent.DamageCause.LIGHTNING
+                && PersistentDataWrapper.wrap(plugin, event.getEntity()).check("storm", true)) {
+            event.setDamage(0);
+        }
     }
 }

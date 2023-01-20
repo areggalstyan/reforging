@@ -2,7 +2,6 @@ package com.aregcraft.reforging.ability;
 
 import com.aregcraft.delta.api.FormattingContext;
 import com.aregcraft.delta.api.PersistentDataWrapper;
-import com.aregcraft.delta.api.PlayerRegistry;
 import com.aregcraft.delta.api.entity.EntityBuilder;
 import com.aregcraft.reforging.Reforging;
 import com.aregcraft.reforging.meta.ProcessedAbility;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
  */
 @ProcessedAbility
 public class PawnAbility extends Ability implements Listener {
-    private final PlayerRegistry cooldownPlayers = PlayerRegistry.createAsynchronous();
     /**
      * The amount of health and hunger deducted from the player upon activation
      */
@@ -44,10 +42,10 @@ public class PawnAbility extends Ability implements Listener {
 
     @Override
     public void activate(Player player) {
-        if (cooldownPlayers.contains(player)) {
+        if (cooldownManager.isOnCooldown(player, cooldown, plugin)) {
             return;
         }
-        cooldownPlayers.add(player, cooldown, plugin);
+        cooldownManager.putOnCooldown(player, plugin);
         price.deduct(player);
         entity.nameFormattingContext(FormattingContext.builder()
                 .placeholder("player", player.getDisplayName())
