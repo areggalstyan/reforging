@@ -7,7 +7,9 @@ import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.Reporter;
 
 import javax.lang.model.SourceVersion;
+import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.DeclaredType;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -66,9 +68,14 @@ public class ReforgingMeta implements Doclet {
 
     private List<Ability> getAbilities(DocletEnvironment environment) {
         return environment.getSpecifiedElements().stream()
-                .filter(it -> it.getAnnotation(ProcessedAbility.class) != null)
+                .filter(it -> it.getKind() == ElementKind.CLASS)
                 .map(TypeElement.class::cast)
+                .filter(this::isAbilitySuperclassAnnotationPresent)
                 .map(new AbilityProcessor(environment)::process)
                 .toList();
+    }
+
+    private boolean isAbilitySuperclassAnnotationPresent(TypeElement element) {
+        return ((DeclaredType) element.getSuperclass()).asElement().getAnnotation(AbilitySuperclass.class) != null;
     }
 }

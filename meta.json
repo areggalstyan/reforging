@@ -6,16 +6,6 @@
       "description": "Allows the player to start a rapid movement in the looking direction",
       "properties": [
         {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
-        {
           "type": "Vector",
           "name": "velocity",
           "description": "The velocity"
@@ -26,16 +16,6 @@
       "name": "Pawn",
       "description": "Allows the player to spawn entities that will attack other players but not them",
       "properties": [
-        {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
         {
           "type": "long",
           "name": "duration",
@@ -58,16 +38,6 @@
       "description": "Allows the player to deal more damage in exchange for receiving its portion",
       "properties": [
         {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
-        {
           "type": "int",
           "name": "duration",
           "description": "The duration in ticks (1 second = 20 ticks)"
@@ -88,16 +58,6 @@
       "name": "Effect",
       "description": "Allows the player to add an effect on themselves",
       "properties": [
-        {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
         {
           "type": "PotionEffectType",
           "name": "type",
@@ -125,16 +85,6 @@
       "description": "Allows the player to throw their weapon, damaging all hiy entities",
       "properties": [
         {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
-        {
           "type": "long",
           "name": "duration",
           "description": "How long should the weapon fly in ticks (1 second = 20 ticks)"
@@ -156,16 +106,6 @@
       "description": "Allows the player to reveal all invisible entities within range",
       "properties": [
         {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
-        {
           "type": "double",
           "name": "range",
           "description": "The range"
@@ -176,16 +116,6 @@
       "name": "Fire",
       "description": "Allows the player to create a spiral in the looking direction (or any other shape) of fire, igniting all touching entities",
       "properties": [
-        {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
         {
           "type": "Function3",
           "name": "function",
@@ -208,16 +138,6 @@
       "description": "Allows the player to throw a snowball (or any other projectile), freezing the hit entity",
       "properties": [
         {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
-        {
           "type": "EntityType",
           "name": "projectileType",
           "description": "The projectile type"
@@ -239,16 +159,6 @@
       "description": "Allows the player to summon evoker fangs",
       "properties": [
         {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
-        {
           "type": "int",
           "name": "number",
           "description": "The number of fangs"
@@ -259,16 +169,6 @@
       "name": "Projectile",
       "description": "Allows the player to throw a projectile",
       "properties": [
-        {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
         {
           "type": "EntityType",
           "name": "type",
@@ -286,16 +186,6 @@
       "description": "Allows the player to strike a circle (or any other shape) of lightning bolts around them",
       "properties": [
         {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
-        {
           "type": "Function2",
           "name": "function",
           "description": "The function describing the shape"
@@ -306,16 +196,6 @@
       "name": "SeismicWave",
       "description": "Allows the player to create a spiral (or any other shape) around them, damaging and knocking back all entities within the range",
       "properties": [
-        {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
         {
           "type": "Function2",
           "name": "function",
@@ -353,16 +233,6 @@
       "description": "Allows the player to create a spiral (or any other shape) around them, protecting them from all entities",
       "properties": [
         {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
-        {
           "type": "long",
           "name": "duration",
           "description": "The duration in ticks (1 second = 20 ticks)"
@@ -389,16 +259,6 @@
       "description": "Allows the player to teleport in the looking direction",
       "properties": [
         {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
-        {
           "type": "int",
           "name": "distance",
           "description": "The maximum distance"
@@ -409,16 +269,6 @@
       "name": "Potion",
       "description": "Allows the player to throw a potion with a custom effect",
       "properties": [
-        {
-          "type": "Price",
-          "name": "price",
-          "description": "The amount of health and hunger deducted from the player upon activation"
-        },
-        {
-          "type": "long",
-          "name": "cooldown",
-          "description": "The cooldown in ticks (1 second = 20 ticks)"
-        },
         {
           "type": "PotionEffectType",
           "name": "type",

@@ -1,53 +1,49 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.reforging.Reforging;
-import com.aregcraft.reforging.meta.ProcessedAbility;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 /**
  * Allows the player to teleport in the looking direction
  */
-@ProcessedAbility
 public class TeleportAbility extends Ability {
-    /**
-     * The amount of health and hunger deducted from the player upon activation
-     */
-    private Price price;
-    /**
-     * The cooldown in ticks (1 second = 20 ticks)
-     */
-    private long cooldown;
     /**
      * The maximum distance
      */
     private int distance;
-    private transient Reforging plugin;
 
     @Override
-    public void activate(Player player) {
-        if (cooldownManager.isOnCooldown(player, cooldown, plugin)) {
-            return;
-        }
-        cooldownManager.putOnCooldown(player, plugin);
-        price.deduct(player);
+    public void perform(Player player) {
         var location = player.getLocation();
         var direction = location.getDirection();
         direction.setY(Math.max(direction.getY(), 0));
         location.add(direction.multiply(distance));
-        while (isBlockSolid(location) || isBlockSolid(location.clone().add(0, 1, 0))) {
-            if (player.getLocation().add(direction).equals(location)) {
+        while (isBlockSolid(location) || isBlockAboveSolid(location)) {
+            if (isPlayerCurrentLocation(player, location, direction)) {
                 return;
             }
             location.subtract(direction);
         }
-        location.setX(location.getBlockX());
-        location.setY(location.getBlockY());
-        location.setZ(location.getBlockZ());
-        player.teleport(location.add(0.5, 0, 0.5));
+        teleportToCenter(player, location);
+    }
+
+    private boolean isPlayerCurrentLocation(Player player, Location location, Vector direction) {
+        return player.getLocation().add(direction).equals(location);
+    }
+
+    private boolean isBlockAboveSolid(Location location) {
+        return isBlockSolid(location.clone().add(0, 1, 0));
     }
 
     private boolean isBlockSolid(Location location) {
         return location.getBlock().getType().isSolid();
+    }
+
+    private void teleportToCenter(Player player, Location location) {
+        location.setX(location.getBlockX());
+        location.setY(location.getBlockY());
+        location.setZ(location.getBlockZ());
+        player.teleport(location.add(0.5, 0, 0.5));
     }
 }

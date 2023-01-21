@@ -97,7 +97,7 @@
       "health": 4,
       "food": 4
     },
-    "cooldown": 20,
+    "cooldown": 60,
     "function": {
       "x": "tcos(2t)",
       "z": "tsin(2t)",

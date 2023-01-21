@@ -24,7 +24,7 @@ public class AbilityDeserializer implements JsonDeserializer<Ability> {
         }
         var reader = new JsonReader(context, json);
         var ability = reader.deserialize(json, getClass(reader.getString("base")));
-        Classes.setField(ability, "plugin", plugin);
+        Classes.setField(Ability.class, ability, "plugin", plugin);
         if (ability instanceof Listener listener) {
             plugin.registerListener(listener);
         }

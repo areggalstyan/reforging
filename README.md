@@ -713,6 +713,8 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 | --- | --- | --- |
 | base | `String` | The base from which to inherit other properties |
 | id | `String` | The identifier |
+| price | `Price` | The amount of health and hunger deducted from the player upon activation |
+| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 
 <!-- <abilities_json> -->
 ```json
@@ -815,7 +817,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
       "health": 4,
       "food": 4
     },
-    "cooldown": 20,
+    "cooldown": 60,
     "function": {
       "x": "tcos(2t)",
       "z": "tsin(2t)",
@@ -967,16 +969,12 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | velocity | `Vector` | The velocity |
 
 #### Pawn
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | duration | `long` | How long the entities should exist, unlimited by default |
 | entity | `EntityBuilder` | The entity |
 | number | `int` | The number of entities |
@@ -985,8 +983,6 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | duration | `int` | The duration in ticks (1 second = 20 ticks) |
 | amplifier | `int` | The effect amplifier |
 | multiplier | `double` | How much damage to reflect on the player |
@@ -995,8 +991,6 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | type | `PotionEffectType` | The effect type |
 | duration | `int` | The effect duration in ticks (1 second = 20 ticks) |
 | amplifier | `int` | The effect amplifier |
@@ -1006,8 +1000,6 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | duration | `long` | How long should the weapon fly in ticks (1 second = 20 ticks) |
 | velocity | `Vector` | The velocity |
 | damageMultiplier | `double` | How much of the actual weapon damage to deal |
@@ -1016,16 +1008,12 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | range | `double` | The range |
 
 #### Fire
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | function | `Function3` | The function describing the shape |
 | particle | `Particle` | The particle used to create the shape |
 | fireDuration | `int` | How long the entities should burn in ticks (1 second = 20 ticks) |
@@ -1034,8 +1022,6 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | projectileType | `EntityType` | The projectile type |
 | projectileVelocity | `Vector` | The projectile velocity |
 | duration | `int` | How long to freeze hit entity in ticks (1 second = 20 ticks) |
@@ -1044,16 +1030,12 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | number | `int` | The number of fangs |
 
 #### Projectile
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | type | `EntityType` | The projectile type |
 | velocity | `Vector` | The projectile velocity |
 
@@ -1061,16 +1043,12 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | function | `Function2` | The function describing the shape |
 
 #### SeismicWave
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | function | `Function2` | The function describing the shape |
 | particle | `Particle` | The particle used to create the shape |
 | knockback | `Vector` | How much to knock back the entities within range |
@@ -1082,8 +1060,6 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | duration | `long` | The duration in ticks (1 second = 20 ticks) |
 | function | `Function3` | The function describing the shape |
 | particle | `Particle` | The particle used to create the shape |
@@ -1093,16 +1069,12 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | distance | `int` | The maximum distance |
 
 #### Potion
 
 | Name | Type | Description |
 | --- | --- | --- |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
 | type | `PotionEffectType` | The effect type |
 | duration | `int` | The effect duration in ticks (1 second = 20 ticks) |
 | amplifier | `int` | The effect amplifier |
