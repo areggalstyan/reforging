@@ -17,7 +17,7 @@ Make your server unique by creating your own reforges from scratch. All abilitie
 | /reforge &lt;id&gt; | Reforges the weapon in the main hand of the player | reforging.command.reforge | N/A |
 | /reloadreforging | Reloads the configuration files | reforging.command.reloadreforging | /rr |
 
-### Abilities
+## Abilities
 
 <!-- <abilities> -->
 | Name | Description |
