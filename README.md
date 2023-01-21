@@ -31,6 +31,7 @@ Make your server unique by creating your own reforges from scratch. All abilitie
 | Fire | Allows the player to create a spiral in the looking direction (or any other shape) of fire, igniting all touching entities |
 | Freeze | Allows the player to throw a snowball (or any other projectile), freezing the hit entity |
 | Evoker | Allows the player to summon evoker fangs |
+| Explosion | Allows the player to create an explosion around them |
 | Projectile | Allows the player to throw a projectile |
 | Storm | Allows the player to strike a circle (or any other shape) of lightning bolts around them |
 | SeismicWave | Allows the player to create a spiral (or any other shape) around them, damaging and knocking back all entities within the range |
@@ -364,7 +365,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   "name": "%reforge_name% %name%",
   "lore": [
     "",
-    "%gray%When in main hand:",
+    "%gray%When in Main Hand:",
     "%dark_green% %base_attack_speed% (%generic_attack_speed%) Attack Speed",
     "%dark_green% %base_attack_damage% (%generic_attack_damage%) Attack Damage",
     "%dark_green% %generic_max_health% Max Health",
@@ -477,6 +478,29 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
       "ingredients": {
         "c": "COBWEB",
         "d": "DRAGON_BREATH",
+        "e": "ELYTRA"
+      }
+    }
+  },
+  {
+    "id": "EXPLOSIVE",
+    "item": {
+      "material": "GUNPOWDER",
+      "name": "%red%Creeper Gunpowder",
+      "lore": [
+        "%gray%Use this item on a reforging anvil to",
+        "%gray%obtain %red%%bold%Explosive %reset%%gray%reforge!"
+      ]
+    },
+    "recipe": {
+      "shape": [
+        "gdg",
+        "ded",
+        "gdg"
+      ],
+      "ingredients": {
+        "g": "GUNPOWDER",
+        "d": "DIAMOND_BLOCK",
         "e": "ELYTRA"
       }
     }
@@ -659,6 +683,16 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
       "GENERIC_MAX_HEALTH": 6
     },
     "ability": "REVEAL"
+  },
+  {
+    "id": "EXPLOSIVE",
+    "name": "%red%Explosive",
+    "attributes": {
+      "GENERIC_MAX_HEALTH": 10,
+      "GENERIC_ARMOR": 8,
+      "GENERIC_ARMOR_TOUGHNESS": 2
+    },
+    "ability": "EXPLOSION"
   }
 ]
 ```
@@ -957,6 +991,16 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
     },
     "cooldown": 200,
     "range": 10
+  },
+  {
+    "base": "Explosion",
+    "id": "EXPLOSION",
+    "price": {
+      "health": 6,
+      "food": 6
+    },
+    "cooldown": 200,
+    "power": 5
   }
 ]
 ```
@@ -1031,6 +1075,12 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 | Name | Type | Description |
 | --- | --- | --- |
 | number | `int` | The number of fangs |
+
+#### Explosion
+
+| Name | Type | Description |
+| --- | --- | --- |
+| power | `float` | The explosion power |
 
 #### Projectile
 

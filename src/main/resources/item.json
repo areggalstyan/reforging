@@ -2,7 +2,7 @@
   "name": "%reforge_name% %name%",
   "lore": [
     "",
-    "%gray%When in main hand:",
+    "%gray%When in Main Hand:",
     "%dark_green% %base_attack_speed% (%generic_attack_speed%) Attack Speed",
     "%dark_green% %base_attack_damage% (%generic_attack_damage%) Attack Damage",
     "%dark_green% %generic_max_health% Max Health",

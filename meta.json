@@ -1,5 +1,5 @@
 {
-  "version": "4.3.0",
+  "version": "4.4.0",
   "abilities": [
     {
       "name": "Dash",
@@ -162,6 +162,17 @@
           "type": "int",
           "name": "number",
           "description": "The number of fangs"
+        }
+      ]
+    },
+    {
+      "name": "Explosion",
+      "description": "Allows the player to create an explosion around them",
+      "properties": [
+        {
+          "type": "float",
+          "name": "power",
+          "description": "The explosion power"
         }
       ]
     },

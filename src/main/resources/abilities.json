@@ -237,5 +237,15 @@
     },
     "cooldown": 200,
     "range": 10
+  },
+  {
+    "base": "Explosion",
+    "id": "EXPLOSION",
+    "price": {
+      "health": 6,
+      "food": 6
+    },
+    "cooldown": 200,
+    "power": 5
   }
 ]

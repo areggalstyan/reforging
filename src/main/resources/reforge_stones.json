@@ -90,5 +90,28 @@
         "e": "ELYTRA"
       }
     }
+  },
+  {
+    "id": "EXPLOSIVE",
+    "item": {
+      "material": "GUNPOWDER",
+      "name": "%red%Creeper Gunpowder",
+      "lore": [
+        "%gray%Use this item on a reforging anvil to",
+        "%gray%obtain %red%%bold%Explosive %reset%%gray%reforge!"
+      ]
+    },
+    "recipe": {
+      "shape": [
+        "gdg",
+        "ded",
+        "gdg"
+      ],
+      "ingredients": {
+        "g": "GUNPOWDER",
+        "d": "DIAMOND_BLOCK",
+        "e": "ELYTRA"
+      }
+    }
   }
 ]
