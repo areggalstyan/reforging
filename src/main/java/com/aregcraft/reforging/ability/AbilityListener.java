@@ -3,7 +3,6 @@ package com.aregcraft.reforging.ability;
 import com.aregcraft.delta.api.RegisteredListener;
 import com.aregcraft.delta.api.block.custom.CustomBlock;
 import com.aregcraft.delta.api.entity.EquipmentWrapper;
-import com.aregcraft.delta.api.item.ItemWrapper;
 import com.aregcraft.reforging.Reforging;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

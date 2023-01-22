@@ -247,5 +247,16 @@
     },
     "cooldown": 200,
     "power": 5
+  },
+  {
+    "base": "Thorns",
+    "id": "THORNS",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 200,
+    "duration": 100,
+    "multiplier": 0.25
   }
 ]

@@ -24,6 +24,7 @@ Make your server unique by creating your own reforges from scratch. All abilitie
 | --- | --- |
 | Dash | Allows the player to start a rapid movement in the looking direction |
 | Pawn | Allows the player to spawn entities that will attack other players but not them |
+| Thorns | Allows the player to reflect a portion of the received damage |
 | Rage | Allows the player to deal more damage in exchange for receiving its portion |
 | Effect | Allows the player to add an effect on themselves |
 | Throw | Allows the player to throw their weapon, damaging all hiy entities |
@@ -693,6 +694,15 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
       "GENERIC_ARMOR_TOUGHNESS": 2
     },
     "ability": "EXPLOSION"
+  },
+  {
+    "id": "SHARP",
+    "name": "%green%Sharp",
+    "attributes": {
+      "GENERIC_MAX_HEALTH": -2,
+      "GENERIC_ATTACK_DAMAGE": 2
+    },
+    "ability": "THORNS"
   }
 ]
 ```
@@ -1001,6 +1011,17 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
     },
     "cooldown": 200,
     "power": 5
+  },
+  {
+    "base": "Thorns",
+    "id": "THORNS",
+    "price": {
+      "health": 4,
+      "food": 4
+    },
+    "cooldown": 200,
+    "duration": 100,
+    "multiplier": 0.25
   }
 ]
 ```
@@ -1022,6 +1043,13 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 | duration | `long` | How long the entities should exist, unlimited by default |
 | entity | `EntityBuilder` | The entity |
 | number | `int` | The number of entities |
+
+#### Thorns
+
+| Name | Type | Description |
+| --- | --- | --- |
+| duration | `long` | The duration in ticks (1 second = 20 ticks) |
+| multiplier | `double` | How much damage to reflect on the attacker |
 
 #### Rage
 

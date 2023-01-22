@@ -1,5 +1,5 @@
 {
-  "version": "4.4.0",
+  "version": "4.5.0",
   "abilities": [
     {
       "name": "Dash",
@@ -30,6 +30,22 @@
           "type": "int",
           "name": "number",
           "description": "The number of entities"
+        }
+      ]
+    },
+    {
+      "name": "Thorns",
+      "description": "Allows the player to reflect a portion of the received damage",
+      "properties": [
+        {
+          "type": "long",
+          "name": "duration",
+          "description": "The duration in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "double",
+          "name": "multiplier",
+          "description": "How much damage to reflect on the attacker"
         }
       ]
     },
