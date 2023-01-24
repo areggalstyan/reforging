@@ -28,6 +28,7 @@ Make your server unique by creating your own reforges from scratch. All abilitie
 | Rage | Allows the player to deal more damage in exchange for receiving its portion |
 | Effect | Allows the player to add an effect on themselves |
 | Throw | Allows the player to throw their weapon, damaging all hiy entities |
+| Fly | Allows the player to fly as if they are wearing elytra |
 | Reveal | Allows the player to reveal all invisible entities within range |
 | Fire | Allows the player to create a spiral in the looking direction (or any other shape) of fire, igniting all touching entities |
 | Freeze | Allows the player to throw a snowball (or any other projectile), freezing the hit entity |
@@ -703,6 +704,15 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
       "GENERIC_ATTACK_DAMAGE": 2
     },
     "ability": "THORNS"
+  },
+  {
+    "id": "LIGHTWEIGHT",
+    "name": "%green%Lightweight",
+    "attributes": {
+      "GENERIC_MOVEMENT_SPEED": 0.025,
+      "GENERIC_ATTACK_DAMAGE": 2
+    },
+    "ability": "FLY"
   }
 ]
 ```
@@ -1022,6 +1032,20 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
     "cooldown": 200,
     "duration": 100,
     "multiplier": 0.25
+  },
+  {
+    "base": "Fly",
+    "id": "FLY",
+    "price": {
+      "food": 8
+    },
+    "cooldown": 400,
+    "duration": 200,
+    "velocity": {
+      "x": 4,
+      "y": 4,
+      "z": 4
+    }
   }
 ]
 ```
@@ -1075,6 +1099,13 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 | duration | `long` | How long should the weapon fly in ticks (1 second = 20 ticks) |
 | velocity | `Vector` | The velocity |
 | damageMultiplier | `double` | How much of the actual weapon damage to deal |
+
+#### Fly
+
+| Name | Type | Description |
+| --- | --- | --- |
+| duration | `int` | The duration in ticks (1 second = 20 ticks) |
+| velocity | `Vector` | The velocity |
 
 #### Reveal
 

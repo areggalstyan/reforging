@@ -171,5 +171,14 @@
       "GENERIC_ATTACK_DAMAGE": 2
     },
     "ability": "THORNS"
+  },
+  {
+    "id": "LIGHTWEIGHT",
+    "name": "%green%Lightweight",
+    "attributes": {
+      "GENERIC_MOVEMENT_SPEED": 0.025,
+      "GENERIC_ATTACK_DAMAGE": 2
+    },
+    "ability": "FLY"
   }
 ]

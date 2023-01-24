@@ -1,5 +1,5 @@
 {
-  "version": "4.5.0",
+  "version": "4.6.0",
   "abilities": [
     {
       "name": "Dash",
@@ -114,6 +114,22 @@
           "type": "double",
           "name": "damageMultiplier",
           "description": "How much of the actual weapon damage to deal"
+        }
+      ]
+    },
+    {
+      "name": "Fly",
+      "description": "Allows the player to fly as if they are wearing elytra",
+      "properties": [
+        {
+          "type": "int",
+          "name": "duration",
+          "description": "The duration in ticks (1 second = 20 ticks)"
+        },
+        {
+          "type": "Vector",
+          "name": "velocity",
+          "description": "The velocity"
         }
       ]
     },

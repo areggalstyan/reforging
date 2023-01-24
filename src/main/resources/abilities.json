@@ -258,5 +258,19 @@
     "cooldown": 200,
     "duration": 100,
     "multiplier": 0.25
+  },
+  {
+    "base": "Fly",
+    "id": "FLY",
+    "price": {
+      "food": 8
+    },
+    "cooldown": 400,
+    "duration": 200,
+    "velocity": {
+      "x": 4,
+      "y": 4,
+      "z": 4
+    }
   }
 ]
