@@ -272,5 +272,15 @@
       "y": 4,
       "z": 4
     }
+  },
+  {
+    "base": "Spectate",
+    "id": "SPECTATE",
+    "price": {
+      "health": 10,
+      "food": 10
+    },
+    "cooldown": 400,
+    "duration": 100
   }
 ]

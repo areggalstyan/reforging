@@ -38,9 +38,19 @@ public abstract class Ability implements Identifiable {
     }
 
     protected void setPlayerActive(Entity player, long duration) {
-        var persistentData = PersistentDataWrapper.wrap(plugin, player);
-        persistentData.set(id, true);
-        plugin.getSynchronousScheduler().scheduleDelayedTask(() -> persistentData.remove(id), duration);
+        setPlayerActive(player, duration, () -> {});
+    }
+
+    protected void setPlayerActive(Entity player, long duration, Runnable task) {
+        PersistentDataWrapper.wrap(plugin, player).set(id, true);
+        plugin.getSynchronousScheduler().scheduleDelayedTask(() -> {
+            task.run();
+            setPlayerInactive(player);
+        }, duration);
+    }
+
+    protected void setPlayerInactive(Entity player) {
+        PersistentDataWrapper.wrap(plugin, player).remove(id);
     }
 
     protected abstract void perform(Player player);

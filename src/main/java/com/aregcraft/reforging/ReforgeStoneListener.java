@@ -5,6 +5,8 @@ import com.aregcraft.delta.api.item.ItemWrapper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 @RegisteredListener
 public class ReforgeStoneListener implements Listener {
@@ -12,7 +14,15 @@ public class ReforgeStoneListener implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        event.setCancelled(ItemWrapper.wrap(event.getItemInHand()).getPersistentData(plugin)
-                .check("id", "reforge_stone"));
+        event.setCancelled(isReforgeStone(event.getItemInHand()));
+    }
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        event.setCancelled(isReforgeStone(event.getItem()));
+    }
+
+    private boolean isReforgeStone(ItemStack item) {
+        return item != null && ItemWrapper.wrap(item).getPersistentData(plugin).check("id", "reforge_stone");
     }
 }
