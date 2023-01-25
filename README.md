@@ -33,6 +33,7 @@ Make your server unique by creating your own reforges from scratch. All abilitie
 | Fire | Allows the player to create a spiral in the looking direction (or any other shape) of fire, igniting all touching entities |
 | Freeze | Allows the player to throw a snowball (or any other projectile), freezing the hit entity |
 | Evoker | Allows the player to summon evoker fangs |
+| Spectate | Allows the player briefly spectate while retaining their location |
 | Explosion | Allows the player to create an explosion around them |
 | Projectile | Allows the player to throw a projectile |
 | Storm | Allows the player to strike a circle (or any other shape) of lightning bolts around them |
@@ -506,6 +507,29 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
         "e": "ELYTRA"
       }
     }
+  },
+  {
+    "id": "SPECTACULAR",
+    "item": {
+      "material": "ENDER_EYE",
+      "name": "%red%All-Seeing Eye",
+      "lore": [
+        "%gray%Use this item on a reforging anvil to",
+        "%gray%obtain %red%%bold%Spectacular %reset%%gray%reforge!"
+      ]
+    },
+    "recipe": {
+      "shape": [
+        "ddd",
+        "nen",
+        "ddd"
+      ],
+      "ingredients": {
+        "d": "DIAMOND_BLOCK",
+        "n": "NETHER_STAR",
+        "e": "ELYTRA"
+      }
+    }
   }
 ]
 ```
@@ -713,6 +737,18 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
       "GENERIC_ATTACK_DAMAGE": 2
     },
     "ability": "FLY"
+  },
+  {
+    "id": "SPECTACULAR",
+    "name": "%red%Spectacular",
+    "attributes": {
+      "GENERIC_MOVEMENT_SPEED": 0.025,
+      "GENERIC_MAX_HEALTH": 8,
+      "GENERIC_ARMOR": 8,
+      "GENERIC_ARMOR_TOUGHNESS": 4,
+      "GENERIC_ATTACK_DAMAGE": 4
+    },
+    "ability": "SPECTATE"
   }
 ]
 ```
@@ -1046,6 +1082,16 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
       "y": 4,
       "z": 4
     }
+  },
+  {
+    "base": "Spectate",
+    "id": "SPECTATE",
+    "price": {
+      "health": 10,
+      "food": 10
+    },
+    "cooldown": 400,
+    "duration": 100
   }
 ]
 ```
@@ -1134,6 +1180,12 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 | Name | Type | Description |
 | --- | --- | --- |
 | number | `int` | The number of fangs |
+
+#### Spectate
+
+| Name | Type | Description |
+| --- | --- | --- |
+| duration | `long` | The duration in ticks (1 second = 20 ticks) |
 
 #### Explosion
 
