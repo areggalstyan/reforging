@@ -71,7 +71,7 @@ Right-click with the reforged weapon in your hand.
 
 ## Support
 
-If you encounter a bug, please report it on the GitHub issue tracker.
+Visit the official discord server [https://discord.gg/JaeqU4HU](https://discord.gg/JaeqU4HU).
 
 ## Configuration
 

@@ -38,6 +38,6 @@ public class SpectateAbility extends Ability implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         var player = event.getEntity();
         player.setGameMode(PersistentDataWrapper.wrap(getPlugin(), player).get("mode", GameMode.class));
-        setPlayerInactive(player);
+        unsetPlayerActive(player);
     }
 }

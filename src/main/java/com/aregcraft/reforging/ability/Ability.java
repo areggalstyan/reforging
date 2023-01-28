@@ -52,11 +52,11 @@ public abstract class Ability implements Identifiable<String> {
         PersistentDataWrapper.wrap(plugin, player).set(id, true);
         plugin.getSynchronousScheduler().scheduleDelayedTask(() -> {
             task.run();
-            setPlayerInactive(player);
+            unsetPlayerActive(player);
         }, duration);
     }
 
-    protected void setPlayerInactive(Entity player) {
+    protected void unsetPlayerActive(Entity player) {
         PersistentDataWrapper.wrap(plugin, player).remove(id);
     }
 
