@@ -5,14 +5,14 @@ plugins {
 }
 
 group = "com.aregcraft"
-version = "4.7.0"
+version = "4.8.0"
 
 repositories {
     mavenLocal()
 }
 
 dependencies {
-    compileOnly(project(":meta"))
+    compileOnly("com.aregcraft.delta:meta:1.0.0")
     compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
     implementation("com.aregcraft.delta:api:1.0.0")
     implementation("org.mariuszgromada.math:MathParser.org-mXparser:5.0.7")

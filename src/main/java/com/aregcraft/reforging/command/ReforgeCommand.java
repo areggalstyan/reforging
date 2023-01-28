@@ -1,5 +1,6 @@
 package com.aregcraft.reforging.command;
 
+import com.aregcraft.delta.api.InjectPlugin;
 import com.aregcraft.delta.api.command.CommandWrapper;
 import com.aregcraft.delta.api.command.RegisteredCommand;
 import com.aregcraft.delta.api.item.ItemWrapper;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RegisteredCommand("reforge")
 public class ReforgeCommand implements CommandWrapper {
+    @InjectPlugin
     private Reforging plugin;
 
     @Override

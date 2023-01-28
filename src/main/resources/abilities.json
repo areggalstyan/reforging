@@ -2,6 +2,7 @@
   {
     "base": "Projectile",
     "id": "WITHER",
+    "name": "%red%Wither",
     "price": {
       "health": 4,
       "food": 4
@@ -17,6 +18,7 @@
   {
     "base": "Effect",
     "id": "REGENERATION",
+    "name": "%red%Regeneration",
     "price": {
       "food": 8
     },
@@ -29,6 +31,7 @@
   {
     "base": "Freeze",
     "id": "FREEZE",
+    "name": "%blue%Freeze",
     "price": {
       "health": 8,
       "food": 8
@@ -45,6 +48,7 @@
   {
     "base": "Rage",
     "id": "RAGE",
+    "name": "%red%Rage",
     "price": {
       "health": 4,
       "food": 4
@@ -57,6 +61,7 @@
   {
     "base": "Storm",
     "id": "STORM",
+    "name": "%gray%Storm",
     "price": {
       "health": 4,
       "food": 4
@@ -73,6 +78,7 @@
   {
     "base": "Shield",
     "id": "SHIELD",
+    "name": "%green%Shield",
     "price": {
       "health": 4,
       "food": 4
@@ -93,6 +99,7 @@
   {
     "base": "SeismicWave",
     "id": "SEISMIC_WAVE",
+    "name": "%green%Seismic Wave",
     "price": {
       "health": 4,
       "food": 4
@@ -118,6 +125,7 @@
   {
     "base": "Throw",
     "id": "THROW",
+    "name": "%red%Throw",
     "price": {
       "health": 4,
       "food": 4
@@ -134,6 +142,7 @@
   {
     "base": "Pawn",
     "id": "PAWN",
+    "name": "%green%Pawn",
     "price": {
       "health": 6,
       "food": 6
@@ -161,6 +170,7 @@
   {
     "base": "Teleport",
     "id": "TELEPORT",
+    "name": "%green%Teleport",
     "price": {
       "health": 4,
       "food": 4
@@ -171,6 +181,7 @@
   {
     "base": "Potion",
     "id": "POTION",
+    "name": "%gray%Potion",
     "price": {
       "health": 4,
       "food": 4
@@ -189,6 +200,7 @@
   {
     "base": "Fire",
     "id": "FIRE",
+    "name": "%gold%Fire",
     "price": {
       "health": 4,
       "food": 4
@@ -208,6 +220,7 @@
   {
     "base": "Evoker",
     "id": "EVOKER",
+    "name": "%gray%Evoker",
     "price": {
       "health": 4,
       "food": 4
@@ -218,6 +231,7 @@
   {
     "base": "Dash",
     "id": "DASH",
+    "name": "%green%Dash",
     "price": {
       "food": 4
     },
@@ -231,6 +245,7 @@
   {
     "base": "Reveal",
     "id": "REVEAL",
+    "name": "%blue%Reveal",
     "price": {
       "health": 4,
       "food": 4
@@ -241,6 +256,7 @@
   {
     "base": "Explosion",
     "id": "EXPLOSION",
+    "name": "%red%Explosion",
     "price": {
       "health": 6,
       "food": 6
@@ -251,6 +267,7 @@
   {
     "base": "Thorns",
     "id": "THORNS",
+    "name": "%green%Thorns",
     "price": {
       "health": 4,
       "food": 4
@@ -262,6 +279,7 @@
   {
     "base": "Fly",
     "id": "FLY",
+    "name": "%green%Fly",
     "price": {
       "food": 8
     },
@@ -276,11 +294,23 @@
   {
     "base": "Spectate",
     "id": "SPECTATE",
+    "name": "%red%Spectate",
     "price": {
       "health": 10,
       "food": 10
     },
     "cooldown": 400,
     "duration": 100
+  },
+  {
+    "base": "Cocoon",
+    "id": "COCOON",
+    "name": "%green%Cocoon",
+    "price": {
+      "health": 8,
+      "food": 8
+    },
+    "cooldown": 400,
+    "block": "OBSIDIAN"
   }
 ]

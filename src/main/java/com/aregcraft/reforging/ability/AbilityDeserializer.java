@@ -1,5 +1,6 @@
 package com.aregcraft.reforging.ability;
 
+import com.aregcraft.delta.api.InjectPlugin;
 import com.aregcraft.delta.api.json.JsonReader;
 import com.aregcraft.delta.api.json.annotation.JsonAdapterFor;
 import com.aregcraft.delta.api.util.Classes;
@@ -15,6 +16,7 @@ import java.lang.reflect.Type;
 public class AbilityDeserializer implements JsonDeserializer<Ability> {
     private static final String CLASS_NAME_TEMPLATE = "com.aregcraft.reforging.ability.%sAbility";
 
+    @InjectPlugin
     private Reforging plugin;
 
     @Override
@@ -24,7 +26,7 @@ public class AbilityDeserializer implements JsonDeserializer<Ability> {
         }
         var reader = new JsonReader(context, json);
         var ability = reader.deserialize(json, getClass(reader.getString("base")));
-        Classes.setField(Ability.class, ability, "plugin", plugin);
+        Classes.setPluginField(Ability.class, ability, plugin);
         if (ability instanceof Listener listener) {
             plugin.registerListener(listener);
         }

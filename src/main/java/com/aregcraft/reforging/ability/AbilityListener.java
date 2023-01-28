@@ -1,5 +1,6 @@
 package com.aregcraft.reforging.ability;
 
+import com.aregcraft.delta.api.InjectPlugin;
 import com.aregcraft.delta.api.RegisteredListener;
 import com.aregcraft.delta.api.block.custom.CustomBlock;
 import com.aregcraft.delta.api.entity.EquipmentWrapper;
@@ -14,6 +15,7 @@ import org.bukkit.inventory.EquipmentSlot;
 
 @RegisteredListener
 public class AbilityListener implements Listener {
+    @InjectPlugin
     private Reforging plugin;
 
     @EventHandler

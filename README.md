@@ -369,6 +369,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   "lore": [
     "",
     "%gray%When in Main Hand:",
+    "%dark_green% %ability% Ability",
     "%dark_green% %base_attack_speed% (%generic_attack_speed%) Attack Speed",
     "%dark_green% %base_attack_damage% (%generic_attack_damage%) Attack Damage",
     "%dark_green% %generic_max_health% Max Health",
@@ -799,12 +800,13 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 
 ### `abilities.json: List<Ability>`
 
-| Name | Type | Description |
-| --- | --- | --- |
-| base | `String` | The base from which to inherit other properties |
-| id | `String` | The identifier |
-| price | `Price` | The amount of health and hunger deducted from the player upon activation |
-| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) |
+| Name | Type | Description | Optional | Default |
+| --- | --- | --- | --- | --- |
+| base | `String` | The base from which to inherit other properties | No | N/A |
+| id | `String` | The identifier | No | N/A |
+| name | `String` | The name, can have colors | Yes | The identifier |
+| price | `Price` | The amount of health and hunger deducted from the player upon activation | No | N/A |
+| cooldown | `long` | The cooldown in ticks (1 second = 20 ticks) | Yes | 0 |
 
 <!-- <abilities_json> -->
 ```json
@@ -812,6 +814,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Projectile",
     "id": "WITHER",
+    "name": "%red%Wither",
     "price": {
       "health": 4,
       "food": 4
@@ -827,6 +830,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Effect",
     "id": "REGENERATION",
+    "name": "%red%Regeneration",
     "price": {
       "food": 8
     },
@@ -839,6 +843,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Freeze",
     "id": "FREEZE",
+    "name": "%blue%Freeze",
     "price": {
       "health": 8,
       "food": 8
@@ -855,6 +860,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Rage",
     "id": "RAGE",
+    "name": "%red%Rage",
     "price": {
       "health": 4,
       "food": 4
@@ -867,6 +873,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Storm",
     "id": "STORM",
+    "name": "%gray%Storm",
     "price": {
       "health": 4,
       "food": 4
@@ -883,6 +890,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Shield",
     "id": "SHIELD",
+    "name": "%green%Shield",
     "price": {
       "health": 4,
       "food": 4
@@ -903,6 +911,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "SeismicWave",
     "id": "SEISMIC_WAVE",
+    "name": "%green%Seismic Wave",
     "price": {
       "health": 4,
       "food": 4
@@ -928,6 +937,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Throw",
     "id": "THROW",
+    "name": "%red%Throw",
     "price": {
       "health": 4,
       "food": 4
@@ -944,6 +954,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Pawn",
     "id": "PAWN",
+    "name": "%green%Pawn",
     "price": {
       "health": 6,
       "food": 6
@@ -971,6 +982,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Teleport",
     "id": "TELEPORT",
+    "name": "%green%Teleport",
     "price": {
       "health": 4,
       "food": 4
@@ -981,6 +993,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Potion",
     "id": "POTION",
+    "name": "%gray%Potion",
     "price": {
       "health": 4,
       "food": 4
@@ -999,6 +1012,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Fire",
     "id": "FIRE",
+    "name": "%gold%Fire",
     "price": {
       "health": 4,
       "food": 4
@@ -1018,6 +1032,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Evoker",
     "id": "EVOKER",
+    "name": "%gray%Evoker",
     "price": {
       "health": 4,
       "food": 4
@@ -1028,6 +1043,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Dash",
     "id": "DASH",
+    "name": "%green%Dash",
     "price": {
       "food": 4
     },
@@ -1041,6 +1057,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Reveal",
     "id": "REVEAL",
+    "name": "%blue%Reveal",
     "price": {
       "health": 4,
       "food": 4
@@ -1051,6 +1068,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Explosion",
     "id": "EXPLOSION",
+    "name": "%red%Explosion",
     "price": {
       "health": 6,
       "food": 6
@@ -1061,6 +1079,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Thorns",
     "id": "THORNS",
+    "name": "%green%Thorns",
     "price": {
       "health": 4,
       "food": 4
@@ -1072,6 +1091,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Fly",
     "id": "FLY",
+    "name": "%green%Fly",
     "price": {
       "food": 8
     },
@@ -1086,6 +1106,7 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
   {
     "base": "Spectate",
     "id": "SPECTATE",
+    "name": "%red%Spectate",
     "price": {
       "health": 10,
       "food": 10

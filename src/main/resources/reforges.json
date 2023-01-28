@@ -192,5 +192,15 @@
       "GENERIC_ATTACK_DAMAGE": 4
     },
     "ability": "SPECTATE"
+  },
+  {
+    "id": "PROTECTED",
+    "name": "%green%Protected",
+    "attributes": {
+      "GENERIC_MAX_HEALTH": 6,
+      "GENERIC_ARMOR": 6,
+      "GENERIC_ARMOR_TOUGHNESS": 2
+    },
+    "ability": "COCOON"
   }
 ]

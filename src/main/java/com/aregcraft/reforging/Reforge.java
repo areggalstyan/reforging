@@ -1,6 +1,7 @@
 package com.aregcraft.reforging;
 
 import com.aregcraft.delta.api.FormattingContext;
+import com.aregcraft.delta.api.Identifiable;
 import com.aregcraft.delta.api.item.ItemWrapper;
 import com.aregcraft.reforging.ability.Ability;
 import org.bukkit.attribute.Attribute;
@@ -12,7 +13,7 @@ import org.bukkit.inventory.ItemFlag;
 import java.text.DecimalFormat;
 import java.util.Map;
 
-public class Reforge implements Identifiable, Listener {
+public class Reforge implements Identifiable<String>, Listener {
     private final String id;
     private final String name;
     private final Map<Attribute, Double> attributes;
@@ -42,15 +43,17 @@ public class Reforge implements Identifiable, Listener {
         persistentData.setIfAbsent("name", item.getNameOrElse(plugin.getDefaultName(player, item)));
         var display = plugin.getItemDisplay();
         if (persistentData.has("reforge", String.class)) {
+            var reforge = persistentData.get("reforge", String.class);
+            item.setFormattingContext(plugin.getReforge(reforge).getFormattingContext(item, plugin));
             item.removeLore(display.lore());
-            item.removeAttributeModifiers(persistentData.get("reforge", String.class));
+            item.removeAttributeModifiers(reforge);
         } else {
             item.addFlags(ItemFlag.HIDE_ATTRIBUTES);
             Weapon.of(item).addAttributeModifiers(item);
         }
         persistentData.set("reforge", id);
         item.setFormattingContext(getFormattingContext(item, plugin));
-        item.setDisplay(display);
+        item.appendDisplay(display);
         attributes.forEach((attribute, amount) -> addAttributeModifier(item, attribute, amount));
         return item;
     }
@@ -69,6 +72,7 @@ public class Reforge implements Identifiable, Listener {
         var builder = FormattingContext.builder()
                 .placeholder("name", item.getPersistentData(plugin).get("name", String.class))
                 .placeholder("reforge_name", name)
+                .placeholder("ability", ability == null ? null : ability.getName())
                 .placeholder("base_attack_damage", weapon.getAttackDamage())
                 .placeholder("base_attack_speed", weapon.getAttackSpeed())
                 .formatter(Double.class, new DecimalFormat()::format);

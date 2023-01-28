@@ -8,10 +8,11 @@ version = rootProject.version
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.aregcraft.delta:meta:1.0.0")
 }
 
 tasks.shadowJar {

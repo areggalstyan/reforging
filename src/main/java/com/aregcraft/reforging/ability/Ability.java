@@ -1,23 +1,30 @@
 package com.aregcraft.reforging.ability;
 
+import com.aregcraft.delta.api.Identifiable;
+import com.aregcraft.delta.api.InjectPlugin;
 import com.aregcraft.delta.api.PersistentDataWrapper;
-import com.aregcraft.reforging.Identifiable;
+import com.aregcraft.delta.meta.AbilitySuperclass;
 import com.aregcraft.reforging.Reforging;
-import com.aregcraft.reforging.meta.AbilitySuperclass;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 @AbilitySuperclass
-public abstract class Ability implements Identifiable {
+public abstract class Ability implements Identifiable<String> {
     private final CooldownManager cooldownManager = new CooldownManager();
     private String id;
+    private String name;
     private Price price;
     private long cooldown;
+    @InjectPlugin
     private transient Reforging plugin;
 
     @Override
     public String getId() {
         return id;
+    }
+
+    public String getName() {
+        return name == null ? id : name;
     }
 
     public void activate(Player player) {

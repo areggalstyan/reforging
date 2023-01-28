@@ -1,5 +1,6 @@
 package com.aregcraft.reforging;
 
+import com.aregcraft.delta.api.InjectPlugin;
 import com.aregcraft.delta.api.block.BlockWrapper;
 import com.aregcraft.delta.api.block.custom.CustomBlock;
 import com.aregcraft.delta.api.block.custom.RegisteredCustomBlock;
@@ -19,6 +20,7 @@ import java.util.Optional;
 
 @RegisteredCustomBlock("reforging_anvil")
 public class ReforgingAnvilBlock implements CustomBlock {
+    @InjectPlugin
     private Reforging plugin;
     private ArmorStand armorStand;
 

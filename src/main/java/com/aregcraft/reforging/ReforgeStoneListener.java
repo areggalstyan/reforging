@@ -1,5 +1,6 @@
 package com.aregcraft.reforging;
 
+import com.aregcraft.delta.api.InjectPlugin;
 import com.aregcraft.delta.api.RegisteredListener;
 import com.aregcraft.delta.api.item.ItemWrapper;
 import org.bukkit.event.EventHandler;
@@ -10,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 @RegisteredListener
 public class ReforgeStoneListener implements Listener {
+    @InjectPlugin
     private Reforging plugin;
 
     @EventHandler

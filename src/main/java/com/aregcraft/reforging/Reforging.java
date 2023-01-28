@@ -1,6 +1,8 @@
 package com.aregcraft.reforging;
 
 import com.aregcraft.delta.api.DeltaPlugin;
+import com.aregcraft.delta.api.Identifiable;
+import com.aregcraft.delta.api.UpdateChecker;
 import com.aregcraft.delta.api.item.ItemDisplay;
 import com.aregcraft.delta.api.item.ItemWrapper;
 import com.aregcraft.delta.api.json.JsonConfigurationLoader;
@@ -57,11 +59,11 @@ public class Reforging extends DeltaPlugin {
     }
 
     public Reforge getReforge(String id) {
-        return Identifiable.find(configurationLoader.get(REFORGES_TYPE), id);
+        return Identifiable.findAny(configurationLoader.get(REFORGES_TYPE), id);
     }
 
     public Ability getAbility(String id) {
-        return Identifiable.find(configurationLoader.get(ABILITIES_TYPE), id);
+        return Identifiable.findAny(configurationLoader.get(ABILITIES_TYPE), id);
     }
 
     public List<String> getReforgeIds() {
