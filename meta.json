@@ -198,6 +198,17 @@
       ]
     },
     {
+      "name": "Cocoon",
+      "description": "Allows the player to put themselves in a block cocoon",
+      "properties": [
+        {
+          "type": "Material",
+          "name": "block",
+          "description": "The block"
+        }
+      ]
+    },
+    {
       "name": "Spectate",
       "description": "Allows the player briefly spectate while retaining their location",
       "properties": [

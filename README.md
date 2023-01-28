@@ -33,6 +33,7 @@ Make your server unique by creating your own reforges from scratch. All abilitie
 | Fire | Allows the player to create a spiral in the looking direction (or any other shape) of fire, igniting all touching entities |
 | Freeze | Allows the player to throw a snowball (or any other projectile), freezing the hit entity |
 | Evoker | Allows the player to summon evoker fangs |
+| Cocoon | Allows the player to put themselves in a block cocoon |
 | Spectate | Allows the player briefly spectate while retaining their location |
 | Explosion | Allows the player to create an explosion around them |
 | Projectile | Allows the player to throw a projectile |
@@ -750,6 +751,16 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
       "GENERIC_ATTACK_DAMAGE": 4
     },
     "ability": "SPECTATE"
+  },
+  {
+    "id": "PROTECTED",
+    "name": "%green%Protected",
+    "attributes": {
+      "GENERIC_MAX_HEALTH": 6,
+      "GENERIC_ARMOR": 6,
+      "GENERIC_ARMOR_TOUGHNESS": 2
+    },
+    "ability": "COCOON"
   }
 ]
 ```
@@ -1113,6 +1124,17 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
     },
     "cooldown": 400,
     "duration": 100
+  },
+  {
+    "base": "Cocoon",
+    "id": "COCOON",
+    "name": "%green%Cocoon",
+    "price": {
+      "health": 8,
+      "food": 8
+    },
+    "cooldown": 400,
+    "block": "OBSIDIAN"
   }
 ]
 ```
@@ -1201,6 +1223,12 @@ Lots of strings can have colors and placeholders. Specify colors with `%color_na
 | Name | Type | Description |
 | --- | --- | --- |
 | number | `int` | The number of fangs |
+
+#### Cocoon
+
+| Name | Type | Description |
+| --- | --- | --- |
+| block | `Material` | The block |
 
 #### Spectate
 
