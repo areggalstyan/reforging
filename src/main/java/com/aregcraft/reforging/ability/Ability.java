@@ -8,11 +8,14 @@ import com.aregcraft.reforging.Reforging;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+
 @AbilitySuperclass
 public abstract class Ability implements Identifiable<String> {
     private final CooldownManager cooldownManager = new CooldownManager();
     private String id;
     private String name;
+    private List<String> description;
     private Price price;
     private long cooldown;
     @InjectPlugin
@@ -25,6 +28,22 @@ public abstract class Ability implements Identifiable<String> {
 
     public String getName() {
         return name == null ? id : name;
+    }
+
+    public List<String> getDescription() {
+        return description;
+    }
+
+    public double getPriceHealth() {
+        return price.getHealth();
+    }
+
+    public double getPriceFood() {
+        return price.getFood();
+    }
+
+    public long getCooldown() {
+        return cooldown;
     }
 
     public void activate(Player player) {

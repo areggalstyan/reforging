@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.aregcraft"
-version = "4.8.0"
+version = "4.9.0"
 
 repositories {
     mavenLocal()
@@ -26,7 +26,7 @@ pluginDescription {
     commands {
         create("reforge") {
             description.set("Reforges the weapon in the main hand of the player.")
-            usage.set("Usage: /<command> <reforgeName>")
+            usage.set("Usage: /<command> <id>")
             permission.set("reforging.command.reforge")
         }
         create("reloadreforging") {
@@ -34,6 +34,23 @@ pluginDescription {
             description.set("Reloads the configuration files.")
             usage.set("Usage: /<command>")
             permission.set("reforging.command.reloadreforging")
+        }
+        create("reforginginfo") {
+            aliases.add("ri")
+            description.set("Shows information about available reforges, stats, and crafting recipes.")
+            permission.set("reforging.command.reforginginfo")
+        }
+    }
+    permissions {
+        create("reforging.command.reforge") {
+            description.set("Allows you to use the command /reforge")
+        }
+        create("reforging.command.reloadreforging") {
+            description.set("Allows you to use the command /reloadreforging")
+        }
+        create("reforging.command.reforginginfo") {
+            description.set("Allows you to use the command /reforginginfo")
+            default.set("true")
         }
     }
 }

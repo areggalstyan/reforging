@@ -4,7 +4,9 @@
     "name": "%green%Reforging Anvil",
     "lore": [
       "%gray%Place this anvil anywhere in the world",
-      "%gray%to start reforging items!"
+      "%gray%to start reforging items!",
+      "",
+      "%dark_gray%Use /reforginginfo or /ri for details!"
     ]
   },
   "recipe": {

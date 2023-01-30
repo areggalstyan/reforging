@@ -32,4 +32,12 @@ public class ReforgingAnvil {
     public ItemWrapper getItem() {
         return item;
     }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public int getPrice() {
+        return price;
+    }
 }

@@ -14,6 +14,8 @@ import java.text.DecimalFormat;
 import java.util.Map;
 
 public class Reforge implements Identifiable<String>, Listener {
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat();
+
     private final String id;
     private final String name;
     private final Map<Attribute, Double> attributes;
@@ -29,6 +31,10 @@ public class Reforge implements Identifiable<String>, Listener {
     @Override
     public String getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void activateAbility(Player player) {
@@ -67,16 +73,27 @@ public class Reforge implements Identifiable<String>, Listener {
                 .add();
     }
 
-    private FormattingContext getFormattingContext(ItemWrapper item, Reforging plugin) {
-        var weapon = Weapon.of(item);
+    public FormattingContext getFormattingContext(ItemWrapper item, Reforging plugin) {
         var builder = FormattingContext.builder()
-                .placeholder("name", item.getPersistentData(plugin).get("name", String.class))
-                .placeholder("reforge_name", name)
-                .placeholder("ability", ability == null ? null : ability.getName())
-                .placeholder("base_attack_damage", weapon.getAttackDamage())
-                .placeholder("base_attack_speed", weapon.getAttackSpeed())
-                .formatter(Double.class, new DecimalFormat()::format);
+                .placeholder("reforgeName", name)
+                .formatter(Double.class, DECIMAL_FORMAT::format);
         attributes.forEach((attribute, amount) -> builder.placeholder(attribute.name().toLowerCase(), amount));
+        if (item != null) {
+            var weapon = Weapon.of(item);
+            builder.placeholder("name", item.getPersistentData(plugin).get("name", String.class))
+                    .placeholder("base_attack_damage", weapon.getAttackDamage())
+                    .placeholder("base_attack_speed", weapon.getAttackSpeed());
+        } else {
+            builder.placeholder("base_attack_damage", "?")
+                    .placeholder("base_attack_speed", "?");
+        }
+        if (ability != null) {
+            builder.placeholder("ability", ability.getName())
+                    .placeholder("abilityDescription", ability.getDescription())
+                    .placeholder("priceHealth", ability.getPriceHealth())
+                    .placeholder("priceFood", ability.getPriceFood())
+                    .placeholder("cooldown", ability.getCooldown() / 20.0);
+        }
         if (!attributes.containsKey(Attribute.GENERIC_ATTACK_DAMAGE)) {
             builder.placeholder("generic_attack_damage", 0);
         }

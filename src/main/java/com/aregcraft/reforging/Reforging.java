@@ -9,6 +9,7 @@ import com.aregcraft.delta.api.json.JsonConfigurationLoader;
 import com.aregcraft.reforging.ability.Ability;
 import com.google.gson.reflect.TypeToken;
 import org.bstats.bukkit.Metrics;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
@@ -66,8 +67,16 @@ public class Reforging extends DeltaPlugin {
         return Identifiable.findAny(configurationLoader.get(ABILITIES_TYPE), id);
     }
 
+    public ReforgeStone getReforgeStone(String id) {
+        return Identifiable.findAny(configurationLoader.get(REFORGE_STONES_TYPE), id);
+    }
+
     public List<String> getReforgeIds() {
         return configurationLoader.get(REFORGES_TYPE).stream().map(Identifiable::getId).toList();
+    }
+
+    public List<String> getReforgeStoneIds() {
+        return configurationLoader.get(REFORGE_STONES_TYPE).stream().map(Identifiable::getId).toList();
     }
 
     public String getDefaultName(Player player, ItemWrapper item) {
@@ -87,5 +96,10 @@ public class Reforging extends DeltaPlugin {
         getReforgingAnvil().register(this);
         configurationLoader.get(REFORGE_STONES_TYPE).forEach(it -> it.register(this));
         configurationLoader.get(ABILITIES_TYPE);
+    }
+
+    public double getReforgeChance(String id) {
+        var weights = configurationLoader.get(REFORGE_WEIGHTS_TYPE);
+        return weights.get(id) / weights.values().stream().mapToDouble(it -> it).sum();
     }
 }

@@ -11,6 +11,14 @@ public class Price {
         this.food = food;
     }
 
+    public double getHealth() {
+        return health;
+    }
+
+    public int getFood() {
+        return food;
+    }
+
     public void deduct(Player player) {
         player.damage(health);
         player.setFoodLevel(player.getFoodLevel() - food);
