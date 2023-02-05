@@ -74,19 +74,14 @@ public class Reforge implements Identifiable<String>, Listener {
     }
 
     public FormattingContext getFormattingContext(ItemWrapper item, Reforging plugin) {
+        var weapon = Weapon.of(item);
         var builder = FormattingContext.builder()
+                .placeholder("name", item.getPersistentData(plugin).get("name", String.class))
                 .placeholder("reforgeName", name)
+                .placeholder("base_attack_damage", weapon.getAttackDamage())
+                .placeholder("base_attack_speed", weapon.getAttackSpeed())
                 .formatter(Double.class, DECIMAL_FORMAT::format);
         attributes.forEach((attribute, amount) -> builder.placeholder(attribute.name().toLowerCase(), amount));
-        if (item != null) {
-            var weapon = Weapon.of(item);
-            builder.placeholder("name", item.getPersistentData(plugin).get("name", String.class))
-                    .placeholder("base_attack_damage", weapon.getAttackDamage())
-                    .placeholder("base_attack_speed", weapon.getAttackSpeed());
-        } else {
-            builder.placeholder("base_attack_damage", "?")
-                    .placeholder("base_attack_speed", "?");
-        }
         if (ability != null) {
             builder.placeholder("ability", ability.getName())
                     .placeholder("abilityDescription", ability.getDescription())

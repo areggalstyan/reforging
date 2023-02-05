@@ -2,7 +2,6 @@ package com.aregcraft.reforging.command;
 
 import com.aregcraft.delta.api.FormattingContext;
 import com.aregcraft.delta.api.InjectPlugin;
-import com.aregcraft.delta.api.PersistentDataWrapper;
 import com.aregcraft.delta.api.Recipe;
 import com.aregcraft.delta.api.command.CommandWrapper;
 import com.aregcraft.delta.api.command.RegisteredCommand;
@@ -34,7 +33,12 @@ public class ReforgingInfoCommand implements CommandWrapper, Listener {
 
     @Override
     public boolean execute(Player sender, List<String> args) {
-        if (args.size() == 1) {
+        if (args.size() == 0) {
+            showUsage(sender);
+            return true;
+        }
+        var subcommand = args.get(0);
+        if (args.size() == 1 && subcommand.equals("reforges")) {
             listReforges(sender);
             return true;
         }
@@ -42,7 +46,7 @@ public class ReforgingInfoCommand implements CommandWrapper, Listener {
             showUsage(sender);
             return true;
         }
-        switch (args.get(0)) {
+        switch (subcommand) {
             case "reforge" -> showReforge(sender, args.get(1));
             case "recipe" -> showRecipe(sender, args.get(1));
             default -> showUsage(sender);
@@ -71,7 +75,6 @@ public class ReforgingInfoCommand implements CommandWrapper, Listener {
             inventory.setItem(12, exampleWeapon);
             inventory.setItem(14, stone.getItem().unwrap());
         }
-        PersistentDataWrapper.wrap(plugin, player).set("noninteractive_inventory", true);
         inventories.add(inventory);
         player.openInventory(inventory);
     }
