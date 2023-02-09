@@ -55,17 +55,18 @@ public class ReforgingInfoCommand implements CommandWrapper, Listener {
     }
 
     private void listReforges(Player player) {
-        sendMessage(player, "%aqua%" + String.join("%gray%, %aqua%", plugin.getReforgeIds()));
+        sendMessage(player, "%aqua%"
+                + String.join("%gray%, %aqua%", plugin.getReforges().getIds()));
     }
 
     private void showReforge(Player player, String id) {
-        var reforge = plugin.getReforge(id);
+        var reforge = plugin.getReforges().findAny(id);
         if (reforge == null) {
             showUsage(player);
             return;
         }
         var inventory = Bukkit.createInventory(player, 27, getTitle(reforge));
-        var stone = plugin.getReforgeStone(id);
+        var stone = plugin.getStones().findAny(id);
         var exampleWeapon = getExampleWeapon(player, reforge).unwrap();
         if (stone == null) {
             inventory.setItem(11, exampleWeapon);
@@ -91,7 +92,11 @@ public class ReforgingInfoCommand implements CommandWrapper, Listener {
     }
 
     private ItemWrapper getExampleWeapon(Player player, Reforge reforge) {
-        return reforge.apply(player, ItemWrapper.withMaterial(Material.DIAMOND_SWORD), plugin);
+        return reforge.apply(player, ItemWrapper.withMaterial(getExampleMaterial(reforge)), plugin);
+    }
+
+    private Material getExampleMaterial(Reforge reforge) {
+        return Material.valueOf("DIAMOND_" + reforge.getTargets().iterator().next());
     }
 
     private void showRecipe(Player player, String id) {
@@ -112,14 +117,14 @@ public class ReforgingInfoCommand implements CommandWrapper, Listener {
         if (id.equals("REFORGING_ANVIL")) {
             return plugin.getReforgingAnvil().getRecipe();
         }
-        var stone = plugin.getReforgeStone(id);
+        var stone = plugin.getStones().findAny(id);
         return stone == null ? null : stone.getRecipe();
     }
 
     private String getTitle(String id) {
         return id.equals("REFORGING_ANVIL")
                 ? plugin.getReforgingAnvil().getItem().getName()
-                : plugin.getReforgeStone(id).getItem().getName();
+                : plugin.getStones().findAny(id).getItem().getName();
     }
 
     @EventHandler
@@ -136,23 +141,20 @@ public class ReforgingInfoCommand implements CommandWrapper, Listener {
             return null;
         }
         return switch (args.get(0)) {
-            case "reforge" -> plugin.getReforgeIds();
+            case "reforge" -> new ArrayList<>(plugin.getReforges().getIds());
             case "recipe" -> getRecipes();
             default -> null;
         };
     }
 
     private List<String> getRecipes() {
-        var recipes = new ArrayList<>(plugin.getReforgeStoneIds());
+        var recipes = new ArrayList<>(plugin.getStones().getIds());
         recipes.add("REFORGING_ANVIL");
         return recipes;
     }
 
     private void showUsage(Player sender) {
-        sendMessage(sender, """
-                %red%/reforginginfo reforges %gray%- %yellow%List all reforges
-                %red%/reforginginfo reforge <id> %gray%- %yellow%Show info about a reforge
-                %red%/reforginginfo recipe (REFORGING_ANVIL|<stone>) %gray%- %yellow%Show a crafting recipe""");
+        sendMessage(sender, plugin.getReforgingInfoUsage());
     }
 
     private void sendMessage(Player player, String... messages) {

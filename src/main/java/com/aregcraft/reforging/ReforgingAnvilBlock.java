@@ -7,6 +7,7 @@ import com.aregcraft.delta.api.block.custom.RegisteredCustomBlock;
 import com.aregcraft.delta.api.entity.EntityBuilder;
 import com.aregcraft.delta.api.entity.EquipmentWrapper;
 import com.aregcraft.delta.api.item.ItemWrapper;
+import com.aregcraft.reforging.target.Target;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Directional;
 import org.bukkit.entity.ArmorStand;
@@ -20,6 +21,12 @@ import java.util.Optional;
 
 @RegisteredCustomBlock("reforging_anvil")
 public class ReforgingAnvilBlock implements CustomBlock {
+    public static final double HELMET_OFFSET = -0.5;
+    public static final double CHESTPLATE_OFFSET = 0.25;
+    public static final double OFFSET_LEGGINGS = 0.75;
+    public static final int BOOTS_OFFSET = 1;
+    public static final double DEFAULT_OFFSET = -0.25;
+
     @InjectPlugin
     private Reforging plugin;
     private ArmorStand armorStand;
@@ -55,7 +62,7 @@ public class ReforgingAnvilBlock implements CustomBlock {
             dropWeapon(block);
             return;
         }
-        if (Weapon.isWeapon(item)) {
+        if (Target.isTarget(item)) {
             dropWeapon(block);
             setWeapon(block, item);
             item.decrementAmount();
@@ -65,16 +72,19 @@ public class ReforgingAnvilBlock implements CustomBlock {
             return;
         }
         var player = event.getPlayer();
-        if (Weapon.isReforgeStone(item, plugin)) {
-            applyReforge(block, player, plugin.getUltimateReforge(item));
+        var weapon = getWeapon(block);
+        var ultimateReforge = plugin.getUltimateReforge(item);
+        if (plugin.isStone(item) && ultimateReforge.isApplicable(weapon)) {
+            applyReforge(block, player, ultimateReforge);
             item.decrementAmount();
             return;
         }
-        if (!Weapon.isIngredient(item, getWeapon(block))) {
+        if (!Target.isIngredient(item, weapon)) {
             return;
         }
-        if (plugin.getReforgingAnvil().deductPrice(item)) {
-            applyReforge(block, player, plugin.getRandomStandardReforge());
+        var standardReforge = plugin.getRandomStandardReforge(weapon);
+        if (standardReforge != null && plugin.getReforgingAnvil().deductPrice(item)) {
+            applyReforge(block, player, standardReforge);
         }
     }
 
@@ -103,14 +113,28 @@ public class ReforgingAnvilBlock implements CustomBlock {
 
     private void setWeapon(Block block, ItemWrapper weapon) {
         BlockWrapper.wrap(block, plugin).getPersistentData().set("weapon", weapon);
+        if (weapon == null) {
+            return;
+        }
         if (armorStand == null) {
             createArmorStand(block);
         }
-        EquipmentWrapper.wrap(armorStand).setItemInMainHand(weapon);
+        EquipmentWrapper.wrap(armorStand).setItem(Target.getSlot(weapon), weapon);
     }
 
     private void createArmorStand(Block block) {
-        var location = block.getLocation().subtract(0, 0.25, 0);
+        var weapon = getWeapon(block);
+        var location = block.getLocation().add(0, switch (Target.getSlot(weapon)) {
+            case HEAD -> HELMET_OFFSET;
+            case CHEST -> CHESTPLATE_OFFSET;
+            case LEGS -> OFFSET_LEGGINGS;
+            case FEET -> BOOTS_OFFSET;
+            default -> DEFAULT_OFFSET;
+        }, 0);
+        if (Target.isArmor(weapon)) {
+            armorStand = EntityBuilder.createArmorStand().build(location.add(0.5, 0, 0.5), plugin);
+            return;
+        }
         switch (((Directional) block.getBlockData()).getFacing()) {
             case NORTH, SOUTH -> location.add(0.25, 0, 0);
             case EAST, WEST -> {

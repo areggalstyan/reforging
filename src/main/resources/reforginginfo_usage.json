@@ -1,0 +1,5 @@
+[
+  "%red%/reforginginfo reforges %gray%- %yellow%List all reforges",
+  "%red%/reforginginfo reforge <id> %gray%- %yellow%Show info about a reforge",
+  "%red%/reforginginfo recipe (REFORGING_ANVIL|<stone>) %gray%- %yellow%Show a crafting recipe"
+]

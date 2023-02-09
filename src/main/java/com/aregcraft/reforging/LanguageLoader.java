@@ -1,6 +1,7 @@
 package com.aregcraft.reforging;
 
 import com.aregcraft.delta.api.item.ItemWrapper;
+import com.aregcraft.reforging.target.Target;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -30,36 +31,41 @@ public class LanguageLoader implements Listener {
         plugin.registerListener(this);
     }
 
-    public static String getLanguageKey(String name) {
-        return "item.minecraft." + name.toLowerCase();
+    public String get(Player player, ItemWrapper item) {
+        return get(player, getLanguageKey(item));
     }
 
-    public String get(Player player, ItemWrapper item) {
-        return cache.getUnchecked(player.getLocale()).get(getLanguageKey(item.getMaterial().name()));
+    public String get(Player player, String name) {
+        return cache.getUnchecked(player.getLocale()).get(name);
+    }
+
+    private String getLanguageKey(ItemWrapper item) {
+        return "item.minecraft." + item.getMaterial().name().toLowerCase();
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        var locale = event.getPlayer().getLocale();
-        if (!cache.asMap().containsKey(locale)) {
-            CompletableFuture.runAsync(() -> cache.refresh(locale));
-        }
+        CompletableFuture.runAsync(() -> cache.getUnchecked(event.getPlayer().getLocale()));
     }
 
     private class LanguageCacheLoader extends CacheLoader<String, Map<String, String>> {
         @Override
         public Map<String, String> load(String key) {
             try (var reader = new InputStreamReader(new URL(LANG_URL.formatted(key)).openStream())) {
-                return getWeapons(plugin.getGson().fromJson(reader, LANG_TYPE.getType()));
+                return getTargets(plugin.getGson().fromJson(reader, LANG_TYPE.getType()));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
 
-        private Map<String, String> getWeapons(Map<String, String> items) {
+        private Map<String, String> getTargets(Map<String, String> items) {
             return items.entrySet().stream()
-                    .filter(it -> Weapon.isWeapon(it.getKey()))
+                    .filter(it -> isSlot(it.getKey()) || Target.isTarget(it.getKey()))
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        }
+
+        private boolean isSlot(String name) {
+            return name.startsWith("item.modifiers");
         }
     }
 }

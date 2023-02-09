@@ -1,0 +1,10 @@
+{
+  "id": "SHARP",
+  "name": "%green%Sharp",
+  "attributes": {
+    "GENERIC_MAX_HEALTH": -2,
+    "GENERIC_ATTACK_DAMAGE": 2
+  },
+  "ability": "THORNS",
+  "targets": ["SWORD", "AXE"]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "VENGEFUL",
+  "name": "%gray%Vengeful",
+  "attributes": {
+    "GENERIC_ATTACK_DAMAGE": 4,
+    "GENERIC_ATTACK_SPEED": 0.1,
+    "GENERIC_MOVEMENT_SPEED": 0.025,
+    "GENERIC_MAX_HEALTH": -3
+  },
+  "ability": "EVOKER",
+  "targets": ["SWORD", "AXE"]
+}

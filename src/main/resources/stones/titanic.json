@@ -1,0 +1,23 @@
+{
+  "id": "TITANIC",
+  "item": {
+    "material": "ZOMBIE_HEAD",
+    "name": "%green%Titan Head",
+    "lore": [
+      "%gray%Use this item on a reforging anvil to",
+      "%gray%obtain %green%Titanic %reset%%gray%reforge!"
+    ]
+  },
+  "recipe": {
+    "shape": [
+      "odo",
+      "ded",
+      "odo"
+    ],
+    "ingredients": {
+      "o": "OBSIDIAN",
+      "d": "DIAMOND_BLOCK",
+      "e": "EMERALD_BLOCK"
+    }
+  }
+}

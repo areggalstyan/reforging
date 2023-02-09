@@ -1,0 +1,25 @@
+{
+  "id": "SUPERIOR",
+  "item": {
+    "material": "DIAMOND",
+    "name": "%gold%Superior Diamond",
+    "lore": [
+      "%gray%Use this item on a reforging anvil to",
+      "%gray%obtain %gold%Superior %reset%%gray%reforge!"
+    ],
+    "glowing": true
+  },
+  "recipe": {
+    "shape": [
+      "geg",
+      "ndn",
+      "geg"
+    ],
+    "ingredients": {
+      "g": "GOLD_BLOCK",
+      "e": "EMERALD_BLOCK",
+      "n": "NETHER_STAR",
+      "d": "DIAMOND_BLOCK"
+    }
+  }
+}

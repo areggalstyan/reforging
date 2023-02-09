@@ -1,0 +1,9 @@
+{
+  "id": "ENLIGHTENED",
+  "name": "%blue%Enlightened",
+  "attributes": {
+    "GENERIC_MAX_HEALTH": 6
+  },
+  "ability": "REVEAL",
+  "targets": ["SWORD", "AXE"]
+}

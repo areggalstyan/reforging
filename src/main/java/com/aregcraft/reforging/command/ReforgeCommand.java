@@ -5,9 +5,10 @@ import com.aregcraft.delta.api.command.CommandWrapper;
 import com.aregcraft.delta.api.command.RegisteredCommand;
 import com.aregcraft.delta.api.item.ItemWrapper;
 import com.aregcraft.reforging.Reforging;
-import com.aregcraft.reforging.Weapon;
+import com.aregcraft.reforging.target.Target;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RegisteredCommand("reforge")
@@ -18,11 +19,11 @@ public class ReforgeCommand implements CommandWrapper {
     @Override
     public boolean execute(Player sender, List<String> args) {
         var item = ItemWrapper.wrap(sender.getInventory().getItemInMainHand());
-        if (args.size() != 1 || !Weapon.isWeapon(item)) {
+        if (args.size() != 1 || !Target.isTarget(item)) {
             return false;
         }
-        var reforge = plugin.getReforge(args.get(0));
-        if (reforge == null) {
+        var reforge = plugin.getReforges().findAny(args.get(0));
+        if (reforge == null || !reforge.isApplicable(item)) {
             return false;
         }
         reforge.apply(sender, item, plugin);
@@ -31,6 +32,6 @@ public class ReforgeCommand implements CommandWrapper {
 
     @Override
     public List<String> suggest(Player sender, List<String> args) {
-        return args.size() == 1 ? plugin.getReforgeIds() : null;
+        return args.size() == 1 ? new ArrayList<>(plugin.getReforges().getIds()) : null;
     }
 }

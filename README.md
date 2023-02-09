@@ -1,4 +1,6 @@
+[![Donate](img/donate.png)](https://www.patreon.com/Aregcraft)
 [![Wiki](img/wiki.png)](https://aregcraft.vercel.app/)
 [![Discord](img/discord.png)](https://discord.gg/AJJWZFzVAX)
 ![Banner](img/banner.png)
-![Showcase](img/showcase.png)
+![Showcase 1](img/showcase_1.png)
+![Showcase 2](img/showcase_2.png)

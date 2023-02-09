@@ -1,0 +1,13 @@
+{
+  "id": "SPECTACULAR",
+  "name": "%red%Spectacular",
+  "attributes": {
+    "GENERIC_MOVEMENT_SPEED": 0.025,
+    "GENERIC_MAX_HEALTH": 8,
+    "GENERIC_ARMOR": 8,
+    "GENERIC_ARMOR_TOUGHNESS": 4,
+    "GENERIC_ATTACK_DAMAGE": 4
+  },
+  "ability": "SPECTATE",
+  "targets": ["SWORD", "AXE"]
+}

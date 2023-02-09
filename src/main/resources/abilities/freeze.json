@@ -1,0 +1,21 @@
+{
+  "base": "Freeze",
+  "id": "FREEZE",
+  "name": "%blue%Freeze",
+  "description": [
+    "%gray%Throws a snowball that freezes the",
+    "%gray%hit entity for 5 seconds!"
+  ],
+  "price": {
+    "health": 8,
+    "food": 8
+  },
+  "cooldown": 200,
+  "projectileType": "SNOWBALL",
+  "projectileVelocity": {
+    "x": 2,
+    "y": 2,
+    "z": 2
+  },
+  "duration": 100
+}

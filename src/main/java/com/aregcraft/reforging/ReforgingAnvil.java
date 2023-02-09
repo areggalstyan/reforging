@@ -3,15 +3,17 @@ package com.aregcraft.reforging;
 import com.aregcraft.delta.api.Recipe;
 import com.aregcraft.delta.api.item.ItemWrapper;
 import com.aregcraft.delta.api.json.annotation.JsonConfiguration;
+import com.aregcraft.delta.api.registry.Registrable;
 import org.bukkit.block.Block;
 
 @JsonConfiguration("reforging_anvil")
-public class ReforgingAnvil {
+public class ReforgingAnvil implements Registrable<Reforging> {
     private ItemWrapper item;
     private Recipe recipe;
     private PlayableSound sound;
     private int price;
 
+    @Override
     public void register(Reforging plugin) {
         item.getPersistentData(plugin).set("id", "reforging_anvil");
         recipe.add(plugin, "reforging_anvil", item);

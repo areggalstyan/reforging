@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.aregcraft"
-version = "4.9.0"
+version = "5.0.0"
 
 repositories {
     mavenLocal()
@@ -40,6 +40,16 @@ pluginDescription {
             description.set("Shows information about available reforges, stats, and crafting recipes.")
             permission.set("reforging.command.reforginginfo")
         }
+        create("reforginggive") {
+            description.set("Gives you a reforge stone or reforging anvil.")
+            usage.set("Usage: /<command> <id>")
+            permission.set("reforging.command.reforginggive")
+        }
+        create("updatereforging") {
+            description.set("Updates the plugin.")
+            usage.set("Usage: /<command>")
+            permission.set("reforging.command.updatereforging")
+        }
     }
     permissions {
         create("reforging.command.reforge") {
@@ -51,6 +61,12 @@ pluginDescription {
         create("reforging.command.reforginginfo") {
             description.set("Allows you to use the command /reforginginfo")
             default.set("true")
+        }
+        create("reforging.command.reforginggive") {
+            description.set("Allows you to use the command /reforginggive")
+        }
+        create("reforging.command.updatereforging") {
+            description.set("Allows you to use the command /updatereforging")
         }
     }
 }

@@ -1,0 +1,15 @@
+{
+  "base": "Cocoon",
+  "id": "COCOON",
+  "name": "%green%Cocoon",
+  "description": [
+    "%gray%Puts you inside an obsidian cocoon",
+    "%gray%without breaking existing blocks!"
+  ],
+  "price": {
+    "health": 8,
+    "food": 8
+  },
+  "cooldown": 400,
+  "block": "OBSIDIAN"
+}

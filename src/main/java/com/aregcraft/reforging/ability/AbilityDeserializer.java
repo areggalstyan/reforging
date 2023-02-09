@@ -22,7 +22,7 @@ public class AbilityDeserializer implements JsonDeserializer<Ability> {
     @Override
     public Ability deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         if (json.isJsonPrimitive()) {
-            return plugin.getAbility(json.getAsString());
+            return plugin.getAbilities().findAny(json.getAsString());
         }
         var reader = new JsonReader(context, json);
         var ability = reader.deserialize(json, getClass(reader.getString("base")));

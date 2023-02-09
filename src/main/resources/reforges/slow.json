@@ -1,0 +1,10 @@
+{
+  "id": "SLOW",
+  "name": "%blue%Slow",
+  "attributes": {
+    "GENERIC_MAX_HEALTH": 4,
+    "GENERIC_ARMOR": 2,
+    "GENERIC_MOVEMENT_SPEED": -0.025
+  },
+  "targets": ["BOOTS"]
+}

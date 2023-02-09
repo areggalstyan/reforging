@@ -42,7 +42,8 @@ public class AbilityListener implements Listener {
         if (item.getMaterial().isAir()) {
             return;
         }
-        var reforge = plugin.getReforge(item.getPersistentData(plugin).get("reforge", String.class));
+        var reforge = plugin.getReforges()
+                .findAny(item.getPersistentData(plugin).get("reforge", String.class));
         if (reforge != null) {
             reforge.activateAbility(player);
         }

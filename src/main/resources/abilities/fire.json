@@ -1,0 +1,24 @@
+{
+  "base": "Fire",
+  "id": "FIRE",
+  "name": "%gold%Fire",
+  "description": [
+    "%gray%Summons a vortex of fire that ignites",
+    "%gray%everyone on its way for 5 seconds!"
+  ],
+  "price": {
+    "health": 4,
+    "food": 4
+  },
+  "cooldown": 100,
+  "function": {
+    "x": "0.5tcos(6t)",
+    "y": "0.5tsin(6t)",
+    "z": "t",
+    "min": 0,
+    "max": 3.14159265359,
+    "delta": 0.09817477042
+  },
+  "particle": "FLAME",
+  "fireDuration": 100
+}

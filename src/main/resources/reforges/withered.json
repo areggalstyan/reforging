@@ -1,0 +1,13 @@
+{
+  "id": "WITHERED",
+  "name": "%light_purple%Withered",
+  "attributes": {
+    "GENERIC_MAX_HEALTH": 10,
+    "GENERIC_ATTACK_DAMAGE": 10,
+    "GENERIC_ATTACK_SPEED": 0.2,
+    "GENERIC_ARMOR": 4,
+    "GENERIC_ARMOR_TOUGHNESS": 2
+  },
+  "ability": "WITHER",
+  "targets": ["SWORD", "AXE"]
+}

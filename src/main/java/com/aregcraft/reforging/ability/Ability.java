@@ -1,8 +1,8 @@
 package com.aregcraft.reforging.ability;
 
-import com.aregcraft.delta.api.Identifiable;
 import com.aregcraft.delta.api.InjectPlugin;
 import com.aregcraft.delta.api.PersistentDataWrapper;
+import com.aregcraft.delta.api.registry.Identifiable;
 import com.aregcraft.delta.meta.AbilitySuperclass;
 import com.aregcraft.reforging.Reforging;
 import org.bukkit.entity.Entity;

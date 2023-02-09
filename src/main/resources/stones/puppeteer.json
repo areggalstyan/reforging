@@ -1,0 +1,23 @@
+{
+  "id": "PUPPETEER",
+  "item": {
+    "material": "STRING",
+    "name": "%green%Puppeteer String",
+    "lore": [
+      "%gray%Use this item on a reforging anvil to",
+      "%gray%obtain %green%Puppeteer %reset%%gray%reforge!"
+    ]
+  },
+  "recipe": {
+    "shape": [
+      "cdc",
+      "ded",
+      "cdc"
+    ],
+    "ingredients": {
+      "c": "COBWEB",
+      "d": "DRAGON_BREATH",
+      "e": "ELYTRA"
+    }
+  }
+}
