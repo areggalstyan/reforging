@@ -22,13 +22,16 @@ public class Reforge implements Identifiable<String>, Listener {
     private final Map<Attribute, Double> attributes;
     private final Ability ability;
     private final Set<Target> targets;
+    private final Integer customModelData;
 
-    public Reforge(String id, String name, Map<Attribute, Double> attributes, Ability ability, Set<Target> targets) {
+    public Reforge(String id, String name, Map<Attribute, Double> attributes, Ability ability, Set<Target> targets,
+                   Integer customModelData) {
         this.id = id;
         this.name = name;
         this.attributes = attributes;
         this.ability = ability;
         this.targets = targets;
+        this.customModelData = customModelData;
     }
 
     @Override
@@ -73,6 +76,7 @@ public class Reforge implements Identifiable<String>, Listener {
         item.setFormattingContext(getFormattingContext(item, player, plugin));
         item.appendDisplay(display);
         attributes.forEach((attribute, amount) -> addAttributeModifier(item, attribute, amount));
+        item.setCustomModelData(customModelData);
         return item;
     }
 

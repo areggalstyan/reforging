@@ -1,6 +1,7 @@
 package com.aregcraft.reforging.ability;
 
 import com.aregcraft.delta.api.PersistentDataWrapper;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -37,7 +38,11 @@ public class SpectateAbility extends Ability implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         var player = event.getEntity();
-        player.setGameMode(PersistentDataWrapper.wrap(getPlugin(), player).get("mode", GameMode.class));
+        if (!isPlayerActive(player)) {
+            return;
+        }
+        player.setGameMode(PersistentDataWrapper.wrap(getPlugin(), player)
+                .getOrElse("mode", Bukkit.getDefaultGameMode()));
         unsetPlayerActive(player);
     }
 }

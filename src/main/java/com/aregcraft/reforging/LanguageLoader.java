@@ -1,6 +1,7 @@
 package com.aregcraft.reforging;
 
 import com.aregcraft.delta.api.item.ItemWrapper;
+import com.aregcraft.delta.api.log.Crash;
 import com.aregcraft.reforging.target.Target;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -54,8 +55,9 @@ public class LanguageLoader implements Listener {
             try (var reader = new InputStreamReader(new URL(LANG_URL.formatted(key)).openStream())) {
                 return getTargets(plugin.getGson().fromJson(reader, LANG_TYPE.getType()));
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                Crash.Default.IO.withThrowable(e).log(plugin);
             }
+            return null;
         }
 
         private Map<String, String> getTargets(Map<String, String> items) {

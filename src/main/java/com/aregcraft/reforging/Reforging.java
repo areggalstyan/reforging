@@ -104,10 +104,10 @@ public class Reforging extends DeltaPlugin {
     }
 
     public void reload() {
+        configurationLoader.invalidateAll();
         abilities.invalidateAll();
         reforges.invalidateAll();
         stones.invalidateAll();
-        configurationLoader.invalidateAll();
         getReforgingAnvil().register(this);
     }
 
