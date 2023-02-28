@@ -37,7 +37,7 @@ public class LanguageLoader implements Listener {
     }
 
     public String get(Player player, String name) {
-        return cache.getUnchecked(player.getLocale()).get(name);
+        return cache.getUnchecked(player.getLocale().toLowerCase()).get(name);
     }
 
     private String getLanguageKey(ItemWrapper item) {
