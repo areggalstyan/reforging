@@ -28,6 +28,8 @@ public class FlyAbility extends Ability implements Listener {
 
     @EventHandler
     public void onEntityToggleGlide(EntityToggleGlideEvent event) {
-        event.setCancelled(!event.isGliding() && isPlayerActive(event.getEntity()));
+        if (!event.isGliding() && isPlayerActive(event.getEntity())) {
+            event.setCancelled(true);
+        }
     }
 }

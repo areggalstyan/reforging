@@ -42,6 +42,8 @@ public class ShieldAbility extends Ability implements Listener {
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        event.setCancelled(isPlayerActive(event.getEntity()) || disableAttack && isPlayerActive(event.getDamager()));
+        if (isPlayerActive(event.getEntity()) || disableAttack && isPlayerActive(event.getDamager())) {
+            event.setCancelled(true);
+        }
     }
 }

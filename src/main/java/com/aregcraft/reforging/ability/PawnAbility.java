@@ -57,8 +57,8 @@ public class PawnAbility extends Ability implements Listener {
     @EventHandler
     public void onEntityTargetLivingEntity(EntityTargetLivingEntityEvent event) {
         var target = event.getTarget();
-        if (target != null) {
-            event.setCancelled(isMasterOf(event.getTarget(), event.getEntity()));
+        if (target != null && isMasterOf(event.getTarget(), event.getEntity())) {
+            event.setCancelled(true);
         }
     }
 

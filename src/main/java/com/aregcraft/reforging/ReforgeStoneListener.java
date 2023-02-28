@@ -16,12 +16,16 @@ public class ReforgeStoneListener implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        event.setCancelled(isReforgeStone(event.getItemInHand()));
+        if (isReforgeStone(event.getItemInHand())) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        event.setCancelled(isReforgeStone(event.getItem()));
+        if (isReforgeStone(event.getItem())) {
+            event.setCancelled(true);
+        }
     }
 
     private boolean isReforgeStone(ItemStack item) {

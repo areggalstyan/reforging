@@ -27,7 +27,8 @@ public class ExplosionAbility extends Ability implements Listener {
 
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
-        event.setCancelled(event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION
-                && isPlayerActive(event.getEntity()));
+        if (event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION && isPlayerActive(event.getEntity())) {
+            event.setCancelled(true);
+        }
     }
 }
