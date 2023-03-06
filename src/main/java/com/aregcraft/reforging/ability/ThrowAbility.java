@@ -15,7 +15,7 @@ import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 /**
- * Allows the player to throw their weapon, damaging all hiy entities
+ * Allows the player to throw their weapon, damaging all hit entities
  */
 public class ThrowAbility extends Ability {
     /**

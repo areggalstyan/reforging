@@ -8,7 +8,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffectType;
 
 /**
- * Allows the player to deal more damage in exchange for receiving its portion
+ * Allows the player to deal more damage in exchange for receiving their portion
  */
 public class RageAbility extends Ability implements Listener {
     /**

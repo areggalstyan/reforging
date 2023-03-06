@@ -51,7 +51,7 @@
     },
     {
       "name": "Rage",
-      "description": "Allows the player to deal more damage in exchange for receiving its portion",
+      "description": "Allows the player to deal more damage in exchange for receiving their portion",
       "properties": [
         {
           "type": "int",
@@ -98,7 +98,7 @@
     },
     {
       "name": "Throw",
-      "description": "Allows the player to throw their weapon, damaging all hiy entities",
+      "description": "Allows the player to throw their weapon, damaging all hit entities",
       "properties": [
         {
           "type": "long",
