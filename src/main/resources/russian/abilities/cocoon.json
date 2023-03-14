@@ -1,0 +1,15 @@
+{
+  "base": "Cocoon",
+  "id": "COCOON",
+  "name": "%green%Кокон",
+  "description": [
+    "%gray%Помещает тебя в обсидиановый кокон",
+    "%gray%не рушащий существующие блоки!"
+  ],
+  "price": {
+    "health": 8,
+    "food": 8
+  },
+  "cooldown": 400,
+  "block": "OBSIDIAN"
+}

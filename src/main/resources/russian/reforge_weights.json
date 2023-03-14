@@ -1,0 +1,19 @@
+{
+  "HEALING": 10,
+  "FROST": 5,
+  "OUTRAGEOUS": 10,
+  "CLOUDY": 5,
+  "SHIELDED": 10,
+  "STEALTHY": 5,
+  "WICKED": 10,
+  "INFERNAL": 5,
+  "VENGEFUL": 5,
+  "AGILE": 10,
+  "ENLIGHTENED": 10,
+  "SHARP": 5,
+  "LIGHTWEIGHT": 5,
+  "PROTECTED": 5,
+  "FAST": 10,
+  "SLOW": 10,
+  "FANCY": 5
+}

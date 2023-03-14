@@ -1,0 +1,12 @@
+{
+  "id": "FROST",
+  "name": "%blue%Ayaz",
+  "attributes": {
+    "GENERIC_MAX_HEALTH": -2,
+    "GENERIC_ATTACK_DAMAGE": 2,
+    "GENERIC_ARMOR": 4,
+    "GENERIC_MOVEMENT_SPEED": -0.025
+  },
+  "ability": "FREEZE",
+  "targets": ["SWORD", "AXE"]
+}

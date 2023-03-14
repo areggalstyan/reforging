@@ -1,0 +1,20 @@
+{
+  "name": "%reforgeName% %name%",
+  "lore": [
+    "\n%ability% Способность %yellow%%bold%ЩЕЛКНИТЕ ПКМ",
+    "%abilityDescription%",
+    "%dark_aqua% -%priceHealth% Здоровье",
+    "%dark_aqua% -%priceFood% Еда",
+    "%dark_aqua% %cooldown%s Перезарядка",
+    "",
+    "%gray%%slot%",
+    "%dark_green% %base_attack_speed% (%generic_attack_speed%) Скорость Атаки",
+    "%dark_green% %base_attack_damage% (%generic_attack_damage%) Урон от Атаки",
+    "%dark_green% %generic_max_health% Максимальное здоровье",
+    "%dark_green% %generic_knockback_resistance% Сопротивление Отбрасыванию",
+    "%dark_green% %generic_movement_speed% Скорость Движения",
+    "%dark_green% %generic_armor% Броня",
+    "%dark_green% %generic_armor_toughness% Прочность Брони",
+    "%dark_green% %generic_attack_knockback% Отбрасывание Атаки"
+  ]
+}

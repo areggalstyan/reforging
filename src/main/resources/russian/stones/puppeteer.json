@@ -1,0 +1,23 @@
+{
+  "id": "PUPPETEER",
+  "item": {
+    "material": "STRING",
+    "name": "%green%Ниточка Кукловода",
+    "lore": [
+      "%gray%Используйте этот предмет на наковальне для перековки, чтобы",
+      "%gray%получить %green%Кукловодскую %reset%%gray%перековку!"
+    ]
+  },
+  "recipe": {
+    "shape": [
+      "cdc",
+      "ded",
+      "cdc"
+    ],
+    "ingredients": {
+      "c": "COBWEB",
+      "d": "DRAGON_BREATH",
+      "e": "ELYTRA"
+    }
+  }
+}

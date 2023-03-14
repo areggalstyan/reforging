@@ -1,0 +1,11 @@
+{
+  "id": "CLOUDY",
+  "name": "%gray%Облачный",
+  "attributes": {
+    "GENERIC_MAX_HEALTH": -4,
+    "GENERIC_ATTACK_DAMAGE": 6,
+    "GENERIC_ATTACK_SPEED": 0.1
+  },
+  "ability": "STORM",
+  "targets": ["SWORD", "AXE"]
+}

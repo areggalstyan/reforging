@@ -1,0 +1,13 @@
+{
+  "id": "TITANIC",
+  "name": "%green%Титанический",
+  "attributes": {
+    "GENERIC_MAX_HEALTH": 6,
+    "GENERIC_ARMOR": 6,
+    "GENERIC_ARMOR_TOUGHNESS": 3,
+    "GENERIC_ATTACK_SPEED": -0.2,
+    "GENERIC_MOVEMENT_SPEED": -0.025
+  },
+  "ability": "SEISMIC_WAVE",
+  "targets": ["SWORD", "AXE"]
+}

@@ -1,0 +1,9 @@
+{
+  "id": "INFERNAL",
+  "name": "%gold%Адский",
+  "attributes": {
+    "GENERIC_ATTACK_DAMAGE": 5
+  },
+  "ability": "FIRE",
+  "targets": ["SWORD", "AXE"]
+}

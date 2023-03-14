@@ -1,0 +1,15 @@
+{
+  "base": "Spectate",
+  "id": "SPECTATE",
+  "name": "%red%Spectate",
+  "description": [
+    "%gray%5 saniyelik izleyici modu verir",
+    "%gray%ama ilk konumuna döndürür!"
+  ],
+  "price": {
+    "health": 10,
+    "food": 10
+  },
+  "cooldown": 400,
+  "duration": 100
+}

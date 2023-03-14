@@ -1,0 +1,23 @@
+{
+  "id": "EXPLOSIVE",
+  "item": {
+    "material": "GUNPOWDER",
+    "name": "%red%Creeper Barutu",
+    "lore": [
+      "%gray%Bu eşyayı dövme örsünde kullanarak",
+      "%red%Patlayıcı %reset%%gray%dövüm elde edebilirsin!"
+    ]
+  },
+  "recipe": {
+    "shape": [
+      "gdg",
+      "ded",
+      "gdg"
+    ],
+    "ingredients": {
+      "g": "GUNPOWDER",
+      "d": "DIAMOND_BLOCK",
+      "e": "ELYTRA"
+    }
+  }
+}

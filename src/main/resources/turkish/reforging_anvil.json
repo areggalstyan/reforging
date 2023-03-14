@@ -1,0 +1,30 @@
+{
+  "item": {
+    "material": "ANVIL",
+    "name": "%green%Dövme Örsğ",
+    "lore": [
+      "%gray%Bu örsü dünyada bir yere koyup",
+      "%gray%eşyaları dövmeye başla!",
+      "%dark_gray%detaylar için /reforgininfo ya da /ri"
+    ]
+  },
+  "recipe": {
+    "shape": [
+      "ooo",
+      "dad",
+      "iii"
+    ],
+    "ingredients": {
+      "o": "OBSIDIAN",
+      "d": "DIAMOND",
+      "a": "ANVIL",
+      "i": "IRON_BLOCK"
+    }
+  },
+  "sound": {
+    "type": "BLOCK_ANVIL_USE",
+    "volume": 1,
+    "pitch": 0
+  },
+  "price": 2
+}

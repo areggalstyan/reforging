@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.aregcraft"
-version = "5.1.2"
+version = "5.2.0"
 
 repositories {
     mavenLocal()
@@ -15,8 +15,8 @@ dependencies {
     compileOnly("com.aregcraft.delta:meta:1.0.0")
     compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
     implementation("com.aregcraft.delta:api:1.0.0")
-    implementation("org.mariuszgromada.math:MathParser.org-mXparser:5.0.7")
-    implementation("org.bstats:bstats-bukkit:3.0.0")
+    implementation("org.mariuszgromada.math:MathParser.org-mXparser:5.2.1")
+    implementation("org.bstats:bstats-bukkit:3.0.1")
 }
 
 pluginDescription {
@@ -50,6 +50,11 @@ pluginDescription {
             usage.set("Usage: /<command>")
             permission.set("reforging.command.updatereforging")
         }
+        create("reforginglang") {
+            description.set("Changes the language of the plugin.")
+            usage.set("Usage: /<command> <language>")
+            permission.set("reforging.command.reforginglang")
+        }
     }
     permissions {
         create("reforging.command.reforge") {
@@ -67,6 +72,9 @@ pluginDescription {
         }
         create("reforging.command.updatereforging") {
             description.set("Allows you to use the command /updatereforging")
+        }
+        create("reforging.command.reforginglang") {
+            description.set("Allows you to use the command /reforginglang")
         }
     }
 }

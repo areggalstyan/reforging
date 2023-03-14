@@ -1,0 +1,20 @@
+{
+  "name": "%reforgeName% %name%",
+  "lore": [
+    "\n%ability% Yetenek %yellow%%bold%Sağ Tık",
+    "%abilityDescription%",
+    "%dark_aqua% -%priceHealth% Sağlık",
+    "%dark_aqua% -%priceFood% Yemek",
+    "%dark_aqua% %cooldown%s Bekleme Süresi",
+    "",
+    "%gray%%slot%",
+    "%dark_green% %base_attack_speed% (%generic_attack_speed%) Saldırı Hızı",
+    "%dark_green% %base_attack_damage% (%generic_attack_damage%) Saldırı Hasarı",
+    "%dark_green% %generic_max_health% Max Sağlık",
+    "%dark_green% %generic_knockback_resistance% İtme Direnci",
+    "%dark_green% %generic_movement_speed% Hareket Hızı",
+    "%dark_green% %generic_armor% Zırh",
+    "%dark_green% %generic_armor_toughness% Zırh Sertliği",
+    "%dark_green% %generic_attack_knockback% Saldırı İtmesi"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "base": "Thorns",
+  "id": "THORNS",
+  "name": "%green%Шипы",
+  "description": [
+    "%gray%Отражает 25% получаемого вами урона атакующему",
+    "%gray%5 секунд!"
+  ],
+  "price": {
+    "health": 4,
+    "food": 4
+  },
+  "cooldown": 200,
+  "duration": 100,
+  "multiplier": 0.25
+}

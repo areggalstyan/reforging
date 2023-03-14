@@ -1,0 +1,11 @@
+{
+  "id": "SUPERIOR",
+  "name": "%gold%Превосходный",
+  "attributes": {
+    "GENERIC_MAX_HEALTH": 10,
+    "GENERIC_ARMOR": 8,
+    "GENERIC_ARMOR_TOUGHNESS": 4,
+    "GENERIC_ATTACK_DAMAGE": 2
+  },
+  "targets": ["CHESTPLATE", "LEGGINGS"]
+}

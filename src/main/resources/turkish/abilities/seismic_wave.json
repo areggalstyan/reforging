@@ -1,0 +1,30 @@
+{
+  "base": "SeismicWave",
+  "id": "SEISMIC_WAVE",
+  "name": "%green%Sismik Dalga",
+  "description": [
+    "%gray%5 blok alandaki tüm yaratık ve oyunculara",
+    "%gray%zarar verir ve geri iter!"
+  ],
+  "price": {
+    "health": 4,
+    "food": 4
+  },
+  "cooldown": 60,
+  "function": {
+    "x": "tcos(2t)",
+    "z": "tsin(2t)",
+    "min": 0,
+    "max": 6.28318530718,
+    "delta": 0.19634954084
+  },
+  "particle": "EXPLOSION_NORMAL",
+  "knockback": {
+    "x": 1,
+    "y": 1,
+    "z": 1
+  },
+  "height": 0.5,
+  "damage": 5,
+  "range": 5
+}

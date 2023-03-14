@@ -1,0 +1,11 @@
+{
+  "id": "MURDEROUS",
+  "name": "%red%Убийственный",
+  "attributes": {
+    "GENERIC_ATTACK_DAMAGE": 4,
+    "GENERIC_ATTACK_SPEED": 0.2,
+    "GENERIC_MAX_HEALTH": -2
+  },
+  "ability": "THROW",
+  "targets": ["SWORD", "AXE"]
+}

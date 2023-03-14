@@ -1,0 +1,11 @@
+{
+  "id": "PUPPETEER",
+  "name": "%green%Kuklacı",
+  "attributes": {
+    "GENERIC_MAX_HEALTH": 8,
+    "GENERIC_ARMOR": 6,
+    "GENERIC_MOVEMENT_SPEED": 0.025
+  },
+  "ability": "PAWN",
+  "targets": ["SWORD", "AXE"]
+}

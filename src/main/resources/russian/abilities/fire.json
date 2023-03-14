@@ -1,0 +1,24 @@
+{
+  "base": "Fire",
+  "id": "FIRE",
+  "name": "%gold%Пламя",
+  "description": [
+    "%gray%Вызывает огненный вихрь, который воспламеняет",
+    "%gray%всё на своем пути в течение 5 секунд!"
+  ],
+  "price": {
+    "health": 4,
+    "food": 4
+  },
+  "cooldown": 100,
+  "function": {
+    "x": "0.5tcos(6t)",
+    "y": "0.5tsin(6t)",
+    "z": "t",
+    "min": 0,
+    "max": 3.14159265359,
+    "delta": 0.09817477042
+  },
+  "particle": "FLAME",
+  "fireDuration": 100
+}

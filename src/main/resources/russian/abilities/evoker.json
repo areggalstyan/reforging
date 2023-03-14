@@ -1,0 +1,15 @@
+{
+  "base": "Evoker",
+  "id": "EVOKER",
+  "name": "%gray%Вызыватель",
+  "description": [
+    "%gray%Вызывает 16 клыков призывателя в",
+    "%gray%направлении взгляда!"
+  ],
+  "price": {
+    "health": 4,
+    "food": 4
+  },
+  "cooldown": 100,
+  "number": 16
+}

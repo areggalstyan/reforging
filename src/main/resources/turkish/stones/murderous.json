@@ -1,0 +1,23 @@
+{
+  "id": "MURDEROUS",
+  "item": {
+    "material": "SKELETON_SKULL",
+    "name": "%red%Çatlak Kafatası",
+    "lore": [
+      "%gray%Bu eşyayı dövme örsünde kullanarak",
+      "%red%Ölümcül %reset%%gray%dövüm elde edebilirsin"
+    ]
+  },
+  "recipe": {
+    "shape": [
+      "igi",
+      "gwg",
+      "igi"
+    ],
+    "ingredients": {
+      "i": "IRON_BLOCK",
+      "g": "GOLD_BLOCK",
+      "w": "WITHER_SKELETON_SKULL"
+    }
+  }
+}

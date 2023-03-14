@@ -1,0 +1,25 @@
+{
+  "base": "Shield",
+  "id": "SHIELD",
+  "name": "%green%Щит",
+  "description": [
+    "%gray%Делает вас неуязвимым для мобов и игроков",
+    "%gray%также мешает вам атаковать их!"
+  ],
+  "price": {
+    "health": 4,
+    "food": 4
+  },
+  "cooldown": 200,
+  "duration": 200,
+  "function": {
+    "x": "cos(10t)",
+    "y": "t",
+    "z": "sin(10t)",
+    "min": 0,
+    "max": 2,
+    "delta": 0.1
+  },
+  "particle": "ENCHANTMENT_TABLE",
+  "disableAttack": true
+}

@@ -1,0 +1,12 @@
+{
+  "id": "HEALING",
+  "name": "%red%Исцеление",
+  "attributes": {
+    "GENERIC_MAX_HEALTH": 8,
+    "GENERIC_ATTACK_DAMAGE": 2,
+    "GENERIC_ATTACK_SPEED": -0.1,
+    "GENERIC_ARMOR": 2
+  },
+  "ability": "REGENERATION",
+  "targets": ["SWORD", "AXE"]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "WITHERED",
+  "item": {
+    "material": "WITHER_SKELETON_SKULL",
+    "name": "%light_purple%Wither Kanı",
+    "lore": [
+      "%gray%Bu eşyayı dövme örsünde kullanarak",
+      "%light_purple%Solgun %reset%%gray%dövüm elde edebilirsin"
+    ]
+  },
+  "recipe": {
+    "shape": [
+      "gdg",
+      "dnd",
+      "gdg"
+    ],
+    "ingredients": {
+      "g": "GOLD_BLOCK",
+      "d": "DIAMOND_BLOCK",
+      "n": "NETHER_STAR"
+    }
+  }
+}

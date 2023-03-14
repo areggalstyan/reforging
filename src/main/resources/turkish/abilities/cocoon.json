@@ -1,0 +1,15 @@
+{
+  "base": "Cocoon",
+  "id": "COCOON",
+  "name": "%green%Koza",
+  "description": [
+    "%gray%Varolan blokları kırmadan seni",
+    "%gray%obsidyen bir kozaya koyar!"
+  ],
+  "price": {
+    "health": 8,
+    "food": 8
+  },
+  "cooldown": 400,
+  "block": "OBSIDIAN"
+}

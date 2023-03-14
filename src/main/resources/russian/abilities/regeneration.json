@@ -1,0 +1,14 @@
+{
+  "base": "Effect",
+  "id": "REGENERATION",
+  "name": "%red%Регенерация",
+  "description": ["%gray%Дает вам регенерацию 2 на 5 секунд!"],
+  "price": {
+    "food": 8
+  },
+  "cooldown": 200,
+  "type": "minecraft:regeneration",
+  "duration": 100,
+  "amplifier": 1,
+  "hideParticles": true
+}

@@ -43,6 +43,11 @@ public class Reforging extends DeltaPlugin {
         new Metrics(this, 16827);
     }
 
+    public void setLocale(String locale) {
+        configurationLoader.setLocale(locale);
+        reload();
+    }
+
     public Updater getUpdater() {
         return updater;
     }

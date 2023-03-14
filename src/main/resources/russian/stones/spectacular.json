@@ -1,0 +1,23 @@
+{
+  "id": "SPECTACULAR",
+  "item": {
+    "material": "ENDER_EYE",
+    "name": "%red%Всёвидящее Око",
+    "lore": [
+      "%gray%Используйте этот предмет на наковальне для перековки, чтобы",
+      "%gray%получить %red%Впечатляющую %reset%%gray%перековку!"
+    ]
+  },
+  "recipe": {
+    "shape": [
+      "ddd",
+      "nen",
+      "ddd"
+    ],
+    "ingredients": {
+      "d": "DIAMOND_BLOCK",
+      "n": "NETHER_STAR",
+      "e": "ELYTRA"
+    }
+  }
+}

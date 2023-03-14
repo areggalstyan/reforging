@@ -1,0 +1,10 @@
+{
+  "id": "LIGHTWEIGHT",
+  "name": "%green%Hafif",
+  "attributes": {
+    "GENERIC_MOVEMENT_SPEED": 0.025,
+    "GENERIC_ATTACK_DAMAGE": 2
+  },
+  "ability": "FLY",
+  "targets": ["SWORD", "AXE"]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "PUPPETEER",
+  "item": {
+    "material": "STRING",
+    "name": "%green%Kuklacı İpi",
+    "lore": [
+      "%gray%Bu eşyayı dövme örsünde kullanarak",
+      "%red%Kuklacı %reset%%gray%dövüm elde edebilirsin"
+    ]
+  },
+  "recipe": {
+    "shape": [
+      "cdc",
+      "ded",
+      "cdc"
+    ],
+    "ingredients": {
+      "c": "COBWEB",
+      "d": "DRAGON_BREATH",
+      "e": "ELYTRA"
+    }
+  }
+}

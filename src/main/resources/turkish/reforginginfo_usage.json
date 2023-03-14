@@ -1,0 +1,5 @@
+[
+  "%red%/reforginginfo reforges %gray%- %yellow%Tüm dövümleri listele",
+  "%red%/reforginginfo reforge <id> %gray%- %yellow%Bir dövüm hakkında bilgi göster",
+  "%red%/reforginginfo recipe (REFORGING_ANVIL|<stone>) %gray%- %yellow%Bir yapım tarifi göster"
+]

@@ -1,0 +1,11 @@
+{
+  "id": "FAST",
+  "name": "%green%Hızlı",
+  "attributes": {
+    "GENERIC_MAX_HEALTH": -2,
+    "GENERIC_ARMOR": -1,
+    "GENERIC_ATTACK_SPEED": 0.1,
+    "GENERIC_MOVEMENT_SPEED": 0.025
+  },
+  "targets": ["BOOTS"]
+}

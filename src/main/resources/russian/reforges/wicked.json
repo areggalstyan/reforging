@@ -1,0 +1,11 @@
+{
+  "id": "WICKED",
+  "name": "%gray%Злобный",
+  "attributes": {
+    "GENERIC_ATTACK_DAMAGE": 2,
+    "GENERIC_MAX_HEALTH": -4,
+    "GENERIC_ATTACK_SPEED": 0.2
+  },
+  "ability": "POTION",
+  "targets": ["SWORD", "AXE"]
+}
