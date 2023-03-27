@@ -58,7 +58,7 @@ public class ReforgingAnvilBlock implements CustomBlock {
         event.setCancelled(true);
         var item = ItemWrapper.wrap(event.getItem());
         var block = event.getClickedBlock();
-        if (item == null) {
+        if (item == null || item.getMaterial().isAir()) {
             dropWeapon(block);
             return;
         }

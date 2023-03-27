@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -43,9 +44,14 @@ public class Reforging extends DeltaPlugin {
         new Metrics(this, 16827);
     }
 
-    public void setLocale(String locale) {
-        configurationLoader.setLocale(locale);
+    public List<String> getAvailableLocales() {
+        return configurationLoader.getAvailableLocales();
+    }
+
+    public boolean setLocale(String locale) {
+        var result = configurationLoader.setLocale(locale);
         reload();
+        return result;
     }
 
     public Updater getUpdater() {

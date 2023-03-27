@@ -76,6 +76,6 @@ public enum Target {
     }
 
     public boolean matches(ItemWrapper item) {
-        return item.getMaterial().name().endsWith(name());
+        return item.getMaterial().name().endsWith("_" + name());
     }
 }
