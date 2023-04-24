@@ -1,6 +1,6 @@
 {
   "id": "TITANIC",
-  "name": "%green%Titanic",
+  "name": "%green%@TITANIC@",
   "attributes": {
     "GENERIC_MAX_HEALTH": 6,
     "GENERIC_ARMOR": 6,

@@ -1,11 +1,8 @@
 {
   "base": "Throw",
   "id": "THROW",
-  "name": "%red%Throw",
-  "description": [
-    "%gray%Throws your weapon for 2 seconds",
-    "%gray%dealing 75% of its damage!"
-  ],
+  "name": "%red%@THROW@",
+  "description": ["@THROW_DESCRIPTION@"],
   "price": {
     "health": 4,
     "food": 4

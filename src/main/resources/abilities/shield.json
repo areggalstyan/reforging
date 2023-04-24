@@ -1,11 +1,8 @@
 {
   "base": "Shield",
   "id": "SHIELD",
-  "name": "%green%Shield",
-  "description": [
-    "%gray%Makes you invincible to mobs and players",
-    "%gray%but also prevents you from attacking them!"
-  ],
+  "name": "%green%@SHIELD@",
+  "description": ["@SHIELD_DESCRIPTION@"],
   "price": {
     "health": 4,
     "food": 4

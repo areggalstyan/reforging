@@ -1,6 +1,6 @@
 {
   "id": "VENGEFUL",
-  "name": "%gray%Vengeful",
+  "name": "%gray%@VENGEFUL@",
   "attributes": {
     "GENERIC_ATTACK_DAMAGE": 4,
     "GENERIC_ATTACK_SPEED": 0.1,

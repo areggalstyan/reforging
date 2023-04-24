@@ -1,11 +1,8 @@
 {
   "base": "Teleport",
   "id": "TELEPORT",
-  "name": "%green%Teleport",
-  "description": [
-    "%gray%Teleports you in your looking direction",
-    "%gray%up to 4 blocks!"
-  ],
+  "name": "%green%@TELEPORT@",
+  "description": ["@TELEPORT_DESCRIPTION@"],
   "price": {
     "health": 4,
     "food": 4

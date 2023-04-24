@@ -1,6 +1,6 @@
 {
   "id": "STEALTHY",
-  "name": "%green%Stealthy",
+  "name": "%green%@STEALTHY@",
   "attributes": {
     "GENERIC_MAX_HEALTH": -2,
     "GENERIC_MOVEMENT_SPEED": 0.025,

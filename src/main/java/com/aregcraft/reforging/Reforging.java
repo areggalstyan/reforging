@@ -1,6 +1,7 @@
 package com.aregcraft.reforging;
 
 import com.aregcraft.delta.api.DeltaPlugin;
+import com.aregcraft.delta.api.Language;
 import com.aregcraft.delta.api.item.ItemDisplay;
 import com.aregcraft.delta.api.item.ItemWrapper;
 import com.aregcraft.delta.api.json.JsonConfigurationLoader;
@@ -15,7 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -26,6 +26,9 @@ public class Reforging extends DeltaPlugin {
             .name(REFORGE_WEIGHTS_TYPE, "reforge_weights")
             .plugin(this)
             .build();
+
+    private final Registry<String, Language> languages =
+            new Registry<>("languages", Language.class, configurationLoader, this::initializeLanguage);
     private final Registry<String, Ability> abilities =
             new Registry<>("abilities", Ability.class, configurationLoader);
     private final Registry<String, Reforge> reforges =
@@ -42,16 +45,6 @@ public class Reforging extends DeltaPlugin {
         getReforgingAnvil().register(this);
         configurationLoader.get(UpdateChecker.class).scheduleChecks(this);
         new Metrics(this, 16827);
-    }
-
-    public List<String> getAvailableLocales() {
-        return configurationLoader.getAvailableLocales();
-    }
-
-    public boolean setLocale(String locale) {
-        var result = configurationLoader.setLocale(locale);
-        reload();
-        return result;
     }
 
     public Updater getUpdater() {
@@ -100,6 +93,21 @@ public class Reforging extends DeltaPlugin {
 
     public Registry<String, Stone> getStones() {
         return stones;
+    }
+
+    public Registry<String, Language> getLanguages() {
+        return languages;
+    }
+
+    @Override
+    public void setLanguage(Language language) {
+        super.setLanguage(language);
+        configurationLoader.set("selected_language", language.getId());
+        reload();
+    }
+
+    private void initializeLanguage() {
+        super.setLanguage(languages.findAny(configurationLoader.get("selected_language", String.class)));
     }
 
     public String getDefaultName(Player player, ItemWrapper item) {

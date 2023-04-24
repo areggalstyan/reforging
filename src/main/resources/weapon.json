@@ -1,20 +1,20 @@
 {
   "name": "%reforgeName% %name%",
   "lore": [
-    "\n%ability% Ability %yellow%%bold%RIGHT CLICK",
+    "\n%ability% @ABILITY@ %yellow%%bold%@RIGHT_CLICK@",
     "%abilityDescription%",
-    "%dark_aqua% -%priceHealth% Health",
-    "%dark_aqua% -%priceFood% Food",
-    "%dark_aqua% %cooldown%s Cooldown",
+    "%dark_aqua% -%priceHealth% @HEALTH@",
+    "%dark_aqua% -%priceFood% @FOOD@",
+    "%dark_aqua% %cooldown%s @COOLDOWN@",
     "",
     "%gray%%slot%",
-    "%dark_green% %base_attack_speed% (%generic_attack_speed%) Attack Speed",
-    "%dark_green% %base_attack_damage% (%generic_attack_damage%) Attack Damage",
-    "%dark_green% %generic_max_health% Max Health",
-    "%dark_green% %generic_knockback_resistance% Knockback Resistance",
-    "%dark_green% %generic_movement_speed% Movement Speed",
-    "%dark_green% %generic_armor% Armor",
-    "%dark_green% %generic_armor_toughness% Armor Toughness",
-    "%dark_green% %generic_attack_knockback% Attack Knockback"
+    "%dark_green% %base_attack_speed% (%generic_attack_speed%) @ATTACK_SPEED@",
+    "%dark_green% %base_attack_damage% (%generic_attack_damage%) @ATTACK_DAMAGE@",
+    "%dark_green% %generic_max_health% @MAX_HEALTH@",
+    "%dark_green% %generic_knockback_resistance% @KNOCKBACK_RESISTANCE@",
+    "%dark_green% %generic_movement_speed% @MOVEMENT_SPEED@",
+    "%dark_green% %generic_armor% @ARMOR@",
+    "%dark_green% %generic_armor_toughness% @ARMOR_TOUGHNESS@",
+    "%dark_green% %generic_attack_knockback% @ATTACK_KNOCKBACK@"
   ]
 }

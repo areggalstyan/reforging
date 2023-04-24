@@ -1,11 +1,8 @@
 {
   "base": "SeismicWave",
   "id": "SEISMIC_WAVE",
-  "name": "%green%Seismic Wave",
-  "description": [
-    "%gray%Damages and knocks back all mobs and",
-    "%gray%players within five blocks!"
-  ],
+  "name": "%green%@SEISMIC_WAVE@",
+  "description": ["@SEISMIC_WAVE_DESCRIPTION@"],
   "price": {
     "health": 4,
     "food": 4

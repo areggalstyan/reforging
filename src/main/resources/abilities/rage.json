@@ -1,12 +1,8 @@
 {
   "base": "Rage",
   "id": "RAGE",
-  "name": "%red%Rage",
-  "description": [
-    "%gray%Gives you strength 2 for 5 seconds",
-    "%gray%but reflects 25% of the damage",
-    "%gray%you deal!"
-  ],
+  "name": "%red%@RAGE@",
+  "description": ["@RAGE_DESCRIPTION@"],
   "price": {
     "health": 4,
     "food": 4

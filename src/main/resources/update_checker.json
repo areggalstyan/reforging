@@ -1,4 +1,4 @@
 {
-  "message": "A new update is available! Use /updatereforging to update.",
+  "message": "@UPDATE_CHECKER_MESSAGE@",
   "period": 36000
 }

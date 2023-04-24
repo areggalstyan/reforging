@@ -1,12 +1,8 @@
 {
   "base": "Fly",
   "id": "FLY",
-  "name": "%green%Fly",
-  "description": [
-    "%gray%Boosts you in your looking direction",
-    "%gray%and makes you glide as if you were",
-    "%gray%wearing elytra!"
-  ],
+  "name": "%green%@FLY@",
+  "description": ["@FLY_DESCRIPTION@"],
   "price": {
     "food": 8
   },

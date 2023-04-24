@@ -2,11 +2,8 @@
   "id": "PUPPETEER",
   "item": {
     "material": "STRING",
-    "name": "%green%Puppeteer String",
-    "lore": [
-      "%gray%Use this item on a reforging anvil to",
-      "%gray%obtain %green%Puppeteer %reset%%gray%reforge!"
-    ]
+    "name": "%green%@PUPPETEER_STONE@",
+    "lore": ["@PUPPETEER_STONE_LORE@"]
   },
   "recipe": {
     "shape": [

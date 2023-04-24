@@ -1,6 +1,6 @@
 {
   "id": "SHARP",
-  "name": "%green%Sharp",
+  "name": "%green%@SHARP@",
   "attributes": {
     "GENERIC_MAX_HEALTH": -2,
     "GENERIC_ATTACK_DAMAGE": 2

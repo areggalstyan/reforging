@@ -1,6 +1,6 @@
 {
   "id": "AGILE",
-  "name": "%green%Agile",
+  "name": "%green%@AGILE@",
   "attributes": {
     "GENERIC_MAX_HEALTH": 4,
     "GENERIC_MOVEMENT_SPEED": 0.025

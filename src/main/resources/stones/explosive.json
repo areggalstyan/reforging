@@ -2,11 +2,8 @@
   "id": "EXPLOSIVE",
   "item": {
     "material": "GUNPOWDER",
-    "name": "%red%Creeper Gunpowder",
-    "lore": [
-      "%gray%Use this item on a reforging anvil to",
-      "%gray%obtain %red%Explosive %reset%%gray%reforge!"
-    ]
+    "name": "%red%@EXPLOSIVE_STONE@",
+    "lore": ["@EXPLOSIVE_STONE_LORE@"]
   },
   "recipe": {
     "shape": [

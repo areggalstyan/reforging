@@ -1,11 +1,8 @@
 {
   "base": "Reveal",
   "id": "REVEAL",
-  "name": "%blue%Reveal",
-  "description": [
-    "%gray%Reveals all invisible mobs and players",
-    "%gray%within ten blocks!"
-  ],
+  "name": "%blue%@REVEAL@",
+  "description": ["@REVEAL_DESCRIPTION@"],
   "price": {
     "health": 4,
     "food": 4

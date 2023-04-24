@@ -1,11 +1,8 @@
 {
   "base": "Spectate",
   "id": "SPECTATE",
-  "name": "%red%Spectate",
-  "description": [
-    "%gray%Gives you spectator mode for 5 seconds",
-    "%gray%but returns you to your initial location!"
-  ],
+  "name": "%red%@SPECTATE@",
+  "description": ["@SPECTATE_DESCRIPTION@"],
   "price": {
     "health": 10,
     "food": 10

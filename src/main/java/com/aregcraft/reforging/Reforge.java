@@ -91,6 +91,7 @@ public class Reforge implements Identifiable<String>, Listener {
 
     public FormattingContext getFormattingContext(ItemWrapper item, Player player, Reforging plugin) {
         var builder = FormattingContext.builder()
+                .plugin(plugin)
                 .placeholder("name", item.getPersistentData(plugin).get("name", String.class))
                 .placeholder("reforgeName", name)
                 .placeholder("slot", plugin.getSlotName(player, Target.getSlot(item)))

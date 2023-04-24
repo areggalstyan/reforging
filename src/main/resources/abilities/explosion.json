@@ -1,11 +1,8 @@
 {
   "base": "Explosion",
   "id": "EXPLOSION",
-  "name": "%red%Explosion",
-  "description": [
-    "%gray%Creates an explosion around you without",
-    "%gray%destroying the block below you!"
-  ],
+  "name": "%red%@EXPLOSION@",
+  "description": ["@EXPLOSION_DESCRIPTION@"],
   "price": {
     "health": 6,
     "food": 6

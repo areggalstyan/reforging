@@ -1,6 +1,6 @@
 {
   "id": "PUPPETEER",
-  "name": "%green%Puppeteer",
+  "name": "%green%@PUPPETEER@",
   "attributes": {
     "GENERIC_MAX_HEALTH": 8,
     "GENERIC_ARMOR": 6,

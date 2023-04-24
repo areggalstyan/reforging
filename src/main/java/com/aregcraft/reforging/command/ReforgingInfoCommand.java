@@ -81,7 +81,7 @@ public class ReforgingInfoCommand implements CommandWrapper, Listener {
     }
 
     private String getTitle(Reforge reforge) {
-        return FormattingContext.DEFAULT.format(reforge.getName());
+        return FormattingContext.withPlugin(plugin).format(reforge.getName());
     }
 
     private ItemWrapper getChance(String id) {
@@ -160,6 +160,8 @@ public class ReforgingInfoCommand implements CommandWrapper, Listener {
     }
 
     private void sendMessage(Player player, String... messages) {
-        player.sendMessage(Arrays.stream(messages).map(FormattingContext.DEFAULT::format).toArray(String[]::new));
+        player.sendMessage(Arrays.stream(messages)
+                .map(FormattingContext.withPlugin(plugin)::format)
+                .toArray(String[]::new));
     }
 }

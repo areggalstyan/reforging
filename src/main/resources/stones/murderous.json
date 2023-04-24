@@ -2,11 +2,8 @@
   "id": "MURDEROUS",
   "item": {
     "material": "SKELETON_SKULL",
-    "name": "%red%Cracked Skull",
-    "lore": [
-      "%gray%Use this item on a reforging anvil to",
-      "%gray%obtain %red%Murderous %reset%%gray%reforge!"
-    ]
+    "name": "%red%@MURDEROUS_STONE@",
+    "lore": ["@MURDEROUS_STONE_LORE@"]
   },
   "recipe": {
     "shape": [

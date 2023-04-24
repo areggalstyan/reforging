@@ -1,6 +1,6 @@
 {
   "id": "MURDEROUS",
-  "name": "%red%Murderous",
+  "name": "%red%@MURDEROUS@",
   "attributes": {
     "GENERIC_ATTACK_DAMAGE": 4,
     "GENERIC_ATTACK_SPEED": 0.2,

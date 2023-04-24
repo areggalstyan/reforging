@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.aregcraft"
-version = "5.3.0"
+version = "5.4.0"
 
 repositories {
     mavenLocal()
@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     compileOnly("com.aregcraft.delta:meta:1.0.0")
-    compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT")
     implementation("com.aregcraft.delta:api:1.0.0")
     implementation("org.mariuszgromada.math:MathParser.org-mXparser:5.2.1")
     implementation("org.bstats:bstats-bukkit:3.0.1")
@@ -41,8 +41,8 @@ pluginDescription {
             permission.set("reforging.command.reforginginfo")
         }
         create("reforginggive") {
-            description.set("Gives you a reforge stone or reforging anvil.")
-            usage.set("Usage: /<command> <id>")
+            description.set("Gives you or the player a reforge stone or reforging anvil.")
+            usage.set("Usage: /<command> <id> [player]")
             permission.set("reforging.command.reforginggive")
         }
         create("updatereforging") {

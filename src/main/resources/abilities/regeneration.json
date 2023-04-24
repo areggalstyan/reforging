@@ -1,8 +1,8 @@
 {
   "base": "Effect",
   "id": "REGENERATION",
-  "name": "%red%Regeneration",
-  "description": ["%gray%Gives you regeneration 2 for 5 seconds!"],
+  "name": "%red%@REGENERATION@",
+  "description": ["@REGENERATION_DESCRIPTION@"],
   "price": {
     "food": 8
   },

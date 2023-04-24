@@ -1,12 +1,8 @@
 {
   "item": {
     "material": "ANVIL",
-    "name": "%green%Reforging Anvil",
-    "lore": [
-      "%gray%Place this anvil anywhere in the world",
-      "%gray%to start reforging items!",
-      "%dark_gray%Use /reforginginfo or /ri for details!"
-    ]
+    "name": "%green%@ANVIL_NAME@",
+    "lore": ["@ANVIL_LORE@"]
   },
   "recipe": {
     "shape": [

@@ -2,11 +2,8 @@
   "id": "TITANIC",
   "item": {
     "material": "ZOMBIE_HEAD",
-    "name": "%green%Titan Head",
-    "lore": [
-      "%gray%Use this item on a reforging anvil to",
-      "%gray%obtain %green%Titanic %reset%%gray%reforge!"
-    ]
+    "name": "%green%@TITANIC_STONE@",
+    "lore": ["@TITANIC_STONE_LORE@"]
   },
   "recipe": {
     "shape": [

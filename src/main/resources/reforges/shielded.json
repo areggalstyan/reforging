@@ -1,6 +1,6 @@
 {
   "id": "SHIELDED",
-  "name": "%green%Shielded",
+  "name": "%green%@SHIELD@",
   "attributes": {
     "GENERIC_MAX_HEALTH": 8,
     "GENERIC_ARMOR": 4,

@@ -1,11 +1,8 @@
 {
   "base": "Potion",
   "id": "POTION",
-  "name": "%gray%Potion",
-  "description": [
-    "%gray%Throws a potion with poison 1 for 5",
-    "%gray%seconds!"
-  ],
+  "name": "%gray%@POTION@",
+  "description": ["@POTION_DESCRIPTION@"],
   "price": {
     "health": 4,
     "food": 4

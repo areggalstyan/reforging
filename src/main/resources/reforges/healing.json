@@ -1,6 +1,6 @@
 {
   "id": "HEALING",
-  "name": "%red%Healing",
+  "name": "%red%@HEALING@",
   "attributes": {
     "GENERIC_MAX_HEALTH": 8,
     "GENERIC_ATTACK_DAMAGE": 2,

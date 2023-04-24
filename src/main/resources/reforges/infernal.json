@@ -1,6 +1,6 @@
 {
   "id": "INFERNAL",
-  "name": "%gold%Infernal",
+  "name": "%gold%@INFERNAL@",
   "attributes": {
     "GENERIC_ATTACK_DAMAGE": 5
   },

@@ -1,6 +1,6 @@
 {
   "id": "FROST",
-  "name": "%blue%Frost",
+  "name": "%blue%@FROST@",
   "attributes": {
     "GENERIC_MAX_HEALTH": -2,
     "GENERIC_ATTACK_DAMAGE": 2,

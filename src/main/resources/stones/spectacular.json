@@ -2,11 +2,8 @@
   "id": "SPECTACULAR",
   "item": {
     "material": "ENDER_EYE",
-    "name": "%red%All-Seeing Eye",
-    "lore": [
-      "%gray%Use this item on a reforging anvil to",
-      "%gray%obtain %red%Spectacular %reset%%gray%reforge!"
-    ]
+    "name": "%red%@SPECTACULAR_STONE@",
+    "lore": ["@SPECTACULAR_STONE_LORE@"]
   },
   "recipe": {
     "shape": [

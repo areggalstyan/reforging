@@ -1,6 +1,6 @@
 {
   "id": "CLOUDY",
-  "name": "%gray%Cloudy",
+  "name": "%gray%@CLOUDY@",
   "attributes": {
     "GENERIC_MAX_HEALTH": -4,
     "GENERIC_ATTACK_DAMAGE": 6,

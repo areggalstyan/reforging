@@ -1,5 +1,0 @@
-[
-  "%red%/reforginginfo reforge %gray%- %yellow%Перечислите все перековки",
-  "%red%/reforginginfo reforge <id> %gray%- %yellow%Показать информацию о перековке",
-  "%red%/reforginginfo recipe (REFORGING_ANVIL|<stone>) %gray%- %yellow%Покажите рецепт приготовления"
-]

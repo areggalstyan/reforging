@@ -1,6 +1,6 @@
 {
   "id": "LIGHTWEIGHT",
-  "name": "%green%Lightweight",
+  "name": "%green%@LIGHTWEIGHT@",
   "attributes": {
     "GENERIC_MOVEMENT_SPEED": 0.025,
     "GENERIC_ATTACK_DAMAGE": 2

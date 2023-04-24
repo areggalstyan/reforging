@@ -1,12 +1,8 @@
 {
   "base": "Pawn",
   "id": "PAWN",
-  "name": "%green%Pawn",
-  "description": [
-    "%gray%Summons two zombies with 150% of the",
-    "%gray%health of a normal one attacking",
-    "%gray%other players for 10 seconds!"
-  ],
+  "name": "%green%@PAWN@",
+  "description": ["@PAWN_DESCRIPTION@"],
   "price": {
     "health": 6,
     "food": 6

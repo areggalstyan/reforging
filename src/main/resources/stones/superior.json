@@ -2,11 +2,8 @@
   "id": "SUPERIOR",
   "item": {
     "material": "DIAMOND",
-    "name": "%gold%Superior Diamond",
-    "lore": [
-      "%gray%Use this item on a reforging anvil to",
-      "%gray%obtain %gold%Superior %reset%%gray%reforge!"
-    ],
+    "name": "%gold%@SUPERIOR_STONE@",
+    "lore": ["@SUPERIOR_STONE_LORE@"],
     "glowing": true
   },
   "recipe": {

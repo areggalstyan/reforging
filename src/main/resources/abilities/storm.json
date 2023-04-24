@@ -1,11 +1,8 @@
 {
   "base": "Storm",
   "id": "STORM",
-  "name": "%gray%Storm",
-  "description": [
-    "%gray%Summons a circle of lighting bolts",
-    "%gray%around you!"
-  ],
+  "name": "%gray%@STORM@",
+  "description": ["@STORM_DESCRIPTION@"],
   "price": {
     "health": 4,
     "food": 4

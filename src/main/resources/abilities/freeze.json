@@ -1,11 +1,8 @@
 {
   "base": "Freeze",
   "id": "FREEZE",
-  "name": "%blue%Freeze",
-  "description": [
-    "%gray%Throws a snowball that freezes the",
-    "%gray%hit entity for 5 seconds!"
-  ],
+  "name": "%blue%@FREEZE@",
+  "description": ["@FREEZE_DESCRIPTION@"],
   "price": {
     "health": 8,
     "food": 8

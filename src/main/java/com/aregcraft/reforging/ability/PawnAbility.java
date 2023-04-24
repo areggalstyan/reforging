@@ -46,6 +46,7 @@ public class PawnAbility extends Ability implements Listener {
 
     private FormattingContext getFormattingContext(Player player) {
         return FormattingContext.builder()
+                .plugin(getPlugin())
                 .placeholder("player", player.getDisplayName())
                 .build();
     }

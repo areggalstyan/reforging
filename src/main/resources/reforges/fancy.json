@@ -1,6 +1,6 @@
 {
   "id": "FANCY",
-  "name": "%red%Fancy",
+  "name": "%red%@FANCY@",
   "attributes": {
     "GENERIC_MAX_HEALTH": 2,
     "GENERIC_ARMOR": 2

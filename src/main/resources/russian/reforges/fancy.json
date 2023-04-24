@@ -1,9 +1,0 @@
-{
-  "id": "FANCY",
-  "name": "%red%Модный",
-  "attributes": {
-    "GENERIC_MAX_HEALTH": 2,
-    "GENERIC_ARMOR": 2
-  },
-  "targets": ["HELMET"]
-}

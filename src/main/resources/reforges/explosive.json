@@ -1,6 +1,6 @@
 {
   "id": "EXPLOSIVE",
-  "name": "%red%Explosive",
+  "name": "%red%@EXPLOSIVE@",
   "attributes": {
     "GENERIC_MAX_HEALTH": 10,
     "GENERIC_ARMOR": 8,

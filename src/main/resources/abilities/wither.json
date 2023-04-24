@@ -1,8 +1,8 @@
 {
   "base": "Projectile",
   "id": "WITHER",
-  "name": "%red%Wither",
-  "description": ["%gray%Shoots wither skulls!"],
+  "name": "%red%@WITHER@",
+  "description": ["@WITHER_DESCRIPTION@"],
   "price": {
     "health": 4,
     "food": 4

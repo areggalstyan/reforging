@@ -2,11 +2,8 @@
   "id": "WITHERED",
   "item": {
     "material": "WITHER_SKELETON_SKULL",
-    "name": "%light_purple%Wither Blood",
-    "lore": [
-      "%gray%Use this item on a reforging anvil to",
-      "%gray%obtain %light_purple%Withered %reset%%gray%reforge!"
-    ]
+    "name": "%light_purple%@WITHERED_STONE@",
+    "lore": ["@WITHERED_STONE_LORE@"]
   },
   "recipe": {
     "shape": [

@@ -1,5 +1,6 @@
 package com.aregcraft.reforging.command;
 
+import com.aregcraft.delta.api.FormattingContext;
 import com.aregcraft.delta.api.InjectPlugin;
 import com.aregcraft.delta.api.command.CommandWrapper;
 import com.aregcraft.delta.api.command.RegisteredCommand;
@@ -19,6 +20,7 @@ public class ReforgeCommand implements CommandWrapper {
     @Override
     public boolean execute(Player sender, List<String> args) {
         var item = ItemWrapper.wrap(sender.getInventory().getItemInMainHand());
+        item.setFormattingContext(FormattingContext.withPlugin(plugin));
         if (args.size() != 1 || !Target.isTarget(item)) {
             return false;
         }

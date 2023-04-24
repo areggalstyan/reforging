@@ -4,10 +4,12 @@ import com.aregcraft.delta.api.InjectPlugin;
 import com.aregcraft.delta.api.command.CommandWrapper;
 import com.aregcraft.delta.api.command.RegisteredCommand;
 import com.aregcraft.reforging.Reforging;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RegisteredCommand("reforginggive")
 public class ReforgingGiveCommand implements CommandWrapper {
@@ -16,10 +18,15 @@ public class ReforgingGiveCommand implements CommandWrapper {
 
     @Override
     public boolean execute(Player sender, List<String> args) {
-        if (args.size() != 1) {
+        var inventory = switch (args.size()) {
+            case 1 -> sender.getInventory();
+            case 2 -> Optional.ofNullable(Bukkit.getPlayer(args.get(1)))
+                    .map(Player::getInventory).orElse(null);
+            default -> null;
+        };
+        if (inventory == null) {
             return false;
         }
-        var inventory = sender.getInventory();
         var id = args.get(0);
         if (id.equals("REFORGING_ANVIL")) {
             inventory.addItem(plugin.getReforgingAnvil().getItem().unwrap());
@@ -35,6 +42,9 @@ public class ReforgingGiveCommand implements CommandWrapper {
 
     @Override
     public List<String> suggest(Player sender, List<String> args) {
+        if (args.size() == 2) {
+            return Bukkit.getOnlinePlayers().stream().map(Player::getName).toList();
+        }
         if (args.size() != 1) {
             return null;
         }

@@ -1,6 +1,6 @@
 {
   "id": "WICKED",
-  "name": "%gray%Wicked",
+  "name": "%gray%@WICKED@",
   "attributes": {
     "GENERIC_ATTACK_DAMAGE": 2,
     "GENERIC_MAX_HEALTH": -4,

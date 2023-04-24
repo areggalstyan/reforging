@@ -1,11 +1,8 @@
 {
   "base": "Dash",
   "id": "DASH",
-  "name": "%green%Dash",
-  "description": [
-    "%gray%Rapidly moves you in your looking",
-    "%gray%direction!"
-  ],
+  "name": "%green%@DASH@",
+  "description": ["@DASH_DESCRIPTION@"],
   "price": {
     "food": 4
   },
