@@ -30,6 +30,9 @@ public class ReforgingLangCommand implements CommandWrapper {
 
     @Override
     public List<String> suggest(Player sender, List<String> args) {
-        return new ArrayList<>(plugin.getLanguages().getIds());
+        if (args.size() == 1) {
+            return new ArrayList<>(plugin.getLanguages().getIds());
+        }
+        return null;
     }
 }

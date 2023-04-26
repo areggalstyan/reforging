@@ -26,7 +26,6 @@ public class Reforging extends DeltaPlugin {
             .name(REFORGE_WEIGHTS_TYPE, "reforge_weights")
             .plugin(this)
             .build();
-
     private final Registry<String, Language> languages =
             new Registry<>("languages", Language.class, configurationLoader, this::initializeLanguage);
     private final Registry<String, Ability> abilities =
