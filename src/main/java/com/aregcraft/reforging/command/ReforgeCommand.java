@@ -20,10 +20,10 @@ public class ReforgeCommand implements CommandWrapper {
     @Override
     public boolean execute(Player sender, List<String> args) {
         var item = ItemWrapper.wrap(sender.getInventory().getItemInMainHand());
-        item.setFormattingContext(FormattingContext.withPlugin(plugin));
         if (args.size() != 1 || !Target.isTarget(item)) {
             return false;
         }
+        item.setFormattingContext(FormattingContext.withPlugin(plugin));
         var reforge = plugin.getReforges().findAny(args.get(0));
         if (reforge == null || !reforge.isApplicable(item)) {
             return false;
