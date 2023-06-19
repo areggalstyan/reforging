@@ -1,7 +1,7 @@
 package com.aregcraft.reforging.function;
 
+import net.objecthunter.exp4j.Expression;
 import org.bukkit.util.Vector;
-import org.mariuszgromada.math.mxparser.Expression;
 
 import java.util.function.Consumer;
 
@@ -24,10 +24,10 @@ public class Function3 {
 
     public void evaluate(Consumer<Vector> action) {
         for (var t = min; t < max; t += delta) {
-            x.setArgumentValue("t", t);
-            y.setArgumentValue("t", t);
-            z.setArgumentValue("t", t);
-            action.accept(new Vector(x.calculate(), y.calculate(), z.calculate()));
+            x.setVariable("t", t);
+            y.setVariable("t", t);
+            z.setVariable("t", t);
+            action.accept(new Vector(x.evaluate(), y.evaluate(), z.evaluate()));
         }
     }
 }

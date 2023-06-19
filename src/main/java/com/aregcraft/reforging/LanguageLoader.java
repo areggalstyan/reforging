@@ -7,6 +7,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.gson.reflect.TypeToken;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,7 +21,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public class LanguageLoader implements Listener {
-    private static final String LANG_URL = "https://assets.mcasset.cloud/1.19.2/assets/minecraft/lang/%s.json";
+    private static final String LANG_URL = "https://assets.mcasset.cloud/%s/assets/minecraft/lang/%s.json";
     private static final TypeToken<Map<String, String>> LANG_TYPE = new TypeToken<>() {};
 
     private final Reforging plugin;
@@ -52,7 +53,7 @@ public class LanguageLoader implements Listener {
     private class LanguageCacheLoader extends CacheLoader<String, Map<String, String>> {
         @Override
         public Map<String, String> load(String key) {
-            try (var reader = new InputStreamReader(new URL(LANG_URL.formatted(key)).openStream())) {
+            try (var reader = new InputStreamReader(new URL(LANG_URL.formatted(getVersion(), key)).openStream())) {
                 return getTargets(plugin.getGson().fromJson(reader, LANG_TYPE.getType()));
             } catch (IOException e) {
                 Crash.Default.IO.withThrowable(e).log(plugin);
@@ -68,6 +69,10 @@ public class LanguageLoader implements Listener {
 
         private boolean isSlot(String name) {
             return name.startsWith("item.modifiers");
+        }
+
+        private String getVersion() {
+            return Bukkit.getBukkitVersion().split("-")[0];
         }
     }
 }
