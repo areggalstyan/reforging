@@ -76,6 +76,8 @@ public enum Target {
     }
 
     public boolean matches(ItemWrapper item) {
-        return item.getMaterial().name().endsWith("_" + name());
+        var name = item.getMaterial().name();
+        return name.endsWith("_" + name()) && !name.startsWith("WOODEN")
+                && !name.startsWith("LEATHER") && !name.startsWith("CHAINMAIL");
     }
 }
