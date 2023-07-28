@@ -19,6 +19,11 @@ public class ReforgingAnvil implements Registrable<Reforging> {
         recipe.add(plugin, "reforging_anvil", item);
     }
 
+    @Override
+    public void unregister(Reforging plugin) {
+        recipe.remove(plugin, "reforging_anvil");
+    }
+
     public void playSound(Block block) {
         sound.play(block);
     }

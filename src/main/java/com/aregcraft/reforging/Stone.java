@@ -36,4 +36,9 @@ public class Stone implements Identifiable<String>, Registrable<Reforging> {
                 .persistentData(plugin, "reforge_id", id);
         recipe.add(plugin, id, item);
     }
+
+    @Override
+    public void unregister(Reforging plugin) {
+        recipe.remove(plugin, id);
+    }
 }
