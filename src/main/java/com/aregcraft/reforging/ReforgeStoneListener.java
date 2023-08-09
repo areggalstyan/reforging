@@ -29,6 +29,9 @@ public class ReforgeStoneListener implements Listener {
     }
 
     private boolean isReforgeStone(ItemStack item) {
-        return item != null && ItemWrapper.wrap(item).getPersistentData(plugin).check("id", "reforge_stone");
+        if (item == null || item.getItemMeta() == null) {
+            return false;
+        }
+        return ItemWrapper.wrap(item).getPersistentData(plugin).check("id", "reforge_stone");
     }
 }
